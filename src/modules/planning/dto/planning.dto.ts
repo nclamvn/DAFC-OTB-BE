@@ -147,10 +147,10 @@ export class PlanningCategoryDto {
 // ─── Create Planning DTO ─────────────────────────────────────────────────────
 
 export class CreatePlanningDto {
-  @ApiPropertyOptional({ description: 'AllocateHeader ID this planning version is based on' })
+  @ApiProperty({ description: 'AllocateHeader ID this planning version is based on' })
   @IsString()
-  @IsOptional()
-  allocateHeaderId?: string;
+  @IsNotEmpty()
+  allocateHeaderId: string;
 
   @ApiPropertyOptional({ type: [PlanningSeasonTypeDto] })
   @IsArray()

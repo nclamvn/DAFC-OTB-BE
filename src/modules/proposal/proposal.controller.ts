@@ -49,6 +49,28 @@ export class ProposalController {
     return ok(await this.proposalService.getStatistics(budgetId));
   }
 
+  @Get('historical')
+  @RequirePermissions('proposal:read')
+  @ApiOperation({ summary: 'Get historical (previous year) proposal for a brand + season' })
+  @ApiQuery({ name: 'fiscalYear', required: true, type: Number })
+  @ApiQuery({ name: 'seasonGroupName', required: true })
+  @ApiQuery({ name: 'seasonName', required: true })
+  @ApiQuery({ name: 'brandId', required: true })
+  async findHistorical(
+    @Query('fiscalYear') fiscalYear: number,
+    @Query('seasonGroupName') seasonGroupName: string,
+    @Query('seasonName') seasonName: string,
+    @Query('brandId') brandId: string,
+  ) {
+    const result = await this.proposalService.findHistorical({
+      fiscalYear: Number(fiscalYear),
+      seasonGroupName,
+      seasonName,
+      brandId,
+    });
+    return ok(result);
+  }
+
   @Get(':id')
   @RequirePermissions('proposal:read')
   @ApiOperation({ summary: 'Get SKU proposal header with nested data' })
@@ -189,11 +211,11 @@ export class ProposalController {
     return ok(await this.proposalService.createSizingHeader(dto, req.user.sub));
   }
 
-  @Get('items/:skuProposalId/sizing-headers')
+  @Get(':headerId/sizing-headers')
   @RequirePermissions('proposal:read')
-  @ApiOperation({ summary: 'List Sizing Headers for a SKU Proposal' })
-  async getSizingHeadersByProposal(@Param('skuProposalId') skuProposalId: string) {
-    return ok(await this.proposalService.getSizingHeadersByProposal(skuProposalId));
+  @ApiOperation({ summary: 'List Sizing Headers for a SKU Proposal Header' })
+  async getSizingHeadersByProposalHeader(@Param('headerId') headerId: string) {
+    return ok(await this.proposalService.getSizingHeadersByProposalHeader(headerId));
   }
 
   @Get('sizing-headers/:headerId')

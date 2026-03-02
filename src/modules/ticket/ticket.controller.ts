@@ -3,6 +3,7 @@ import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger'
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard, RequirePermissions } from '../../common/guards/permissions.guard';
 import { TicketService } from './ticket.service';
+import { CreateTicketDto, ValidateTicketDto } from './dto/ticket.dto';
 
 @ApiTags('tickets')
 @ApiBearerAuth()
@@ -14,17 +15,23 @@ export class TicketController {
   @Get()
   @RequirePermissions('ticket:read')
   @ApiOperation({ summary: 'List tickets with filters and pagination' })
-  @ApiQuery({ name: 'status', required: false, enum: ['PENDING', 'IN_REVIEW', 'APPROVED', 'REJECTED'] })
-  @ApiQuery({ name: 'budgetAllocateId', required: false })
+  @ApiQuery({ name: 'status', required: false })
+  @ApiQuery({ name: 'budgetId', required: false })
+  @ApiQuery({ name: 'seasonGroupId', required: false })
+  @ApiQuery({ name: 'seasonId', required: false })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'pageSize', required: false, type: Number })
   async findAll(
     @Query('status') status?: string,
-    @Query('budgetAllocateId') budgetAllocateId?: string,
+    @Query('budgetId') budgetId?: string,
+    @Query('seasonGroupId') seasonGroupId?: string,
+    @Query('seasonId') seasonId?: string,
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    const result = await this.ticketService.findAll({ status, budgetAllocateId, page, pageSize });
+    const result = await this.ticketService.findAll({
+      status, budgetId, seasonGroupId, seasonId, page, pageSize,
+    });
     return { success: true, ...result };
   }
 
@@ -35,17 +42,28 @@ export class TicketController {
     return { success: true, data: await this.ticketService.getStatistics() };
   }
 
+  // Validate endpoint — MUST be before :id to avoid route conflict
+  @Post('validate')
+  @RequirePermissions('ticket:write')
+  @ApiOperation({ summary: 'Validate budget readiness for ticket creation' })
+  async validate(@Body() body: ValidateTicketDto) {
+    const result = await this.ticketService.validateBudgetReadiness(
+      body.budgetId,
+    );
+    return { success: true, data: result };
+  }
+
   @Get(':id')
   @RequirePermissions('ticket:read')
-  @ApiOperation({ summary: 'Get ticket details with approval history' })
+  @ApiOperation({ summary: 'Get ticket details with snapshot and approval history' })
   async findOne(@Param('id') id: string) {
     return { success: true, data: await this.ticketService.findOne(id) };
   }
 
   @Post()
   @RequirePermissions('ticket:write')
-  @ApiOperation({ summary: 'Create a new ticket for a budget allocation' })
-  async create(@Body() body: { budgetAllocateId: string }, @Request() req: any) {
+  @ApiOperation({ summary: 'Create a new ticket with validation and snapshot' })
+  async create(@Body() body: CreateTicketDto, @Request() req: any) {
     return { success: true, data: await this.ticketService.create(body, req.user.sub) };
   }
 

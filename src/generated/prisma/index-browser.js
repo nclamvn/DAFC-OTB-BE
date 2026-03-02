@@ -295,6 +295,8 @@ exports.Prisma.AllocateHeaderScalarFieldEnum = {
   brand_id: 'brand_id',
   version: 'version',
   is_final_version: 'is_final_version',
+  is_snapshot: 'is_snapshot',
+  ticket_id: 'ticket_id',
   created_by: 'created_by',
   created_at: 'created_at',
   updated_at: 'updated_at',
@@ -417,7 +419,7 @@ exports.Prisma.SKUAllocateScalarFieldEnum = {
 
 exports.Prisma.ProposalSizingHeaderScalarFieldEnum = {
   id: 'id',
-  sku_proposal_id: 'sku_proposal_id',
+  sku_proposal_header_id: 'sku_proposal_header_id',
   version: 'version',
   is_final_version: 'is_final_version',
   created_by: 'created_by',
@@ -429,6 +431,7 @@ exports.Prisma.ProposalSizingHeaderScalarFieldEnum = {
 exports.Prisma.ProposalSizingScalarFieldEnum = {
   id: 'id',
   proposal_sizing_header_id: 'proposal_sizing_header_id',
+  sku_proposal_id: 'sku_proposal_id',
   subcategory_size_id: 'subcategory_size_id',
   actual_salesmix_pct: 'actual_salesmix_pct',
   actual_st_pct: 'actual_st_pct',
@@ -451,7 +454,9 @@ exports.Prisma.ApprovalStatusScalarFieldEnum = {
 
 exports.Prisma.TicketScalarFieldEnum = {
   id: 'id',
-  budget_allocate_id: 'budget_allocate_id',
+  budget_id: 'budget_id',
+  season_group_id: 'season_group_id',
+  season_id: 'season_id',
   status: 'status',
   created_by: 'created_by',
   created_at: 'created_at',

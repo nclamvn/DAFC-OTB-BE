@@ -3513,11 +3513,13 @@ export namespace Prisma {
   export type SeasonGroupCountOutputType = {
     seasons: number
     budget_allocates: number
+    tickets: number
   }
 
   export type SeasonGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     seasons?: boolean | SeasonGroupCountOutputTypeCountSeasonsArgs
     budget_allocates?: boolean | SeasonGroupCountOutputTypeCountBudget_allocatesArgs
+    tickets?: boolean | SeasonGroupCountOutputTypeCountTicketsArgs
   }
 
   // Custom InputTypes
@@ -3545,6 +3547,13 @@ export namespace Prisma {
     where?: BudgetAllocateWhereInput
   }
 
+  /**
+   * SeasonGroupCountOutputType without action
+   */
+  export type SeasonGroupCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketWhereInput
+  }
+
 
   /**
    * Count Type SeasonCountOutputType
@@ -3552,10 +3561,12 @@ export namespace Prisma {
 
   export type SeasonCountOutputType = {
     budget_allocates: number
+    tickets: number
   }
 
   export type SeasonCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     budget_allocates?: boolean | SeasonCountOutputTypeCountBudget_allocatesArgs
+    tickets?: boolean | SeasonCountOutputTypeCountTicketsArgs
   }
 
   // Custom InputTypes
@@ -3574,6 +3585,13 @@ export namespace Prisma {
    */
   export type SeasonCountOutputTypeCountBudget_allocatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BudgetAllocateWhereInput
+  }
+
+  /**
+   * SeasonCountOutputType without action
+   */
+  export type SeasonCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketWhereInput
   }
 
 
@@ -3765,10 +3783,12 @@ export namespace Prisma {
 
   export type BudgetCountOutputType = {
     allocate_headers: number
+    tickets: number
   }
 
   export type BudgetCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     allocate_headers?: boolean | BudgetCountOutputTypeCountAllocate_headersArgs
+    tickets?: boolean | BudgetCountOutputTypeCountTicketsArgs
   }
 
   // Custom InputTypes
@@ -3787,6 +3807,13 @@ export namespace Prisma {
    */
   export type BudgetCountOutputTypeCountAllocate_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AllocateHeaderWhereInput
+  }
+
+  /**
+   * BudgetCountOutputType without action
+   */
+  export type BudgetCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TicketWhereInput
   }
 
 
@@ -3836,37 +3863,6 @@ export namespace Prisma {
    */
   export type AllocateHeaderCountOutputTypeCountSku_proposal_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SKUProposalHeaderWhereInput
-  }
-
-
-  /**
-   * Count Type BudgetAllocateCountOutputType
-   */
-
-  export type BudgetAllocateCountOutputType = {
-    tickets: number
-  }
-
-  export type BudgetAllocateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    tickets?: boolean | BudgetAllocateCountOutputTypeCountTicketsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * BudgetAllocateCountOutputType without action
-   */
-  export type BudgetAllocateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BudgetAllocateCountOutputType
-     */
-    select?: BudgetAllocateCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * BudgetAllocateCountOutputType without action
-   */
-  export type BudgetAllocateCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TicketWhereInput
   }
 
 
@@ -3925,10 +3921,12 @@ export namespace Prisma {
 
   export type SKUProposalHeaderCountOutputType = {
     sku_proposals: number
+    proposal_sizing_headers: number
   }
 
   export type SKUProposalHeaderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sku_proposals?: boolean | SKUProposalHeaderCountOutputTypeCountSku_proposalsArgs
+    proposal_sizing_headers?: boolean | SKUProposalHeaderCountOutputTypeCountProposal_sizing_headersArgs
   }
 
   // Custom InputTypes
@@ -3949,6 +3947,13 @@ export namespace Prisma {
     where?: SKUProposalWhereInput
   }
 
+  /**
+   * SKUProposalHeaderCountOutputType without action
+   */
+  export type SKUProposalHeaderCountOutputTypeCountProposal_sizing_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProposalSizingHeaderWhereInput
+  }
+
 
   /**
    * Count Type SKUProposalCountOutputType
@@ -3956,12 +3961,12 @@ export namespace Prisma {
 
   export type SKUProposalCountOutputType = {
     sku_allocates: number
-    proposal_sizing_headers: number
+    proposal_sizings: number
   }
 
   export type SKUProposalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sku_allocates?: boolean | SKUProposalCountOutputTypeCountSku_allocatesArgs
-    proposal_sizing_headers?: boolean | SKUProposalCountOutputTypeCountProposal_sizing_headersArgs
+    proposal_sizings?: boolean | SKUProposalCountOutputTypeCountProposal_sizingsArgs
   }
 
   // Custom InputTypes
@@ -3985,8 +3990,8 @@ export namespace Prisma {
   /**
    * SKUProposalCountOutputType without action
    */
-  export type SKUProposalCountOutputTypeCountProposal_sizing_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProposalSizingHeaderWhereInput
+  export type SKUProposalCountOutputTypeCountProposal_sizingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProposalSizingWhereInput
   }
 
 
@@ -4027,10 +4032,12 @@ export namespace Prisma {
 
   export type TicketCountOutputType = {
     ticket_approval_logs: number
+    snapshot_allocate_headers: number
   }
 
   export type TicketCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket_approval_logs?: boolean | TicketCountOutputTypeCountTicket_approval_logsArgs
+    snapshot_allocate_headers?: boolean | TicketCountOutputTypeCountSnapshot_allocate_headersArgs
   }
 
   // Custom InputTypes
@@ -4049,6 +4056,13 @@ export namespace Prisma {
    */
   export type TicketCountOutputTypeCountTicket_approval_logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TicketApprovalLogWhereInput
+  }
+
+  /**
+   * TicketCountOutputType without action
+   */
+  export type TicketCountOutputTypeCountSnapshot_allocate_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AllocateHeaderWhereInput
   }
 
 
@@ -10544,6 +10558,7 @@ export namespace Prisma {
     updated_by?: boolean
     seasons?: boolean | SeasonGroup$seasonsArgs<ExtArgs>
     budget_allocates?: boolean | SeasonGroup$budget_allocatesArgs<ExtArgs>
+    tickets?: boolean | SeasonGroup$ticketsArgs<ExtArgs>
     _count?: boolean | SeasonGroupCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seasonGroup"]>
 
@@ -10562,6 +10577,7 @@ export namespace Prisma {
   export type SeasonGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     seasons?: boolean | SeasonGroup$seasonsArgs<ExtArgs>
     budget_allocates?: boolean | SeasonGroup$budget_allocatesArgs<ExtArgs>
+    tickets?: boolean | SeasonGroup$ticketsArgs<ExtArgs>
     _count?: boolean | SeasonGroupCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10570,6 +10586,7 @@ export namespace Prisma {
     objects: {
       seasons: Prisma.$SeasonPayload<ExtArgs>[]
       budget_allocates: Prisma.$BudgetAllocatePayload<ExtArgs>[]
+      tickets: Prisma.$TicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -10922,6 +10939,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     seasons<T extends SeasonGroup$seasonsArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroup$seasonsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findMany"> | Null>
     budget_allocates<T extends SeasonGroup$budget_allocatesArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroup$budget_allocatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetAllocatePayload<ExtArgs>, T, "findMany"> | Null>
+    tickets<T extends SeasonGroup$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroup$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11297,6 +11315,26 @@ export namespace Prisma {
   }
 
   /**
+   * SeasonGroup.tickets
+   */
+  export type SeasonGroup$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ticket
+     */
+    select?: TicketSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketInclude<ExtArgs> | null
+    where?: TicketWhereInput
+    orderBy?: TicketOrderByWithRelationInput | TicketOrderByWithRelationInput[]
+    cursor?: TicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
+  }
+
+  /**
    * SeasonGroup without action
    */
   export type SeasonGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11547,6 +11585,7 @@ export namespace Prisma {
     updated_by?: boolean
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     budget_allocates?: boolean | Season$budget_allocatesArgs<ExtArgs>
+    tickets?: boolean | Season$ticketsArgs<ExtArgs>
     _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["season"]>
 
@@ -11565,6 +11604,7 @@ export namespace Prisma {
   export type SeasonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     budget_allocates?: boolean | Season$budget_allocatesArgs<ExtArgs>
+    tickets?: boolean | Season$ticketsArgs<ExtArgs>
     _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -11573,6 +11613,7 @@ export namespace Prisma {
     objects: {
       season_group: Prisma.$SeasonGroupPayload<ExtArgs>
       budget_allocates: Prisma.$BudgetAllocatePayload<ExtArgs>[]
+      tickets: Prisma.$TicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -11925,6 +11966,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     season_group<T extends SeasonGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroupDefaultArgs<ExtArgs>>): Prisma__SeasonGroupClient<$Result.GetResult<Prisma.$SeasonGroupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     budget_allocates<T extends Season$budget_allocatesArgs<ExtArgs> = {}>(args?: Subset<T, Season$budget_allocatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetAllocatePayload<ExtArgs>, T, "findMany"> | Null>
+    tickets<T extends Season$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Season$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12277,6 +12319,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: BudgetAllocateScalarFieldEnum | BudgetAllocateScalarFieldEnum[]
+  }
+
+  /**
+   * Season.tickets
+   */
+  export type Season$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ticket
+     */
+    select?: TicketSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketInclude<ExtArgs> | null
+    where?: TicketWhereInput
+    orderBy?: TicketOrderByWithRelationInput | TicketOrderByWithRelationInput[]
+    cursor?: TicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
   }
 
   /**
@@ -17622,6 +17684,7 @@ export namespace Prisma {
     updated_by?: boolean
     creator?: boolean | UserDefaultArgs<ExtArgs>
     allocate_headers?: boolean | Budget$allocate_headersArgs<ExtArgs>
+    tickets?: boolean | Budget$ticketsArgs<ExtArgs>
     _count?: boolean | BudgetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budget"]>
 
@@ -17642,6 +17705,7 @@ export namespace Prisma {
   export type BudgetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creator?: boolean | UserDefaultArgs<ExtArgs>
     allocate_headers?: boolean | Budget$allocate_headersArgs<ExtArgs>
+    tickets?: boolean | Budget$ticketsArgs<ExtArgs>
     _count?: boolean | BudgetCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -17650,6 +17714,7 @@ export namespace Prisma {
     objects: {
       creator: Prisma.$UserPayload<ExtArgs>
       allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
+      tickets: Prisma.$TicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -18004,6 +18069,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     allocate_headers<T extends Budget$allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Budget$allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
+    tickets<T extends Budget$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Budget$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18361,6 +18427,26 @@ export namespace Prisma {
   }
 
   /**
+   * Budget.tickets
+   */
+  export type Budget$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ticket
+     */
+    select?: TicketSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketInclude<ExtArgs> | null
+    where?: TicketWhereInput
+    orderBy?: TicketOrderByWithRelationInput | TicketOrderByWithRelationInput[]
+    cursor?: TicketWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
+  }
+
+  /**
    * Budget without action
    */
   export type BudgetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18392,6 +18478,7 @@ export namespace Prisma {
     budget_id: number | null
     brand_id: number | null
     version: number | null
+    ticket_id: number | null
     created_by: number | null
     updated_by: number | null
   }
@@ -18401,6 +18488,7 @@ export namespace Prisma {
     budget_id: bigint | null
     brand_id: bigint | null
     version: number | null
+    ticket_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
   }
@@ -18411,6 +18499,8 @@ export namespace Prisma {
     brand_id: bigint | null
     version: number | null
     is_final_version: boolean | null
+    is_snapshot: boolean | null
+    ticket_id: bigint | null
     created_by: bigint | null
     created_at: Date | null
     updated_at: Date | null
@@ -18423,6 +18513,8 @@ export namespace Prisma {
     brand_id: bigint | null
     version: number | null
     is_final_version: boolean | null
+    is_snapshot: boolean | null
+    ticket_id: bigint | null
     created_by: bigint | null
     created_at: Date | null
     updated_at: Date | null
@@ -18435,6 +18527,8 @@ export namespace Prisma {
     brand_id: number
     version: number
     is_final_version: number
+    is_snapshot: number
+    ticket_id: number
     created_by: number
     created_at: number
     updated_at: number
@@ -18448,6 +18542,7 @@ export namespace Prisma {
     budget_id?: true
     brand_id?: true
     version?: true
+    ticket_id?: true
     created_by?: true
     updated_by?: true
   }
@@ -18457,6 +18552,7 @@ export namespace Prisma {
     budget_id?: true
     brand_id?: true
     version?: true
+    ticket_id?: true
     created_by?: true
     updated_by?: true
   }
@@ -18467,6 +18563,8 @@ export namespace Prisma {
     brand_id?: true
     version?: true
     is_final_version?: true
+    is_snapshot?: true
+    ticket_id?: true
     created_by?: true
     created_at?: true
     updated_at?: true
@@ -18479,6 +18577,8 @@ export namespace Prisma {
     brand_id?: true
     version?: true
     is_final_version?: true
+    is_snapshot?: true
+    ticket_id?: true
     created_by?: true
     created_at?: true
     updated_at?: true
@@ -18491,6 +18591,8 @@ export namespace Prisma {
     brand_id?: true
     version?: true
     is_final_version?: true
+    is_snapshot?: true
+    ticket_id?: true
     created_by?: true
     created_at?: true
     updated_at?: true
@@ -18590,6 +18692,8 @@ export namespace Prisma {
     brand_id: bigint
     version: number
     is_final_version: boolean
+    is_snapshot: boolean
+    ticket_id: bigint | null
     created_by: bigint
     created_at: Date
     updated_at: Date
@@ -18621,6 +18725,8 @@ export namespace Prisma {
     brand_id?: boolean
     version?: boolean
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -18628,6 +18734,7 @@ export namespace Prisma {
     budget?: boolean | BudgetDefaultArgs<ExtArgs>
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    ticket?: boolean | AllocateHeader$ticketArgs<ExtArgs>
     budget_allocates?: boolean | AllocateHeader$budget_allocatesArgs<ExtArgs>
     planning_headers?: boolean | AllocateHeader$planning_headersArgs<ExtArgs>
     sku_proposal_headers?: boolean | AllocateHeader$sku_proposal_headersArgs<ExtArgs>
@@ -18641,6 +18748,8 @@ export namespace Prisma {
     brand_id?: boolean
     version?: boolean
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -18651,6 +18760,7 @@ export namespace Prisma {
     budget?: boolean | BudgetDefaultArgs<ExtArgs>
     brand?: boolean | BrandDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
+    ticket?: boolean | AllocateHeader$ticketArgs<ExtArgs>
     budget_allocates?: boolean | AllocateHeader$budget_allocatesArgs<ExtArgs>
     planning_headers?: boolean | AllocateHeader$planning_headersArgs<ExtArgs>
     sku_proposal_headers?: boolean | AllocateHeader$sku_proposal_headersArgs<ExtArgs>
@@ -18663,6 +18773,7 @@ export namespace Prisma {
       budget: Prisma.$BudgetPayload<ExtArgs>
       brand: Prisma.$BrandPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
+      ticket: Prisma.$TicketPayload<ExtArgs> | null
       budget_allocates: Prisma.$BudgetAllocatePayload<ExtArgs>[]
       planning_headers: Prisma.$PlanningHeaderPayload<ExtArgs>[]
       sku_proposal_headers: Prisma.$SKUProposalHeaderPayload<ExtArgs>[]
@@ -18673,6 +18784,8 @@ export namespace Prisma {
       brand_id: bigint
       version: number
       is_final_version: boolean
+      is_snapshot: boolean
+      ticket_id: bigint | null
       created_by: bigint
       created_at: Date
       updated_at: Date
@@ -19020,6 +19133,7 @@ export namespace Prisma {
     budget<T extends BudgetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BudgetDefaultArgs<ExtArgs>>): Prisma__BudgetClient<$Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     brand<T extends BrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandDefaultArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    ticket<T extends AllocateHeader$ticketArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeader$ticketArgs<ExtArgs>>): Prisma__TicketClient<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     budget_allocates<T extends AllocateHeader$budget_allocatesArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeader$budget_allocatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetAllocatePayload<ExtArgs>, T, "findMany"> | Null>
     planning_headers<T extends AllocateHeader$planning_headersArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeader$planning_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanningHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     sku_proposal_headers<T extends AllocateHeader$sku_proposal_headersArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeader$sku_proposal_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUProposalHeaderPayload<ExtArgs>, T, "findMany"> | Null>
@@ -19057,6 +19171,8 @@ export namespace Prisma {
     readonly brand_id: FieldRef<"AllocateHeader", 'BigInt'>
     readonly version: FieldRef<"AllocateHeader", 'Int'>
     readonly is_final_version: FieldRef<"AllocateHeader", 'Boolean'>
+    readonly is_snapshot: FieldRef<"AllocateHeader", 'Boolean'>
+    readonly ticket_id: FieldRef<"AllocateHeader", 'BigInt'>
     readonly created_by: FieldRef<"AllocateHeader", 'BigInt'>
     readonly created_at: FieldRef<"AllocateHeader", 'DateTime'>
     readonly updated_at: FieldRef<"AllocateHeader", 'DateTime'>
@@ -19356,6 +19472,21 @@ export namespace Prisma {
      * Filter which AllocateHeaders to delete
      */
     where?: AllocateHeaderWhereInput
+  }
+
+  /**
+   * AllocateHeader.ticket
+   */
+  export type AllocateHeader$ticketArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ticket
+     */
+    select?: TicketSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TicketInclude<ExtArgs> | null
+    where?: TicketWhereInput
   }
 
   /**
@@ -19703,8 +19834,6 @@ export namespace Prisma {
     store?: boolean | StoreDefaultArgs<ExtArgs>
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     season?: boolean | SeasonDefaultArgs<ExtArgs>
-    tickets?: boolean | BudgetAllocate$ticketsArgs<ExtArgs>
-    _count?: boolean | BudgetAllocateCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budgetAllocate"]>
 
 
@@ -19726,8 +19855,6 @@ export namespace Prisma {
     store?: boolean | StoreDefaultArgs<ExtArgs>
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     season?: boolean | SeasonDefaultArgs<ExtArgs>
-    tickets?: boolean | BudgetAllocate$ticketsArgs<ExtArgs>
-    _count?: boolean | BudgetAllocateCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $BudgetAllocatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19737,7 +19864,6 @@ export namespace Prisma {
       store: Prisma.$StorePayload<ExtArgs>
       season_group: Prisma.$SeasonGroupPayload<ExtArgs>
       season: Prisma.$SeasonPayload<ExtArgs>
-      tickets: Prisma.$TicketPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -20094,7 +20220,6 @@ export namespace Prisma {
     store<T extends StoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoreDefaultArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     season_group<T extends SeasonGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroupDefaultArgs<ExtArgs>>): Prisma__SeasonGroupClient<$Result.GetResult<Prisma.$SeasonGroupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     season<T extends SeasonDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonDefaultArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    tickets<T extends BudgetAllocate$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, BudgetAllocate$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20432,26 +20557,6 @@ export namespace Prisma {
   }
 
   /**
-   * BudgetAllocate.tickets
-   */
-  export type BudgetAllocate$ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Ticket
-     */
-    select?: TicketSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TicketInclude<ExtArgs> | null
-    where?: TicketWhereInput
-    orderBy?: TicketOrderByWithRelationInput | TicketOrderByWithRelationInput[]
-    cursor?: TicketWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
-  }
-
-  /**
    * BudgetAllocate without action
    */
   export type BudgetAllocateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20673,7 +20778,7 @@ export namespace Prisma {
 
   export type PlanningHeaderGroupByOutputType = {
     id: bigint
-    allocate_header_id: bigint | null
+    allocate_header_id: bigint
     version: number
     status: string
     is_final_version: boolean
@@ -20713,7 +20818,7 @@ export namespace Prisma {
     updated_at?: boolean
     updated_by?: boolean
     creator?: boolean | UserDefaultArgs<ExtArgs>
-    allocate_header?: boolean | PlanningHeader$allocate_headerArgs<ExtArgs>
+    allocate_header?: boolean | AllocateHeaderDefaultArgs<ExtArgs>
     planning_collections?: boolean | PlanningHeader$planning_collectionsArgs<ExtArgs>
     planning_genders?: boolean | PlanningHeader$planning_gendersArgs<ExtArgs>
     planning_categories?: boolean | PlanningHeader$planning_categoriesArgs<ExtArgs>
@@ -20735,7 +20840,7 @@ export namespace Prisma {
 
   export type PlanningHeaderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creator?: boolean | UserDefaultArgs<ExtArgs>
-    allocate_header?: boolean | PlanningHeader$allocate_headerArgs<ExtArgs>
+    allocate_header?: boolean | AllocateHeaderDefaultArgs<ExtArgs>
     planning_collections?: boolean | PlanningHeader$planning_collectionsArgs<ExtArgs>
     planning_genders?: boolean | PlanningHeader$planning_gendersArgs<ExtArgs>
     planning_categories?: boolean | PlanningHeader$planning_categoriesArgs<ExtArgs>
@@ -20746,14 +20851,14 @@ export namespace Prisma {
     name: "PlanningHeader"
     objects: {
       creator: Prisma.$UserPayload<ExtArgs>
-      allocate_header: Prisma.$AllocateHeaderPayload<ExtArgs> | null
+      allocate_header: Prisma.$AllocateHeaderPayload<ExtArgs>
       planning_collections: Prisma.$PlanningCollectionPayload<ExtArgs>[]
       planning_genders: Prisma.$PlanningGenderPayload<ExtArgs>[]
       planning_categories: Prisma.$PlanningCategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      allocate_header_id: bigint | null
+      allocate_header_id: bigint
       version: number
       status: string
       is_final_version: boolean
@@ -21102,7 +21207,7 @@ export namespace Prisma {
   export interface Prisma__PlanningHeaderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    allocate_header<T extends PlanningHeader$allocate_headerArgs<ExtArgs> = {}>(args?: Subset<T, PlanningHeader$allocate_headerArgs<ExtArgs>>): Prisma__AllocateHeaderClient<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    allocate_header<T extends AllocateHeaderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeaderDefaultArgs<ExtArgs>>): Prisma__AllocateHeaderClient<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     planning_collections<T extends PlanningHeader$planning_collectionsArgs<ExtArgs> = {}>(args?: Subset<T, PlanningHeader$planning_collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanningCollectionPayload<ExtArgs>, T, "findMany"> | Null>
     planning_genders<T extends PlanningHeader$planning_gendersArgs<ExtArgs> = {}>(args?: Subset<T, PlanningHeader$planning_gendersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanningGenderPayload<ExtArgs>, T, "findMany"> | Null>
     planning_categories<T extends PlanningHeader$planning_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, PlanningHeader$planning_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanningCategoryPayload<ExtArgs>, T, "findMany"> | Null>
@@ -21439,21 +21544,6 @@ export namespace Prisma {
      * Filter which PlanningHeaders to delete
      */
     where?: PlanningHeaderWhereInput
-  }
-
-  /**
-   * PlanningHeader.allocate_header
-   */
-  export type PlanningHeader$allocate_headerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AllocateHeader
-     */
-    select?: AllocateHeaderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AllocateHeaderInclude<ExtArgs> | null
-    where?: AllocateHeaderWhereInput
   }
 
   /**
@@ -24953,7 +25043,7 @@ export namespace Prisma {
 
   export type SKUProposalHeaderGroupByOutputType = {
     id: bigint
-    allocate_header_id: bigint | null
+    allocate_header_id: bigint
     version: number
     status: string
     is_final_version: boolean
@@ -24992,9 +25082,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
-    allocate_header?: boolean | SKUProposalHeader$allocate_headerArgs<ExtArgs>
+    allocate_header?: boolean | AllocateHeaderDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     sku_proposals?: boolean | SKUProposalHeader$sku_proposalsArgs<ExtArgs>
+    proposal_sizing_headers?: boolean | SKUProposalHeader$proposal_sizing_headersArgs<ExtArgs>
     _count?: boolean | SKUProposalHeaderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sKUProposalHeader"]>
 
@@ -25012,22 +25103,24 @@ export namespace Prisma {
   }
 
   export type SKUProposalHeaderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    allocate_header?: boolean | SKUProposalHeader$allocate_headerArgs<ExtArgs>
+    allocate_header?: boolean | AllocateHeaderDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     sku_proposals?: boolean | SKUProposalHeader$sku_proposalsArgs<ExtArgs>
+    proposal_sizing_headers?: boolean | SKUProposalHeader$proposal_sizing_headersArgs<ExtArgs>
     _count?: boolean | SKUProposalHeaderCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $SKUProposalHeaderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SKUProposalHeader"
     objects: {
-      allocate_header: Prisma.$AllocateHeaderPayload<ExtArgs> | null
+      allocate_header: Prisma.$AllocateHeaderPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
       sku_proposals: Prisma.$SKUProposalPayload<ExtArgs>[]
+      proposal_sizing_headers: Prisma.$ProposalSizingHeaderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      allocate_header_id: bigint | null
+      allocate_header_id: bigint
       version: number
       status: string
       is_final_version: boolean
@@ -25375,9 +25468,10 @@ export namespace Prisma {
    */
   export interface Prisma__SKUProposalHeaderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    allocate_header<T extends SKUProposalHeader$allocate_headerArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalHeader$allocate_headerArgs<ExtArgs>>): Prisma__AllocateHeaderClient<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    allocate_header<T extends AllocateHeaderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AllocateHeaderDefaultArgs<ExtArgs>>): Prisma__AllocateHeaderClient<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     sku_proposals<T extends SKUProposalHeader$sku_proposalsArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalHeader$sku_proposalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUProposalPayload<ExtArgs>, T, "findMany"> | Null>
+    proposal_sizing_headers<T extends SKUProposalHeader$proposal_sizing_headersArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalHeader$proposal_sizing_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposalSizingHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25714,21 +25808,6 @@ export namespace Prisma {
   }
 
   /**
-   * SKUProposalHeader.allocate_header
-   */
-  export type SKUProposalHeader$allocate_headerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AllocateHeader
-     */
-    select?: AllocateHeaderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AllocateHeaderInclude<ExtArgs> | null
-    where?: AllocateHeaderWhereInput
-  }
-
-  /**
    * SKUProposalHeader.sku_proposals
    */
   export type SKUProposalHeader$sku_proposalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25746,6 +25825,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SKUProposalScalarFieldEnum | SKUProposalScalarFieldEnum[]
+  }
+
+  /**
+   * SKUProposalHeader.proposal_sizing_headers
+   */
+  export type SKUProposalHeader$proposal_sizing_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProposalSizingHeader
+     */
+    select?: ProposalSizingHeaderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProposalSizingHeaderInclude<ExtArgs> | null
+    where?: ProposalSizingHeaderWhereInput
+    orderBy?: ProposalSizingHeaderOrderByWithRelationInput | ProposalSizingHeaderOrderByWithRelationInput[]
+    cursor?: ProposalSizingHeaderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProposalSizingHeaderScalarFieldEnum | ProposalSizingHeaderScalarFieldEnum[]
   }
 
   /**
@@ -26028,7 +26127,7 @@ export namespace Prisma {
     sku_proposal_header?: boolean | SKUProposalHeaderDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
     sku_allocates?: boolean | SKUProposal$sku_allocatesArgs<ExtArgs>
-    proposal_sizing_headers?: boolean | SKUProposal$proposal_sizing_headersArgs<ExtArgs>
+    proposal_sizings?: boolean | SKUProposal$proposal_sizingsArgs<ExtArgs>
     _count?: boolean | SKUProposalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sKUProposal"]>
 
@@ -26050,7 +26149,7 @@ export namespace Prisma {
     sku_proposal_header?: boolean | SKUProposalHeaderDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
     sku_allocates?: boolean | SKUProposal$sku_allocatesArgs<ExtArgs>
-    proposal_sizing_headers?: boolean | SKUProposal$proposal_sizing_headersArgs<ExtArgs>
+    proposal_sizings?: boolean | SKUProposal$proposal_sizingsArgs<ExtArgs>
     _count?: boolean | SKUProposalCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -26060,7 +26159,7 @@ export namespace Prisma {
       sku_proposal_header: Prisma.$SKUProposalHeaderPayload<ExtArgs>
       product: Prisma.$ProductPayload<ExtArgs>
       sku_allocates: Prisma.$SKUAllocatePayload<ExtArgs>[]
-      proposal_sizing_headers: Prisma.$ProposalSizingHeaderPayload<ExtArgs>[]
+      proposal_sizings: Prisma.$ProposalSizingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -26416,7 +26515,7 @@ export namespace Prisma {
     sku_proposal_header<T extends SKUProposalHeaderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalHeaderDefaultArgs<ExtArgs>>): Prisma__SKUProposalHeaderClient<$Result.GetResult<Prisma.$SKUProposalHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     sku_allocates<T extends SKUProposal$sku_allocatesArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposal$sku_allocatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUAllocatePayload<ExtArgs>, T, "findMany"> | Null>
-    proposal_sizing_headers<T extends SKUProposal$proposal_sizing_headersArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposal$proposal_sizing_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposalSizingHeaderPayload<ExtArgs>, T, "findMany"> | Null>
+    proposal_sizings<T extends SKUProposal$proposal_sizingsArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposal$proposal_sizingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposalSizingPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26774,23 +26873,23 @@ export namespace Prisma {
   }
 
   /**
-   * SKUProposal.proposal_sizing_headers
+   * SKUProposal.proposal_sizings
    */
-  export type SKUProposal$proposal_sizing_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type SKUProposal$proposal_sizingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProposalSizingHeader
+     * Select specific fields to fetch from the ProposalSizing
      */
-    select?: ProposalSizingHeaderSelect<ExtArgs> | null
+    select?: ProposalSizingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProposalSizingHeaderInclude<ExtArgs> | null
-    where?: ProposalSizingHeaderWhereInput
-    orderBy?: ProposalSizingHeaderOrderByWithRelationInput | ProposalSizingHeaderOrderByWithRelationInput[]
-    cursor?: ProposalSizingHeaderWhereUniqueInput
+    include?: ProposalSizingInclude<ExtArgs> | null
+    where?: ProposalSizingWhereInput
+    orderBy?: ProposalSizingOrderByWithRelationInput | ProposalSizingOrderByWithRelationInput[]
+    cursor?: ProposalSizingWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProposalSizingHeaderScalarFieldEnum | ProposalSizingHeaderScalarFieldEnum[]
+    distinct?: ProposalSizingScalarFieldEnum | ProposalSizingScalarFieldEnum[]
   }
 
   /**
@@ -27791,7 +27890,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderAvgAggregateOutputType = {
     id: number | null
-    sku_proposal_id: number | null
+    sku_proposal_header_id: number | null
     version: number | null
     created_by: number | null
     updated_by: number | null
@@ -27799,7 +27898,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderSumAggregateOutputType = {
     id: bigint | null
-    sku_proposal_id: bigint | null
+    sku_proposal_header_id: bigint | null
     version: number | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -27807,7 +27906,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMinAggregateOutputType = {
     id: bigint | null
-    sku_proposal_id: bigint | null
+    sku_proposal_header_id: bigint | null
     version: number | null
     is_final_version: boolean | null
     created_by: bigint | null
@@ -27818,7 +27917,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMaxAggregateOutputType = {
     id: bigint | null
-    sku_proposal_id: bigint | null
+    sku_proposal_header_id: bigint | null
     version: number | null
     is_final_version: boolean | null
     created_by: bigint | null
@@ -27829,7 +27928,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderCountAggregateOutputType = {
     id: number
-    sku_proposal_id: number
+    sku_proposal_header_id: number
     version: number
     is_final_version: number
     created_by: number
@@ -27842,7 +27941,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderAvgAggregateInputType = {
     id?: true
-    sku_proposal_id?: true
+    sku_proposal_header_id?: true
     version?: true
     created_by?: true
     updated_by?: true
@@ -27850,7 +27949,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderSumAggregateInputType = {
     id?: true
-    sku_proposal_id?: true
+    sku_proposal_header_id?: true
     version?: true
     created_by?: true
     updated_by?: true
@@ -27858,7 +27957,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMinAggregateInputType = {
     id?: true
-    sku_proposal_id?: true
+    sku_proposal_header_id?: true
     version?: true
     is_final_version?: true
     created_by?: true
@@ -27869,7 +27968,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMaxAggregateInputType = {
     id?: true
-    sku_proposal_id?: true
+    sku_proposal_header_id?: true
     version?: true
     is_final_version?: true
     created_by?: true
@@ -27880,7 +27979,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderCountAggregateInputType = {
     id?: true
-    sku_proposal_id?: true
+    sku_proposal_header_id?: true
     version?: true
     is_final_version?: true
     created_by?: true
@@ -27978,7 +28077,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderGroupByOutputType = {
     id: bigint
-    sku_proposal_id: bigint
+    sku_proposal_header_id: bigint
     version: number
     is_final_version: boolean
     created_by: bigint
@@ -28008,14 +28107,14 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    sku_proposal_id?: boolean
+    sku_proposal_header_id?: boolean
     version?: boolean
     is_final_version?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
-    sku_proposal?: boolean | SKUProposalDefaultArgs<ExtArgs>
+    sku_proposal_header?: boolean | SKUProposalHeaderDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     proposal_sizings?: boolean | ProposalSizingHeader$proposal_sizingsArgs<ExtArgs>
     _count?: boolean | ProposalSizingHeaderCountOutputTypeDefaultArgs<ExtArgs>
@@ -28024,7 +28123,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderSelectScalar = {
     id?: boolean
-    sku_proposal_id?: boolean
+    sku_proposal_header_id?: boolean
     version?: boolean
     is_final_version?: boolean
     created_by?: boolean
@@ -28034,7 +28133,7 @@ export namespace Prisma {
   }
 
   export type ProposalSizingHeaderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sku_proposal?: boolean | SKUProposalDefaultArgs<ExtArgs>
+    sku_proposal_header?: boolean | SKUProposalHeaderDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     proposal_sizings?: boolean | ProposalSizingHeader$proposal_sizingsArgs<ExtArgs>
     _count?: boolean | ProposalSizingHeaderCountOutputTypeDefaultArgs<ExtArgs>
@@ -28043,13 +28142,13 @@ export namespace Prisma {
   export type $ProposalSizingHeaderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ProposalSizingHeader"
     objects: {
-      sku_proposal: Prisma.$SKUProposalPayload<ExtArgs>
+      sku_proposal_header: Prisma.$SKUProposalHeaderPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
       proposal_sizings: Prisma.$ProposalSizingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      sku_proposal_id: bigint
+      sku_proposal_header_id: bigint
       version: number
       is_final_version: boolean
       created_by: bigint
@@ -28396,7 +28495,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProposalSizingHeaderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sku_proposal<T extends SKUProposalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalDefaultArgs<ExtArgs>>): Prisma__SKUProposalClient<$Result.GetResult<Prisma.$SKUProposalPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    sku_proposal_header<T extends SKUProposalHeaderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalHeaderDefaultArgs<ExtArgs>>): Prisma__SKUProposalHeaderClient<$Result.GetResult<Prisma.$SKUProposalHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     proposal_sizings<T extends ProposalSizingHeader$proposal_sizingsArgs<ExtArgs> = {}>(args?: Subset<T, ProposalSizingHeader$proposal_sizingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposalSizingPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -28429,7 +28528,7 @@ export namespace Prisma {
    */ 
   interface ProposalSizingHeaderFieldRefs {
     readonly id: FieldRef<"ProposalSizingHeader", 'BigInt'>
-    readonly sku_proposal_id: FieldRef<"ProposalSizingHeader", 'BigInt'>
+    readonly sku_proposal_header_id: FieldRef<"ProposalSizingHeader", 'BigInt'>
     readonly version: FieldRef<"ProposalSizingHeader", 'Int'>
     readonly is_final_version: FieldRef<"ProposalSizingHeader", 'Boolean'>
     readonly created_by: FieldRef<"ProposalSizingHeader", 'BigInt'>
@@ -28783,6 +28882,7 @@ export namespace Prisma {
   export type ProposalSizingAvgAggregateOutputType = {
     id: number | null
     proposal_sizing_header_id: number | null
+    sku_proposal_id: number | null
     subcategory_size_id: number | null
     actual_salesmix_pct: Decimal | null
     actual_st_pct: Decimal | null
@@ -28794,6 +28894,7 @@ export namespace Prisma {
   export type ProposalSizingSumAggregateOutputType = {
     id: bigint | null
     proposal_sizing_header_id: bigint | null
+    sku_proposal_id: bigint | null
     subcategory_size_id: bigint | null
     actual_salesmix_pct: Decimal | null
     actual_st_pct: Decimal | null
@@ -28805,6 +28906,7 @@ export namespace Prisma {
   export type ProposalSizingMinAggregateOutputType = {
     id: bigint | null
     proposal_sizing_header_id: bigint | null
+    sku_proposal_id: bigint | null
     subcategory_size_id: bigint | null
     actual_salesmix_pct: Decimal | null
     actual_st_pct: Decimal | null
@@ -28818,6 +28920,7 @@ export namespace Prisma {
   export type ProposalSizingMaxAggregateOutputType = {
     id: bigint | null
     proposal_sizing_header_id: bigint | null
+    sku_proposal_id: bigint | null
     subcategory_size_id: bigint | null
     actual_salesmix_pct: Decimal | null
     actual_st_pct: Decimal | null
@@ -28831,6 +28934,7 @@ export namespace Prisma {
   export type ProposalSizingCountAggregateOutputType = {
     id: number
     proposal_sizing_header_id: number
+    sku_proposal_id: number
     subcategory_size_id: number
     actual_salesmix_pct: number
     actual_st_pct: number
@@ -28846,6 +28950,7 @@ export namespace Prisma {
   export type ProposalSizingAvgAggregateInputType = {
     id?: true
     proposal_sizing_header_id?: true
+    sku_proposal_id?: true
     subcategory_size_id?: true
     actual_salesmix_pct?: true
     actual_st_pct?: true
@@ -28857,6 +28962,7 @@ export namespace Prisma {
   export type ProposalSizingSumAggregateInputType = {
     id?: true
     proposal_sizing_header_id?: true
+    sku_proposal_id?: true
     subcategory_size_id?: true
     actual_salesmix_pct?: true
     actual_st_pct?: true
@@ -28868,6 +28974,7 @@ export namespace Prisma {
   export type ProposalSizingMinAggregateInputType = {
     id?: true
     proposal_sizing_header_id?: true
+    sku_proposal_id?: true
     subcategory_size_id?: true
     actual_salesmix_pct?: true
     actual_st_pct?: true
@@ -28881,6 +28988,7 @@ export namespace Prisma {
   export type ProposalSizingMaxAggregateInputType = {
     id?: true
     proposal_sizing_header_id?: true
+    sku_proposal_id?: true
     subcategory_size_id?: true
     actual_salesmix_pct?: true
     actual_st_pct?: true
@@ -28894,6 +29002,7 @@ export namespace Prisma {
   export type ProposalSizingCountAggregateInputType = {
     id?: true
     proposal_sizing_header_id?: true
+    sku_proposal_id?: true
     subcategory_size_id?: true
     actual_salesmix_pct?: true
     actual_st_pct?: true
@@ -28994,6 +29103,7 @@ export namespace Prisma {
   export type ProposalSizingGroupByOutputType = {
     id: bigint
     proposal_sizing_header_id: bigint
+    sku_proposal_id: bigint
     subcategory_size_id: bigint
     actual_salesmix_pct: Decimal
     actual_st_pct: Decimal
@@ -29026,6 +29136,7 @@ export namespace Prisma {
   export type ProposalSizingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     proposal_sizing_header_id?: boolean
+    sku_proposal_id?: boolean
     subcategory_size_id?: boolean
     actual_salesmix_pct?: boolean
     actual_st_pct?: boolean
@@ -29035,6 +29146,7 @@ export namespace Prisma {
     updated_at?: boolean
     updated_by?: boolean
     proposal_sizing_header?: boolean | ProposalSizingHeaderDefaultArgs<ExtArgs>
+    sku_proposal?: boolean | SKUProposalDefaultArgs<ExtArgs>
     subcategory_size?: boolean | SubcategorySizeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["proposalSizing"]>
 
@@ -29042,6 +29154,7 @@ export namespace Prisma {
   export type ProposalSizingSelectScalar = {
     id?: boolean
     proposal_sizing_header_id?: boolean
+    sku_proposal_id?: boolean
     subcategory_size_id?: boolean
     actual_salesmix_pct?: boolean
     actual_st_pct?: boolean
@@ -29054,6 +29167,7 @@ export namespace Prisma {
 
   export type ProposalSizingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     proposal_sizing_header?: boolean | ProposalSizingHeaderDefaultArgs<ExtArgs>
+    sku_proposal?: boolean | SKUProposalDefaultArgs<ExtArgs>
     subcategory_size?: boolean | SubcategorySizeDefaultArgs<ExtArgs>
   }
 
@@ -29061,11 +29175,13 @@ export namespace Prisma {
     name: "ProposalSizing"
     objects: {
       proposal_sizing_header: Prisma.$ProposalSizingHeaderPayload<ExtArgs>
+      sku_proposal: Prisma.$SKUProposalPayload<ExtArgs>
       subcategory_size: Prisma.$SubcategorySizePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       proposal_sizing_header_id: bigint
+      sku_proposal_id: bigint
       subcategory_size_id: bigint
       actual_salesmix_pct: Prisma.Decimal
       actual_st_pct: Prisma.Decimal
@@ -29415,6 +29531,7 @@ export namespace Prisma {
   export interface Prisma__ProposalSizingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     proposal_sizing_header<T extends ProposalSizingHeaderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProposalSizingHeaderDefaultArgs<ExtArgs>>): Prisma__ProposalSizingHeaderClient<$Result.GetResult<Prisma.$ProposalSizingHeaderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    sku_proposal<T extends SKUProposalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SKUProposalDefaultArgs<ExtArgs>>): Prisma__SKUProposalClient<$Result.GetResult<Prisma.$SKUProposalPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     subcategory_size<T extends SubcategorySizeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubcategorySizeDefaultArgs<ExtArgs>>): Prisma__SubcategorySizeClient<$Result.GetResult<Prisma.$SubcategorySizePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -29447,6 +29564,7 @@ export namespace Prisma {
   interface ProposalSizingFieldRefs {
     readonly id: FieldRef<"ProposalSizing", 'BigInt'>
     readonly proposal_sizing_header_id: FieldRef<"ProposalSizing", 'BigInt'>
+    readonly sku_proposal_id: FieldRef<"ProposalSizing", 'BigInt'>
     readonly subcategory_size_id: FieldRef<"ProposalSizing", 'BigInt'>
     readonly actual_salesmix_pct: FieldRef<"ProposalSizing", 'Decimal'>
     readonly actual_st_pct: FieldRef<"ProposalSizing", 'Decimal'>
@@ -30676,21 +30794,27 @@ export namespace Prisma {
 
   export type TicketAvgAggregateOutputType = {
     id: number | null
-    budget_allocate_id: number | null
+    budget_id: number | null
+    season_group_id: number | null
+    season_id: number | null
     created_by: number | null
     updated_by: number | null
   }
 
   export type TicketSumAggregateOutputType = {
     id: bigint | null
-    budget_allocate_id: bigint | null
+    budget_id: bigint | null
+    season_group_id: bigint | null
+    season_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
   }
 
   export type TicketMinAggregateOutputType = {
     id: bigint | null
-    budget_allocate_id: bigint | null
+    budget_id: bigint | null
+    season_group_id: bigint | null
+    season_id: bigint | null
     status: string | null
     created_by: bigint | null
     created_at: Date | null
@@ -30700,7 +30824,9 @@ export namespace Prisma {
 
   export type TicketMaxAggregateOutputType = {
     id: bigint | null
-    budget_allocate_id: bigint | null
+    budget_id: bigint | null
+    season_group_id: bigint | null
+    season_id: bigint | null
     status: string | null
     created_by: bigint | null
     created_at: Date | null
@@ -30710,7 +30836,9 @@ export namespace Prisma {
 
   export type TicketCountAggregateOutputType = {
     id: number
-    budget_allocate_id: number
+    budget_id: number
+    season_group_id: number
+    season_id: number
     status: number
     created_by: number
     created_at: number
@@ -30722,21 +30850,27 @@ export namespace Prisma {
 
   export type TicketAvgAggregateInputType = {
     id?: true
-    budget_allocate_id?: true
+    budget_id?: true
+    season_group_id?: true
+    season_id?: true
     created_by?: true
     updated_by?: true
   }
 
   export type TicketSumAggregateInputType = {
     id?: true
-    budget_allocate_id?: true
+    budget_id?: true
+    season_group_id?: true
+    season_id?: true
     created_by?: true
     updated_by?: true
   }
 
   export type TicketMinAggregateInputType = {
     id?: true
-    budget_allocate_id?: true
+    budget_id?: true
+    season_group_id?: true
+    season_id?: true
     status?: true
     created_by?: true
     created_at?: true
@@ -30746,7 +30880,9 @@ export namespace Prisma {
 
   export type TicketMaxAggregateInputType = {
     id?: true
-    budget_allocate_id?: true
+    budget_id?: true
+    season_group_id?: true
+    season_id?: true
     status?: true
     created_by?: true
     created_at?: true
@@ -30756,7 +30892,9 @@ export namespace Prisma {
 
   export type TicketCountAggregateInputType = {
     id?: true
-    budget_allocate_id?: true
+    budget_id?: true
+    season_group_id?: true
+    season_id?: true
     status?: true
     created_by?: true
     created_at?: true
@@ -30853,7 +30991,9 @@ export namespace Prisma {
 
   export type TicketGroupByOutputType = {
     id: bigint
-    budget_allocate_id: bigint
+    budget_id: bigint
+    season_group_id: bigint
+    season_id: bigint
     status: string
     created_by: bigint
     created_at: Date
@@ -30882,22 +31022,29 @@ export namespace Prisma {
 
   export type TicketSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    budget_allocate_id?: boolean
+    budget_id?: boolean
+    season_group_id?: boolean
+    season_id?: boolean
     status?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
-    budget_allocate?: boolean | BudgetAllocateDefaultArgs<ExtArgs>
+    budget?: boolean | BudgetDefaultArgs<ExtArgs>
+    season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
+    season?: boolean | SeasonDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     ticket_approval_logs?: boolean | Ticket$ticket_approval_logsArgs<ExtArgs>
+    snapshot_allocate_headers?: boolean | Ticket$snapshot_allocate_headersArgs<ExtArgs>
     _count?: boolean | TicketCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticket"]>
 
 
   export type TicketSelectScalar = {
     id?: boolean
-    budget_allocate_id?: boolean
+    budget_id?: boolean
+    season_group_id?: boolean
+    season_id?: boolean
     status?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -30906,22 +31053,30 @@ export namespace Prisma {
   }
 
   export type TicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    budget_allocate?: boolean | BudgetAllocateDefaultArgs<ExtArgs>
+    budget?: boolean | BudgetDefaultArgs<ExtArgs>
+    season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
+    season?: boolean | SeasonDefaultArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
     ticket_approval_logs?: boolean | Ticket$ticket_approval_logsArgs<ExtArgs>
+    snapshot_allocate_headers?: boolean | Ticket$snapshot_allocate_headersArgs<ExtArgs>
     _count?: boolean | TicketCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $TicketPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Ticket"
     objects: {
-      budget_allocate: Prisma.$BudgetAllocatePayload<ExtArgs>
+      budget: Prisma.$BudgetPayload<ExtArgs>
+      season_group: Prisma.$SeasonGroupPayload<ExtArgs>
+      season: Prisma.$SeasonPayload<ExtArgs>
       creator: Prisma.$UserPayload<ExtArgs>
       ticket_approval_logs: Prisma.$TicketApprovalLogPayload<ExtArgs>[]
+      snapshot_allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      budget_allocate_id: bigint
+      budget_id: bigint
+      season_group_id: bigint
+      season_id: bigint
       status: string
       created_by: bigint
       created_at: Date
@@ -31267,9 +31422,12 @@ export namespace Prisma {
    */
   export interface Prisma__TicketClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    budget_allocate<T extends BudgetAllocateDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BudgetAllocateDefaultArgs<ExtArgs>>): Prisma__BudgetAllocateClient<$Result.GetResult<Prisma.$BudgetAllocatePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    budget<T extends BudgetDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BudgetDefaultArgs<ExtArgs>>): Prisma__BudgetClient<$Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    season_group<T extends SeasonGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroupDefaultArgs<ExtArgs>>): Prisma__SeasonGroupClient<$Result.GetResult<Prisma.$SeasonGroupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    season<T extends SeasonDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonDefaultArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     ticket_approval_logs<T extends Ticket$ticket_approval_logsArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$ticket_approval_logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketApprovalLogPayload<ExtArgs>, T, "findMany"> | Null>
+    snapshot_allocate_headers<T extends Ticket$snapshot_allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$snapshot_allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -31300,7 +31458,9 @@ export namespace Prisma {
    */ 
   interface TicketFieldRefs {
     readonly id: FieldRef<"Ticket", 'BigInt'>
-    readonly budget_allocate_id: FieldRef<"Ticket", 'BigInt'>
+    readonly budget_id: FieldRef<"Ticket", 'BigInt'>
+    readonly season_group_id: FieldRef<"Ticket", 'BigInt'>
+    readonly season_id: FieldRef<"Ticket", 'BigInt'>
     readonly status: FieldRef<"Ticket", 'String'>
     readonly created_by: FieldRef<"Ticket", 'BigInt'>
     readonly created_at: FieldRef<"Ticket", 'DateTime'>
@@ -31621,6 +31781,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TicketApprovalLogScalarFieldEnum | TicketApprovalLogScalarFieldEnum[]
+  }
+
+  /**
+   * Ticket.snapshot_allocate_headers
+   */
+  export type Ticket$snapshot_allocate_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllocateHeader
+     */
+    select?: AllocateHeaderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AllocateHeaderInclude<ExtArgs> | null
+    where?: AllocateHeaderWhereInput
+    orderBy?: AllocateHeaderOrderByWithRelationInput | AllocateHeaderOrderByWithRelationInput[]
+    cursor?: AllocateHeaderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AllocateHeaderScalarFieldEnum | AllocateHeaderScalarFieldEnum[]
   }
 
   /**
@@ -34862,6 +35042,8 @@ export namespace Prisma {
     brand_id: 'brand_id',
     version: 'version',
     is_final_version: 'is_final_version',
+    is_snapshot: 'is_snapshot',
+    ticket_id: 'ticket_id',
     created_by: 'created_by',
     created_at: 'created_at',
     updated_at: 'updated_at',
@@ -35011,7 +35193,7 @@ export namespace Prisma {
 
   export const ProposalSizingHeaderScalarFieldEnum: {
     id: 'id',
-    sku_proposal_id: 'sku_proposal_id',
+    sku_proposal_header_id: 'sku_proposal_header_id',
     version: 'version',
     is_final_version: 'is_final_version',
     created_by: 'created_by',
@@ -35026,6 +35208,7 @@ export namespace Prisma {
   export const ProposalSizingScalarFieldEnum: {
     id: 'id',
     proposal_sizing_header_id: 'proposal_sizing_header_id',
+    sku_proposal_id: 'sku_proposal_id',
     subcategory_size_id: 'subcategory_size_id',
     actual_salesmix_pct: 'actual_salesmix_pct',
     actual_st_pct: 'actual_st_pct',
@@ -35054,7 +35237,9 @@ export namespace Prisma {
 
   export const TicketScalarFieldEnum: {
     id: 'id',
-    budget_allocate_id: 'budget_allocate_id',
+    budget_id: 'budget_id',
+    season_group_id: 'season_group_id',
+    season_id: 'season_id',
     status: 'status',
     created_by: 'created_by',
     created_at: 'created_at',
@@ -35692,6 +35877,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"SeasonGroup"> | bigint | number | null
     seasons?: SeasonListRelationFilter
     budget_allocates?: BudgetAllocateListRelationFilter
+    tickets?: TicketListRelationFilter
   }
 
   export type SeasonGroupOrderByWithRelationInput = {
@@ -35705,6 +35891,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     seasons?: SeasonOrderByRelationAggregateInput
     budget_allocates?: BudgetAllocateOrderByRelationAggregateInput
+    tickets?: TicketOrderByRelationAggregateInput
   }
 
   export type SeasonGroupWhereUniqueInput = Prisma.AtLeast<{
@@ -35721,6 +35908,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"SeasonGroup"> | bigint | number | null
     seasons?: SeasonListRelationFilter
     budget_allocates?: BudgetAllocateListRelationFilter
+    tickets?: TicketListRelationFilter
   }, "id">
 
   export type SeasonGroupOrderByWithAggregationInput = {
@@ -35767,6 +35955,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Season"> | bigint | number | null
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     budget_allocates?: BudgetAllocateListRelationFilter
+    tickets?: TicketListRelationFilter
   }
 
   export type SeasonOrderByWithRelationInput = {
@@ -35780,6 +35969,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     season_group?: SeasonGroupOrderByWithRelationInput
     budget_allocates?: BudgetAllocateOrderByRelationAggregateInput
+    tickets?: TicketOrderByRelationAggregateInput
   }
 
   export type SeasonWhereUniqueInput = Prisma.AtLeast<{
@@ -35796,6 +35986,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Season"> | bigint | number | null
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     budget_allocates?: BudgetAllocateListRelationFilter
+    tickets?: TicketListRelationFilter
   }, "id">
 
   export type SeasonOrderByWithAggregationInput = {
@@ -36258,6 +36449,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Budget"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
     allocate_headers?: AllocateHeaderListRelationFilter
+    tickets?: TicketListRelationFilter
   }
 
   export type BudgetOrderByWithRelationInput = {
@@ -36273,6 +36465,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     creator?: UserOrderByWithRelationInput
     allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
+    tickets?: TicketOrderByRelationAggregateInput
   }
 
   export type BudgetWhereUniqueInput = Prisma.AtLeast<{
@@ -36291,6 +36484,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Budget"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
     allocate_headers?: AllocateHeaderListRelationFilter
+    tickets?: TicketListRelationFilter
   }, "id">
 
   export type BudgetOrderByWithAggregationInput = {
@@ -36336,6 +36530,8 @@ export namespace Prisma {
     brand_id?: BigIntFilter<"AllocateHeader"> | bigint | number
     version?: IntFilter<"AllocateHeader"> | number
     is_final_version?: BoolFilter<"AllocateHeader"> | boolean
+    is_snapshot?: BoolFilter<"AllocateHeader"> | boolean
+    ticket_id?: BigIntNullableFilter<"AllocateHeader"> | bigint | number | null
     created_by?: BigIntFilter<"AllocateHeader"> | bigint | number
     created_at?: DateTimeFilter<"AllocateHeader"> | Date | string
     updated_at?: DateTimeFilter<"AllocateHeader"> | Date | string
@@ -36343,6 +36539,7 @@ export namespace Prisma {
     budget?: XOR<BudgetRelationFilter, BudgetWhereInput>
     brand?: XOR<BrandRelationFilter, BrandWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
+    ticket?: XOR<TicketNullableRelationFilter, TicketWhereInput> | null
     budget_allocates?: BudgetAllocateListRelationFilter
     planning_headers?: PlanningHeaderListRelationFilter
     sku_proposal_headers?: SKUProposalHeaderListRelationFilter
@@ -36354,6 +36551,8 @@ export namespace Prisma {
     brand_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
+    is_snapshot?: SortOrder
+    ticket_id?: SortOrderInput | SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -36361,6 +36560,7 @@ export namespace Prisma {
     budget?: BudgetOrderByWithRelationInput
     brand?: BrandOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
+    ticket?: TicketOrderByWithRelationInput
     budget_allocates?: BudgetAllocateOrderByRelationAggregateInput
     planning_headers?: PlanningHeaderOrderByRelationAggregateInput
     sku_proposal_headers?: SKUProposalHeaderOrderByRelationAggregateInput
@@ -36375,6 +36575,8 @@ export namespace Prisma {
     brand_id?: BigIntFilter<"AllocateHeader"> | bigint | number
     version?: IntFilter<"AllocateHeader"> | number
     is_final_version?: BoolFilter<"AllocateHeader"> | boolean
+    is_snapshot?: BoolFilter<"AllocateHeader"> | boolean
+    ticket_id?: BigIntNullableFilter<"AllocateHeader"> | bigint | number | null
     created_by?: BigIntFilter<"AllocateHeader"> | bigint | number
     created_at?: DateTimeFilter<"AllocateHeader"> | Date | string
     updated_at?: DateTimeFilter<"AllocateHeader"> | Date | string
@@ -36382,6 +36584,7 @@ export namespace Prisma {
     budget?: XOR<BudgetRelationFilter, BudgetWhereInput>
     brand?: XOR<BrandRelationFilter, BrandWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
+    ticket?: XOR<TicketNullableRelationFilter, TicketWhereInput> | null
     budget_allocates?: BudgetAllocateListRelationFilter
     planning_headers?: PlanningHeaderListRelationFilter
     sku_proposal_headers?: SKUProposalHeaderListRelationFilter
@@ -36393,6 +36596,8 @@ export namespace Prisma {
     brand_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
+    is_snapshot?: SortOrder
+    ticket_id?: SortOrderInput | SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -36413,6 +36618,8 @@ export namespace Prisma {
     brand_id?: BigIntWithAggregatesFilter<"AllocateHeader"> | bigint | number
     version?: IntWithAggregatesFilter<"AllocateHeader"> | number
     is_final_version?: BoolWithAggregatesFilter<"AllocateHeader"> | boolean
+    is_snapshot?: BoolWithAggregatesFilter<"AllocateHeader"> | boolean
+    ticket_id?: BigIntNullableWithAggregatesFilter<"AllocateHeader"> | bigint | number | null
     created_by?: BigIntWithAggregatesFilter<"AllocateHeader"> | bigint | number
     created_at?: DateTimeWithAggregatesFilter<"AllocateHeader"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"AllocateHeader"> | Date | string
@@ -36437,7 +36644,6 @@ export namespace Prisma {
     store?: XOR<StoreRelationFilter, StoreWhereInput>
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     season?: XOR<SeasonRelationFilter, SeasonWhereInput>
-    tickets?: TicketListRelationFilter
   }
 
   export type BudgetAllocateOrderByWithRelationInput = {
@@ -36455,7 +36661,6 @@ export namespace Prisma {
     store?: StoreOrderByWithRelationInput
     season_group?: SeasonGroupOrderByWithRelationInput
     season?: SeasonOrderByWithRelationInput
-    tickets?: TicketOrderByRelationAggregateInput
   }
 
   export type BudgetAllocateWhereUniqueInput = Prisma.AtLeast<{
@@ -36476,7 +36681,6 @@ export namespace Prisma {
     store?: XOR<StoreRelationFilter, StoreWhereInput>
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     season?: XOR<SeasonRelationFilter, SeasonWhereInput>
-    tickets?: TicketListRelationFilter
   }, "id">
 
   export type BudgetAllocateOrderByWithAggregationInput = {
@@ -36518,7 +36722,7 @@ export namespace Prisma {
     OR?: PlanningHeaderWhereInput[]
     NOT?: PlanningHeaderWhereInput | PlanningHeaderWhereInput[]
     id?: BigIntFilter<"PlanningHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableFilter<"PlanningHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"PlanningHeader"> | bigint | number
     version?: IntFilter<"PlanningHeader"> | number
     status?: StringFilter<"PlanningHeader"> | string
     is_final_version?: BoolFilter<"PlanningHeader"> | boolean
@@ -36527,7 +36731,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"PlanningHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"PlanningHeader"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
-    allocate_header?: XOR<AllocateHeaderNullableRelationFilter, AllocateHeaderWhereInput> | null
+    allocate_header?: XOR<AllocateHeaderRelationFilter, AllocateHeaderWhereInput>
     planning_collections?: PlanningCollectionListRelationFilter
     planning_genders?: PlanningGenderListRelationFilter
     planning_categories?: PlanningCategoryListRelationFilter
@@ -36535,7 +36739,7 @@ export namespace Prisma {
 
   export type PlanningHeaderOrderByWithRelationInput = {
     id?: SortOrder
-    allocate_header_id?: SortOrderInput | SortOrder
+    allocate_header_id?: SortOrder
     version?: SortOrder
     status?: SortOrder
     is_final_version?: SortOrder
@@ -36555,7 +36759,7 @@ export namespace Prisma {
     AND?: PlanningHeaderWhereInput | PlanningHeaderWhereInput[]
     OR?: PlanningHeaderWhereInput[]
     NOT?: PlanningHeaderWhereInput | PlanningHeaderWhereInput[]
-    allocate_header_id?: BigIntNullableFilter<"PlanningHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"PlanningHeader"> | bigint | number
     version?: IntFilter<"PlanningHeader"> | number
     status?: StringFilter<"PlanningHeader"> | string
     is_final_version?: BoolFilter<"PlanningHeader"> | boolean
@@ -36564,7 +36768,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"PlanningHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"PlanningHeader"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
-    allocate_header?: XOR<AllocateHeaderNullableRelationFilter, AllocateHeaderWhereInput> | null
+    allocate_header?: XOR<AllocateHeaderRelationFilter, AllocateHeaderWhereInput>
     planning_collections?: PlanningCollectionListRelationFilter
     planning_genders?: PlanningGenderListRelationFilter
     planning_categories?: PlanningCategoryListRelationFilter
@@ -36572,7 +36776,7 @@ export namespace Prisma {
 
   export type PlanningHeaderOrderByWithAggregationInput = {
     id?: SortOrder
-    allocate_header_id?: SortOrderInput | SortOrder
+    allocate_header_id?: SortOrder
     version?: SortOrder
     status?: SortOrder
     is_final_version?: SortOrder
@@ -36592,7 +36796,7 @@ export namespace Prisma {
     OR?: PlanningHeaderScalarWhereWithAggregatesInput[]
     NOT?: PlanningHeaderScalarWhereWithAggregatesInput | PlanningHeaderScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"PlanningHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableWithAggregatesFilter<"PlanningHeader"> | bigint | number | null
+    allocate_header_id?: BigIntWithAggregatesFilter<"PlanningHeader"> | bigint | number
     version?: IntWithAggregatesFilter<"PlanningHeader"> | number
     status?: StringWithAggregatesFilter<"PlanningHeader"> | string
     is_final_version?: BoolWithAggregatesFilter<"PlanningHeader"> | boolean
@@ -36938,7 +37142,7 @@ export namespace Prisma {
     OR?: SKUProposalHeaderWhereInput[]
     NOT?: SKUProposalHeaderWhereInput | SKUProposalHeaderWhereInput[]
     id?: BigIntFilter<"SKUProposalHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableFilter<"SKUProposalHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"SKUProposalHeader"> | bigint | number
     version?: IntFilter<"SKUProposalHeader"> | number
     status?: StringFilter<"SKUProposalHeader"> | string
     is_final_version?: BoolFilter<"SKUProposalHeader"> | boolean
@@ -36946,14 +37150,15 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"SKUProposalHeader"> | Date | string
     updated_at?: DateTimeFilter<"SKUProposalHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"SKUProposalHeader"> | bigint | number | null
-    allocate_header?: XOR<AllocateHeaderNullableRelationFilter, AllocateHeaderWhereInput> | null
+    allocate_header?: XOR<AllocateHeaderRelationFilter, AllocateHeaderWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
+    proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
   }
 
   export type SKUProposalHeaderOrderByWithRelationInput = {
     id?: SortOrder
-    allocate_header_id?: SortOrderInput | SortOrder
+    allocate_header_id?: SortOrder
     version?: SortOrder
     status?: SortOrder
     is_final_version?: SortOrder
@@ -36964,6 +37169,7 @@ export namespace Prisma {
     allocate_header?: AllocateHeaderOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
     sku_proposals?: SKUProposalOrderByRelationAggregateInput
+    proposal_sizing_headers?: ProposalSizingHeaderOrderByRelationAggregateInput
   }
 
   export type SKUProposalHeaderWhereUniqueInput = Prisma.AtLeast<{
@@ -36971,7 +37177,7 @@ export namespace Prisma {
     AND?: SKUProposalHeaderWhereInput | SKUProposalHeaderWhereInput[]
     OR?: SKUProposalHeaderWhereInput[]
     NOT?: SKUProposalHeaderWhereInput | SKUProposalHeaderWhereInput[]
-    allocate_header_id?: BigIntNullableFilter<"SKUProposalHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"SKUProposalHeader"> | bigint | number
     version?: IntFilter<"SKUProposalHeader"> | number
     status?: StringFilter<"SKUProposalHeader"> | string
     is_final_version?: BoolFilter<"SKUProposalHeader"> | boolean
@@ -36979,14 +37185,15 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"SKUProposalHeader"> | Date | string
     updated_at?: DateTimeFilter<"SKUProposalHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"SKUProposalHeader"> | bigint | number | null
-    allocate_header?: XOR<AllocateHeaderNullableRelationFilter, AllocateHeaderWhereInput> | null
+    allocate_header?: XOR<AllocateHeaderRelationFilter, AllocateHeaderWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
+    proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
   }, "id">
 
   export type SKUProposalHeaderOrderByWithAggregationInput = {
     id?: SortOrder
-    allocate_header_id?: SortOrderInput | SortOrder
+    allocate_header_id?: SortOrder
     version?: SortOrder
     status?: SortOrder
     is_final_version?: SortOrder
@@ -37006,7 +37213,7 @@ export namespace Prisma {
     OR?: SKUProposalHeaderScalarWhereWithAggregatesInput[]
     NOT?: SKUProposalHeaderScalarWhereWithAggregatesInput | SKUProposalHeaderScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"SKUProposalHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableWithAggregatesFilter<"SKUProposalHeader"> | bigint | number | null
+    allocate_header_id?: BigIntWithAggregatesFilter<"SKUProposalHeader"> | bigint | number
     version?: IntWithAggregatesFilter<"SKUProposalHeader"> | number
     status?: StringWithAggregatesFilter<"SKUProposalHeader"> | string
     is_final_version?: BoolWithAggregatesFilter<"SKUProposalHeader"> | boolean
@@ -37033,7 +37240,7 @@ export namespace Prisma {
     sku_proposal_header?: XOR<SKUProposalHeaderRelationFilter, SKUProposalHeaderWhereInput>
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     sku_allocates?: SKUAllocateListRelationFilter
-    proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
+    proposal_sizings?: ProposalSizingListRelationFilter
   }
 
   export type SKUProposalOrderByWithRelationInput = {
@@ -37050,7 +37257,7 @@ export namespace Prisma {
     sku_proposal_header?: SKUProposalHeaderOrderByWithRelationInput
     product?: ProductOrderByWithRelationInput
     sku_allocates?: SKUAllocateOrderByRelationAggregateInput
-    proposal_sizing_headers?: ProposalSizingHeaderOrderByRelationAggregateInput
+    proposal_sizings?: ProposalSizingOrderByRelationAggregateInput
   }
 
   export type SKUProposalWhereUniqueInput = Prisma.AtLeast<{
@@ -37070,7 +37277,7 @@ export namespace Prisma {
     sku_proposal_header?: XOR<SKUProposalHeaderRelationFilter, SKUProposalHeaderWhereInput>
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     sku_allocates?: SKUAllocateListRelationFilter
-    proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
+    proposal_sizings?: ProposalSizingListRelationFilter
   }, "id">
 
   export type SKUProposalOrderByWithAggregationInput = {
@@ -37187,28 +37394,28 @@ export namespace Prisma {
     OR?: ProposalSizingHeaderWhereInput[]
     NOT?: ProposalSizingHeaderWhereInput | ProposalSizingHeaderWhereInput[]
     id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
-    sku_proposal_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
+    sku_proposal_header_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
     version?: IntFilter<"ProposalSizingHeader"> | number
     is_final_version?: BoolFilter<"ProposalSizingHeader"> | boolean
     created_by?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
     created_at?: DateTimeFilter<"ProposalSizingHeader"> | Date | string
     updated_at?: DateTimeFilter<"ProposalSizingHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"ProposalSizingHeader"> | bigint | number | null
-    sku_proposal?: XOR<SKUProposalRelationFilter, SKUProposalWhereInput>
+    sku_proposal_header?: XOR<SKUProposalHeaderRelationFilter, SKUProposalHeaderWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     proposal_sizings?: ProposalSizingListRelationFilter
   }
 
   export type ProposalSizingHeaderOrderByWithRelationInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
-    sku_proposal?: SKUProposalOrderByWithRelationInput
+    sku_proposal_header?: SKUProposalHeaderOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
     proposal_sizings?: ProposalSizingOrderByRelationAggregateInput
   }
@@ -37218,21 +37425,21 @@ export namespace Prisma {
     AND?: ProposalSizingHeaderWhereInput | ProposalSizingHeaderWhereInput[]
     OR?: ProposalSizingHeaderWhereInput[]
     NOT?: ProposalSizingHeaderWhereInput | ProposalSizingHeaderWhereInput[]
-    sku_proposal_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
+    sku_proposal_header_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
     version?: IntFilter<"ProposalSizingHeader"> | number
     is_final_version?: BoolFilter<"ProposalSizingHeader"> | boolean
     created_by?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
     created_at?: DateTimeFilter<"ProposalSizingHeader"> | Date | string
     updated_at?: DateTimeFilter<"ProposalSizingHeader"> | Date | string
     updated_by?: BigIntNullableFilter<"ProposalSizingHeader"> | bigint | number | null
-    sku_proposal?: XOR<SKUProposalRelationFilter, SKUProposalWhereInput>
+    sku_proposal_header?: XOR<SKUProposalHeaderRelationFilter, SKUProposalHeaderWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     proposal_sizings?: ProposalSizingListRelationFilter
   }, "id">
 
   export type ProposalSizingHeaderOrderByWithAggregationInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
     created_by?: SortOrder
@@ -37251,7 +37458,7 @@ export namespace Prisma {
     OR?: ProposalSizingHeaderScalarWhereWithAggregatesInput[]
     NOT?: ProposalSizingHeaderScalarWhereWithAggregatesInput | ProposalSizingHeaderScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"ProposalSizingHeader"> | bigint | number
-    sku_proposal_id?: BigIntWithAggregatesFilter<"ProposalSizingHeader"> | bigint | number
+    sku_proposal_header_id?: BigIntWithAggregatesFilter<"ProposalSizingHeader"> | bigint | number
     version?: IntWithAggregatesFilter<"ProposalSizingHeader"> | number
     is_final_version?: BoolWithAggregatesFilter<"ProposalSizingHeader"> | boolean
     created_by?: BigIntWithAggregatesFilter<"ProposalSizingHeader"> | bigint | number
@@ -37266,6 +37473,7 @@ export namespace Prisma {
     NOT?: ProposalSizingWhereInput | ProposalSizingWhereInput[]
     id?: BigIntFilter<"ProposalSizing"> | bigint | number
     proposal_sizing_header_id?: BigIntFilter<"ProposalSizing"> | bigint | number
+    sku_proposal_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     subcategory_size_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     actual_salesmix_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
@@ -37275,12 +37483,14 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"ProposalSizing"> | Date | string
     updated_by?: BigIntNullableFilter<"ProposalSizing"> | bigint | number | null
     proposal_sizing_header?: XOR<ProposalSizingHeaderRelationFilter, ProposalSizingHeaderWhereInput>
+    sku_proposal?: XOR<SKUProposalRelationFilter, SKUProposalWhereInput>
     subcategory_size?: XOR<SubcategorySizeRelationFilter, SubcategorySizeWhereInput>
   }
 
   export type ProposalSizingOrderByWithRelationInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -37290,6 +37500,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     proposal_sizing_header?: ProposalSizingHeaderOrderByWithRelationInput
+    sku_proposal?: SKUProposalOrderByWithRelationInput
     subcategory_size?: SubcategorySizeOrderByWithRelationInput
   }
 
@@ -37299,6 +37510,7 @@ export namespace Prisma {
     OR?: ProposalSizingWhereInput[]
     NOT?: ProposalSizingWhereInput | ProposalSizingWhereInput[]
     proposal_sizing_header_id?: BigIntFilter<"ProposalSizing"> | bigint | number
+    sku_proposal_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     subcategory_size_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     actual_salesmix_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
@@ -37308,12 +37520,14 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"ProposalSizing"> | Date | string
     updated_by?: BigIntNullableFilter<"ProposalSizing"> | bigint | number | null
     proposal_sizing_header?: XOR<ProposalSizingHeaderRelationFilter, ProposalSizingHeaderWhereInput>
+    sku_proposal?: XOR<SKUProposalRelationFilter, SKUProposalWhereInput>
     subcategory_size?: XOR<SubcategorySizeRelationFilter, SubcategorySizeWhereInput>
   }, "id">
 
   export type ProposalSizingOrderByWithAggregationInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -37335,6 +37549,7 @@ export namespace Prisma {
     NOT?: ProposalSizingScalarWhereWithAggregatesInput | ProposalSizingScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"ProposalSizing"> | bigint | number
     proposal_sizing_header_id?: BigIntWithAggregatesFilter<"ProposalSizing"> | bigint | number
+    sku_proposal_id?: BigIntWithAggregatesFilter<"ProposalSizing"> | bigint | number
     subcategory_size_id?: BigIntWithAggregatesFilter<"ProposalSizing"> | bigint | number
     actual_salesmix_pct?: DecimalWithAggregatesFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalWithAggregatesFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
@@ -37414,28 +37629,38 @@ export namespace Prisma {
     OR?: TicketWhereInput[]
     NOT?: TicketWhereInput | TicketWhereInput[]
     id?: BigIntFilter<"Ticket"> | bigint | number
-    budget_allocate_id?: BigIntFilter<"Ticket"> | bigint | number
+    budget_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_group_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_id?: BigIntFilter<"Ticket"> | bigint | number
     status?: StringFilter<"Ticket"> | string
     created_by?: BigIntFilter<"Ticket"> | bigint | number
     created_at?: DateTimeFilter<"Ticket"> | Date | string
     updated_at?: DateTimeFilter<"Ticket"> | Date | string
     updated_by?: BigIntNullableFilter<"Ticket"> | bigint | number | null
-    budget_allocate?: XOR<BudgetAllocateRelationFilter, BudgetAllocateWhereInput>
+    budget?: XOR<BudgetRelationFilter, BudgetWhereInput>
+    season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
+    season?: XOR<SeasonRelationFilter, SeasonWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
+    snapshot_allocate_headers?: AllocateHeaderListRelationFilter
   }
 
   export type TicketOrderByWithRelationInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
-    budget_allocate?: BudgetAllocateOrderByWithRelationInput
+    budget?: BudgetOrderByWithRelationInput
+    season_group?: SeasonGroupOrderByWithRelationInput
+    season?: SeasonOrderByWithRelationInput
     creator?: UserOrderByWithRelationInput
     ticket_approval_logs?: TicketApprovalLogOrderByRelationAggregateInput
+    snapshot_allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
   }
 
   export type TicketWhereUniqueInput = Prisma.AtLeast<{
@@ -37443,20 +37668,27 @@ export namespace Prisma {
     AND?: TicketWhereInput | TicketWhereInput[]
     OR?: TicketWhereInput[]
     NOT?: TicketWhereInput | TicketWhereInput[]
-    budget_allocate_id?: BigIntFilter<"Ticket"> | bigint | number
+    budget_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_group_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_id?: BigIntFilter<"Ticket"> | bigint | number
     status?: StringFilter<"Ticket"> | string
     created_by?: BigIntFilter<"Ticket"> | bigint | number
     created_at?: DateTimeFilter<"Ticket"> | Date | string
     updated_at?: DateTimeFilter<"Ticket"> | Date | string
     updated_by?: BigIntNullableFilter<"Ticket"> | bigint | number | null
-    budget_allocate?: XOR<BudgetAllocateRelationFilter, BudgetAllocateWhereInput>
+    budget?: XOR<BudgetRelationFilter, BudgetWhereInput>
+    season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
+    season?: XOR<SeasonRelationFilter, SeasonWhereInput>
     creator?: XOR<UserRelationFilter, UserWhereInput>
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
+    snapshot_allocate_headers?: AllocateHeaderListRelationFilter
   }, "id">
 
   export type TicketOrderByWithAggregationInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -37474,7 +37706,9 @@ export namespace Prisma {
     OR?: TicketScalarWhereWithAggregatesInput[]
     NOT?: TicketScalarWhereWithAggregatesInput | TicketScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
-    budget_allocate_id?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
+    budget_id?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
+    season_group_id?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
+    season_id?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
     status?: StringWithAggregatesFilter<"Ticket"> | string
     created_by?: BigIntWithAggregatesFilter<"Ticket"> | bigint | number
     created_at?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
@@ -38298,6 +38532,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     seasons?: SeasonCreateNestedManyWithoutSeason_groupInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupUncheckedCreateInput = {
@@ -38311,6 +38546,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     seasons?: SeasonUncheckedCreateNestedManyWithoutSeason_groupInput
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupUpdateInput = {
@@ -38324,6 +38560,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     seasons?: SeasonUpdateManyWithoutSeason_groupNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type SeasonGroupUncheckedUpdateInput = {
@@ -38337,6 +38574,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     seasons?: SeasonUncheckedUpdateManyWithoutSeason_groupNestedInput
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type SeasonGroupCreateManyInput = {
@@ -38381,6 +38619,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
+    tickets?: TicketCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonUncheckedCreateInput = {
@@ -38393,6 +38632,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonUpdateInput = {
@@ -38405,6 +38645,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUpdateManyWithoutSeasonNestedInput
   }
 
   export type SeasonUncheckedUpdateInput = {
@@ -38417,6 +38658,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
   }
 
   export type SeasonCreateManyInput = {
@@ -38911,6 +39153,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_budgetsInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+    tickets?: TicketCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetUncheckedCreateInput = {
@@ -38925,6 +39168,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetUpdateInput = {
@@ -38939,6 +39183,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUpdateManyWithoutBudgetNestedInput
   }
 
   export type BudgetUncheckedUpdateInput = {
@@ -38953,6 +39198,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
 
   export type BudgetCreateManyInput = {
@@ -38996,12 +39242,14 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
@@ -39013,6 +39261,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -39026,12 +39276,14 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
@@ -39043,6 +39295,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39057,6 +39311,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -39067,6 +39323,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -39078,6 +39335,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39095,7 +39354,6 @@ export namespace Prisma {
     store: StoreCreateNestedOneWithoutBudget_allocatesInput
     season_group: SeasonGroupCreateNestedOneWithoutBudget_allocatesInput
     season: SeasonCreateNestedOneWithoutBudget_allocatesInput
-    tickets?: TicketCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUncheckedCreateInput = {
@@ -39109,7 +39367,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    tickets?: TicketUncheckedCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUpdateInput = {
@@ -39123,7 +39380,6 @@ export namespace Prisma {
     store?: StoreUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season_group?: SeasonGroupUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season?: SeasonUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    tickets?: TicketUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateInput = {
@@ -39137,7 +39393,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tickets?: TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateCreateManyInput = {
@@ -39183,7 +39438,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_planning_headersInput
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
     planning_collections?: PlanningCollectionCreateNestedManyWithoutPlanning_headerInput
     planning_genders?: PlanningGenderCreateNestedManyWithoutPlanning_headerInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutPlanning_headerInput
@@ -39191,7 +39446,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedCreateInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -39213,7 +39468,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_planning_headersNestedInput
-    allocate_header?: AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput
     planning_collections?: PlanningCollectionUpdateManyWithoutPlanning_headerNestedInput
     planning_genders?: PlanningGenderUpdateManyWithoutPlanning_headerNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutPlanning_headerNestedInput
@@ -39221,7 +39476,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -39235,7 +39490,7 @@ export namespace Prisma {
   }
 
   export type PlanningHeaderCreateManyInput = {
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -39257,7 +39512,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -39635,14 +39890,15 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
     creator: UserCreateNestedOneWithoutCreated_sku_proposal_headersInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderUncheckedCreateInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -39651,6 +39907,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderUpdateInput = {
@@ -39661,14 +39918,15 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_header?: AllocateHeaderUpdateOneWithoutSku_proposal_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutSku_proposal_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_sku_proposal_headersNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -39677,10 +39935,11 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderCreateManyInput = {
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -39702,7 +39961,7 @@ export namespace Prisma {
 
   export type SKUProposalHeaderUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -39724,7 +39983,7 @@ export namespace Prisma {
     sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput
     product: ProductCreateNestedOneWithoutSku_proposalsInput
     sku_allocates?: SKUAllocateCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalUncheckedCreateInput = {
@@ -39739,7 +39998,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_allocates?: SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalUpdateInput = {
@@ -39754,7 +40013,7 @@ export namespace Prisma {
     sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput
     product?: ProductUpdateOneRequiredWithoutSku_proposalsNestedInput
     sku_allocates?: SKUAllocateUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateInput = {
@@ -39769,7 +40028,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_allocates?: SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalCreateManyInput = {
@@ -39889,14 +40148,14 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizing_headersInput
+    sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutProposal_sizing_headersInput
     creator: UserCreateNestedOneWithoutCreated_proposal_sizing_headersInput
     proposal_sizings?: ProposalSizingCreateNestedManyWithoutProposal_sizing_headerInput
   }
 
   export type ProposalSizingHeaderUncheckedCreateInput = {
     id?: bigint | number
-    sku_proposal_id: bigint | number
+    sku_proposal_header_id: bigint | number
     version: number
     is_final_version?: boolean
     created_by: bigint | number
@@ -39913,14 +40172,14 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
+    sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_proposal_sizing_headersNestedInput
     proposal_sizings?: ProposalSizingUpdateManyWithoutProposal_sizing_headerNestedInput
   }
 
   export type ProposalSizingHeaderUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -39931,7 +40190,7 @@ export namespace Prisma {
   }
 
   export type ProposalSizingHeaderCreateManyInput = {
-    sku_proposal_id: bigint | number
+    sku_proposal_header_id: bigint | number
     version: number
     is_final_version?: boolean
     created_by: bigint | number
@@ -39951,7 +40210,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -39970,12 +40229,14 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     proposal_sizing_header: ProposalSizingHeaderCreateNestedOneWithoutProposal_sizingsInput
+    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizingsInput
     subcategory_size: SubcategorySizeCreateNestedOneWithoutProposal_sizingsInput
   }
 
   export type ProposalSizingUncheckedCreateInput = {
     id?: bigint | number
     proposal_sizing_header_id: bigint | number
+    sku_proposal_id: bigint | number
     subcategory_size_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
@@ -39996,12 +40257,14 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     proposal_sizing_header?: ProposalSizingHeaderUpdateOneRequiredWithoutProposal_sizingsNestedInput
+    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizingsNestedInput
     subcategory_size?: SubcategorySizeUpdateOneRequiredWithoutProposal_sizingsNestedInput
   }
 
   export type ProposalSizingUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -40014,6 +40277,7 @@ export namespace Prisma {
 
   export type ProposalSizingCreateManyInput = {
     proposal_sizing_header_id: bigint | number
+    sku_proposal_id: bigint | number
     subcategory_size_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
@@ -40038,6 +40302,7 @@ export namespace Prisma {
   export type ProposalSizingUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -40123,20 +40388,26 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    budget_allocate: BudgetAllocateCreateNestedOneWithoutTicketsInput
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateInput = {
     id?: bigint | number
-    budget_allocate_id: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
     status?: string
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUpdateInput = {
@@ -40145,24 +40416,32 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    budget_allocate?: BudgetAllocateUpdateOneRequiredWithoutTicketsNestedInput
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_allocate_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     status?: StringFieldUpdateOperationsInput | string
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketCreateManyInput = {
-    budget_allocate_id: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
     status?: string
     created_by: bigint | number
     created_at?: Date | string
@@ -40180,7 +40459,9 @@ export namespace Prisma {
 
   export type TicketUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_allocate_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     status?: StringFieldUpdateOperationsInput | string
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -41652,12 +41933,19 @@ export namespace Prisma {
     isNot?: BrandWhereInput
   }
 
+  export type TicketNullableRelationFilter = {
+    is?: TicketWhereInput | null
+    isNot?: TicketWhereInput | null
+  }
+
   export type AllocateHeaderCountOrderByAggregateInput = {
     id?: SortOrder
     budget_id?: SortOrder
     brand_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
+    is_snapshot?: SortOrder
+    ticket_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -41669,6 +41957,7 @@ export namespace Prisma {
     budget_id?: SortOrder
     brand_id?: SortOrder
     version?: SortOrder
+    ticket_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -41679,6 +41968,8 @@ export namespace Prisma {
     brand_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
+    is_snapshot?: SortOrder
+    ticket_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -41691,6 +41982,8 @@ export namespace Prisma {
     brand_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
+    is_snapshot?: SortOrder
+    ticket_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -41702,6 +41995,7 @@ export namespace Prisma {
     budget_id?: SortOrder
     brand_id?: SortOrder
     version?: SortOrder
+    ticket_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -41780,11 +42074,6 @@ export namespace Prisma {
     budget_amount?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
-  }
-
-  export type AllocateHeaderNullableRelationFilter = {
-    is?: AllocateHeaderWhereInput | null
-    isNot?: AllocateHeaderWhereInput | null
   }
 
   export type PlanningHeaderCountOrderByAggregateInput = {
@@ -42281,7 +42570,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderCountOrderByAggregateInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
     created_by?: SortOrder
@@ -42292,7 +42581,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderAvgOrderByAggregateInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -42300,7 +42589,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMaxOrderByAggregateInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
     created_by?: SortOrder
@@ -42311,7 +42600,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderMinOrderByAggregateInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     is_final_version?: SortOrder
     created_by?: SortOrder
@@ -42322,7 +42611,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderSumOrderByAggregateInput = {
     id?: SortOrder
-    sku_proposal_id?: SortOrder
+    sku_proposal_header_id?: SortOrder
     version?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -42341,6 +42630,7 @@ export namespace Prisma {
   export type ProposalSizingCountOrderByAggregateInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -42354,6 +42644,7 @@ export namespace Prisma {
   export type ProposalSizingAvgOrderByAggregateInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -42365,6 +42656,7 @@ export namespace Prisma {
   export type ProposalSizingMaxOrderByAggregateInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -42378,6 +42670,7 @@ export namespace Prisma {
   export type ProposalSizingMinOrderByAggregateInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -42391,6 +42684,7 @@ export namespace Prisma {
   export type ProposalSizingSumOrderByAggregateInput = {
     id?: SortOrder
     proposal_sizing_header_id?: SortOrder
+    sku_proposal_id?: SortOrder
     subcategory_size_id?: SortOrder
     actual_salesmix_pct?: SortOrder
     actual_st_pct?: SortOrder
@@ -42441,14 +42735,11 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
-  export type BudgetAllocateRelationFilter = {
-    is?: BudgetAllocateWhereInput
-    isNot?: BudgetAllocateWhereInput
-  }
-
   export type TicketCountOrderByAggregateInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -42458,14 +42749,18 @@ export namespace Prisma {
 
   export type TicketAvgOrderByAggregateInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
 
   export type TicketMaxOrderByAggregateInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -42475,7 +42770,9 @@ export namespace Prisma {
 
   export type TicketMinOrderByAggregateInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     status?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -42485,7 +42782,9 @@ export namespace Prisma {
 
   export type TicketSumOrderByAggregateInput = {
     id?: SortOrder
-    budget_allocate_id?: SortOrder
+    budget_id?: SortOrder
+    season_group_id?: SortOrder
+    season_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -43521,6 +43820,13 @@ export namespace Prisma {
     connect?: BudgetAllocateWhereUniqueInput | BudgetAllocateWhereUniqueInput[]
   }
 
+  export type TicketCreateNestedManyWithoutSeason_groupInput = {
+    create?: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput> | TicketCreateWithoutSeason_groupInput[] | TicketUncheckedCreateWithoutSeason_groupInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeason_groupInput | TicketCreateOrConnectWithoutSeason_groupInput[]
+    createMany?: TicketCreateManySeason_groupInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
   export type SeasonUncheckedCreateNestedManyWithoutSeason_groupInput = {
     create?: XOR<SeasonCreateWithoutSeason_groupInput, SeasonUncheckedCreateWithoutSeason_groupInput> | SeasonCreateWithoutSeason_groupInput[] | SeasonUncheckedCreateWithoutSeason_groupInput[]
     connectOrCreate?: SeasonCreateOrConnectWithoutSeason_groupInput | SeasonCreateOrConnectWithoutSeason_groupInput[]
@@ -43533,6 +43839,13 @@ export namespace Prisma {
     connectOrCreate?: BudgetAllocateCreateOrConnectWithoutSeason_groupInput | BudgetAllocateCreateOrConnectWithoutSeason_groupInput[]
     createMany?: BudgetAllocateCreateManySeason_groupInputEnvelope
     connect?: BudgetAllocateWhereUniqueInput | BudgetAllocateWhereUniqueInput[]
+  }
+
+  export type TicketUncheckedCreateNestedManyWithoutSeason_groupInput = {
+    create?: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput> | TicketCreateWithoutSeason_groupInput[] | TicketUncheckedCreateWithoutSeason_groupInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeason_groupInput | TicketCreateOrConnectWithoutSeason_groupInput[]
+    createMany?: TicketCreateManySeason_groupInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -43571,6 +43884,20 @@ export namespace Prisma {
     deleteMany?: BudgetAllocateScalarWhereInput | BudgetAllocateScalarWhereInput[]
   }
 
+  export type TicketUpdateManyWithoutSeason_groupNestedInput = {
+    create?: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput> | TicketCreateWithoutSeason_groupInput[] | TicketUncheckedCreateWithoutSeason_groupInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeason_groupInput | TicketCreateOrConnectWithoutSeason_groupInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutSeason_groupInput | TicketUpsertWithWhereUniqueWithoutSeason_groupInput[]
+    createMany?: TicketCreateManySeason_groupInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutSeason_groupInput | TicketUpdateWithWhereUniqueWithoutSeason_groupInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutSeason_groupInput | TicketUpdateManyWithWhereWithoutSeason_groupInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
   export type SeasonUncheckedUpdateManyWithoutSeason_groupNestedInput = {
     create?: XOR<SeasonCreateWithoutSeason_groupInput, SeasonUncheckedCreateWithoutSeason_groupInput> | SeasonCreateWithoutSeason_groupInput[] | SeasonUncheckedCreateWithoutSeason_groupInput[]
     connectOrCreate?: SeasonCreateOrConnectWithoutSeason_groupInput | SeasonCreateOrConnectWithoutSeason_groupInput[]
@@ -43599,6 +43926,20 @@ export namespace Prisma {
     deleteMany?: BudgetAllocateScalarWhereInput | BudgetAllocateScalarWhereInput[]
   }
 
+  export type TicketUncheckedUpdateManyWithoutSeason_groupNestedInput = {
+    create?: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput> | TicketCreateWithoutSeason_groupInput[] | TicketUncheckedCreateWithoutSeason_groupInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeason_groupInput | TicketCreateOrConnectWithoutSeason_groupInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutSeason_groupInput | TicketUpsertWithWhereUniqueWithoutSeason_groupInput[]
+    createMany?: TicketCreateManySeason_groupInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutSeason_groupInput | TicketUpdateWithWhereUniqueWithoutSeason_groupInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutSeason_groupInput | TicketUpdateManyWithWhereWithoutSeason_groupInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
   export type SeasonGroupCreateNestedOneWithoutSeasonsInput = {
     create?: XOR<SeasonGroupCreateWithoutSeasonsInput, SeasonGroupUncheckedCreateWithoutSeasonsInput>
     connectOrCreate?: SeasonGroupCreateOrConnectWithoutSeasonsInput
@@ -43612,11 +43953,25 @@ export namespace Prisma {
     connect?: BudgetAllocateWhereUniqueInput | BudgetAllocateWhereUniqueInput[]
   }
 
+  export type TicketCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput> | TicketCreateWithoutSeasonInput[] | TicketUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeasonInput | TicketCreateOrConnectWithoutSeasonInput[]
+    createMany?: TicketCreateManySeasonInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
   export type BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput = {
     create?: XOR<BudgetAllocateCreateWithoutSeasonInput, BudgetAllocateUncheckedCreateWithoutSeasonInput> | BudgetAllocateCreateWithoutSeasonInput[] | BudgetAllocateUncheckedCreateWithoutSeasonInput[]
     connectOrCreate?: BudgetAllocateCreateOrConnectWithoutSeasonInput | BudgetAllocateCreateOrConnectWithoutSeasonInput[]
     createMany?: BudgetAllocateCreateManySeasonInputEnvelope
     connect?: BudgetAllocateWhereUniqueInput | BudgetAllocateWhereUniqueInput[]
+  }
+
+  export type TicketUncheckedCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput> | TicketCreateWithoutSeasonInput[] | TicketUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeasonInput | TicketCreateOrConnectWithoutSeasonInput[]
+    createMany?: TicketCreateManySeasonInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
   export type SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput = {
@@ -43641,6 +43996,20 @@ export namespace Prisma {
     deleteMany?: BudgetAllocateScalarWhereInput | BudgetAllocateScalarWhereInput[]
   }
 
+  export type TicketUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput> | TicketCreateWithoutSeasonInput[] | TicketUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeasonInput | TicketCreateOrConnectWithoutSeasonInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutSeasonInput | TicketUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: TicketCreateManySeasonInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutSeasonInput | TicketUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutSeasonInput | TicketUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
   export type BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput = {
     create?: XOR<BudgetAllocateCreateWithoutSeasonInput, BudgetAllocateUncheckedCreateWithoutSeasonInput> | BudgetAllocateCreateWithoutSeasonInput[] | BudgetAllocateUncheckedCreateWithoutSeasonInput[]
     connectOrCreate?: BudgetAllocateCreateOrConnectWithoutSeasonInput | BudgetAllocateCreateOrConnectWithoutSeasonInput[]
@@ -43653,6 +44022,20 @@ export namespace Prisma {
     update?: BudgetAllocateUpdateWithWhereUniqueWithoutSeasonInput | BudgetAllocateUpdateWithWhereUniqueWithoutSeasonInput[]
     updateMany?: BudgetAllocateUpdateManyWithWhereWithoutSeasonInput | BudgetAllocateUpdateManyWithWhereWithoutSeasonInput[]
     deleteMany?: BudgetAllocateScalarWhereInput | BudgetAllocateScalarWhereInput[]
+  }
+
+  export type TicketUncheckedUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput> | TicketCreateWithoutSeasonInput[] | TicketUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutSeasonInput | TicketCreateOrConnectWithoutSeasonInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutSeasonInput | TicketUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: TicketCreateManySeasonInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutSeasonInput | TicketUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutSeasonInput | TicketUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
   }
 
   export type CategoryCreateNestedManyWithoutGenderInput = {
@@ -44084,11 +44467,25 @@ export namespace Prisma {
     connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
   }
 
+  export type TicketCreateNestedManyWithoutBudgetInput = {
+    create?: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput> | TicketCreateWithoutBudgetInput[] | TicketUncheckedCreateWithoutBudgetInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutBudgetInput | TicketCreateOrConnectWithoutBudgetInput[]
+    createMany?: TicketCreateManyBudgetInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
   export type AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput = {
     create?: XOR<AllocateHeaderCreateWithoutBudgetInput, AllocateHeaderUncheckedCreateWithoutBudgetInput> | AllocateHeaderCreateWithoutBudgetInput[] | AllocateHeaderUncheckedCreateWithoutBudgetInput[]
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutBudgetInput | AllocateHeaderCreateOrConnectWithoutBudgetInput[]
     createMany?: AllocateHeaderCreateManyBudgetInputEnvelope
     connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+  }
+
+  export type TicketUncheckedCreateNestedManyWithoutBudgetInput = {
+    create?: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput> | TicketCreateWithoutBudgetInput[] | TicketUncheckedCreateWithoutBudgetInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutBudgetInput | TicketCreateOrConnectWithoutBudgetInput[]
+    createMany?: TicketCreateManyBudgetInputEnvelope
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -44121,6 +44518,20 @@ export namespace Prisma {
     deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
   }
 
+  export type TicketUpdateManyWithoutBudgetNestedInput = {
+    create?: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput> | TicketCreateWithoutBudgetInput[] | TicketUncheckedCreateWithoutBudgetInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutBudgetInput | TicketCreateOrConnectWithoutBudgetInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutBudgetInput | TicketUpsertWithWhereUniqueWithoutBudgetInput[]
+    createMany?: TicketCreateManyBudgetInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutBudgetInput | TicketUpdateWithWhereUniqueWithoutBudgetInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutBudgetInput | TicketUpdateManyWithWhereWithoutBudgetInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
   export type AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput = {
     create?: XOR<AllocateHeaderCreateWithoutBudgetInput, AllocateHeaderUncheckedCreateWithoutBudgetInput> | AllocateHeaderCreateWithoutBudgetInput[] | AllocateHeaderUncheckedCreateWithoutBudgetInput[]
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutBudgetInput | AllocateHeaderCreateOrConnectWithoutBudgetInput[]
@@ -44133,6 +44544,20 @@ export namespace Prisma {
     update?: AllocateHeaderUpdateWithWhereUniqueWithoutBudgetInput | AllocateHeaderUpdateWithWhereUniqueWithoutBudgetInput[]
     updateMany?: AllocateHeaderUpdateManyWithWhereWithoutBudgetInput | AllocateHeaderUpdateManyWithWhereWithoutBudgetInput[]
     deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
+  }
+
+  export type TicketUncheckedUpdateManyWithoutBudgetNestedInput = {
+    create?: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput> | TicketCreateWithoutBudgetInput[] | TicketUncheckedCreateWithoutBudgetInput[]
+    connectOrCreate?: TicketCreateOrConnectWithoutBudgetInput | TicketCreateOrConnectWithoutBudgetInput[]
+    upsert?: TicketUpsertWithWhereUniqueWithoutBudgetInput | TicketUpsertWithWhereUniqueWithoutBudgetInput[]
+    createMany?: TicketCreateManyBudgetInputEnvelope
+    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+    update?: TicketUpdateWithWhereUniqueWithoutBudgetInput | TicketUpdateWithWhereUniqueWithoutBudgetInput[]
+    updateMany?: TicketUpdateManyWithWhereWithoutBudgetInput | TicketUpdateManyWithWhereWithoutBudgetInput[]
+    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
   }
 
   export type BudgetCreateNestedOneWithoutAllocate_headersInput = {
@@ -44151,6 +44576,12 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutCreated_allocate_headersInput, UserUncheckedCreateWithoutCreated_allocate_headersInput>
     connectOrCreate?: UserCreateOrConnectWithoutCreated_allocate_headersInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type TicketCreateNestedOneWithoutSnapshot_allocate_headersInput = {
+    create?: XOR<TicketCreateWithoutSnapshot_allocate_headersInput, TicketUncheckedCreateWithoutSnapshot_allocate_headersInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutSnapshot_allocate_headersInput
+    connect?: TicketWhereUniqueInput
   }
 
   export type BudgetAllocateCreateNestedManyWithoutAllocate_headerInput = {
@@ -44217,6 +44648,16 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCreated_allocate_headersInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreated_allocate_headersInput, UserUpdateWithoutCreated_allocate_headersInput>, UserUncheckedUpdateWithoutCreated_allocate_headersInput>
+  }
+
+  export type TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput = {
+    create?: XOR<TicketCreateWithoutSnapshot_allocate_headersInput, TicketUncheckedCreateWithoutSnapshot_allocate_headersInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutSnapshot_allocate_headersInput
+    upsert?: TicketUpsertWithoutSnapshot_allocate_headersInput
+    disconnect?: TicketWhereInput | boolean
+    delete?: TicketWhereInput | boolean
+    connect?: TicketWhereUniqueInput
+    update?: XOR<XOR<TicketUpdateToOneWithWhereWithoutSnapshot_allocate_headersInput, TicketUpdateWithoutSnapshot_allocate_headersInput>, TicketUncheckedUpdateWithoutSnapshot_allocate_headersInput>
   }
 
   export type BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput = {
@@ -44327,20 +44768,6 @@ export namespace Prisma {
     connect?: SeasonWhereUniqueInput
   }
 
-  export type TicketCreateNestedManyWithoutBudget_allocateInput = {
-    create?: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput> | TicketCreateWithoutBudget_allocateInput[] | TicketUncheckedCreateWithoutBudget_allocateInput[]
-    connectOrCreate?: TicketCreateOrConnectWithoutBudget_allocateInput | TicketCreateOrConnectWithoutBudget_allocateInput[]
-    createMany?: TicketCreateManyBudget_allocateInputEnvelope
-    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-  }
-
-  export type TicketUncheckedCreateNestedManyWithoutBudget_allocateInput = {
-    create?: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput> | TicketCreateWithoutBudget_allocateInput[] | TicketUncheckedCreateWithoutBudget_allocateInput[]
-    connectOrCreate?: TicketCreateOrConnectWithoutBudget_allocateInput | TicketCreateOrConnectWithoutBudget_allocateInput[]
-    createMany?: TicketCreateManyBudget_allocateInputEnvelope
-    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-  }
-
   export type AllocateHeaderUpdateOneRequiredWithoutBudget_allocatesNestedInput = {
     create?: XOR<AllocateHeaderCreateWithoutBudget_allocatesInput, AllocateHeaderUncheckedCreateWithoutBudget_allocatesInput>
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutBudget_allocatesInput
@@ -44371,34 +44798,6 @@ export namespace Prisma {
     upsert?: SeasonUpsertWithoutBudget_allocatesInput
     connect?: SeasonWhereUniqueInput
     update?: XOR<XOR<SeasonUpdateToOneWithWhereWithoutBudget_allocatesInput, SeasonUpdateWithoutBudget_allocatesInput>, SeasonUncheckedUpdateWithoutBudget_allocatesInput>
-  }
-
-  export type TicketUpdateManyWithoutBudget_allocateNestedInput = {
-    create?: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput> | TicketCreateWithoutBudget_allocateInput[] | TicketUncheckedCreateWithoutBudget_allocateInput[]
-    connectOrCreate?: TicketCreateOrConnectWithoutBudget_allocateInput | TicketCreateOrConnectWithoutBudget_allocateInput[]
-    upsert?: TicketUpsertWithWhereUniqueWithoutBudget_allocateInput | TicketUpsertWithWhereUniqueWithoutBudget_allocateInput[]
-    createMany?: TicketCreateManyBudget_allocateInputEnvelope
-    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    update?: TicketUpdateWithWhereUniqueWithoutBudget_allocateInput | TicketUpdateWithWhereUniqueWithoutBudget_allocateInput[]
-    updateMany?: TicketUpdateManyWithWhereWithoutBudget_allocateInput | TicketUpdateManyWithWhereWithoutBudget_allocateInput[]
-    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
-  }
-
-  export type TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput = {
-    create?: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput> | TicketCreateWithoutBudget_allocateInput[] | TicketUncheckedCreateWithoutBudget_allocateInput[]
-    connectOrCreate?: TicketCreateOrConnectWithoutBudget_allocateInput | TicketCreateOrConnectWithoutBudget_allocateInput[]
-    upsert?: TicketUpsertWithWhereUniqueWithoutBudget_allocateInput | TicketUpsertWithWhereUniqueWithoutBudget_allocateInput[]
-    createMany?: TicketCreateManyBudget_allocateInputEnvelope
-    set?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    disconnect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    delete?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-    update?: TicketUpdateWithWhereUniqueWithoutBudget_allocateInput | TicketUpdateWithWhereUniqueWithoutBudget_allocateInput[]
-    updateMany?: TicketUpdateManyWithWhereWithoutBudget_allocateInput | TicketUpdateManyWithWhereWithoutBudget_allocateInput[]
-    deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutCreated_planning_headersInput = {
@@ -44463,12 +44862,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreated_planning_headersInput, UserUpdateWithoutCreated_planning_headersInput>, UserUncheckedUpdateWithoutCreated_planning_headersInput>
   }
 
-  export type AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput = {
+  export type AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput = {
     create?: XOR<AllocateHeaderCreateWithoutPlanning_headersInput, AllocateHeaderUncheckedCreateWithoutPlanning_headersInput>
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutPlanning_headersInput
     upsert?: AllocateHeaderUpsertWithoutPlanning_headersInput
-    disconnect?: AllocateHeaderWhereInput | boolean
-    delete?: AllocateHeaderWhereInput | boolean
     connect?: AllocateHeaderWhereUniqueInput
     update?: XOR<XOR<AllocateHeaderUpdateToOneWithWhereWithoutPlanning_headersInput, AllocateHeaderUpdateWithoutPlanning_headersInput>, AllocateHeaderUncheckedUpdateWithoutPlanning_headersInput>
   }
@@ -44688,6 +45085,13 @@ export namespace Prisma {
     connect?: SKUProposalWhereUniqueInput | SKUProposalWhereUniqueInput[]
   }
 
+  export type ProposalSizingHeaderCreateNestedManyWithoutSku_proposal_headerInput = {
+    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput> | ProposalSizingHeaderCreateWithoutSku_proposal_headerInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput[]
+    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput[]
+    createMany?: ProposalSizingHeaderCreateManySku_proposal_headerInputEnvelope
+    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+  }
+
   export type SKUProposalUncheckedCreateNestedManyWithoutSku_proposal_headerInput = {
     create?: XOR<SKUProposalCreateWithoutSku_proposal_headerInput, SKUProposalUncheckedCreateWithoutSku_proposal_headerInput> | SKUProposalCreateWithoutSku_proposal_headerInput[] | SKUProposalUncheckedCreateWithoutSku_proposal_headerInput[]
     connectOrCreate?: SKUProposalCreateOrConnectWithoutSku_proposal_headerInput | SKUProposalCreateOrConnectWithoutSku_proposal_headerInput[]
@@ -44695,12 +45099,17 @@ export namespace Prisma {
     connect?: SKUProposalWhereUniqueInput | SKUProposalWhereUniqueInput[]
   }
 
-  export type AllocateHeaderUpdateOneWithoutSku_proposal_headersNestedInput = {
+  export type ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposal_headerInput = {
+    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput> | ProposalSizingHeaderCreateWithoutSku_proposal_headerInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput[]
+    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput[]
+    createMany?: ProposalSizingHeaderCreateManySku_proposal_headerInputEnvelope
+    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+  }
+
+  export type AllocateHeaderUpdateOneRequiredWithoutSku_proposal_headersNestedInput = {
     create?: XOR<AllocateHeaderCreateWithoutSku_proposal_headersInput, AllocateHeaderUncheckedCreateWithoutSku_proposal_headersInput>
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutSku_proposal_headersInput
     upsert?: AllocateHeaderUpsertWithoutSku_proposal_headersInput
-    disconnect?: AllocateHeaderWhereInput | boolean
-    delete?: AllocateHeaderWhereInput | boolean
     connect?: AllocateHeaderWhereUniqueInput
     update?: XOR<XOR<AllocateHeaderUpdateToOneWithWhereWithoutSku_proposal_headersInput, AllocateHeaderUpdateWithoutSku_proposal_headersInput>, AllocateHeaderUncheckedUpdateWithoutSku_proposal_headersInput>
   }
@@ -44727,6 +45136,20 @@ export namespace Prisma {
     deleteMany?: SKUProposalScalarWhereInput | SKUProposalScalarWhereInput[]
   }
 
+  export type ProposalSizingHeaderUpdateManyWithoutSku_proposal_headerNestedInput = {
+    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput> | ProposalSizingHeaderCreateWithoutSku_proposal_headerInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput[]
+    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput[]
+    upsert?: ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposal_headerInput | ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposal_headerInput[]
+    createMany?: ProposalSizingHeaderCreateManySku_proposal_headerInputEnvelope
+    set?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    disconnect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    delete?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    update?: ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposal_headerInput | ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposal_headerInput[]
+    updateMany?: ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposal_headerInput | ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposal_headerInput[]
+    deleteMany?: ProposalSizingHeaderScalarWhereInput | ProposalSizingHeaderScalarWhereInput[]
+  }
+
   export type SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerNestedInput = {
     create?: XOR<SKUProposalCreateWithoutSku_proposal_headerInput, SKUProposalUncheckedCreateWithoutSku_proposal_headerInput> | SKUProposalCreateWithoutSku_proposal_headerInput[] | SKUProposalUncheckedCreateWithoutSku_proposal_headerInput[]
     connectOrCreate?: SKUProposalCreateOrConnectWithoutSku_proposal_headerInput | SKUProposalCreateOrConnectWithoutSku_proposal_headerInput[]
@@ -44739,6 +45162,20 @@ export namespace Prisma {
     update?: SKUProposalUpdateWithWhereUniqueWithoutSku_proposal_headerInput | SKUProposalUpdateWithWhereUniqueWithoutSku_proposal_headerInput[]
     updateMany?: SKUProposalUpdateManyWithWhereWithoutSku_proposal_headerInput | SKUProposalUpdateManyWithWhereWithoutSku_proposal_headerInput[]
     deleteMany?: SKUProposalScalarWhereInput | SKUProposalScalarWhereInput[]
+  }
+
+  export type ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerNestedInput = {
+    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput> | ProposalSizingHeaderCreateWithoutSku_proposal_headerInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput[]
+    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput[]
+    upsert?: ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposal_headerInput | ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposal_headerInput[]
+    createMany?: ProposalSizingHeaderCreateManySku_proposal_headerInputEnvelope
+    set?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    disconnect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    delete?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+    update?: ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposal_headerInput | ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposal_headerInput[]
+    updateMany?: ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposal_headerInput | ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposal_headerInput[]
+    deleteMany?: ProposalSizingHeaderScalarWhereInput | ProposalSizingHeaderScalarWhereInput[]
   }
 
   export type SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput = {
@@ -44760,11 +45197,11 @@ export namespace Prisma {
     connect?: SKUAllocateWhereUniqueInput | SKUAllocateWhereUniqueInput[]
   }
 
-  export type ProposalSizingHeaderCreateNestedManyWithoutSku_proposalInput = {
-    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput> | ProposalSizingHeaderCreateWithoutSku_proposalInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput[]
-    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput[]
-    createMany?: ProposalSizingHeaderCreateManySku_proposalInputEnvelope
-    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+  export type ProposalSizingCreateNestedManyWithoutSku_proposalInput = {
+    create?: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput> | ProposalSizingCreateWithoutSku_proposalInput[] | ProposalSizingUncheckedCreateWithoutSku_proposalInput[]
+    connectOrCreate?: ProposalSizingCreateOrConnectWithoutSku_proposalInput | ProposalSizingCreateOrConnectWithoutSku_proposalInput[]
+    createMany?: ProposalSizingCreateManySku_proposalInputEnvelope
+    connect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
   }
 
   export type SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput = {
@@ -44774,11 +45211,11 @@ export namespace Prisma {
     connect?: SKUAllocateWhereUniqueInput | SKUAllocateWhereUniqueInput[]
   }
 
-  export type ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposalInput = {
-    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput> | ProposalSizingHeaderCreateWithoutSku_proposalInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput[]
-    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput[]
-    createMany?: ProposalSizingHeaderCreateManySku_proposalInputEnvelope
-    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
+  export type ProposalSizingUncheckedCreateNestedManyWithoutSku_proposalInput = {
+    create?: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput> | ProposalSizingCreateWithoutSku_proposalInput[] | ProposalSizingUncheckedCreateWithoutSku_proposalInput[]
+    connectOrCreate?: ProposalSizingCreateOrConnectWithoutSku_proposalInput | ProposalSizingCreateOrConnectWithoutSku_proposalInput[]
+    createMany?: ProposalSizingCreateManySku_proposalInputEnvelope
+    connect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
   }
 
   export type SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput = {
@@ -44811,18 +45248,18 @@ export namespace Prisma {
     deleteMany?: SKUAllocateScalarWhereInput | SKUAllocateScalarWhereInput[]
   }
 
-  export type ProposalSizingHeaderUpdateManyWithoutSku_proposalNestedInput = {
-    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput> | ProposalSizingHeaderCreateWithoutSku_proposalInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput[]
-    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput[]
-    upsert?: ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposalInput | ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposalInput[]
-    createMany?: ProposalSizingHeaderCreateManySku_proposalInputEnvelope
-    set?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    disconnect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    delete?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    update?: ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposalInput | ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposalInput[]
-    updateMany?: ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposalInput | ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposalInput[]
-    deleteMany?: ProposalSizingHeaderScalarWhereInput | ProposalSizingHeaderScalarWhereInput[]
+  export type ProposalSizingUpdateManyWithoutSku_proposalNestedInput = {
+    create?: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput> | ProposalSizingCreateWithoutSku_proposalInput[] | ProposalSizingUncheckedCreateWithoutSku_proposalInput[]
+    connectOrCreate?: ProposalSizingCreateOrConnectWithoutSku_proposalInput | ProposalSizingCreateOrConnectWithoutSku_proposalInput[]
+    upsert?: ProposalSizingUpsertWithWhereUniqueWithoutSku_proposalInput | ProposalSizingUpsertWithWhereUniqueWithoutSku_proposalInput[]
+    createMany?: ProposalSizingCreateManySku_proposalInputEnvelope
+    set?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    disconnect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    delete?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    connect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    update?: ProposalSizingUpdateWithWhereUniqueWithoutSku_proposalInput | ProposalSizingUpdateWithWhereUniqueWithoutSku_proposalInput[]
+    updateMany?: ProposalSizingUpdateManyWithWhereWithoutSku_proposalInput | ProposalSizingUpdateManyWithWhereWithoutSku_proposalInput[]
+    deleteMany?: ProposalSizingScalarWhereInput | ProposalSizingScalarWhereInput[]
   }
 
   export type SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput = {
@@ -44839,18 +45276,18 @@ export namespace Prisma {
     deleteMany?: SKUAllocateScalarWhereInput | SKUAllocateScalarWhereInput[]
   }
 
-  export type ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalNestedInput = {
-    create?: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput> | ProposalSizingHeaderCreateWithoutSku_proposalInput[] | ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput[]
-    connectOrCreate?: ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput | ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput[]
-    upsert?: ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposalInput | ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposalInput[]
-    createMany?: ProposalSizingHeaderCreateManySku_proposalInputEnvelope
-    set?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    disconnect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    delete?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    connect?: ProposalSizingHeaderWhereUniqueInput | ProposalSizingHeaderWhereUniqueInput[]
-    update?: ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposalInput | ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposalInput[]
-    updateMany?: ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposalInput | ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposalInput[]
-    deleteMany?: ProposalSizingHeaderScalarWhereInput | ProposalSizingHeaderScalarWhereInput[]
+  export type ProposalSizingUncheckedUpdateManyWithoutSku_proposalNestedInput = {
+    create?: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput> | ProposalSizingCreateWithoutSku_proposalInput[] | ProposalSizingUncheckedCreateWithoutSku_proposalInput[]
+    connectOrCreate?: ProposalSizingCreateOrConnectWithoutSku_proposalInput | ProposalSizingCreateOrConnectWithoutSku_proposalInput[]
+    upsert?: ProposalSizingUpsertWithWhereUniqueWithoutSku_proposalInput | ProposalSizingUpsertWithWhereUniqueWithoutSku_proposalInput[]
+    createMany?: ProposalSizingCreateManySku_proposalInputEnvelope
+    set?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    disconnect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    delete?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    connect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
+    update?: ProposalSizingUpdateWithWhereUniqueWithoutSku_proposalInput | ProposalSizingUpdateWithWhereUniqueWithoutSku_proposalInput[]
+    updateMany?: ProposalSizingUpdateManyWithWhereWithoutSku_proposalInput | ProposalSizingUpdateManyWithWhereWithoutSku_proposalInput[]
+    deleteMany?: ProposalSizingScalarWhereInput | ProposalSizingScalarWhereInput[]
   }
 
   export type SKUProposalCreateNestedOneWithoutSku_allocatesInput = {
@@ -44881,10 +45318,10 @@ export namespace Prisma {
     update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutSku_allocatesInput, StoreUpdateWithoutSku_allocatesInput>, StoreUncheckedUpdateWithoutSku_allocatesInput>
   }
 
-  export type SKUProposalCreateNestedOneWithoutProposal_sizing_headersInput = {
-    create?: XOR<SKUProposalCreateWithoutProposal_sizing_headersInput, SKUProposalUncheckedCreateWithoutProposal_sizing_headersInput>
-    connectOrCreate?: SKUProposalCreateOrConnectWithoutProposal_sizing_headersInput
-    connect?: SKUProposalWhereUniqueInput
+  export type SKUProposalHeaderCreateNestedOneWithoutProposal_sizing_headersInput = {
+    create?: XOR<SKUProposalHeaderCreateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedCreateWithoutProposal_sizing_headersInput>
+    connectOrCreate?: SKUProposalHeaderCreateOrConnectWithoutProposal_sizing_headersInput
+    connect?: SKUProposalHeaderWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutCreated_proposal_sizing_headersInput = {
@@ -44907,12 +45344,12 @@ export namespace Prisma {
     connect?: ProposalSizingWhereUniqueInput | ProposalSizingWhereUniqueInput[]
   }
 
-  export type SKUProposalUpdateOneRequiredWithoutProposal_sizing_headersNestedInput = {
-    create?: XOR<SKUProposalCreateWithoutProposal_sizing_headersInput, SKUProposalUncheckedCreateWithoutProposal_sizing_headersInput>
-    connectOrCreate?: SKUProposalCreateOrConnectWithoutProposal_sizing_headersInput
-    upsert?: SKUProposalUpsertWithoutProposal_sizing_headersInput
-    connect?: SKUProposalWhereUniqueInput
-    update?: XOR<XOR<SKUProposalUpdateToOneWithWhereWithoutProposal_sizing_headersInput, SKUProposalUpdateWithoutProposal_sizing_headersInput>, SKUProposalUncheckedUpdateWithoutProposal_sizing_headersInput>
+  export type SKUProposalHeaderUpdateOneRequiredWithoutProposal_sizing_headersNestedInput = {
+    create?: XOR<SKUProposalHeaderCreateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedCreateWithoutProposal_sizing_headersInput>
+    connectOrCreate?: SKUProposalHeaderCreateOrConnectWithoutProposal_sizing_headersInput
+    upsert?: SKUProposalHeaderUpsertWithoutProposal_sizing_headersInput
+    connect?: SKUProposalHeaderWhereUniqueInput
+    update?: XOR<XOR<SKUProposalHeaderUpdateToOneWithWhereWithoutProposal_sizing_headersInput, SKUProposalHeaderUpdateWithoutProposal_sizing_headersInput>, SKUProposalHeaderUncheckedUpdateWithoutProposal_sizing_headersInput>
   }
 
   export type UserUpdateOneRequiredWithoutCreated_proposal_sizing_headersNestedInput = {
@@ -44957,6 +45394,12 @@ export namespace Prisma {
     connect?: ProposalSizingHeaderWhereUniqueInput
   }
 
+  export type SKUProposalCreateNestedOneWithoutProposal_sizingsInput = {
+    create?: XOR<SKUProposalCreateWithoutProposal_sizingsInput, SKUProposalUncheckedCreateWithoutProposal_sizingsInput>
+    connectOrCreate?: SKUProposalCreateOrConnectWithoutProposal_sizingsInput
+    connect?: SKUProposalWhereUniqueInput
+  }
+
   export type SubcategorySizeCreateNestedOneWithoutProposal_sizingsInput = {
     create?: XOR<SubcategorySizeCreateWithoutProposal_sizingsInput, SubcategorySizeUncheckedCreateWithoutProposal_sizingsInput>
     connectOrCreate?: SubcategorySizeCreateOrConnectWithoutProposal_sizingsInput
@@ -44971,6 +45414,14 @@ export namespace Prisma {
     update?: XOR<XOR<ProposalSizingHeaderUpdateToOneWithWhereWithoutProposal_sizingsInput, ProposalSizingHeaderUpdateWithoutProposal_sizingsInput>, ProposalSizingHeaderUncheckedUpdateWithoutProposal_sizingsInput>
   }
 
+  export type SKUProposalUpdateOneRequiredWithoutProposal_sizingsNestedInput = {
+    create?: XOR<SKUProposalCreateWithoutProposal_sizingsInput, SKUProposalUncheckedCreateWithoutProposal_sizingsInput>
+    connectOrCreate?: SKUProposalCreateOrConnectWithoutProposal_sizingsInput
+    upsert?: SKUProposalUpsertWithoutProposal_sizingsInput
+    connect?: SKUProposalWhereUniqueInput
+    update?: XOR<XOR<SKUProposalUpdateToOneWithWhereWithoutProposal_sizingsInput, SKUProposalUpdateWithoutProposal_sizingsInput>, SKUProposalUncheckedUpdateWithoutProposal_sizingsInput>
+  }
+
   export type SubcategorySizeUpdateOneRequiredWithoutProposal_sizingsNestedInput = {
     create?: XOR<SubcategorySizeCreateWithoutProposal_sizingsInput, SubcategorySizeUncheckedCreateWithoutProposal_sizingsInput>
     connectOrCreate?: SubcategorySizeCreateOrConnectWithoutProposal_sizingsInput
@@ -44979,10 +45430,22 @@ export namespace Prisma {
     update?: XOR<XOR<SubcategorySizeUpdateToOneWithWhereWithoutProposal_sizingsInput, SubcategorySizeUpdateWithoutProposal_sizingsInput>, SubcategorySizeUncheckedUpdateWithoutProposal_sizingsInput>
   }
 
-  export type BudgetAllocateCreateNestedOneWithoutTicketsInput = {
-    create?: XOR<BudgetAllocateCreateWithoutTicketsInput, BudgetAllocateUncheckedCreateWithoutTicketsInput>
-    connectOrCreate?: BudgetAllocateCreateOrConnectWithoutTicketsInput
-    connect?: BudgetAllocateWhereUniqueInput
+  export type BudgetCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<BudgetCreateWithoutTicketsInput, BudgetUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: BudgetCreateOrConnectWithoutTicketsInput
+    connect?: BudgetWhereUniqueInput
+  }
+
+  export type SeasonGroupCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<SeasonGroupCreateWithoutTicketsInput, SeasonGroupUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: SeasonGroupCreateOrConnectWithoutTicketsInput
+    connect?: SeasonGroupWhereUniqueInput
+  }
+
+  export type SeasonCreateNestedOneWithoutTicketsInput = {
+    create?: XOR<SeasonCreateWithoutTicketsInput, SeasonUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutTicketsInput
+    connect?: SeasonWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutCreated_ticketsInput = {
@@ -44998,6 +45461,13 @@ export namespace Prisma {
     connect?: TicketApprovalLogWhereUniqueInput | TicketApprovalLogWhereUniqueInput[]
   }
 
+  export type AllocateHeaderCreateNestedManyWithoutTicketInput = {
+    create?: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput> | AllocateHeaderCreateWithoutTicketInput[] | AllocateHeaderUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: AllocateHeaderCreateOrConnectWithoutTicketInput | AllocateHeaderCreateOrConnectWithoutTicketInput[]
+    createMany?: AllocateHeaderCreateManyTicketInputEnvelope
+    connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+  }
+
   export type TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput = {
     create?: XOR<TicketApprovalLogCreateWithoutTicketInput, TicketApprovalLogUncheckedCreateWithoutTicketInput> | TicketApprovalLogCreateWithoutTicketInput[] | TicketApprovalLogUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: TicketApprovalLogCreateOrConnectWithoutTicketInput | TicketApprovalLogCreateOrConnectWithoutTicketInput[]
@@ -45005,12 +45475,35 @@ export namespace Prisma {
     connect?: TicketApprovalLogWhereUniqueInput | TicketApprovalLogWhereUniqueInput[]
   }
 
-  export type BudgetAllocateUpdateOneRequiredWithoutTicketsNestedInput = {
-    create?: XOR<BudgetAllocateCreateWithoutTicketsInput, BudgetAllocateUncheckedCreateWithoutTicketsInput>
-    connectOrCreate?: BudgetAllocateCreateOrConnectWithoutTicketsInput
-    upsert?: BudgetAllocateUpsertWithoutTicketsInput
-    connect?: BudgetAllocateWhereUniqueInput
-    update?: XOR<XOR<BudgetAllocateUpdateToOneWithWhereWithoutTicketsInput, BudgetAllocateUpdateWithoutTicketsInput>, BudgetAllocateUncheckedUpdateWithoutTicketsInput>
+  export type AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput> | AllocateHeaderCreateWithoutTicketInput[] | AllocateHeaderUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: AllocateHeaderCreateOrConnectWithoutTicketInput | AllocateHeaderCreateOrConnectWithoutTicketInput[]
+    createMany?: AllocateHeaderCreateManyTicketInputEnvelope
+    connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+  }
+
+  export type BudgetUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<BudgetCreateWithoutTicketsInput, BudgetUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: BudgetCreateOrConnectWithoutTicketsInput
+    upsert?: BudgetUpsertWithoutTicketsInput
+    connect?: BudgetWhereUniqueInput
+    update?: XOR<XOR<BudgetUpdateToOneWithWhereWithoutTicketsInput, BudgetUpdateWithoutTicketsInput>, BudgetUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<SeasonGroupCreateWithoutTicketsInput, SeasonGroupUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: SeasonGroupCreateOrConnectWithoutTicketsInput
+    upsert?: SeasonGroupUpsertWithoutTicketsInput
+    connect?: SeasonGroupWhereUniqueInput
+    update?: XOR<XOR<SeasonGroupUpdateToOneWithWhereWithoutTicketsInput, SeasonGroupUpdateWithoutTicketsInput>, SeasonGroupUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type SeasonUpdateOneRequiredWithoutTicketsNestedInput = {
+    create?: XOR<SeasonCreateWithoutTicketsInput, SeasonUncheckedCreateWithoutTicketsInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutTicketsInput
+    upsert?: SeasonUpsertWithoutTicketsInput
+    connect?: SeasonWhereUniqueInput
+    update?: XOR<XOR<SeasonUpdateToOneWithWhereWithoutTicketsInput, SeasonUpdateWithoutTicketsInput>, SeasonUncheckedUpdateWithoutTicketsInput>
   }
 
   export type UserUpdateOneRequiredWithoutCreated_ticketsNestedInput = {
@@ -45035,6 +45528,20 @@ export namespace Prisma {
     deleteMany?: TicketApprovalLogScalarWhereInput | TicketApprovalLogScalarWhereInput[]
   }
 
+  export type AllocateHeaderUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput> | AllocateHeaderCreateWithoutTicketInput[] | AllocateHeaderUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: AllocateHeaderCreateOrConnectWithoutTicketInput | AllocateHeaderCreateOrConnectWithoutTicketInput[]
+    upsert?: AllocateHeaderUpsertWithWhereUniqueWithoutTicketInput | AllocateHeaderUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: AllocateHeaderCreateManyTicketInputEnvelope
+    set?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    disconnect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    delete?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    update?: AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput | AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: AllocateHeaderUpdateManyWithWhereWithoutTicketInput | AllocateHeaderUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
+  }
+
   export type TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput = {
     create?: XOR<TicketApprovalLogCreateWithoutTicketInput, TicketApprovalLogUncheckedCreateWithoutTicketInput> | TicketApprovalLogCreateWithoutTicketInput[] | TicketApprovalLogUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: TicketApprovalLogCreateOrConnectWithoutTicketInput | TicketApprovalLogCreateOrConnectWithoutTicketInput[]
@@ -45047,6 +45554,20 @@ export namespace Prisma {
     update?: TicketApprovalLogUpdateWithWhereUniqueWithoutTicketInput | TicketApprovalLogUpdateWithWhereUniqueWithoutTicketInput[]
     updateMany?: TicketApprovalLogUpdateManyWithWhereWithoutTicketInput | TicketApprovalLogUpdateManyWithWhereWithoutTicketInput[]
     deleteMany?: TicketApprovalLogScalarWhereInput | TicketApprovalLogScalarWhereInput[]
+  }
+
+  export type AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput> | AllocateHeaderCreateWithoutTicketInput[] | AllocateHeaderUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: AllocateHeaderCreateOrConnectWithoutTicketInput | AllocateHeaderCreateOrConnectWithoutTicketInput[]
+    upsert?: AllocateHeaderUpsertWithWhereUniqueWithoutTicketInput | AllocateHeaderUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: AllocateHeaderCreateManyTicketInputEnvelope
+    set?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    disconnect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    delete?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+    update?: AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput | AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: AllocateHeaderUpdateManyWithWhereWithoutTicketInput | AllocateHeaderUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
   }
 
   export type GroupBrandCreateNestedOneWithoutApproval_workflowsInput = {
@@ -45541,6 +46062,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+    tickets?: TicketCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetUncheckedCreateWithoutCreatorInput = {
@@ -45554,6 +46076,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetCreateOrConnectWithoutCreatorInput = {
@@ -45569,11 +46092,13 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
@@ -45585,6 +46110,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
@@ -45610,7 +46137,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
     planning_collections?: PlanningCollectionCreateNestedManyWithoutPlanning_headerInput
     planning_genders?: PlanningGenderCreateNestedManyWithoutPlanning_headerInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutPlanning_headerInput
@@ -45618,7 +46145,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedCreateWithoutCreatorInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -45647,13 +46174,14 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderUncheckedCreateWithoutCreatorInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -45661,6 +46189,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderCreateOrConnectWithoutCreatorInput = {
@@ -45679,13 +46208,13 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizing_headersInput
+    sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutProposal_sizing_headersInput
     proposal_sizings?: ProposalSizingCreateNestedManyWithoutProposal_sizing_headerInput
   }
 
   export type ProposalSizingHeaderUncheckedCreateWithoutCreatorInput = {
     id?: bigint | number
-    sku_proposal_id: bigint | number
+    sku_proposal_header_id: bigint | number
     version: number
     is_final_version?: boolean
     created_at?: Date | string
@@ -45709,18 +46238,24 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    budget_allocate: BudgetAllocateCreateNestedOneWithoutTicketsInput
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutCreatorInput = {
     id?: bigint | number
-    budget_allocate_id: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutCreatorInput = {
@@ -45892,6 +46427,8 @@ export namespace Prisma {
     brand_id?: BigIntFilter<"AllocateHeader"> | bigint | number
     version?: IntFilter<"AllocateHeader"> | number
     is_final_version?: BoolFilter<"AllocateHeader"> | boolean
+    is_snapshot?: BoolFilter<"AllocateHeader"> | boolean
+    ticket_id?: BigIntNullableFilter<"AllocateHeader"> | bigint | number | null
     created_by?: BigIntFilter<"AllocateHeader"> | bigint | number
     created_at?: DateTimeFilter<"AllocateHeader"> | Date | string
     updated_at?: DateTimeFilter<"AllocateHeader"> | Date | string
@@ -45919,7 +46456,7 @@ export namespace Prisma {
     OR?: PlanningHeaderScalarWhereInput[]
     NOT?: PlanningHeaderScalarWhereInput | PlanningHeaderScalarWhereInput[]
     id?: BigIntFilter<"PlanningHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableFilter<"PlanningHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"PlanningHeader"> | bigint | number
     version?: IntFilter<"PlanningHeader"> | number
     status?: StringFilter<"PlanningHeader"> | string
     is_final_version?: BoolFilter<"PlanningHeader"> | boolean
@@ -45950,7 +46487,7 @@ export namespace Prisma {
     OR?: SKUProposalHeaderScalarWhereInput[]
     NOT?: SKUProposalHeaderScalarWhereInput | SKUProposalHeaderScalarWhereInput[]
     id?: BigIntFilter<"SKUProposalHeader"> | bigint | number
-    allocate_header_id?: BigIntNullableFilter<"SKUProposalHeader"> | bigint | number | null
+    allocate_header_id?: BigIntFilter<"SKUProposalHeader"> | bigint | number
     version?: IntFilter<"SKUProposalHeader"> | number
     status?: StringFilter<"SKUProposalHeader"> | string
     is_final_version?: BoolFilter<"SKUProposalHeader"> | boolean
@@ -45981,7 +46518,7 @@ export namespace Prisma {
     OR?: ProposalSizingHeaderScalarWhereInput[]
     NOT?: ProposalSizingHeaderScalarWhereInput | ProposalSizingHeaderScalarWhereInput[]
     id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
-    sku_proposal_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
+    sku_proposal_header_id?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
     version?: IntFilter<"ProposalSizingHeader"> | number
     is_final_version?: BoolFilter<"ProposalSizingHeader"> | boolean
     created_by?: BigIntFilter<"ProposalSizingHeader"> | bigint | number
@@ -46011,7 +46548,9 @@ export namespace Prisma {
     OR?: TicketScalarWhereInput[]
     NOT?: TicketScalarWhereInput | TicketScalarWhereInput[]
     id?: BigIntFilter<"Ticket"> | bigint | number
-    budget_allocate_id?: BigIntFilter<"Ticket"> | bigint | number
+    budget_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_group_id?: BigIntFilter<"Ticket"> | bigint | number
+    season_id?: BigIntFilter<"Ticket"> | bigint | number
     status?: StringFilter<"Ticket"> | string
     created_by?: BigIntFilter<"Ticket"> | bigint | number
     created_at?: DateTimeFilter<"Ticket"> | Date | string
@@ -46369,11 +46908,13 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
@@ -46384,6 +46925,8 @@ export namespace Prisma {
     budget_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -46501,7 +47044,6 @@ export namespace Prisma {
     allocate_header: AllocateHeaderCreateNestedOneWithoutBudget_allocatesInput
     season_group: SeasonGroupCreateNestedOneWithoutBudget_allocatesInput
     season: SeasonCreateNestedOneWithoutBudget_allocatesInput
-    tickets?: TicketCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUncheckedCreateWithoutStoreInput = {
@@ -46514,7 +47056,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    tickets?: TicketUncheckedCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateCreateOrConnectWithoutStoreInput = {
@@ -46842,6 +47383,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
+    tickets?: TicketCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonUncheckedCreateWithoutSeason_groupInput = {
@@ -46853,6 +47395,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonCreateOrConnectWithoutSeason_groupInput = {
@@ -46874,7 +47417,6 @@ export namespace Prisma {
     allocate_header: AllocateHeaderCreateNestedOneWithoutBudget_allocatesInput
     store: StoreCreateNestedOneWithoutBudget_allocatesInput
     season: SeasonCreateNestedOneWithoutBudget_allocatesInput
-    tickets?: TicketCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUncheckedCreateWithoutSeason_groupInput = {
@@ -46887,7 +47429,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    tickets?: TicketUncheckedCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateCreateOrConnectWithoutSeason_groupInput = {
@@ -46897,6 +47438,41 @@ export namespace Prisma {
 
   export type BudgetAllocateCreateManySeason_groupInputEnvelope = {
     data: BudgetAllocateCreateManySeason_groupInput | BudgetAllocateCreateManySeason_groupInput[]
+  }
+
+  export type TicketCreateWithoutSeason_groupInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutSeason_groupInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutSeason_groupInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput>
+  }
+
+  export type TicketCreateManySeason_groupInputEnvelope = {
+    data: TicketCreateManySeason_groupInput | TicketCreateManySeason_groupInput[]
   }
 
   export type SeasonUpsertWithWhereUniqueWithoutSeason_groupInput = {
@@ -46945,6 +47521,22 @@ export namespace Prisma {
     data: XOR<BudgetAllocateUpdateManyMutationInput, BudgetAllocateUncheckedUpdateManyWithoutSeason_groupInput>
   }
 
+  export type TicketUpsertWithWhereUniqueWithoutSeason_groupInput = {
+    where: TicketWhereUniqueInput
+    update: XOR<TicketUpdateWithoutSeason_groupInput, TicketUncheckedUpdateWithoutSeason_groupInput>
+    create: XOR<TicketCreateWithoutSeason_groupInput, TicketUncheckedCreateWithoutSeason_groupInput>
+  }
+
+  export type TicketUpdateWithWhereUniqueWithoutSeason_groupInput = {
+    where: TicketWhereUniqueInput
+    data: XOR<TicketUpdateWithoutSeason_groupInput, TicketUncheckedUpdateWithoutSeason_groupInput>
+  }
+
+  export type TicketUpdateManyWithWhereWithoutSeason_groupInput = {
+    where: TicketScalarWhereInput
+    data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutSeason_groupInput>
+  }
+
   export type SeasonGroupCreateWithoutSeasonsInput = {
     id?: bigint | number
     name: string
@@ -46955,6 +47547,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupUncheckedCreateWithoutSeasonsInput = {
@@ -46967,6 +47560,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupCreateOrConnectWithoutSeasonsInput = {
@@ -46984,7 +47578,6 @@ export namespace Prisma {
     allocate_header: AllocateHeaderCreateNestedOneWithoutBudget_allocatesInput
     store: StoreCreateNestedOneWithoutBudget_allocatesInput
     season_group: SeasonGroupCreateNestedOneWithoutBudget_allocatesInput
-    tickets?: TicketCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUncheckedCreateWithoutSeasonInput = {
@@ -46997,7 +47590,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    tickets?: TicketUncheckedCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateCreateOrConnectWithoutSeasonInput = {
@@ -47007,6 +47599,41 @@ export namespace Prisma {
 
   export type BudgetAllocateCreateManySeasonInputEnvelope = {
     data: BudgetAllocateCreateManySeasonInput | BudgetAllocateCreateManySeasonInput[]
+  }
+
+  export type TicketCreateWithoutSeasonInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutSeasonInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutSeasonInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type TicketCreateManySeasonInputEnvelope = {
+    data: TicketCreateManySeasonInput | TicketCreateManySeasonInput[]
   }
 
   export type SeasonGroupUpsertWithoutSeasonsInput = {
@@ -47030,6 +47657,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type SeasonGroupUncheckedUpdateWithoutSeasonsInput = {
@@ -47042,6 +47670,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type BudgetAllocateUpsertWithWhereUniqueWithoutSeasonInput = {
@@ -47058,6 +47687,22 @@ export namespace Prisma {
   export type BudgetAllocateUpdateManyWithWhereWithoutSeasonInput = {
     where: BudgetAllocateScalarWhereInput
     data: XOR<BudgetAllocateUpdateManyMutationInput, BudgetAllocateUncheckedUpdateManyWithoutSeasonInput>
+  }
+
+  export type TicketUpsertWithWhereUniqueWithoutSeasonInput = {
+    where: TicketWhereUniqueInput
+    update: XOR<TicketUpdateWithoutSeasonInput, TicketUncheckedUpdateWithoutSeasonInput>
+    create: XOR<TicketCreateWithoutSeasonInput, TicketUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type TicketUpdateWithWhereUniqueWithoutSeasonInput = {
+    where: TicketWhereUniqueInput
+    data: XOR<TicketUpdateWithoutSeasonInput, TicketUncheckedUpdateWithoutSeasonInput>
+  }
+
+  export type TicketUpdateManyWithWhereWithoutSeasonInput = {
+    where: TicketScalarWhereInput
+    data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutSeasonInput>
   }
 
   export type CategoryCreateWithoutGenderInput = {
@@ -47605,11 +48250,13 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     proposal_sizing_header: ProposalSizingHeaderCreateNestedOneWithoutProposal_sizingsInput
+    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizingsInput
   }
 
   export type ProposalSizingUncheckedCreateWithoutSubcategory_sizeInput = {
     id?: bigint | number
     proposal_sizing_header_id: bigint | number
+    sku_proposal_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
     proposal_quantity: number
@@ -47687,6 +48334,7 @@ export namespace Prisma {
     NOT?: ProposalSizingScalarWhereInput | ProposalSizingScalarWhereInput[]
     id?: BigIntFilter<"ProposalSizing"> | bigint | number
     proposal_sizing_header_id?: BigIntFilter<"ProposalSizing"> | bigint | number
+    sku_proposal_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     subcategory_size_id?: BigIntFilter<"ProposalSizing"> | bigint | number
     actual_salesmix_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFilter<"ProposalSizing"> | Decimal | DecimalJsLike | number | string
@@ -47770,7 +48418,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput
     sku_allocates?: SKUAllocateCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalUncheckedCreateWithoutProductInput = {
@@ -47784,7 +48432,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_allocates?: SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalCreateOrConnectWithoutProductInput = {
@@ -47951,11 +48599,13 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
@@ -47966,6 +48616,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -47982,6 +48634,41 @@ export namespace Prisma {
 
   export type AllocateHeaderCreateManyBudgetInputEnvelope = {
     data: AllocateHeaderCreateManyBudgetInput | AllocateHeaderCreateManyBudgetInput[]
+  }
+
+  export type TicketCreateWithoutBudgetInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutBudgetInput = {
+    id?: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutBudgetInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput>
+  }
+
+  export type TicketCreateManyBudgetInputEnvelope = {
+    data: TicketCreateManyBudgetInput | TicketCreateManyBudgetInput[]
   }
 
   export type UserUpsertWithoutCreated_budgetsInput = {
@@ -48051,6 +48738,22 @@ export namespace Prisma {
     data: XOR<AllocateHeaderUpdateManyMutationInput, AllocateHeaderUncheckedUpdateManyWithoutBudgetInput>
   }
 
+  export type TicketUpsertWithWhereUniqueWithoutBudgetInput = {
+    where: TicketWhereUniqueInput
+    update: XOR<TicketUpdateWithoutBudgetInput, TicketUncheckedUpdateWithoutBudgetInput>
+    create: XOR<TicketCreateWithoutBudgetInput, TicketUncheckedCreateWithoutBudgetInput>
+  }
+
+  export type TicketUpdateWithWhereUniqueWithoutBudgetInput = {
+    where: TicketWhereUniqueInput
+    data: XOR<TicketUpdateWithoutBudgetInput, TicketUncheckedUpdateWithoutBudgetInput>
+  }
+
+  export type TicketUpdateManyWithWhereWithoutBudgetInput = {
+    where: TicketScalarWhereInput
+    data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutBudgetInput>
+  }
+
   export type BudgetCreateWithoutAllocate_headersInput = {
     id?: bigint | number
     name: string
@@ -48062,6 +48765,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_budgetsInput
+    tickets?: TicketCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetUncheckedCreateWithoutAllocate_headersInput = {
@@ -48075,6 +48779,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
 
   export type BudgetCreateOrConnectWithoutAllocate_headersInput = {
@@ -48158,6 +48863,37 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCreated_allocate_headersInput, UserUncheckedCreateWithoutCreated_allocate_headersInput>
   }
 
+  export type TicketCreateWithoutSnapshot_allocate_headersInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutSnapshot_allocate_headersInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutSnapshot_allocate_headersInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutSnapshot_allocate_headersInput, TicketUncheckedCreateWithoutSnapshot_allocate_headersInput>
+  }
+
   export type BudgetAllocateCreateWithoutAllocate_headerInput = {
     id?: bigint | number
     budget_amount?: Decimal | DecimalJsLike | number | string
@@ -48168,7 +48904,6 @@ export namespace Prisma {
     store: StoreCreateNestedOneWithoutBudget_allocatesInput
     season_group: SeasonGroupCreateNestedOneWithoutBudget_allocatesInput
     season: SeasonCreateNestedOneWithoutBudget_allocatesInput
-    tickets?: TicketCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateUncheckedCreateWithoutAllocate_headerInput = {
@@ -48181,7 +48916,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    tickets?: TicketUncheckedCreateNestedManyWithoutBudget_allocateInput
   }
 
   export type BudgetAllocateCreateOrConnectWithoutAllocate_headerInput = {
@@ -48240,6 +48974,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_sku_proposal_headersInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderUncheckedCreateWithoutAllocate_headerInput = {
@@ -48252,6 +48987,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutSku_proposal_headerInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderCreateOrConnectWithoutAllocate_headerInput = {
@@ -48285,6 +49021,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
+    tickets?: TicketUpdateManyWithoutBudgetNestedInput
   }
 
   export type BudgetUncheckedUpdateWithoutAllocate_headersInput = {
@@ -48298,6 +49035,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
 
   export type BrandUpsertWithoutAllocate_headersInput = {
@@ -48388,6 +49126,43 @@ export namespace Prisma {
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
 
+  export type TicketUpsertWithoutSnapshot_allocate_headersInput = {
+    update: XOR<TicketUpdateWithoutSnapshot_allocate_headersInput, TicketUncheckedUpdateWithoutSnapshot_allocate_headersInput>
+    create: XOR<TicketCreateWithoutSnapshot_allocate_headersInput, TicketUncheckedCreateWithoutSnapshot_allocate_headersInput>
+    where?: TicketWhereInput
+  }
+
+  export type TicketUpdateToOneWithWhereWithoutSnapshot_allocate_headersInput = {
+    where?: TicketWhereInput
+    data: XOR<TicketUpdateWithoutSnapshot_allocate_headersInput, TicketUncheckedUpdateWithoutSnapshot_allocate_headersInput>
+  }
+
+  export type TicketUpdateWithoutSnapshot_allocate_headersInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutSnapshot_allocate_headersInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
   export type BudgetAllocateUpsertWithWhereUniqueWithoutAllocate_headerInput = {
     where: BudgetAllocateWhereUniqueInput
     update: XOR<BudgetAllocateUpdateWithoutAllocate_headerInput, BudgetAllocateUncheckedUpdateWithoutAllocate_headerInput>
@@ -48440,12 +49215,14 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
   }
@@ -48456,6 +49233,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -48516,6 +49295,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     seasons?: SeasonCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupUncheckedCreateWithoutBudget_allocatesInput = {
@@ -48528,6 +49308,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     seasons?: SeasonUncheckedCreateNestedManyWithoutSeason_groupInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeason_groupInput
   }
 
   export type SeasonGroupCreateOrConnectWithoutBudget_allocatesInput = {
@@ -48544,6 +49325,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
+    tickets?: TicketCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonUncheckedCreateWithoutBudget_allocatesInput = {
@@ -48555,40 +49337,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
   }
 
   export type SeasonCreateOrConnectWithoutBudget_allocatesInput = {
     where: SeasonWhereUniqueInput
     create: XOR<SeasonCreateWithoutBudget_allocatesInput, SeasonUncheckedCreateWithoutBudget_allocatesInput>
-  }
-
-  export type TicketCreateWithoutBudget_allocateInput = {
-    id?: bigint | number
-    status?: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    updated_by?: bigint | number | null
-    creator: UserCreateNestedOneWithoutCreated_ticketsInput
-    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
-  }
-
-  export type TicketUncheckedCreateWithoutBudget_allocateInput = {
-    id?: bigint | number
-    status?: string
-    created_by: bigint | number
-    created_at?: Date | string
-    updated_at?: Date | string
-    updated_by?: bigint | number | null
-    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
-  }
-
-  export type TicketCreateOrConnectWithoutBudget_allocateInput = {
-    where: TicketWhereUniqueInput
-    create: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput>
-  }
-
-  export type TicketCreateManyBudget_allocateInputEnvelope = {
-    data: TicketCreateManyBudget_allocateInput | TicketCreateManyBudget_allocateInput[]
   }
 
   export type AllocateHeaderUpsertWithoutBudget_allocatesInput = {
@@ -48606,12 +49360,14 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
   }
@@ -48622,6 +49378,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48694,6 +49452,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     seasons?: SeasonUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type SeasonGroupUncheckedUpdateWithoutBudget_allocatesInput = {
@@ -48706,6 +49465,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     seasons?: SeasonUncheckedUpdateManyWithoutSeason_groupNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeason_groupNestedInput
   }
 
   export type SeasonUpsertWithoutBudget_allocatesInput = {
@@ -48728,6 +49488,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
+    tickets?: TicketUpdateManyWithoutSeasonNestedInput
   }
 
   export type SeasonUncheckedUpdateWithoutBudget_allocatesInput = {
@@ -48739,22 +49500,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  }
-
-  export type TicketUpsertWithWhereUniqueWithoutBudget_allocateInput = {
-    where: TicketWhereUniqueInput
-    update: XOR<TicketUpdateWithoutBudget_allocateInput, TicketUncheckedUpdateWithoutBudget_allocateInput>
-    create: XOR<TicketCreateWithoutBudget_allocateInput, TicketUncheckedCreateWithoutBudget_allocateInput>
-  }
-
-  export type TicketUpdateWithWhereUniqueWithoutBudget_allocateInput = {
-    where: TicketWhereUniqueInput
-    data: XOR<TicketUpdateWithoutBudget_allocateInput, TicketUncheckedUpdateWithoutBudget_allocateInput>
-  }
-
-  export type TicketUpdateManyWithWhereWithoutBudget_allocateInput = {
-    where: TicketScalarWhereInput
-    data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutBudget_allocateInput>
+    tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
   }
 
   export type UserCreateWithoutCreated_planning_headersInput = {
@@ -48806,12 +49552,14 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
   }
@@ -48822,6 +49570,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -49028,12 +49778,14 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
   }
@@ -49044,6 +49796,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49171,14 +49925,14 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_planning_headersInput
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
     planning_genders?: PlanningGenderCreateNestedManyWithoutPlanning_headerInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutPlanning_headerInput
   }
 
   export type PlanningHeaderUncheckedCreateWithoutPlanning_collectionsInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -49289,14 +50043,14 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_planning_headersNestedInput
-    allocate_header?: AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput
     planning_genders?: PlanningGenderUpdateManyWithoutPlanning_headerNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutPlanning_headerNestedInput
   }
 
   export type PlanningHeaderUncheckedUpdateWithoutPlanning_collectionsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -49381,14 +50135,14 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_planning_headersInput
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
     planning_collections?: PlanningCollectionCreateNestedManyWithoutPlanning_headerInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutPlanning_headerInput
   }
 
   export type PlanningHeaderUncheckedCreateWithoutPlanning_gendersInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -49501,14 +50255,14 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_planning_headersNestedInput
-    allocate_header?: AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput
     planning_collections?: PlanningCollectionUpdateManyWithoutPlanning_headerNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutPlanning_headerNestedInput
   }
 
   export type PlanningHeaderUncheckedUpdateWithoutPlanning_gendersInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -49560,14 +50314,14 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_planning_headersInput
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutPlanning_headersInput
     planning_collections?: PlanningCollectionCreateNestedManyWithoutPlanning_headerInput
     planning_genders?: PlanningGenderCreateNestedManyWithoutPlanning_headerInput
   }
 
   export type PlanningHeaderUncheckedCreateWithoutPlanning_categoriesInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -49641,14 +50395,14 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_planning_headersNestedInput
-    allocate_header?: AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput
     planning_collections?: PlanningCollectionUpdateManyWithoutPlanning_headerNestedInput
     planning_genders?: PlanningGenderUpdateManyWithoutPlanning_headerNestedInput
   }
 
   export type PlanningHeaderUncheckedUpdateWithoutPlanning_categoriesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -49664,12 +50418,14 @@ export namespace Prisma {
     id?: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
     budget: BudgetCreateNestedOneWithoutAllocate_headersInput
     brand: BrandCreateNestedOneWithoutAllocate_headersInput
     creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    ticket?: TicketCreateNestedOneWithoutSnapshot_allocate_headersInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
     planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
   }
@@ -49680,6 +50436,8 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -49749,7 +50507,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     product: ProductCreateNestedOneWithoutSku_proposalsInput
     sku_allocates?: SKUAllocateCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalUncheckedCreateWithoutSku_proposal_headerInput = {
@@ -49763,7 +50521,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_allocates?: SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalCreateOrConnectWithoutSku_proposal_headerInput = {
@@ -49773,6 +50531,37 @@ export namespace Prisma {
 
   export type SKUProposalCreateManySku_proposal_headerInputEnvelope = {
     data: SKUProposalCreateManySku_proposal_headerInput | SKUProposalCreateManySku_proposal_headerInput[]
+  }
+
+  export type ProposalSizingHeaderCreateWithoutSku_proposal_headerInput = {
+    id?: bigint | number
+    version: number
+    is_final_version?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    creator: UserCreateNestedOneWithoutCreated_proposal_sizing_headersInput
+    proposal_sizings?: ProposalSizingCreateNestedManyWithoutProposal_sizing_headerInput
+  }
+
+  export type ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput = {
+    id?: bigint | number
+    version: number
+    is_final_version?: boolean
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutProposal_sizing_headerInput
+  }
+
+  export type ProposalSizingHeaderCreateOrConnectWithoutSku_proposal_headerInput = {
+    where: ProposalSizingHeaderWhereUniqueInput
+    create: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput>
+  }
+
+  export type ProposalSizingHeaderCreateManySku_proposal_headerInputEnvelope = {
+    data: ProposalSizingHeaderCreateManySku_proposal_headerInput | ProposalSizingHeaderCreateManySku_proposal_headerInput[]
   }
 
   export type AllocateHeaderUpsertWithoutSku_proposal_headersInput = {
@@ -49790,12 +50579,14 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
   }
@@ -49806,6 +50597,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49881,6 +50674,22 @@ export namespace Prisma {
     data: XOR<SKUProposalUpdateManyMutationInput, SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerInput>
   }
 
+  export type ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposal_headerInput = {
+    where: ProposalSizingHeaderWhereUniqueInput
+    update: XOR<ProposalSizingHeaderUpdateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedUpdateWithoutSku_proposal_headerInput>
+    create: XOR<ProposalSizingHeaderCreateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposal_headerInput>
+  }
+
+  export type ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposal_headerInput = {
+    where: ProposalSizingHeaderWhereUniqueInput
+    data: XOR<ProposalSizingHeaderUpdateWithoutSku_proposal_headerInput, ProposalSizingHeaderUncheckedUpdateWithoutSku_proposal_headerInput>
+  }
+
+  export type ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposal_headerInput = {
+    where: ProposalSizingHeaderScalarWhereInput
+    data: XOR<ProposalSizingHeaderUpdateManyMutationInput, ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerInput>
+  }
+
   export type SKUProposalHeaderCreateWithoutSku_proposalsInput = {
     id?: bigint | number
     version: number
@@ -49889,13 +50698,14 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    allocate_header?: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
     creator: UserCreateNestedOneWithoutCreated_sku_proposal_headersInput
+    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderUncheckedCreateWithoutSku_proposalsInput = {
     id?: bigint | number
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -49903,6 +50713,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposal_headerInput
   }
 
   export type SKUProposalHeaderCreateOrConnectWithoutSku_proposalsInput = {
@@ -49982,35 +50793,39 @@ export namespace Prisma {
     data: SKUAllocateCreateManySku_proposalInput | SKUAllocateCreateManySku_proposalInput[]
   }
 
-  export type ProposalSizingHeaderCreateWithoutSku_proposalInput = {
+  export type ProposalSizingCreateWithoutSku_proposalInput = {
     id?: bigint | number
-    version: number
-    is_final_version?: boolean
+    actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
+    actual_st_pct?: Decimal | DecimalJsLike | number | string
+    proposal_quantity: number
+    created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    creator: UserCreateNestedOneWithoutCreated_proposal_sizing_headersInput
-    proposal_sizings?: ProposalSizingCreateNestedManyWithoutProposal_sizing_headerInput
+    proposal_sizing_header: ProposalSizingHeaderCreateNestedOneWithoutProposal_sizingsInput
+    subcategory_size: SubcategorySizeCreateNestedOneWithoutProposal_sizingsInput
   }
 
-  export type ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput = {
+  export type ProposalSizingUncheckedCreateWithoutSku_proposalInput = {
     id?: bigint | number
-    version: number
-    is_final_version?: boolean
-    created_by: bigint | number
+    proposal_sizing_header_id: bigint | number
+    subcategory_size_id: bigint | number
+    actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
+    actual_st_pct?: Decimal | DecimalJsLike | number | string
+    proposal_quantity: number
+    created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutProposal_sizing_headerInput
   }
 
-  export type ProposalSizingHeaderCreateOrConnectWithoutSku_proposalInput = {
-    where: ProposalSizingHeaderWhereUniqueInput
-    create: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput>
+  export type ProposalSizingCreateOrConnectWithoutSku_proposalInput = {
+    where: ProposalSizingWhereUniqueInput
+    create: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput>
   }
 
-  export type ProposalSizingHeaderCreateManySku_proposalInputEnvelope = {
-    data: ProposalSizingHeaderCreateManySku_proposalInput | ProposalSizingHeaderCreateManySku_proposalInput[]
+  export type ProposalSizingCreateManySku_proposalInputEnvelope = {
+    data: ProposalSizingCreateManySku_proposalInput | ProposalSizingCreateManySku_proposalInput[]
   }
 
   export type SKUProposalHeaderUpsertWithoutSku_proposalsInput = {
@@ -50032,13 +50847,14 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_header?: AllocateHeaderUpdateOneWithoutSku_proposal_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutSku_proposal_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_sku_proposal_headersNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateWithoutSku_proposalsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -50046,6 +50862,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type ProductUpsertWithoutSku_proposalsInput = {
@@ -50113,20 +50930,20 @@ export namespace Prisma {
     data: XOR<SKUAllocateUpdateManyMutationInput, SKUAllocateUncheckedUpdateManyWithoutSku_proposalInput>
   }
 
-  export type ProposalSizingHeaderUpsertWithWhereUniqueWithoutSku_proposalInput = {
-    where: ProposalSizingHeaderWhereUniqueInput
-    update: XOR<ProposalSizingHeaderUpdateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedUpdateWithoutSku_proposalInput>
-    create: XOR<ProposalSizingHeaderCreateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedCreateWithoutSku_proposalInput>
+  export type ProposalSizingUpsertWithWhereUniqueWithoutSku_proposalInput = {
+    where: ProposalSizingWhereUniqueInput
+    update: XOR<ProposalSizingUpdateWithoutSku_proposalInput, ProposalSizingUncheckedUpdateWithoutSku_proposalInput>
+    create: XOR<ProposalSizingCreateWithoutSku_proposalInput, ProposalSizingUncheckedCreateWithoutSku_proposalInput>
   }
 
-  export type ProposalSizingHeaderUpdateWithWhereUniqueWithoutSku_proposalInput = {
-    where: ProposalSizingHeaderWhereUniqueInput
-    data: XOR<ProposalSizingHeaderUpdateWithoutSku_proposalInput, ProposalSizingHeaderUncheckedUpdateWithoutSku_proposalInput>
+  export type ProposalSizingUpdateWithWhereUniqueWithoutSku_proposalInput = {
+    where: ProposalSizingWhereUniqueInput
+    data: XOR<ProposalSizingUpdateWithoutSku_proposalInput, ProposalSizingUncheckedUpdateWithoutSku_proposalInput>
   }
 
-  export type ProposalSizingHeaderUpdateManyWithWhereWithoutSku_proposalInput = {
-    where: ProposalSizingHeaderScalarWhereInput
-    data: XOR<ProposalSizingHeaderUpdateManyMutationInput, ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalInput>
+  export type ProposalSizingUpdateManyWithWhereWithoutSku_proposalInput = {
+    where: ProposalSizingScalarWhereInput
+    data: XOR<ProposalSizingUpdateManyMutationInput, ProposalSizingUncheckedUpdateManyWithoutSku_proposalInput>
   }
 
   export type SKUProposalCreateWithoutSku_allocatesInput = {
@@ -50140,7 +50957,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput
     product: ProductCreateNestedOneWithoutSku_proposalsInput
-    proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalUncheckedCreateWithoutSku_allocatesInput = {
@@ -50154,7 +50971,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutSku_proposalInput
+    proposal_sizings?: ProposalSizingUncheckedCreateNestedManyWithoutSku_proposalInput
   }
 
   export type SKUProposalCreateOrConnectWithoutSku_allocatesInput = {
@@ -50221,7 +51038,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput
     product?: ProductUpdateOneRequiredWithoutSku_proposalsNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateWithoutSku_allocatesInput = {
@@ -50235,7 +51052,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type StoreUpsertWithoutSku_allocatesInput = {
@@ -50281,37 +51098,35 @@ export namespace Prisma {
     planning_genders?: PlanningGenderUncheckedUpdateManyWithoutStoreNestedInput
   }
 
-  export type SKUProposalCreateWithoutProposal_sizing_headersInput = {
+  export type SKUProposalHeaderCreateWithoutProposal_sizing_headersInput = {
     id?: bigint | number
-    customer_target: string
-    unit_cost?: Decimal | DecimalJsLike | number | string
-    srp?: Decimal | DecimalJsLike | number | string
-    created_by?: bigint | number | null
+    version: number
+    status?: string
+    is_final_version?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput
-    product: ProductCreateNestedOneWithoutSku_proposalsInput
-    sku_allocates?: SKUAllocateCreateNestedManyWithoutSku_proposalInput
+    allocate_header: AllocateHeaderCreateNestedOneWithoutSku_proposal_headersInput
+    creator: UserCreateNestedOneWithoutCreated_sku_proposal_headersInput
+    sku_proposals?: SKUProposalCreateNestedManyWithoutSku_proposal_headerInput
   }
 
-  export type SKUProposalUncheckedCreateWithoutProposal_sizing_headersInput = {
+  export type SKUProposalHeaderUncheckedCreateWithoutProposal_sizing_headersInput = {
     id?: bigint | number
-    sku_proposal_header_id: bigint | number
-    product_id: bigint | number
-    customer_target: string
-    unit_cost?: Decimal | DecimalJsLike | number | string
-    srp?: Decimal | DecimalJsLike | number | string
-    created_by?: bigint | number | null
+    allocate_header_id: bigint | number
+    version: number
+    status?: string
+    is_final_version?: boolean
+    created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_allocates?: SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput
+    sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutSku_proposal_headerInput
   }
 
-  export type SKUProposalCreateOrConnectWithoutProposal_sizing_headersInput = {
-    where: SKUProposalWhereUniqueInput
-    create: XOR<SKUProposalCreateWithoutProposal_sizing_headersInput, SKUProposalUncheckedCreateWithoutProposal_sizing_headersInput>
+  export type SKUProposalHeaderCreateOrConnectWithoutProposal_sizing_headersInput = {
+    where: SKUProposalHeaderWhereUniqueInput
+    create: XOR<SKUProposalHeaderCreateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedCreateWithoutProposal_sizing_headersInput>
   }
 
   export type UserCreateWithoutCreated_proposal_sizing_headersInput = {
@@ -50368,11 +51183,13 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizingsInput
     subcategory_size: SubcategorySizeCreateNestedOneWithoutProposal_sizingsInput
   }
 
   export type ProposalSizingUncheckedCreateWithoutProposal_sizing_headerInput = {
     id?: bigint | number
+    sku_proposal_id: bigint | number
     subcategory_size_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
@@ -50392,43 +51209,41 @@ export namespace Prisma {
     data: ProposalSizingCreateManyProposal_sizing_headerInput | ProposalSizingCreateManyProposal_sizing_headerInput[]
   }
 
-  export type SKUProposalUpsertWithoutProposal_sizing_headersInput = {
-    update: XOR<SKUProposalUpdateWithoutProposal_sizing_headersInput, SKUProposalUncheckedUpdateWithoutProposal_sizing_headersInput>
-    create: XOR<SKUProposalCreateWithoutProposal_sizing_headersInput, SKUProposalUncheckedCreateWithoutProposal_sizing_headersInput>
-    where?: SKUProposalWhereInput
+  export type SKUProposalHeaderUpsertWithoutProposal_sizing_headersInput = {
+    update: XOR<SKUProposalHeaderUpdateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedUpdateWithoutProposal_sizing_headersInput>
+    create: XOR<SKUProposalHeaderCreateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedCreateWithoutProposal_sizing_headersInput>
+    where?: SKUProposalHeaderWhereInput
   }
 
-  export type SKUProposalUpdateToOneWithWhereWithoutProposal_sizing_headersInput = {
-    where?: SKUProposalWhereInput
-    data: XOR<SKUProposalUpdateWithoutProposal_sizing_headersInput, SKUProposalUncheckedUpdateWithoutProposal_sizing_headersInput>
+  export type SKUProposalHeaderUpdateToOneWithWhereWithoutProposal_sizing_headersInput = {
+    where?: SKUProposalHeaderWhereInput
+    data: XOR<SKUProposalHeaderUpdateWithoutProposal_sizing_headersInput, SKUProposalHeaderUncheckedUpdateWithoutProposal_sizing_headersInput>
   }
 
-  export type SKUProposalUpdateWithoutProposal_sizing_headersInput = {
+  export type SKUProposalHeaderUpdateWithoutProposal_sizing_headersInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    customer_target?: StringFieldUpdateOperationsInput | string
-    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    version?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput
-    product?: ProductUpdateOneRequiredWithoutSku_proposalsNestedInput
-    sku_allocates?: SKUAllocateUpdateManyWithoutSku_proposalNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutSku_proposal_headersNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_sku_proposal_headersNestedInput
+    sku_proposals?: SKUProposalUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
-  export type SKUProposalUncheckedUpdateWithoutProposal_sizing_headersInput = {
+  export type SKUProposalHeaderUncheckedUpdateWithoutProposal_sizing_headersInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    customer_target?: StringFieldUpdateOperationsInput | string
-    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_allocates?: SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput
+    sku_proposals?: SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type UserUpsertWithoutCreated_proposal_sizing_headersInput = {
@@ -50505,13 +51320,13 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_proposal: SKUProposalCreateNestedOneWithoutProposal_sizing_headersInput
+    sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutProposal_sizing_headersInput
     creator: UserCreateNestedOneWithoutCreated_proposal_sizing_headersInput
   }
 
   export type ProposalSizingHeaderUncheckedCreateWithoutProposal_sizingsInput = {
     id?: bigint | number
-    sku_proposal_id: bigint | number
+    sku_proposal_header_id: bigint | number
     version: number
     is_final_version?: boolean
     created_by: bigint | number
@@ -50523,6 +51338,39 @@ export namespace Prisma {
   export type ProposalSizingHeaderCreateOrConnectWithoutProposal_sizingsInput = {
     where: ProposalSizingHeaderWhereUniqueInput
     create: XOR<ProposalSizingHeaderCreateWithoutProposal_sizingsInput, ProposalSizingHeaderUncheckedCreateWithoutProposal_sizingsInput>
+  }
+
+  export type SKUProposalCreateWithoutProposal_sizingsInput = {
+    id?: bigint | number
+    customer_target: string
+    unit_cost?: Decimal | DecimalJsLike | number | string
+    srp?: Decimal | DecimalJsLike | number | string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    sku_proposal_header: SKUProposalHeaderCreateNestedOneWithoutSku_proposalsInput
+    product: ProductCreateNestedOneWithoutSku_proposalsInput
+    sku_allocates?: SKUAllocateCreateNestedManyWithoutSku_proposalInput
+  }
+
+  export type SKUProposalUncheckedCreateWithoutProposal_sizingsInput = {
+    id?: bigint | number
+    sku_proposal_header_id: bigint | number
+    product_id: bigint | number
+    customer_target: string
+    unit_cost?: Decimal | DecimalJsLike | number | string
+    srp?: Decimal | DecimalJsLike | number | string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    sku_allocates?: SKUAllocateUncheckedCreateNestedManyWithoutSku_proposalInput
+  }
+
+  export type SKUProposalCreateOrConnectWithoutProposal_sizingsInput = {
+    where: SKUProposalWhereUniqueInput
+    create: XOR<SKUProposalCreateWithoutProposal_sizingsInput, SKUProposalUncheckedCreateWithoutProposal_sizingsInput>
   }
 
   export type SubcategorySizeCreateWithoutProposal_sizingsInput = {
@@ -50568,19 +51416,58 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
+    sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_proposal_sizing_headersNestedInput
   }
 
   export type ProposalSizingHeaderUncheckedUpdateWithoutProposal_sizingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type SKUProposalUpsertWithoutProposal_sizingsInput = {
+    update: XOR<SKUProposalUpdateWithoutProposal_sizingsInput, SKUProposalUncheckedUpdateWithoutProposal_sizingsInput>
+    create: XOR<SKUProposalCreateWithoutProposal_sizingsInput, SKUProposalUncheckedCreateWithoutProposal_sizingsInput>
+    where?: SKUProposalWhereInput
+  }
+
+  export type SKUProposalUpdateToOneWithWhereWithoutProposal_sizingsInput = {
+    where?: SKUProposalWhereInput
+    data: XOR<SKUProposalUpdateWithoutProposal_sizingsInput, SKUProposalUncheckedUpdateWithoutProposal_sizingsInput>
+  }
+
+  export type SKUProposalUpdateWithoutProposal_sizingsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    customer_target?: StringFieldUpdateOperationsInput | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput
+    product?: ProductUpdateOneRequiredWithoutSku_proposalsNestedInput
+    sku_allocates?: SKUAllocateUpdateManyWithoutSku_proposalNestedInput
+  }
+
+  export type SKUProposalUncheckedUpdateWithoutProposal_sizingsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    customer_target?: StringFieldUpdateOperationsInput | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    sku_allocates?: SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SubcategorySizeUpsertWithoutProposal_sizingsInput = {
@@ -50614,35 +51501,97 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
-  export type BudgetAllocateCreateWithoutTicketsInput = {
+  export type BudgetCreateWithoutTicketsInput = {
     id?: bigint | number
-    budget_amount?: Decimal | DecimalJsLike | number | string
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    creator: UserCreateNestedOneWithoutCreated_budgetsInput
+    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+  }
+
+  export type BudgetUncheckedCreateWithoutTicketsInput = {
+    id?: bigint | number
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
+  }
+
+  export type BudgetCreateOrConnectWithoutTicketsInput = {
+    where: BudgetWhereUniqueInput
+    create: XOR<BudgetCreateWithoutTicketsInput, BudgetUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type SeasonGroupCreateWithoutTicketsInput = {
+    id?: bigint | number
+    name: string
+    year?: number | null
+    is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    allocate_header: AllocateHeaderCreateNestedOneWithoutBudget_allocatesInput
-    store: StoreCreateNestedOneWithoutBudget_allocatesInput
-    season_group: SeasonGroupCreateNestedOneWithoutBudget_allocatesInput
-    season: SeasonCreateNestedOneWithoutBudget_allocatesInput
+    seasons?: SeasonCreateNestedManyWithoutSeason_groupInput
+    budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeason_groupInput
   }
 
-  export type BudgetAllocateUncheckedCreateWithoutTicketsInput = {
+  export type SeasonGroupUncheckedCreateWithoutTicketsInput = {
     id?: bigint | number
-    allocate_header_id: bigint | number
-    store_id: bigint | number
+    name: string
+    year?: number | null
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    seasons?: SeasonUncheckedCreateNestedManyWithoutSeason_groupInput
+    budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeason_groupInput
+  }
+
+  export type SeasonGroupCreateOrConnectWithoutTicketsInput = {
+    where: SeasonGroupWhereUniqueInput
+    create: XOR<SeasonGroupCreateWithoutTicketsInput, SeasonGroupUncheckedCreateWithoutTicketsInput>
+  }
+
+  export type SeasonCreateWithoutTicketsInput = {
+    id?: bigint | number
+    name: string
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
+    budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
+  }
+
+  export type SeasonUncheckedCreateWithoutTicketsInput = {
+    id?: bigint | number
+    name: string
     season_group_id: bigint | number
-    season_id: bigint | number
-    budget_amount?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
   }
 
-  export type BudgetAllocateCreateOrConnectWithoutTicketsInput = {
-    where: BudgetAllocateWhereUniqueInput
-    create: XOR<BudgetAllocateCreateWithoutTicketsInput, BudgetAllocateUncheckedCreateWithoutTicketsInput>
+  export type SeasonCreateOrConnectWithoutTicketsInput = {
+    where: SeasonWhereUniqueInput
+    create: XOR<SeasonCreateWithoutTicketsInput, SeasonUncheckedCreateWithoutTicketsInput>
   }
 
   export type UserCreateWithoutCreated_ticketsInput = {
@@ -50725,41 +51674,156 @@ export namespace Prisma {
     data: TicketApprovalLogCreateManyTicketInput | TicketApprovalLogCreateManyTicketInput[]
   }
 
-  export type BudgetAllocateUpsertWithoutTicketsInput = {
-    update: XOR<BudgetAllocateUpdateWithoutTicketsInput, BudgetAllocateUncheckedUpdateWithoutTicketsInput>
-    create: XOR<BudgetAllocateCreateWithoutTicketsInput, BudgetAllocateUncheckedCreateWithoutTicketsInput>
-    where?: BudgetAllocateWhereInput
+  export type AllocateHeaderCreateWithoutTicketInput = {
+    id?: bigint | number
+    version: number
+    is_final_version?: boolean
+    is_snapshot?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutAllocate_headersInput
+    brand: BrandCreateNestedOneWithoutAllocate_headersInput
+    creator: UserCreateNestedOneWithoutCreated_allocate_headersInput
+    budget_allocates?: BudgetAllocateCreateNestedManyWithoutAllocate_headerInput
+    planning_headers?: PlanningHeaderCreateNestedManyWithoutAllocate_headerInput
+    sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutAllocate_headerInput
   }
 
-  export type BudgetAllocateUpdateToOneWithWhereWithoutTicketsInput = {
-    where?: BudgetAllocateWhereInput
-    data: XOR<BudgetAllocateUpdateWithoutTicketsInput, BudgetAllocateUncheckedUpdateWithoutTicketsInput>
+  export type AllocateHeaderUncheckedCreateWithoutTicketInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    brand_id: bigint | number
+    version: number
+    is_final_version?: boolean
+    is_snapshot?: boolean
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutAllocate_headerInput
+    planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutAllocate_headerInput
+    sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutAllocate_headerInput
   }
 
-  export type BudgetAllocateUpdateWithoutTicketsInput = {
+  export type AllocateHeaderCreateOrConnectWithoutTicketInput = {
+    where: AllocateHeaderWhereUniqueInput
+    create: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput>
+  }
+
+  export type AllocateHeaderCreateManyTicketInputEnvelope = {
+    data: AllocateHeaderCreateManyTicketInput | AllocateHeaderCreateManyTicketInput[]
+  }
+
+  export type BudgetUpsertWithoutTicketsInput = {
+    update: XOR<BudgetUpdateWithoutTicketsInput, BudgetUncheckedUpdateWithoutTicketsInput>
+    create: XOR<BudgetCreateWithoutTicketsInput, BudgetUncheckedCreateWithoutTicketsInput>
+    where?: BudgetWhereInput
+  }
+
+  export type BudgetUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: BudgetWhereInput
+    data: XOR<BudgetUpdateWithoutTicketsInput, BudgetUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type BudgetUpdateWithoutTicketsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
+    allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+  }
+
+  export type BudgetUncheckedUpdateWithoutTicketsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
+  }
+
+  export type SeasonGroupUpsertWithoutTicketsInput = {
+    update: XOR<SeasonGroupUpdateWithoutTicketsInput, SeasonGroupUncheckedUpdateWithoutTicketsInput>
+    create: XOR<SeasonGroupCreateWithoutTicketsInput, SeasonGroupUncheckedCreateWithoutTicketsInput>
+    where?: SeasonGroupWhereInput
+  }
+
+  export type SeasonGroupUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: SeasonGroupWhereInput
+    data: XOR<SeasonGroupUpdateWithoutTicketsInput, SeasonGroupUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type SeasonGroupUpdateWithoutTicketsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    store?: StoreUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    season_group?: SeasonGroupUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    season?: SeasonUpdateOneRequiredWithoutBudget_allocatesNestedInput
+    seasons?: SeasonUpdateManyWithoutSeason_groupNestedInput
+    budget_allocates?: BudgetAllocateUpdateManyWithoutSeason_groupNestedInput
   }
 
-  export type BudgetAllocateUncheckedUpdateWithoutTicketsInput = {
+  export type SeasonGroupUncheckedUpdateWithoutTicketsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    store_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    year?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    seasons?: SeasonUncheckedUpdateManyWithoutSeason_groupNestedInput
+    budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeason_groupNestedInput
+  }
+
+  export type SeasonUpsertWithoutTicketsInput = {
+    update: XOR<SeasonUpdateWithoutTicketsInput, SeasonUncheckedUpdateWithoutTicketsInput>
+    create: XOR<SeasonCreateWithoutTicketsInput, SeasonUncheckedCreateWithoutTicketsInput>
+    where?: SeasonWhereInput
+  }
+
+  export type SeasonUpdateToOneWithWhereWithoutTicketsInput = {
+    where?: SeasonWhereInput
+    data: XOR<SeasonUpdateWithoutTicketsInput, SeasonUncheckedUpdateWithoutTicketsInput>
+  }
+
+  export type SeasonUpdateWithoutTicketsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
+    budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type SeasonUncheckedUpdateWithoutTicketsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
     season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
   }
 
   export type UserUpsertWithoutCreated_ticketsInput = {
@@ -50827,6 +51891,22 @@ export namespace Prisma {
   export type TicketApprovalLogUpdateManyWithWhereWithoutTicketInput = {
     where: TicketApprovalLogScalarWhereInput
     data: XOR<TicketApprovalLogUpdateManyMutationInput, TicketApprovalLogUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type AllocateHeaderUpsertWithWhereUniqueWithoutTicketInput = {
+    where: AllocateHeaderWhereUniqueInput
+    update: XOR<AllocateHeaderUpdateWithoutTicketInput, AllocateHeaderUncheckedUpdateWithoutTicketInput>
+    create: XOR<AllocateHeaderCreateWithoutTicketInput, AllocateHeaderUncheckedCreateWithoutTicketInput>
+  }
+
+  export type AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput = {
+    where: AllocateHeaderWhereUniqueInput
+    data: XOR<AllocateHeaderUpdateWithoutTicketInput, AllocateHeaderUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type AllocateHeaderUpdateManyWithWhereWithoutTicketInput = {
+    where: AllocateHeaderScalarWhereInput
+    data: XOR<AllocateHeaderUpdateManyMutationInput, AllocateHeaderUncheckedUpdateManyWithoutTicketInput>
   }
 
   export type GroupBrandCreateWithoutApproval_workflowsInput = {
@@ -51153,18 +52233,24 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    budget_allocate: BudgetAllocateCreateNestedOneWithoutTicketsInput
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutTicket_approval_logsInput = {
     id?: bigint | number
-    budget_allocate_id: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
     status?: string
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutTicket_approval_logsInput = {
@@ -51265,18 +52351,24 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    budget_allocate?: BudgetAllocateUpdateOneRequiredWithoutTicketsNestedInput
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutTicket_approval_logsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_allocate_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     status?: StringFieldUpdateOperationsInput | string
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type ApprovalWorkflowLevelUpsertWithoutTicket_approval_logsInput = {
@@ -51383,13 +52475,15 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
   }
 
   export type PlanningHeaderCreateManyCreatorInput = {
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -51399,7 +52493,7 @@ export namespace Prisma {
   }
 
   export type SKUProposalHeaderCreateManyCreatorInput = {
-    allocate_header_id?: bigint | number | null
+    allocate_header_id: bigint | number
     version: number
     status?: string
     is_final_version?: boolean
@@ -51409,7 +52503,7 @@ export namespace Prisma {
   }
 
   export type ProposalSizingHeaderCreateManyCreatorInput = {
-    sku_proposal_id: bigint | number
+    sku_proposal_header_id: bigint | number
     version: number
     is_final_version?: boolean
     created_at?: Date | string
@@ -51418,7 +52512,9 @@ export namespace Prisma {
   }
 
   export type TicketCreateManyCreatorInput = {
-    budget_allocate_id: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -51459,6 +52555,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUpdateManyWithoutBudgetNestedInput
   }
 
   export type BudgetUncheckedUpdateWithoutCreatorInput = {
@@ -51472,6 +52569,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
 
   export type BudgetUncheckedUpdateManyWithoutCreatorInput = {
@@ -51490,11 +52588,13 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
@@ -51506,6 +52606,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -51520,6 +52622,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -51533,7 +52637,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_header?: AllocateHeaderUpdateOneWithoutPlanning_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutPlanning_headersNestedInput
     planning_collections?: PlanningCollectionUpdateManyWithoutPlanning_headerNestedInput
     planning_genders?: PlanningGenderUpdateManyWithoutPlanning_headerNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutPlanning_headerNestedInput
@@ -51541,7 +52645,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedUpdateWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -51555,7 +52659,7 @@ export namespace Prisma {
 
   export type PlanningHeaderUncheckedUpdateManyWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -51572,13 +52676,14 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_header?: AllocateHeaderUpdateOneWithoutSku_proposal_headersNestedInput
+    allocate_header?: AllocateHeaderUpdateOneRequiredWithoutSku_proposal_headersNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -51586,11 +52691,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateManyWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    allocate_header_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
@@ -51606,13 +52712,13 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
+    sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutProposal_sizing_headersNestedInput
     proposal_sizings?: ProposalSizingUpdateManyWithoutProposal_sizing_headerNestedInput
   }
 
   export type ProposalSizingHeaderUncheckedUpdateWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51623,7 +52729,7 @@ export namespace Prisma {
 
   export type ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51637,23 +52743,31 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    budget_allocate?: BudgetAllocateUpdateOneRequiredWithoutTicketsNestedInput
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_allocate_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutCreatorInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    budget_allocate_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51905,6 +53019,8 @@ export namespace Prisma {
     budget_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -51971,11 +53087,13 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
@@ -51986,6 +53104,8 @@ export namespace Prisma {
     budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52000,6 +53120,8 @@ export namespace Prisma {
     budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52067,7 +53189,6 @@ export namespace Prisma {
     allocate_header?: AllocateHeaderUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season_group?: SeasonGroupUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season?: SeasonUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    tickets?: TicketUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateWithoutStoreInput = {
@@ -52080,7 +53201,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tickets?: TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateManyWithoutStoreInput = {
@@ -52311,6 +53431,16 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
+  export type TicketCreateManySeason_groupInput = {
+    budget_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
   export type SeasonUpdateWithoutSeason_groupInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
@@ -52320,6 +53450,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUpdateManyWithoutSeasonNestedInput
   }
 
   export type SeasonUncheckedUpdateWithoutSeason_groupInput = {
@@ -52331,6 +53462,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
   }
 
   export type SeasonUncheckedUpdateManyWithoutSeason_groupInput = {
@@ -52353,7 +53485,6 @@ export namespace Prisma {
     allocate_header?: AllocateHeaderUpdateOneRequiredWithoutBudget_allocatesNestedInput
     store?: StoreUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season?: SeasonUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    tickets?: TicketUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateWithoutSeason_groupInput = {
@@ -52366,7 +53497,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tickets?: TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateManyWithoutSeason_groupInput = {
@@ -52376,6 +53506,43 @@ export namespace Prisma {
     season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     budget_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketUpdateWithoutSeason_groupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutSeason_groupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateManyWithoutSeason_groupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -52392,6 +53559,16 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
+  export type TicketCreateManySeasonInput = {
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
   export type BudgetAllocateUpdateWithoutSeasonInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     budget_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -52402,7 +53579,6 @@ export namespace Prisma {
     allocate_header?: AllocateHeaderUpdateOneRequiredWithoutBudget_allocatesNestedInput
     store?: StoreUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season_group?: SeasonGroupUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    tickets?: TicketUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateWithoutSeasonInput = {
@@ -52415,7 +53591,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tickets?: TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateManyWithoutSeasonInput = {
@@ -52425,6 +53600,43 @@ export namespace Prisma {
     season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
     budget_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketUpdateWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateManyWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -52758,6 +53970,7 @@ export namespace Prisma {
 
   export type ProposalSizingCreateManySubcategory_sizeInput = {
     proposal_sizing_header_id: bigint | number
+    sku_proposal_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
     proposal_quantity: number
@@ -52777,11 +53990,13 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     proposal_sizing_header?: ProposalSizingHeaderUpdateOneRequiredWithoutProposal_sizingsNestedInput
+    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizingsNestedInput
   }
 
   export type ProposalSizingUncheckedUpdateWithoutSubcategory_sizeInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     proposal_quantity?: IntFieldUpdateOperationsInput | number
@@ -52794,6 +54009,7 @@ export namespace Prisma {
   export type ProposalSizingUncheckedUpdateManyWithoutSubcategory_sizeInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     proposal_quantity?: IntFieldUpdateOperationsInput | number
@@ -52825,7 +54041,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposal_header?: SKUProposalHeaderUpdateOneRequiredWithoutSku_proposalsNestedInput
     sku_allocates?: SKUAllocateUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateWithoutProductInput = {
@@ -52839,7 +54055,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_allocates?: SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateManyWithoutProductInput = {
@@ -52858,6 +54074,18 @@ export namespace Prisma {
     brand_id: bigint | number
     version: number
     is_final_version?: boolean
+    is_snapshot?: boolean
+    ticket_id?: bigint | number | null
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type TicketCreateManyBudgetInput = {
+    season_group_id: bigint | number
+    season_id: bigint | number
+    status?: string
     created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
@@ -52868,11 +54096,13 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    ticket?: TicketUpdateOneWithoutSnapshot_allocate_headersNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
     planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
     sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
@@ -52883,6 +54113,8 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52897,6 +54129,45 @@ export namespace Prisma {
     brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
     version?: IntFieldUpdateOperationsInput | number
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    ticket_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketUpdateWithoutBudgetInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutBudgetInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateManyWithoutBudgetInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52944,7 +54215,6 @@ export namespace Prisma {
     store?: StoreUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season_group?: SeasonGroupUpdateOneRequiredWithoutBudget_allocatesNestedInput
     season?: SeasonUpdateOneRequiredWithoutBudget_allocatesNestedInput
-    tickets?: TicketUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateWithoutAllocate_headerInput = {
@@ -52957,7 +54227,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tickets?: TicketUncheckedUpdateManyWithoutBudget_allocateNestedInput
   }
 
   export type BudgetAllocateUncheckedUpdateManyWithoutAllocate_headerInput = {
@@ -53021,6 +54290,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_sku_proposal_headersNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateWithoutAllocate_headerInput = {
@@ -53033,6 +54303,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
+    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerNestedInput
   }
 
   export type SKUProposalHeaderUncheckedUpdateManyWithoutAllocate_headerInput = {
@@ -53040,43 +54311,6 @@ export namespace Prisma {
     version?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
-    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  }
-
-  export type TicketCreateManyBudget_allocateInput = {
-    status?: string
-    created_by: bigint | number
-    created_at?: Date | string
-    updated_at?: Date | string
-    updated_by?: bigint | number | null
-  }
-
-  export type TicketUpdateWithoutBudget_allocateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    status?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
-    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
-  }
-
-  export type TicketUncheckedUpdateWithoutBudget_allocateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    status?: StringFieldUpdateOperationsInput | string
-    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
-  }
-
-  export type TicketUncheckedUpdateManyWithoutBudget_allocateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    status?: StringFieldUpdateOperationsInput | string
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53291,6 +54525,15 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
+  export type ProposalSizingHeaderCreateManySku_proposal_headerInput = {
+    version: number
+    is_final_version?: boolean
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
   export type SKUProposalUpdateWithoutSku_proposal_headerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customer_target?: StringFieldUpdateOperationsInput | string
@@ -53302,7 +54545,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     product?: ProductUpdateOneRequiredWithoutSku_proposalsNestedInput
     sku_allocates?: SKUAllocateUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateWithoutSku_proposal_headerInput = {
@@ -53316,7 +54559,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_allocates?: SKUAllocateUncheckedUpdateManyWithoutSku_proposalNestedInput
-    proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalNestedInput
+    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutSku_proposalNestedInput
   }
 
   export type SKUProposalUncheckedUpdateManyWithoutSku_proposal_headerInput = {
@@ -53331,6 +54574,38 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
+  export type ProposalSizingHeaderUpdateWithoutSku_proposal_headerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    creator?: UserUpdateOneRequiredWithoutCreated_proposal_sizing_headersNestedInput
+    proposal_sizings?: ProposalSizingUpdateManyWithoutProposal_sizing_headerNestedInput
+  }
+
+  export type ProposalSizingHeaderUncheckedUpdateWithoutSku_proposal_headerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutProposal_sizing_headerNestedInput
+  }
+
+  export type ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposal_headerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
   export type SKUAllocateCreateManySku_proposalInput = {
     store_id: bigint | number
     quantity?: Decimal | DecimalJsLike | number | string
@@ -53340,10 +54615,13 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
-  export type ProposalSizingHeaderCreateManySku_proposalInput = {
-    version: number
-    is_final_version?: boolean
-    created_by: bigint | number
+  export type ProposalSizingCreateManySku_proposalInput = {
+    proposal_sizing_header_id: bigint | number
+    subcategory_size_id: bigint | number
+    actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
+    actual_st_pct?: Decimal | DecimalJsLike | number | string
+    proposal_quantity: number
+    created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
@@ -53379,39 +54657,47 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
-  export type ProposalSizingHeaderUpdateWithoutSku_proposalInput = {
+  export type ProposalSizingUpdateWithoutSku_proposalInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    version?: IntFieldUpdateOperationsInput | number
-    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    proposal_quantity?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    creator?: UserUpdateOneRequiredWithoutCreated_proposal_sizing_headersNestedInput
-    proposal_sizings?: ProposalSizingUpdateManyWithoutProposal_sizing_headerNestedInput
+    proposal_sizing_header?: ProposalSizingHeaderUpdateOneRequiredWithoutProposal_sizingsNestedInput
+    subcategory_size?: SubcategorySizeUpdateOneRequiredWithoutProposal_sizingsNestedInput
   }
 
-  export type ProposalSizingHeaderUncheckedUpdateWithoutSku_proposalInput = {
+  export type ProposalSizingUncheckedUpdateWithoutSku_proposalInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    version?: IntFieldUpdateOperationsInput | number
-    is_final_version?: BoolFieldUpdateOperationsInput | boolean
-    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    proposal_quantity?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    proposal_sizings?: ProposalSizingUncheckedUpdateManyWithoutProposal_sizing_headerNestedInput
   }
 
-  export type ProposalSizingHeaderUncheckedUpdateManyWithoutSku_proposalInput = {
+  export type ProposalSizingUncheckedUpdateManyWithoutSku_proposalInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    version?: IntFieldUpdateOperationsInput | number
-    is_final_version?: BoolFieldUpdateOperationsInput | boolean
-    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    proposal_sizing_header_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    proposal_quantity?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type ProposalSizingCreateManyProposal_sizing_headerInput = {
+    sku_proposal_id: bigint | number
     subcategory_size_id: bigint | number
     actual_salesmix_pct?: Decimal | DecimalJsLike | number | string
     actual_st_pct?: Decimal | DecimalJsLike | number | string
@@ -53431,11 +54717,13 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    sku_proposal?: SKUProposalUpdateOneRequiredWithoutProposal_sizingsNestedInput
     subcategory_size?: SubcategorySizeUpdateOneRequiredWithoutProposal_sizingsNestedInput
   }
 
   export type ProposalSizingUncheckedUpdateWithoutProposal_sizing_headerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -53448,6 +54736,7 @@ export namespace Prisma {
 
   export type ProposalSizingUncheckedUpdateManyWithoutProposal_sizing_headerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sku_proposal_id?: BigIntFieldUpdateOperationsInput | bigint | number
     subcategory_size_id?: BigIntFieldUpdateOperationsInput | bigint | number
     actual_salesmix_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     actual_st_pct?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -53465,6 +54754,18 @@ export namespace Prisma {
     comment?: string | null
     approved_at?: Date | string | null
     created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type AllocateHeaderCreateManyTicketInput = {
+    budget_id: bigint | number
+    brand_id: bigint | number
+    version: number
+    is_final_version?: boolean
+    is_snapshot?: boolean
+    created_by: bigint | number
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
@@ -53504,6 +54805,51 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     approved_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type AllocateHeaderUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutAllocate_headersNestedInput
+    brand?: BrandUpdateOneRequiredWithoutAllocate_headersNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_allocate_headersNestedInput
+    budget_allocates?: BudgetAllocateUpdateManyWithoutAllocate_headerNestedInput
+    planning_headers?: PlanningHeaderUpdateManyWithoutAllocate_headerNestedInput
+    sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutAllocate_headerNestedInput
+  }
+
+  export type AllocateHeaderUncheckedUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutAllocate_headerNestedInput
+    planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutAllocate_headerNestedInput
+    sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutAllocate_headerNestedInput
+  }
+
+  export type AllocateHeaderUncheckedUpdateManyWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    version?: IntFieldUpdateOperationsInput | number
+    is_final_version?: BoolFieldUpdateOperationsInput | boolean
+    is_snapshot?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -53674,10 +55020,6 @@ export namespace Prisma {
      * @deprecated Use AllocateHeaderCountOutputTypeDefaultArgs instead
      */
     export type AllocateHeaderCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AllocateHeaderCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use BudgetAllocateCountOutputTypeDefaultArgs instead
-     */
-    export type BudgetAllocateCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BudgetAllocateCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PlanningHeaderCountOutputTypeDefaultArgs instead
      */

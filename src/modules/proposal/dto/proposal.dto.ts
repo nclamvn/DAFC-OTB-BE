@@ -48,6 +48,11 @@ export class SKUAllocateDto {
 // ─── Proposal Sizing Item (dùng trong header) ───────────────────────────────
 
 export class ProposalSizingItemDto {
+  @ApiProperty({ description: 'SKU Proposal ID (which SKU this sizing belongs to)' })
+  @IsString()
+  @IsNotEmpty()
+  skuProposalId: string;
+
   @ApiProperty({ description: 'Subcategory Size ID' })
   @IsString()
   @IsNotEmpty()
@@ -77,6 +82,11 @@ export class ProposalSizingDto {
   @IsNotEmpty()
   proposalSizingHeaderId: string;
 
+  @ApiProperty({ description: 'SKU Proposal ID (which SKU this sizing belongs to)' })
+  @IsString()
+  @IsNotEmpty()
+  skuProposalId: string;
+
   @ApiProperty({ description: 'Subcategory Size ID' })
   @IsString()
   @IsNotEmpty()
@@ -101,10 +111,10 @@ export class ProposalSizingDto {
 // ─── Create SKU Proposal Header ──────────────────────────────────────────────
 
 export class CreateSKUProposalHeaderDto {
-  @ApiPropertyOptional({ description: 'Allocate Header ID (links proposal to a brand allocation)' })
+  @ApiProperty({ description: 'Allocate Header ID (links proposal to a brand allocation)' })
   @IsString()
-  @IsOptional()
-  allocateHeaderId?: string;
+  @IsNotEmpty()
+  allocateHeaderId: string;
 
   @ApiProperty({ type: [SKUProposalItemDto], description: 'SKU proposal items' })
   @IsArray()
@@ -181,12 +191,12 @@ export class BulkSKUAllocateDto {
 // ─── Create Proposal Sizing Header ──────────────────────────────────────────
 
 export class CreateProposalSizingHeaderDto {
-  @ApiProperty({ description: 'SKU Proposal ID' })
+  @ApiProperty({ description: 'SKU Proposal Header ID (the proposal header this sizing choice belongs to)' })
   @IsString()
   @IsNotEmpty()
-  skuProposalId: string;
+  skuProposalHeaderId: string;
 
-  @ApiProperty({ type: [ProposalSizingItemDto], description: 'Danh sách sizing theo size' })
+  @ApiProperty({ type: [ProposalSizingItemDto], description: 'Sizing rows per SKU × size' })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ProposalSizingItemDto)

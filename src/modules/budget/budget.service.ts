@@ -29,6 +29,7 @@ export class BudgetService {
         include: {
           creator: { select: { id: true, name: true, email: true } },
           allocate_headers: {
+            where: { is_snapshot: false },
             include: {
               brand: { include: { group_brand: true } },
               budget_allocates: {
@@ -59,6 +60,7 @@ export class BudgetService {
       include: {
         creator: { select: { id: true, name: true, email: true } },
         allocate_headers: {
+          where: { is_snapshot: false },
           include: {
             brand: { include: { group_brand: true } },
             creator: { select: { id: true, name: true, email: true } },
@@ -97,7 +99,7 @@ export class BudgetService {
       } else {
         // Version = max version for this brand within the budget + 1
         const lastHeader = await this.prisma.allocateHeader.findFirst({
-          where: { budget_id: budget.id, brand_id: BigInt(dto.brandId) },
+          where: { budget_id: budget.id, brand_id: BigInt(dto.brandId), is_snapshot: false },
           orderBy: { version: 'desc' },
         });
         const version = (lastHeader?.version || 0) + 1;
@@ -148,7 +150,7 @@ export class BudgetService {
 
     // Version = max version for this brand within the budget + 1
     const lastHeader = await this.prisma.allocateHeader.findFirst({
-      where: { budget_id: BigInt(budgetId), brand_id: BigInt(brandId) },
+      where: { budget_id: BigInt(budgetId), brand_id: BigInt(brandId), is_snapshot: false },
       orderBy: { version: 'desc' },
     });
     const version = (lastHeader?.version || 0) + 1;
@@ -226,7 +228,7 @@ export class BudgetService {
   async submit(id: string, userId: string) {
     const budget = await this.prisma.budget.findUnique({
       where: { id: BigInt(id) },
-      include: { allocate_headers: true },
+      include: { allocate_headers: { where: { is_snapshot: false } } },
     });
     if (!budget) throw new NotFoundException('Budget not found');
 
@@ -236,7 +238,7 @@ export class BudgetService {
 
     return this.prisma.budget.update({
       where: { id: BigInt(id) },
-      data: { status: 'SUBMITTED' },
+      data: { status: 'APPROVED' },
     });
   }
 
@@ -316,12 +318,13 @@ export class BudgetService {
     });
     if (!header) throw new NotFoundException('Allocate header not found');
 
-    // Unset final for all other headers of same brand + budget
+    // Unset final for all other headers of same brand + budget (exclude snapshots)
     await this.prisma.allocateHeader.updateMany({
       where: {
         budget_id: header.budget_id,
         brand_id: header.brand_id,
         id: { not: +headerId },
+        is_snapshot: false,
       },
       data: { is_final_version: false },
     });

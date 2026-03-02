@@ -140,7 +140,7 @@ model SeasonType {
   // Relations
   planning_collections PlanningCollection[] @relation("SeasonTypeToPlanningCollection")
 
-  @@map("season_type")
+  @@map("collection")
 }
 
 model SeasonGroup {
@@ -156,6 +156,7 @@ model SeasonGroup {
   // Relations
   seasons          Season[]         @relation("SeasonGroupToSeason")
   budget_allocates BudgetAllocate[] @relation("SeasonGroupToBudgetAllocate")
+  tickets          Ticket[]         @relation("SeasonGroupToTicket")
 
   @@map("season_group")
 }
@@ -173,6 +174,7 @@ model Season {
   // Relations
   season_group     SeasonGroup      @relation("SeasonGroupToSeason", fields: [season_group_id], references: [id], onDelete: Cascade, map: "season_group_id_fkey")
   budget_allocates BudgetAllocate[] @relation("SeasonToBudgetAllocate")
+  tickets          Ticket[]         @relation("SeasonToTicket")
 
   @@map("season")
 }
@@ -294,6 +296,7 @@ model Budget {
   // Relations
   creator          User             @relation("CreatedBudgets", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
   allocate_headers AllocateHeader[] @relation("BudgetToAllocateHeader")
+  tickets          Ticket[]         @relation("BudgetToTicket")
 
   @@map("budget")
 }
@@ -304,6 +307,8 @@ model AllocateHeader {
   brand_id         BigInt
   version          Int
   is_final_version Boolean  @default(false)
+  is_snapshot      Boolean  @default(false)
+  ticket_id        BigInt?
   created_by       BigInt
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
@@ -313,6 +318,7 @@ model AllocateHeader {
   budget               Budget              @relation("BudgetToAllocateHeader", fields: [budget_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   brand                Brand               @relation("BrandToAllocateHeader", fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   creator              User                @relation("CreatedAllocateHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ticket               Ticket?             @relation("TicketToSnapshotHeaders", fields: [ticket_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   budget_allocates     BudgetAllocate[]    @relation("AllocateHeaderToBudgetAllocate")
   planning_headers     PlanningHeader[]    @relation("AllocateHeaderToPlanningHeader")
   sku_proposal_headers SKUProposalHeader[] @relation("AllocateHeaderToSKUProposalHeader")
@@ -337,7 +343,6 @@ model BudgetAllocate {
   store           Store          @relation("StoreToBudgetAllocate", fields: [store_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   season_group    SeasonGroup    @relation("SeasonGroupToBudgetAllocate", fields: [season_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   season          Season         @relation("SeasonToBudgetAllocate", fields: [season_id], references: [id], onUpdate: NoAction)
-  tickets         Ticket[]       @relation("BudgetAllocateToTicket")
 
   @@map("budget_allocate")
 }
@@ -348,7 +353,7 @@ model BudgetAllocate {
 
 model PlanningHeader {
   id                 BigInt   @id @default(autoincrement())
-  allocate_header_id BigInt?
+  allocate_header_id BigInt
   version            Int
   status             String   @default("DRAFT")
   is_final_version   Boolean  @default(false)
@@ -359,7 +364,7 @@ model PlanningHeader {
 
   // Relations
   creator              User                 @relation("CreatedPlanningHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  allocate_header      AllocateHeader?      @relation("AllocateHeaderToPlanningHeader", fields: [allocate_header_id], references: [id], onDelete: SetNull, onUpdate: NoAction)
+  allocate_header      AllocateHeader       @relation("AllocateHeaderToPlanningHeader", fields: [allocate_header_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   planning_collections PlanningCollection[] @relation("PlanningHeaderToCollection")
   planning_genders     PlanningGender[]     @relation("PlanningHeaderToGender")
   planning_categories  PlanningCategory[]   @relation("PlanningHeaderToCategory")
@@ -369,7 +374,7 @@ model PlanningHeader {
 
 model PlanningCollection {
   id                  BigInt   @id @default(autoincrement())
-  season_type_id      BigInt
+  season_type_id      BigInt   @map("collection_id")
   store_id            BigInt
   planning_header_id  BigInt
   actual_buy_pct      Decimal  @default(0) @db.Decimal(18, 2)
@@ -446,7 +451,7 @@ model PlanningCategory {
 
 model SKUProposalHeader {
   id                 BigInt   @id @default(autoincrement())
-  allocate_header_id BigInt?
+  allocate_header_id BigInt
   version            Int
   status             String   @default("DRAFT")
   is_final_version   Boolean  @default(false)
@@ -456,9 +461,10 @@ model SKUProposalHeader {
   updated_by         BigInt?
 
   // Relations
-  allocate_header AllocateHeader? @relation("AllocateHeaderToSKUProposalHeader", fields: [allocate_header_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  creator         User            @relation("CreatedSKUProposalHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  sku_proposals   SKUProposal[]   @relation("SKUProposalHeaderToSKUProposal")
+  allocate_header         AllocateHeader         @relation("AllocateHeaderToSKUProposalHeader", fields: [allocate_header_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  creator                 User                   @relation("CreatedSKUProposalHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sku_proposals           SKUProposal[]          @relation("SKUProposalHeaderToSKUProposal")
+  proposal_sizing_headers ProposalSizingHeader[] @relation("SKUProposalHeaderToProposalSizingHeader")
 
   @@map("sku_proposal_headers")
 }
@@ -476,10 +482,10 @@ model SKUProposal {
   updated_by             BigInt?
 
   // Relations
-  sku_proposal_header     SKUProposalHeader      @relation("SKUProposalHeaderToSKUProposal", fields: [sku_proposal_header_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  product                 Product                @relation("ProductToSKUProposal", fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  sku_allocates           SKUAllocate[]          @relation("SKUProposalToSKUAllocate")
-  proposal_sizing_headers ProposalSizingHeader[] @relation("SKUProposalToProposalSizingHeader")
+  sku_proposal_header SKUProposalHeader @relation("SKUProposalHeaderToSKUProposal", fields: [sku_proposal_header_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  product             Product           @relation("ProductToSKUProposal", fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sku_allocates       SKUAllocate[]     @relation("SKUProposalToSKUAllocate")
+  proposal_sizings    ProposalSizing[]  @relation("SKUProposalToProposalSizing")
 
   @@map("sku_proposal")
 }
@@ -502,19 +508,19 @@ model SKUAllocate {
 }
 
 model ProposalSizingHeader {
-  id               BigInt   @id @default(autoincrement())
-  sku_proposal_id  BigInt
-  version          Int
-  is_final_version Boolean  @default(false)
-  created_by       BigInt
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
-  updated_by       BigInt?
+  id                     BigInt   @id @default(autoincrement())
+  sku_proposal_header_id BigInt
+  version                Int
+  is_final_version       Boolean  @default(false)
+  created_by             BigInt
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
+  updated_by             BigInt?
 
   // Relations
-  sku_proposal     SKUProposal      @relation("SKUProposalToProposalSizingHeader", fields: [sku_proposal_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  creator          User             @relation("CreatedProposalSizingHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  proposal_sizings ProposalSizing[] @relation("ProposalSizingHeaderToProposalSizing")
+  sku_proposal_header SKUProposalHeader @relation("SKUProposalHeaderToProposalSizingHeader", fields: [sku_proposal_header_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  creator             User              @relation("CreatedProposalSizingHeaders", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  proposal_sizings    ProposalSizing[]  @relation("ProposalSizingHeaderToProposalSizing")
 
   @@map("proposal_sizing_headers")
 }
@@ -522,6 +528,7 @@ model ProposalSizingHeader {
 model ProposalSizing {
   id                        BigInt   @id @default(autoincrement())
   proposal_sizing_header_id BigInt
+  sku_proposal_id           BigInt
   subcategory_size_id       BigInt
   actual_salesmix_pct       Decimal  @default(0) @db.Decimal(18, 2)
   actual_st_pct             Decimal  @default(0) @db.Decimal(18, 2)
@@ -533,6 +540,7 @@ model ProposalSizing {
 
   // Relations
   proposal_sizing_header ProposalSizingHeader @relation("ProposalSizingHeaderToProposalSizing", fields: [proposal_sizing_header_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  sku_proposal           SKUProposal          @relation("SKUProposalToProposalSizing", fields: [sku_proposal_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   subcategory_size       SubcategorySize      @relation("SizeToProposalSizing", fields: [subcategory_size_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("sizing_proposal")
@@ -555,18 +563,23 @@ model ApprovalStatus {
 }
 
 model Ticket {
-  id                 BigInt   @id @default(autoincrement())
-  budget_allocate_id BigInt
-  status             String   @default("PENDING")
-  created_by         BigInt
-  created_at         DateTime @default(now())
-  updated_at         DateTime @updatedAt
-  updated_by         BigInt?
+  id              BigInt   @id @default(autoincrement())
+  budget_id       BigInt
+  season_group_id BigInt
+  season_id       BigInt
+  status          String   @default("PENDING")
+  created_by      BigInt
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  updated_by      BigInt?
 
   // Relations
-  budget_allocate      BudgetAllocate      @relation("BudgetAllocateToTicket", fields: [budget_allocate_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  creator              User                @relation("CreatedTickets", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  ticket_approval_logs TicketApprovalLog[] @relation("TicketToApprovalLog")
+  budget                    Budget              @relation("BudgetToTicket", fields: [budget_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  season_group              SeasonGroup         @relation("SeasonGroupToTicket", fields: [season_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  season                    Season              @relation("SeasonToTicket", fields: [season_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  creator                   User                @relation("CreatedTickets", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ticket_approval_logs      TicketApprovalLog[] @relation("TicketToApprovalLog")
+  snapshot_allocate_headers AllocateHeader[]    @relation("TicketToSnapshotHeaders")
 
   @@map("ticket")
 }

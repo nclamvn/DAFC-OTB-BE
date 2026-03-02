@@ -7,38 +7,67 @@ export class MasterDataService {
   constructor(private prisma: PrismaService) {}
 
   // ─── GROUP BRANDS ────────────────────────────────────────────────────────
+  // DEV LIMIT: only "Luxury Brands" group with Burberry & Ferragamo — remove filters + dedup to get all (see LIMITS.md)
   async getGroupBrands() {
-    return this.prisma.groupBrand.findMany({
-      where: { is_active: true },
+    const result = await this.prisma.groupBrand.findMany({
+      where: { is_active: true, name: 'Luxury Brands' },
       include: {
         brands: {
-          where: { is_active: true },
+          where: { is_active: true, name: { in: ['Burberry', 'Ferragamo'] } },
           orderBy: { name: 'asc' },
         },
       },
       orderBy: { name: 'asc' },
     });
+    // Deduplicate brands by name (DB collation is case-insensitive → duplicates)
+    // Prefer title-case version (e.g. "Ferragamo" over "FERRAGAMO")
+    result.forEach(gb => {
+      const map = new Map<string, (typeof gb.brands)[0]>();
+      for (const b of gb.brands) {
+        const key = b.name.toLowerCase();
+        const prev = map.get(key);
+        if (!prev || (prev.name === prev.name.toUpperCase() && b.name !== b.name.toUpperCase())) {
+          map.set(key, b);
+        }
+      }
+      gb.brands = Array.from(map.values());
+    });
+    return result;
   }
 
   // ─── BRANDS ──────────────────────────────────────────────────────────────
-  async getBrands(groupBrandId?: string, limit?: number) {
-    const where: Prisma.BrandWhereInput = { is_active: true };
+  // DEV LIMIT: only Burberry & Ferragamo — remove name filter + dedup to get all (see LIMITS.md)
+  async getBrands(groupBrandId?: string) {
+    const where: Prisma.BrandWhereInput = {
+      is_active: true,
+      name: { in: ['Burberry', 'Ferragamo'] },
+    };
     if (groupBrandId) where.group_brand_id = +groupBrandId;
 
-    return this.prisma.brand.findMany({
+    const brands = await this.prisma.brand.findMany({
       where,
       include: { group_brand: true },
       orderBy: { name: 'asc' },
-      ...(limit ? { take: limit } : {}),
     });
+    // Deduplicate by name (DB collation is case-insensitive → duplicates)
+    // Prefer title-case version (e.g. "Ferragamo" over "FERRAGAMO")
+    const map = new Map<string, (typeof brands)[0]>();
+    for (const b of brands) {
+      const key = b.name.toLowerCase();
+      const prev = map.get(key);
+      if (!prev || (prev.name === prev.name.toUpperCase() && b.name !== b.name.toUpperCase())) {
+        map.set(key, b);
+      }
+    }
+    return Array.from(map.values());
   }
 
   // ─── STORES ──────────────────────────────────────────────────────────────
-  async getStores(limit?: number) {
+  // DEV LIMIT: only TTP & REX — remove filter to get all stores (see LIMITS.md)
+  async getStores() {
     return this.prisma.store.findMany({
-      where: { is_active: true },
+      where: { is_active: true, code: { in: ['TTP', 'REX'] } },
       orderBy: { code: 'asc' },
-      ...(limit ? { take: limit } : {}),
     });
   }
 
@@ -86,7 +115,7 @@ export class MasterDataService {
   }
 
   // ─── CATEGORIES (Full Hierarchy) ─────────────────────────────────────────
-  async getCategories(genderId?: string, subCategoryLimit?: number) {
+  async getCategories(genderId?: string) {
     const where: Prisma.GenderWhereInput = { is_active: true };
     if (genderId) where.id = +genderId;
 
@@ -104,7 +133,6 @@ export class MasterDataService {
                 },
               },
               orderBy: { name: 'asc' },
-              ...(subCategoryLimit ? { take: subCategoryLimit } : {}),
             },
           },
           orderBy: { name: 'asc' },

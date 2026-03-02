@@ -46,8 +46,12 @@ export class RiskScoringService {
               },
             },
             sku_allocates: { include: { store: true } },
-            proposal_sizing_headers: {
-              include: { proposal_sizings: true },
+          },
+        },
+        proposal_sizing_headers: {
+          include: {
+            proposal_sizings: {
+              include: { sku_proposal: { select: { id: true, product_id: true } } },
             },
           },
         },
@@ -61,10 +65,12 @@ export class RiskScoringService {
     const warnings: string[] = [];
     const proposals = header.sku_proposals;
 
+    const sizingHeaders = (header as any).proposal_sizing_headers || [];
+
     const factors: RiskFactor[] = [
       this.assessSkuDiversity(proposals, warnings),
       this.assessStoreAllocation(proposals, warnings),
-      this.assessSizingCoverage(proposals, warnings),
+      this.assessSizingCoverage(proposals, sizingHeaders, warnings),
       this.assessMarginImpact(proposals, warnings),
       this.assessCategoryBalance(proposals, warnings),
     ];
@@ -124,8 +130,15 @@ export class RiskScoringService {
     return { name: 'Store Allocation', score: 9, weight: 0.2, status: 'good', details: `${allocationRate.toFixed(0)}% coverage with ${totalAllocations} allocations.` };
   }
 
-  private assessSizingCoverage(proposals: any[], warnings: string[]): RiskFactor {
-    const withSizings = proposals.filter(p => p.proposal_sizing_headers?.length > 0).length;
+  private assessSizingCoverage(proposals: any[], sizingHeaders: any[], warnings: string[]): RiskFactor {
+    // Check which SKU proposals have sizing rows in any sizing header
+    const skuIdsWithSizing = new Set<string>();
+    for (const sh of sizingHeaders) {
+      for (const ps of (sh.proposal_sizings || [])) {
+        skuIdsWithSizing.add(String(ps.sku_proposal_id));
+      }
+    }
+    const withSizings = proposals.filter(p => skuIdsWithSizing.has(String(p.id))).length;
     const sizingRate = proposals.length > 0 ? (withSizings / proposals.length) * 100 : 0;
 
     if (sizingRate === 0) {

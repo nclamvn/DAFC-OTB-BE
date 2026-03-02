@@ -16,6 +16,13 @@ class LoginDto {
   password: string;
 }
 
+class MicrosoftLoginDto {
+  @ApiProperty({ description: 'Microsoft access token from MSAL' })
+  @IsString()
+  @IsNotEmpty()
+  accessToken: string;
+}
+
 class RefreshDto {
   @ApiProperty()
   @IsString()
@@ -34,6 +41,15 @@ export class AuthController {
     return {
       success: true,
       data: await this.authService.login(dto.email, dto.password),
+    };
+  }
+
+  @Post('microsoft')
+  @ApiOperation({ summary: 'Login with Microsoft (Azure AD)' })
+  async loginWithMicrosoft(@Body() dto: MicrosoftLoginDto) {
+    return {
+      success: true,
+      data: await this.authService.loginWithMicrosoft(dto.accessToken),
     };
   }
 

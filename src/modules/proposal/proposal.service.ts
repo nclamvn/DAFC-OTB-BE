@@ -22,7 +22,12 @@ const toBigInt = (id: string | number | bigint) => BigInt(id);
 /** Standard include for sizing header queries */
 const SIZING_HEADER_INCLUDE = {
   creator: { select: { id: true, name: true } },
-  proposal_sizings: { include: { subcategory_size: true } },
+  proposal_sizings: {
+    include: {
+      subcategory_size: true,
+      sku_proposal: { select: { id: true, product_id: true } },
+    },
+  },
 } as const;
 
 @Injectable()
@@ -60,6 +65,76 @@ export class ProposalService {
     return data;
   }
 
+  // ─── HISTORICAL (for previous year comparison) ───────────────────────
+
+  async findHistorical(params: {
+    fiscalYear: number;
+    seasonGroupName: string;
+    seasonName: string;
+    brandId: string;
+  }) {
+    const { fiscalYear, seasonGroupName, seasonName, brandId } = params;
+
+    // Step 1: Find AllocateHeaders matching brand + budget.fiscal_year
+    //         AND whose budget_allocates touch the target season_group + season
+    const matchingHeaders = await this.prisma.allocateHeader.findMany({
+      where: {
+        brand_id: BigInt(brandId),
+        is_snapshot: false,
+        budget: { fiscal_year: fiscalYear },
+        budget_allocates: {
+          some: {
+            season_group: { name: seasonGroupName },
+            season: { name: seasonName },
+          },
+        },
+      },
+      select: { id: true },
+    });
+
+    if (matchingHeaders.length === 0) return null;
+
+    const allocateHeaderIds = matchingHeaders.map(h => h.id);
+
+    // Step 2: Find best SKUProposalHeader (prefer final, then most recent approved)
+    const proposal = await this.prisma.sKUProposalHeader.findFirst({
+      where: {
+        allocate_header_id: { in: allocateHeaderIds },
+        OR: [
+          { status: 'APPROVED' },
+          { is_final_version: true },
+        ],
+      },
+      include: {
+        creator: { select: { id: true, name: true, email: true } },
+        allocate_header: { select: { id: true, brand_id: true, brand: { select: { id: true, name: true } } } },
+        sku_proposals: {
+          include: {
+            product: {
+              include: {
+                brand: true,
+                sub_category: {
+                  include: { category: { include: { gender: true } } },
+                },
+              },
+            },
+            sku_allocates: { include: { store: true } },
+          },
+        },
+        proposal_sizing_headers: {
+          include: SIZING_HEADER_INCLUDE,
+          orderBy: { version: 'asc' },
+        },
+      },
+      orderBy: [
+        { is_final_version: 'desc' },
+        { created_at: 'desc' },
+      ],
+    });
+
+    return proposal;
+  }
+
   // ─── LIST SKU PROPOSAL HEADERS ─────────────────────────────────────────
 
   async findAll(filters: ProposalFilters) {
@@ -69,6 +144,8 @@ export class ProposalService {
     const where: Record<string, any> = {};
     if (filters.status) where.status = filters.status;
     if (filters.allocateHeaderId) where.allocate_header_id = toBigInt(filters.allocateHeaderId);
+    // Always exclude snapshot records from normal queries
+    where.allocate_header = { is_snapshot: false };
 
     const [data, total] = await Promise.all([
       this.prisma.sKUProposalHeader.findMany({
@@ -110,11 +187,11 @@ export class ProposalService {
               },
             },
             sku_allocates: { include: { store: true } },
-            proposal_sizing_headers: {
-              include: SIZING_HEADER_INCLUDE,
-              orderBy: { version: 'desc' },
-            },
           },
+        },
+        proposal_sizing_headers: {
+          include: SIZING_HEADER_INCLUDE,
+          orderBy: { version: 'asc' },
         },
       },
     });
@@ -126,8 +203,8 @@ export class ProposalService {
   // ─── CREATE ────────────────────────────────────────────────────────────
 
   async create(dto: CreateSKUProposalHeaderDto, userId: string) {
-    const allocateHeaderId = dto.allocateHeaderId ? toBigInt(dto.allocateHeaderId) : null;
-    const versionWhere = allocateHeaderId ? { allocate_header_id: allocateHeaderId } : {};
+    const allocateHeaderId = toBigInt(dto.allocateHeaderId);
+    const versionWhere = { allocate_header_id: allocateHeaderId };
     const version = await this.getNextVersion(this.prisma.sKUProposalHeader, versionWhere);
 
     for (const item of dto.proposals) {
@@ -155,17 +232,15 @@ export class ProposalService {
       },
     });
 
-    // Auto-create 3 sizing choices (A=1, B=2, C=3) per SKU proposal
-    for (const sp of header.sku_proposals) {
-      for (const v of [1, 2, 3]) {
-        await this.prisma.proposalSizingHeader.create({
-          data: {
-            sku_proposal_id: sp.id,
-            version: v,
-            created_by: toBigInt(userId),
-          },
-        });
-      }
+    // Auto-create 3 sizing choices (A=1, B=2, C=3) per SKUProposalHeader
+    for (const v of [1, 2, 3]) {
+      await this.prisma.proposalSizingHeader.create({
+        data: {
+          sku_proposal_header_id: header.id,
+          version: v,
+          created_by: toBigInt(userId),
+        },
+      });
     }
 
     return this.findOne(String(header.id));
@@ -279,21 +354,30 @@ export class ProposalService {
   // ─── PROPOSAL SIZING HEADER ───────────────────────────────────────────
 
   async createSizingHeader(dto: CreateProposalSizingHeaderDto, userId: string) {
-    const skuProposal = await this.prisma.sKUProposal.findUnique({ where: { id: +dto.skuProposalId } });
-    if (!skuProposal) throw new BadRequestException(`SKU Proposal not found: ${dto.skuProposalId}`);
+    const proposalHeader = await this.prisma.sKUProposalHeader.findUnique({ where: { id: +dto.skuProposalHeaderId } });
+    if (!proposalHeader) throw new BadRequestException(`SKU Proposal Header not found: ${dto.skuProposalHeaderId}`);
+
+    // Enforce max 3 sizing choices (A, B, C)
+    const existingCount = await this.prisma.proposalSizingHeader.count({
+      where: { sku_proposal_header_id: +dto.skuProposalHeaderId },
+    });
+    if (existingCount >= 3) {
+      throw new BadRequestException('Maximum 3 sizing choices (A, B, C) allowed per proposal header');
+    }
 
     const version = await this.getNextVersion(
       this.prisma.proposalSizingHeader,
-      { sku_proposal_id: +dto.skuProposalId },
+      { sku_proposal_header_id: +dto.skuProposalHeaderId },
     );
 
     return this.prisma.proposalSizingHeader.create({
       data: {
-        sku_proposal_id: +dto.skuProposalId,
+        sku_proposal_header_id: +dto.skuProposalHeaderId,
         version,
         created_by: toBigInt(userId),
         proposal_sizings: {
           create: dto.sizings.map(s => ({
+            sku_proposal_id: +s.skuProposalId,
             subcategory_size_id: +s.subcategorySizeId,
             actual_salesmix_pct: s.actualSalesmixPct || 0,
             actual_st_pct: s.actualStPct || 0,
@@ -305,12 +389,12 @@ export class ProposalService {
     });
   }
 
-  async getSizingHeadersByProposal(skuProposalId: string) {
-    await this.findOrFail(this.prisma.sKUProposal, skuProposalId, 'SKU Proposal');
+  async getSizingHeadersByProposalHeader(skuProposalHeaderId: string) {
+    await this.findOrFail(this.prisma.sKUProposalHeader, skuProposalHeaderId, 'SKU Proposal Header');
     return this.prisma.proposalSizingHeader.findMany({
-      where: { sku_proposal_id: +skuProposalId },
+      where: { sku_proposal_header_id: +skuProposalHeaderId },
       include: SIZING_HEADER_INCLUDE,
-      orderBy: { version: 'desc' },
+      orderBy: { version: 'asc' },
     });
   }
 
@@ -331,7 +415,7 @@ export class ProposalService {
       updateData.is_final_version = dto.isFinalVersion;
       if (dto.isFinalVersion) {
         await this.prisma.proposalSizingHeader.updateMany({
-          where: { sku_proposal_id: header.sku_proposal_id, id: { not: toBigInt(headerId) } },
+          where: { sku_proposal_header_id: header.sku_proposal_header_id, id: { not: toBigInt(headerId) } },
           data: { is_final_version: false },
         });
       }
@@ -345,7 +429,16 @@ export class ProposalService {
   }
 
   async deleteSizingHeader(headerId: string) {
-    await this.findOrFail(this.prisma.proposalSizingHeader, headerId, 'Proposal Sizing Header');
+    const header = await this.findOrFail(this.prisma.proposalSizingHeader, headerId, 'Proposal Sizing Header') as any;
+
+    // Enforce min 3 sizing choices — cannot delete below 3
+    const existingCount = await this.prisma.proposalSizingHeader.count({
+      where: { sku_proposal_header_id: header.sku_proposal_header_id },
+    });
+    if (existingCount <= 3) {
+      throw new BadRequestException('Cannot delete sizing choice — minimum 3 choices (A, B, C) required');
+    }
+
     await this.prisma.proposalSizingHeader.delete({ where: { id: toBigInt(headerId) } });
     return { message: 'Proposal Sizing Header deleted' };
   }
@@ -356,18 +449,21 @@ export class ProposalService {
     for (const s of dto.sizings) {
       const header = await this.prisma.proposalSizingHeader.findUnique({ where: { id: +s.proposalSizingHeaderId } });
       if (!header) throw new BadRequestException(`Proposal Sizing Header not found: ${s.proposalSizingHeaderId}`);
+      const skuProposal = await this.prisma.sKUProposal.findUnique({ where: { id: +s.skuProposalId } });
+      if (!skuProposal) throw new BadRequestException(`SKU Proposal not found: ${s.skuProposalId}`);
     }
     return this.prisma.$transaction(
       dto.sizings.map(s =>
         this.prisma.proposalSizing.create({
           data: {
             proposal_sizing_header_id: +s.proposalSizingHeaderId,
+            sku_proposal_id: +s.skuProposalId,
             subcategory_size_id: +s.subcategorySizeId,
             actual_salesmix_pct: s.actualSalesmixPct || 0,
             actual_st_pct: s.actualStPct || 0,
             proposal_quantity: s.proposalQuantity,
           },
-          include: { subcategory_size: true },
+          include: { subcategory_size: true, sku_proposal: { select: { id: true, product_id: true } } },
         }),
       ),
     );
@@ -425,7 +521,7 @@ export class ProposalService {
   // ─── STATISTICS ───────────────────────────────────────────────────────
 
   async getStatistics(budgetId?: string) {
-    const where: Record<string, any> = {};
+    const where: Record<string, any> = { allocate_header: { is_snapshot: false } };
     if (budgetId) where.budget_id = toBigInt(budgetId);
     const total = await this.prisma.sKUProposalHeader.count({ where });
     return { totalProposals: total, byStatus: {} };
@@ -433,25 +529,30 @@ export class ProposalService {
 
   // ─── SAVE FULL PROPOSAL (products + store allocations + sizing) ──────
 
-  async saveFullProposal(headerId: string, dto: { products: Array<{
-    productId: string;
-    customerTarget: string;
-    unitCost: number;
-    srp: number;
-    allocations?: Array<{ storeId: string; quantity: number }>;
+  async saveFullProposal(headerId: string, dto: {
+    products: Array<{
+      productId: string;
+      customerTarget: string;
+      unitCost: number;
+      srp: number;
+      allocations?: Array<{ storeId: string; quantity: number }>;
+    }>;
     sizings?: Array<{
       version: number;
       isFinal?: boolean;
-      rows?: Array<{ subcategorySizeId: string; actualSalesmixPct?: number; actualStPct?: number; proposalQuantity: number }>;
+      rows?: Array<{ skuProposalProductId: string; subcategorySizeId: string; actualSalesmixPct?: number; actualStPct?: number; proposalQuantity: number }>;
     }>;
-  }> }, userId: string) {
+  }, userId: string) {
     await this.findOrFail(this.prisma.sKUProposalHeader, headerId, 'SKU Proposal Header');
 
     await this.prisma.$transaction(async (tx) => {
-      // Delete existing (cascade deletes sku_allocates + sizing)
+      // Delete existing children (cascade deletes sku_allocates)
       await tx.sKUProposal.deleteMany({ where: { sku_proposal_header_id: toBigInt(headerId) } });
+      // Delete existing sizing headers (cascade deletes proposal_sizings)
+      await tx.proposalSizingHeader.deleteMany({ where: { sku_proposal_header_id: toBigInt(headerId) } });
 
-      // Re-create all proposals + allocations + sizing
+      // Re-create all SKU proposals + store allocations
+      const productIdMap = new Map<string, bigint>(); // productId → skuProposal.id
       for (const prod of dto.products) {
         const skuProposal = await tx.sKUProposal.create({
           data: {
@@ -463,6 +564,8 @@ export class ProposalService {
             created_by: toBigInt(userId),
           },
         });
+        productIdMap.set(String(prod.productId), skuProposal.id);
+
         if (prod.allocations?.length) {
           await tx.sKUAllocate.createMany({
             data: prod.allocations.map(a => ({
@@ -472,30 +575,34 @@ export class ProposalService {
             })),
           });
         }
-        // Auto-create 3 sizing choices (A=1, B=2, C=3) per SKU
-        const sizingChoices = prod.sizings?.length === 3
-          ? prod.sizings
-          : [{ version: 1 }, { version: 2 }, { version: 3 }];
-        for (const choice of sizingChoices) {
-          await tx.proposalSizingHeader.create({
-            data: {
-              sku_proposal_id: skuProposal.id,
-              version: choice.version,
-              is_final_version: choice.isFinal ?? false,
-              created_by: toBigInt(userId),
-              ...(choice.rows?.length ? {
-                proposal_sizings: {
-                  create: choice.rows.map(r => ({
-                    subcategory_size_id: toBigInt(r.subcategorySizeId),
-                    actual_salesmix_pct: r.actualSalesmixPct || 0,
-                    actual_st_pct: r.actualStPct || 0,
-                    proposal_quantity: r.proposalQuantity || 0,
-                  })),
-                },
-              } : {}),
-            },
-          });
-        }
+      }
+
+      // Create 3 sizing choices (A=1, B=2, C=3) at header level
+      const sizingChoices = dto.sizings?.length === 3
+        ? dto.sizings
+        : [{ version: 1 }, { version: 2 }, { version: 3 }];
+      for (const choice of sizingChoices) {
+        const sizingRows = (choice.rows || [])
+          .filter(r => productIdMap.has(r.skuProposalProductId))
+          .map(r => ({
+            sku_proposal_id: productIdMap.get(r.skuProposalProductId)!,
+            subcategory_size_id: toBigInt(r.subcategorySizeId),
+            actual_salesmix_pct: r.actualSalesmixPct || 0,
+            actual_st_pct: r.actualStPct || 0,
+            proposal_quantity: r.proposalQuantity || 0,
+          }));
+
+        await tx.proposalSizingHeader.create({
+          data: {
+            sku_proposal_header_id: toBigInt(headerId),
+            version: choice.version,
+            is_final_version: choice.isFinal ?? false,
+            created_by: toBigInt(userId),
+            ...(sizingRows.length ? {
+              proposal_sizings: { create: sizingRows },
+            } : {}),
+          },
+        });
       }
     });
 
@@ -507,7 +614,7 @@ export class ProposalService {
   async copyProposal(headerId: string, userId: string) {
     const source = await this.findOne(headerId);
     const allocateHeaderId = source.allocate_header_id;
-    const versionWhere = allocateHeaderId ? { allocate_header_id: allocateHeaderId } : {};
+    const versionWhere = { allocate_header_id: allocateHeaderId };
     const version = await this.getNextVersion(this.prisma.sKUProposalHeader, versionWhere);
 
     const newHeader = await this.prisma.$transaction(async (tx) => {
@@ -515,6 +622,8 @@ export class ProposalService {
         data: { allocate_header_id: allocateHeaderId, version, created_by: toBigInt(userId) },
       });
 
+      // Copy SKU proposals + allocations, build old→new ID map
+      const skuIdMap = new Map<bigint, bigint>(); // old sku_proposal.id → new id
       for (const sp of source.sku_proposals) {
         const newProposal = await tx.sKUProposal.create({
           data: {
@@ -526,6 +635,8 @@ export class ProposalService {
             created_by: toBigInt(userId),
           },
         });
+        skuIdMap.set(sp.id, newProposal.id);
+
         if (sp.sku_allocates?.length) {
           await tx.sKUAllocate.createMany({
             data: sp.sku_allocates.map((a: any) => ({
@@ -535,36 +646,40 @@ export class ProposalService {
             })),
           });
         }
-        // Copy sizing headers (A, B, C) with their sizing rows
-        const sizingHeaders = (sp as any).proposal_sizing_headers || [];
-        if (sizingHeaders.length > 0) {
-          for (const sh of sizingHeaders) {
-            await tx.proposalSizingHeader.create({
-              data: {
-                sku_proposal_id: newProposal.id,
-                version: sh.version,
-                is_final_version: sh.is_final_version ?? false,
-                created_by: toBigInt(userId),
-                ...((sh.proposal_sizings || []).length > 0 ? {
-                  proposal_sizings: {
-                    create: sh.proposal_sizings.map((ps: any) => ({
-                      subcategory_size_id: ps.subcategory_size_id,
-                      actual_salesmix_pct: ps.actual_salesmix_pct || 0,
-                      actual_st_pct: ps.actual_st_pct || 0,
-                      proposal_quantity: ps.proposal_quantity || 0,
-                    })),
-                  },
-                } : {}),
-              },
-            });
-          }
-        } else {
-          // No existing sizing — create 3 empty choices
-          for (const v of [1, 2, 3]) {
-            await tx.proposalSizingHeader.create({
-              data: { sku_proposal_id: newProposal.id, version: v, created_by: toBigInt(userId) },
-            });
-          }
+      }
+
+      // Copy sizing headers (A, B, C) at header level with remapped sku_proposal_id
+      const sizingHeaders = source.proposal_sizing_headers || [];
+      if (sizingHeaders.length > 0) {
+        for (const sh of sizingHeaders) {
+          const sizingRows = ((sh as any).proposal_sizings || [])
+            .filter((ps: any) => skuIdMap.has(ps.sku_proposal_id))
+            .map((ps: any) => ({
+              sku_proposal_id: skuIdMap.get(ps.sku_proposal_id)!,
+              subcategory_size_id: ps.subcategory_size_id,
+              actual_salesmix_pct: ps.actual_salesmix_pct || 0,
+              actual_st_pct: ps.actual_st_pct || 0,
+              proposal_quantity: ps.proposal_quantity || 0,
+            }));
+
+          await tx.proposalSizingHeader.create({
+            data: {
+              sku_proposal_header_id: created.id,
+              version: sh.version,
+              is_final_version: sh.is_final_version ?? false,
+              created_by: toBigInt(userId),
+              ...(sizingRows.length > 0 ? {
+                proposal_sizings: { create: sizingRows },
+              } : {}),
+            },
+          });
+        }
+      } else {
+        // No existing sizing — create 3 empty choices
+        for (const v of [1, 2, 3]) {
+          await tx.proposalSizingHeader.create({
+            data: { sku_proposal_header_id: created.id, version: v, created_by: toBigInt(userId) },
+          });
         }
       }
 

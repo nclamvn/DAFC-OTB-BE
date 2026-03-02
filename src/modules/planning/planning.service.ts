@@ -24,7 +24,12 @@ export class PlanningService {
     const where: any = {};
     if (filters.status) where.status = filters.status;
     if (filters.allocateHeaderId) where.allocate_header_id = BigInt(filters.allocateHeaderId);
-    if (filters.brandId) where.allocate_header = { brand_id: BigInt(filters.brandId) };
+    // Always exclude snapshot records from normal queries
+    where.allocate_header = {
+      ...(typeof where.allocate_header === 'object' ? where.allocate_header : {}),
+      is_snapshot: false,
+      ...(filters.brandId ? { brand_id: BigInt(filters.brandId) } : {}),
+    };
 
     const [data, total] = await Promise.all([
       this.prisma.planningHeader.findMany({
@@ -56,37 +61,43 @@ export class PlanningService {
   // ─── GET ONE ───────────────────────────────────────────────────────────────
 
   async findOne(id: string | number) {
-    const planning = await this.prisma.planningHeader.findUnique({
-      where: { id: BigInt(id) },
-      include: {
-        creator: { select: { id: true, name: true, email: true } },
-        allocate_header: { include: { brand: true } },
-        planning_collections: {
-          include: {
-            season_type: true,
-            store: true,
+    try {
+      const planning = await this.prisma.planningHeader.findUnique({
+        where: { id: BigInt(id) },
+        include: {
+          creator: { select: { id: true, name: true, email: true } },
+          allocate_header: { include: { brand: true } },
+          planning_collections: {
+            include: {
+              season_type: true,
+              store: true,
+            },
           },
-        },
-        planning_genders: {
-          include: {
-            gender: true,
-            store: true,
+          planning_genders: {
+            include: {
+              gender: true,
+              store: true,
+            },
           },
-        },
-        planning_categories: {
-          include: {
-            subcategory: {
-              include: {
-                category: { include: { gender: true } },
+          planning_categories: {
+            include: {
+              subcategory: {
+                include: {
+                  category: { include: { gender: true } },
+                },
               },
             },
           },
         },
-      },
-    });
+      });
 
-    if (!planning) throw new NotFoundException('Planning header not found');
-    return planning;
+      if (!planning) throw new NotFoundException('Planning header not found');
+      return planning;
+    } catch (err) {
+      if (err instanceof NotFoundException) throw err;
+      console.error(`[Planning.findOne] id=${id} error:`, err);
+      throw err;
+    }
   }
 
   // ─── HISTORICAL (for comparison) ──────────────────────────────────────────
@@ -104,6 +115,7 @@ export class PlanningService {
     const matchingHeaders = await this.prisma.allocateHeader.findMany({
       where: {
         brand_id: BigInt(brandId),
+        is_snapshot: false,
         budget: { fiscal_year: fiscalYear },
         budget_allocates: {
           some: {
@@ -161,13 +173,11 @@ export class PlanningService {
       'categories:', dto.categories?.length || 0);
 
     // Version = max version for this brand's allocate_header + 1
-    const allocateHeaderIdBig = dto.allocateHeaderId ? BigInt(dto.allocateHeaderId) : null;
-    const versionWhere: any = {};
-    if (allocateHeaderIdBig) {
-      // Find brand_id from allocate_header, then scope version to same brand
-      const ah = await this.prisma.allocateHeader.findUnique({ where: { id: allocateHeaderIdBig }, select: { brand_id: true } });
-      if (ah) versionWhere.allocate_header = { brand_id: ah.brand_id };
-    }
+    const allocateHeaderIdBig = BigInt(dto.allocateHeaderId);
+    // Find brand_id from allocate_header, then scope version to same brand
+    const ah = await this.prisma.allocateHeader.findUnique({ where: { id: allocateHeaderIdBig }, select: { brand_id: true } });
+    if (!ah) throw new NotFoundException('AllocateHeader not found');
+    const versionWhere: any = { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } };
     const lastHeader = await this.prisma.planningHeader.findFirst({
       where: versionWhere,
       orderBy: { version: 'desc' },
@@ -247,7 +257,7 @@ export class PlanningService {
     if (dto.allocateHeaderId !== undefined) {
       await this.prisma.planningHeader.update({
         where: { id: BigInt(id) },
-        data: { allocate_header_id: dto.allocateHeaderId ? BigInt(dto.allocateHeaderId) : null },
+        data: { allocate_header_id: BigInt(dto.allocateHeaderId) },
       });
     }
 
@@ -322,11 +332,8 @@ export class PlanningService {
     if (!source) throw new NotFoundException('Source planning header not found');
 
     // Version = max version for this brand's allocate_header + 1
-    const versionWhere: any = {};
-    if (source.allocate_header_id) {
-      const ah = await this.prisma.allocateHeader.findUnique({ where: { id: source.allocate_header_id }, select: { brand_id: true } });
-      if (ah) versionWhere.allocate_header = { brand_id: ah.brand_id };
-    }
+    const ah = await this.prisma.allocateHeader.findUnique({ where: { id: source.allocate_header_id }, select: { brand_id: true } });
+    const versionWhere: any = ah ? { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } } : {};
     const lastHeader = await this.prisma.planningHeader.findFirst({
       where: versionWhere,
       orderBy: { version: 'desc' },
