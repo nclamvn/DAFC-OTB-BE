@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNumber, IsArray, IsOptional, IsBoolean, ValidateNested, Min, IsNotEmpty, IsInt } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsOptional, IsBoolean, ValidateNested, Min, Max, MaxLength, IsNotEmpty, IsInt } from 'class-validator';
 import { Type } from 'class-transformer';
 
 // ─── Budget Allocate Detail ──────────────────────────────────────────────────
@@ -23,6 +23,7 @@ export class BudgetAllocateDto {
   @ApiProperty({ example: 5000000000, description: 'Budget amount in VND' })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   budgetAmount: number;
 }
 
@@ -32,20 +33,25 @@ export class CreateBudgetDto {
   @ApiProperty({ example: 'FY2024 Gucci Budget' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   name: string;
 
   @ApiProperty({ example: 50000000000, description: 'Total budget amount in VND' })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   amount: number;
 
   @ApiProperty({ example: 2025 })
   @IsInt()
+  @Min(2000)
+  @Max(2100)
   fiscalYear: number;
 
   @ApiPropertyOptional({ example: 'Q1 budget for Ferragamo' })
   @IsString()
   @IsOptional()
+  @MaxLength(2000)
   description?: string;
 
   @ApiPropertyOptional({ example: 'brand_id', description: 'Brand ID — auto-creates AllocateHeader to associate brand' })
@@ -67,17 +73,20 @@ export class UpdateBudgetDto {
   @ApiPropertyOptional({ example: 'Updated budget name' })
   @IsString()
   @IsOptional()
+  @MaxLength(255)
   name?: string;
 
   @ApiPropertyOptional({ example: 60000000000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   @IsOptional()
   amount?: number;
 
   @ApiPropertyOptional({ example: 'Updated description' })
   @IsString()
   @IsOptional()
+  @MaxLength(2000)
   description?: string;
 }
 

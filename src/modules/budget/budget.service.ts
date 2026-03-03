@@ -124,6 +124,10 @@ export class BudgetService {
     const budget = await this.prisma.budget.findUnique({ where: { id: BigInt(id) } });
     if (!budget) throw new NotFoundException('Budget not found');
 
+    if (budget.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to modify this budget');
+    }
+
     if (budget.status !== 'DRAFT') {
       throw new ForbiddenException('Only draft budgets can be edited');
     }
@@ -193,33 +197,35 @@ export class BudgetService {
     });
     if (!header) throw new NotFoundException('Allocate header not found');
 
-    if (dto.isFinalVersion !== undefined) {
-      await this.prisma.allocateHeader.update({
-        where: { id: BigInt(headerId) },
-        data: { is_final_version: dto.isFinalVersion },
+    return this.prisma.$transaction(async (tx) => {
+      if (dto.isFinalVersion !== undefined) {
+        await tx.allocateHeader.update({
+          where: { id: BigInt(headerId) },
+          data: { is_final_version: dto.isFinalVersion },
+        });
+      }
+
+      await tx.budgetAllocate.deleteMany({ where: { allocate_header_id: BigInt(headerId) } });
+
+      await tx.budgetAllocate.createMany({
+        data: dto.allocations.map(a => ({
+          allocate_header_id: BigInt(headerId),
+          store_id: BigInt(a.storeId),
+          season_group_id: BigInt(a.seasonGroupId),
+          season_id: BigInt(a.seasonId),
+          budget_amount: a.budgetAmount,
+        })),
       });
-    }
 
-    await this.prisma.budgetAllocate.deleteMany({ where: { allocate_header_id: +headerId } });
-
-    await this.prisma.budgetAllocate.createMany({
-      data: dto.allocations.map(a => ({
-        allocate_header_id: +headerId,
-        store_id: BigInt(a.storeId),
-        season_group_id: BigInt(a.seasonGroupId),
-        season_id: BigInt(a.seasonId),
-        budget_amount: a.budgetAmount,
-      })),
-    });
-
-    return this.prisma.allocateHeader.findUnique({
-      where: { id: BigInt(headerId) },
-      include: {
-        brand: { include: { group_brand: true } },
-        budget_allocates: {
-          include: { store: true, season_group: true, season: true },
+      return tx.allocateHeader.findUnique({
+        where: { id: BigInt(headerId) },
+        include: {
+          brand: { include: { group_brand: true } },
+          budget_allocates: {
+            include: { store: true, season_group: true, season: true },
+          },
         },
-      },
+      });
     });
   }
 
@@ -231,6 +237,10 @@ export class BudgetService {
       include: { allocate_headers: { where: { is_snapshot: false } } },
     });
     if (!budget) throw new NotFoundException('Budget not found');
+
+    if (budget.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to modify this budget');
+    }
 
     if (budget.status !== 'DRAFT') {
       throw new BadRequestException(`Cannot submit budget with status: ${budget.status}`);
@@ -245,6 +255,23 @@ export class BudgetService {
   // ─── APPROVE BY LEVEL (unified handler for approvalHelper) ────────────────
 
   async approveByLevel(id: string, level: string, action: string, comment: string, userId: string) {
+    const budget = await this.prisma.budget.findUnique({ where: { id: BigInt(id) } });
+    if (!budget) throw new NotFoundException('Budget not found');
+
+    if (budget.status !== 'SUBMITTED') {
+      throw new BadRequestException(`Cannot process budget with status: ${budget.status}. Must be SUBMITTED.`);
+    }
+
+    // Verify the approver is assigned to this level
+    const workflowLevel = await this.prisma.approvalWorkflowLevel.findUnique({
+      where: { id: BigInt(level) },
+    });
+    if (!workflowLevel) throw new BadRequestException('Approval workflow level not found');
+
+    if (workflowLevel.approver_user_id !== BigInt(userId)) {
+      throw new ForbiddenException('You are not the designated approver for this level');
+    }
+
     if (action === 'REJECTED') return this.reject(id, userId);
     return this.approve(id, userId);
   }
@@ -283,9 +310,13 @@ export class BudgetService {
 
   // ─── DELETE ────────────────────────────────────────────────────────────────
 
-  async remove(id: string) {
+  async remove(id: string, userId: string) {
     const budget = await this.prisma.budget.findUnique({ where: { id: BigInt(id) } });
     if (!budget) throw new NotFoundException('Budget not found');
+
+    if (budget.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to modify this budget');
+    }
 
     if (budget.status !== 'DRAFT') {
       throw new ForbiddenException('Only draft budgets can be deleted');
@@ -318,26 +349,28 @@ export class BudgetService {
     });
     if (!header) throw new NotFoundException('Allocate header not found');
 
-    // Unset final for all other headers of same brand + budget (exclude snapshots)
-    await this.prisma.allocateHeader.updateMany({
-      where: {
-        budget_id: header.budget_id,
-        brand_id: header.brand_id,
-        id: { not: +headerId },
-        is_snapshot: false,
-      },
-      data: { is_final_version: false },
-    });
-
-    return this.prisma.allocateHeader.update({
-      where: { id: BigInt(headerId) },
-      data: { is_final_version: true },
-      include: {
-        brand: { include: { group_brand: true } },
-        budget_allocates: {
-          include: { store: true, season_group: true, season: true },
+    return this.prisma.$transaction(async (tx) => {
+      // Unset final for all other headers of same brand + budget (exclude snapshots)
+      await tx.allocateHeader.updateMany({
+        where: {
+          budget_id: header.budget_id,
+          brand_id: header.brand_id,
+          id: { not: BigInt(headerId) },
+          is_snapshot: false,
         },
-      },
+        data: { is_final_version: false },
+      });
+
+      return tx.allocateHeader.update({
+        where: { id: BigInt(headerId) },
+        data: { is_final_version: true },
+        include: {
+          brand: { include: { group_brand: true } },
+          budget_allocates: {
+            include: { store: true, season_group: true, season: true },
+          },
+        },
+      });
     });
   }
 

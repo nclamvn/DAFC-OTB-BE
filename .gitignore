@@ -40,3 +40,6 @@ src/generated/prisma/query_engine-*.node
 .idea/
 *.swp
 *.swo
+
+
+.claude/skills/

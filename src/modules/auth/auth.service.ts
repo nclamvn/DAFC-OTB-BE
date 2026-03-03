@@ -70,17 +70,16 @@ export class AuthService {
       include: { role: true },
     });
 
-    // Auto-create user if not found
+    // Auto-create user if not found — assign least-privileged role, inactive by default
     if (!user) {
       const defaultRole = await this.prisma.role.findFirst({
-        orderBy: { id: 'asc' },
+        where: { name: 'VIEWER' },
       });
 
       if (!defaultRole) {
-        throw new UnauthorizedException('No roles configured in the system');
+        throw new UnauthorizedException('No default VIEWER role configured in the system');
       }
 
-      // Generate a random password hash (user won't use password login)
       const randomPassword = randomBytes(32).toString('hex');
       const passwordHash = await bcrypt.hash(randomPassword, 10);
 
@@ -90,10 +89,12 @@ export class AuthService {
           name: displayName,
           password_hash: passwordHash,
           role_id: defaultRole.id,
-          is_active: true,
+          is_active: false, // Admin must activate new Microsoft users
         },
         include: { role: true },
       });
+
+      throw new UnauthorizedException('Account created but pending admin activation');
     }
 
     if (!user.is_active) {

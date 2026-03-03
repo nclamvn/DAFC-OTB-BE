@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsOptional, IsArray, ValidateNested, IsNumber, Min, IsInt } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsArray, ValidateNested, IsNumber, Min, Max, IsInt, IsBoolean, MaxLength } from 'class-validator';
 import { Type } from 'class-transformer';
 
 // ─── SKU Proposal Item ──────────────────────────────────────────────────────
@@ -18,11 +18,13 @@ export class SKUProposalItemDto {
   @ApiProperty({ example: 500000, description: 'Unit cost' })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   unitCost: number;
 
   @ApiProperty({ example: 1200000, description: 'Suggested retail price' })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   srp: number;
 }
 
@@ -42,6 +44,7 @@ export class SKUAllocateDto {
   @ApiProperty({ example: 10, description: 'Quantity to allocate' })
   @IsNumber()
   @Min(0)
+  @Max(999_999)
   quantity: number;
 }
 
@@ -71,6 +74,7 @@ export class ProposalSizingItemDto {
   @ApiProperty({ example: 10, description: 'Proposed quantity for this size' })
   @IsInt()
   @Min(0)
+  @Max(999_999)
   proposalQuantity: number;
 }
 
@@ -105,6 +109,7 @@ export class ProposalSizingDto {
   @ApiProperty({ example: 10, description: 'Proposed quantity for this size' })
   @IsInt()
   @Min(0)
+  @Max(999_999)
   proposalQuantity: number;
 }
 
@@ -139,11 +144,13 @@ export class AddProductDto {
   @ApiProperty({ example: 500000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   unitCost: number;
 
   @ApiProperty({ example: 1200000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   srp: number;
 }
 
@@ -168,12 +175,14 @@ export class UpdateSKUProposalDto {
   @ApiPropertyOptional({ example: 500000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   @IsOptional()
   unitCost?: number;
 
   @ApiPropertyOptional({ example: 1200000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   @IsOptional()
   srp?: number;
 }
@@ -211,4 +220,131 @@ export class BulkProposalSizingDto {
   @ValidateNested({ each: true })
   @Type(() => ProposalSizingDto)
   sizings: ProposalSizingDto[];
+}
+
+// ─── Update Proposal Header (replaces `any` in controller) ──────────────────
+
+export class UpdateProposalHeaderDto {
+  @ApiPropertyOptional({ example: true })
+  @IsBoolean()
+  @IsOptional()
+  isFinalVersion?: boolean;
+}
+
+// ─── Update Sizing Header (replaces `any` in controller) ────────────────────
+
+export class UpdateSizingHeaderDto {
+  @ApiPropertyOptional({ example: true })
+  @IsBoolean()
+  @IsOptional()
+  isFinalVersion?: boolean;
+}
+
+// ─── Save Full Proposal ─────────────────────────────────────────────────────
+
+export class SaveFullAllocationDto {
+  @ApiProperty({ description: 'Store ID' })
+  @IsString()
+  @IsNotEmpty()
+  storeId: string;
+
+  @ApiProperty({ example: 10 })
+  @IsNumber()
+  @Min(0)
+  @Max(999_999)
+  quantity: number;
+}
+
+export class SaveFullSizingRowDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  skuProposalProductId: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  subcategorySizeId: string;
+
+  @ApiPropertyOptional({ example: 0 })
+  @IsNumber()
+  @IsOptional()
+  actualSalesmixPct?: number;
+
+  @ApiPropertyOptional({ example: 0 })
+  @IsNumber()
+  @IsOptional()
+  actualStPct?: number;
+
+  @ApiProperty({ example: 10 })
+  @IsInt()
+  @Min(0)
+  @Max(999_999)
+  proposalQuantity: number;
+}
+
+export class SaveFullSizingDto {
+  @ApiProperty({ example: 1 })
+  @IsInt()
+  @Min(1)
+  version: number;
+
+  @ApiPropertyOptional({ example: false })
+  @IsBoolean()
+  @IsOptional()
+  isFinal?: boolean;
+
+  @ApiPropertyOptional({ type: [SaveFullSizingRowDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SaveFullSizingRowDto)
+  @IsOptional()
+  rows?: SaveFullSizingRowDto[];
+}
+
+export class SaveFullProductDto {
+  @ApiProperty({ description: 'Product ID' })
+  @IsString()
+  @IsNotEmpty()
+  productId: string;
+
+  @ApiProperty({ example: 'VIP' })
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(50)
+  customerTarget: string;
+
+  @ApiProperty({ example: 500000 })
+  @IsNumber()
+  @Min(0)
+  @Max(999_999_999_999)
+  unitCost: number;
+
+  @ApiProperty({ example: 1200000 })
+  @IsNumber()
+  @Min(0)
+  @Max(999_999_999_999)
+  srp: number;
+
+  @ApiPropertyOptional({ type: [SaveFullAllocationDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SaveFullAllocationDto)
+  @IsOptional()
+  allocations?: SaveFullAllocationDto[];
+}
+
+export class SaveFullProposalDto {
+  @ApiProperty({ type: [SaveFullProductDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SaveFullProductDto)
+  products: SaveFullProductDto[];
+
+  @ApiPropertyOptional({ type: [SaveFullSizingDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SaveFullSizingDto)
+  @IsOptional()
+  sizings?: SaveFullSizingDto[];
 }

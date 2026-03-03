@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { ApiErrorResponses, ApiSuccessResponse } from '../../common/decorators/api-response.decorator';
 import { AiService } from './ai.service';
 import { BudgetAlertsService } from './budget-alerts.service';
 import { OtbAllocationService } from './otb-allocation.service';
@@ -27,6 +28,7 @@ import {
 
 @ApiTags('AI')
 @ApiBearerAuth()
+@ApiErrorResponses()
 @UseGuards(JwtAuthGuard)
 @Controller('ai')
 export class AiController {
@@ -44,26 +46,26 @@ export class AiController {
 
   @Post('size-curve/calculate')
   @ApiOperation({ summary: 'Calculate recommended size curve for a subcategory' })
+  @ApiSuccessResponse()
   @ApiBody({ type: CalculateSizeCurveDto })
   async calculateSizeCurve(@Body() dto: CalculateSizeCurveDto) {
-    const data = await this.aiService.calculateSizeCurve(
+    return this.aiService.calculateSizeCurve(
       dto.subCategoryId,
       dto.storeId,
       dto.totalOrderQty,
     );
-    return { success: true, data };
   }
 
   @Post('size-curve/compare')
   @ApiOperation({ summary: 'Compare user sizing vs AI recommendation' })
+  @ApiSuccessResponse()
   @ApiBody({ type: CompareSizeCurveDto })
   async compareSizeCurve(@Body() dto: CompareSizeCurveDto) {
-    const data = await this.aiService.compareSizeCurve(
+    return this.aiService.compareSizeCurve(
       dto.subCategoryId,
       dto.storeId,
       dto.userSizing,
     );
-    return { success: true, data };
   }
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -72,33 +74,34 @@ export class AiController {
 
   @Get('alerts')
   @ApiOperation({ summary: 'Get budget alerts' })
+  @ApiSuccessResponse()
   async getAlerts(@Query() query: GetAlertsQueryDto) {
-    const data = await this.budgetAlertsService.getAlerts({
+    return this.budgetAlertsService.getAlerts({
       budgetId: query.budgetId,
       unreadOnly: query.unreadOnly === 'true',
     });
-    return { success: true, data };
   }
 
   @Post('alerts/check')
   @ApiOperation({ summary: 'Manually trigger budget alert check' })
+  @ApiSuccessResponse()
   async triggerAlertCheck() {
     const data = await this.budgetAlertsService.checkAllBudgets();
-    return { success: true, data, message: 'Budget alert check completed' };
+    return { data, message: 'Budget alert check completed' };
   }
 
   @Patch('alerts/:id/read')
   @ApiOperation({ summary: 'Mark alert as read' })
+  @ApiSuccessResponse()
   async markAlertRead(@Param('id') id: string) {
-    const data = await this.budgetAlertsService.markAsRead(id);
-    return { success: true, data };
+    return this.budgetAlertsService.markAsRead(id);
   }
 
   @Patch('alerts/:id/dismiss')
   @ApiOperation({ summary: 'Dismiss an alert' })
+  @ApiSuccessResponse()
   async dismissAlert(@Param('id') id: string) {
-    const data = await this.budgetAlertsService.dismissAlert(id);
-    return { success: true, data };
+    return this.budgetAlertsService.dismissAlert(id);
   }
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -107,21 +110,21 @@ export class AiController {
 
   @Post('allocation/generate')
   @ApiOperation({ summary: 'Generate OTB allocation recommendations' })
+  @ApiSuccessResponse()
   @ApiBody({ type: GenerateAllocationDto })
   async generateAllocation(@Body() dto: GenerateAllocationDto) {
-    const data = await this.otbAllocationService.generateAllocation(dto);
-    return { success: true, data };
+    return this.otbAllocationService.generateAllocation(dto);
   }
 
   @Post('allocation/compare')
   @ApiOperation({ summary: 'Compare user allocation vs AI recommendation' })
+  @ApiSuccessResponse()
   @ApiBody({ type: CompareAllocationDto })
   async compareAllocation(@Body() dto: CompareAllocationDto) {
-    const data = await this.otbAllocationService.compareAllocation(
+    return this.otbAllocationService.compareAllocation(
       dto.userAllocation,
       dto.budgetAmount,
     );
-    return { success: true, data };
   }
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -130,9 +133,9 @@ export class AiController {
 
   @Post('risk/assess/:headerId')
   @ApiOperation({ summary: 'Calculate risk score for a SKU Proposal Header' })
+  @ApiSuccessResponse()
   async assessRisk(@Param('headerId') headerId: string) {
-    const data = await this.riskScoringService.assessProposal(headerId);
-    return { success: true, data };
+    return this.riskScoringService.assessProposal(headerId);
   }
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -141,17 +144,18 @@ export class AiController {
 
   @Post('sku-recommend/generate')
   @ApiOperation({ summary: 'Generate SKU recommendations for a subcategory' })
+  @ApiSuccessResponse()
   @ApiBody({ type: GenerateSkuRecommendationsDto })
   async generateSkuRecommendations(@Body() dto: GenerateSkuRecommendationsDto) {
-    const data = await this.skuRecommenderService.generateRecommendations(dto);
-    return { success: true, data };
+    return this.skuRecommenderService.generateRecommendations(dto);
   }
 
   @Post('sku-recommend/add-to-proposal')
   @ApiOperation({ summary: 'Add recommended products to a SKU Proposal Header' })
+  @ApiSuccessResponse()
   @ApiBody({ type: AddRecommendationsToProposalDto })
   async addToProposal(@Body() dto: AddRecommendationsToProposalDto) {
     const count = await this.skuRecommenderService.addSelectedToProposal(dto.productIds, dto.headerId);
-    return { success: true, data: { addedCount: count }, message: `${count} products added to proposal` };
+    return { data: { addedCount: count }, message: `${count} products added to proposal` };
   }
 }

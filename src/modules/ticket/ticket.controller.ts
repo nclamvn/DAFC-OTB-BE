@@ -4,17 +4,21 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard, RequirePermissions } from '../../common/guards/permissions.guard';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto, ValidateTicketDto } from './dto/ticket.dto';
+import { PERMISSIONS } from '../../common/constants/permissions';
+import { ApiErrorResponses, ApiGenericPaginatedResponse, ApiSuccessResponse } from '../../common/decorators/api-response.decorator';
 
 @ApiTags('tickets')
 @ApiBearerAuth()
+@ApiErrorResponses()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 @Controller('tickets')
 export class TicketController {
   constructor(private ticketService: TicketService) {}
 
   @Get()
-  @RequirePermissions('ticket:read')
+  @RequirePermissions(PERMISSIONS.TICKET.READ)
   @ApiOperation({ summary: 'List tickets with filters and pagination' })
+  @ApiGenericPaginatedResponse()
   @ApiQuery({ name: 'status', required: false })
   @ApiQuery({ name: 'budgetId', required: false })
   @ApiQuery({ name: 'seasonGroupId', required: false })
@@ -29,47 +33,48 @@ export class TicketController {
     @Query('page') page?: number,
     @Query('pageSize') pageSize?: number,
   ) {
-    const result = await this.ticketService.findAll({
+    return this.ticketService.findAll({
       status, budgetId, seasonGroupId, seasonId, page, pageSize,
     });
-    return { success: true, ...result };
   }
 
   @Get('statistics')
-  @RequirePermissions('ticket:read')
+  @RequirePermissions(PERMISSIONS.TICKET.READ)
   @ApiOperation({ summary: 'Get ticket statistics' })
+  @ApiSuccessResponse()
   async getStatistics() {
-    return { success: true, data: await this.ticketService.getStatistics() };
+    return this.ticketService.getStatistics();
   }
 
   // Validate endpoint — MUST be before :id to avoid route conflict
   @Post('validate')
-  @RequirePermissions('ticket:write')
+  @RequirePermissions(PERMISSIONS.TICKET.WRITE)
   @ApiOperation({ summary: 'Validate budget readiness for ticket creation' })
+  @ApiSuccessResponse()
   async validate(@Body() body: ValidateTicketDto) {
-    const result = await this.ticketService.validateBudgetReadiness(
-      body.budgetId,
-    );
-    return { success: true, data: result };
+    return this.ticketService.validateBudgetReadiness(body.budgetId);
   }
 
   @Get(':id')
-  @RequirePermissions('ticket:read')
+  @RequirePermissions(PERMISSIONS.TICKET.READ)
   @ApiOperation({ summary: 'Get ticket details with snapshot and approval history' })
+  @ApiSuccessResponse()
   async findOne(@Param('id') id: string) {
-    return { success: true, data: await this.ticketService.findOne(id) };
+    return this.ticketService.findOne(id);
   }
 
   @Post()
-  @RequirePermissions('ticket:write')
+  @RequirePermissions(PERMISSIONS.TICKET.WRITE)
   @ApiOperation({ summary: 'Create a new ticket with validation and snapshot' })
+  @ApiSuccessResponse('Ticket created')
   async create(@Body() body: CreateTicketDto, @Request() req: any) {
-    return { success: true, data: await this.ticketService.create(body, req.user.sub) };
+    return this.ticketService.create(body, req.user.sub);
   }
 
   @Post(':id/approve')
-  @RequirePermissions('ticket:approve')
+  @RequirePermissions(PERMISSIONS.TICKET.APPROVE)
   @ApiOperation({ summary: 'Process approval decision on a ticket' })
+  @ApiSuccessResponse()
   async processApproval(
     @Param('id') id: string,
     @Body() body: {
@@ -79,13 +84,14 @@ export class TicketController {
     },
     @Request() req: any,
   ) {
-    return { success: true, data: await this.ticketService.processApproval(id, body, req.user.sub) };
+    return this.ticketService.processApproval(id, body, req.user.sub);
   }
 
   @Get(':id/history')
-  @RequirePermissions('ticket:read')
+  @RequirePermissions(PERMISSIONS.TICKET.READ)
   @ApiOperation({ summary: 'Get approval history for a ticket' })
+  @ApiSuccessResponse()
   async getApprovalHistory(@Param('id') id: string) {
-    return { success: true, data: await this.ticketService.getApprovalHistory(id) };
+    return this.ticketService.getApprovalHistory(id);
   }
 }

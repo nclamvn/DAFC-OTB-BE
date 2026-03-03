@@ -654,7 +654,7 @@ export class TicketService {
     }
 
     const level = await this.prisma.approvalWorkflowLevel.findUnique({
-      where: { id: +data.approvalWorkflowLevelId },
+      where: { id: BigInt(data.approvalWorkflowLevelId) },
     });
     if (!level) throw new BadRequestException('Approval workflow level not found');
 
@@ -664,8 +664,8 @@ export class TicketService {
 
     const log = await this.prisma.ticketApprovalLog.create({
       data: {
-        ticket_id: +ticketId,
-        approval_workflow_level_id: +data.approvalWorkflowLevelId,
+        ticket_id: BigInt(ticketId),
+        approval_workflow_level_id: BigInt(data.approvalWorkflowLevelId),
         approver_user_id: BigInt(userId),
         is_approved: data.isApproved,
         comment: data.comment,
@@ -684,7 +684,7 @@ export class TicketService {
       const workflow = await this.prisma.approvalWorkflow.findFirst({
         where: {
           approval_workflow_levels: {
-            some: { id: +data.approvalWorkflowLevelId },
+            some: { id: BigInt(data.approvalWorkflowLevelId) },
           },
         },
         include: {
@@ -697,7 +697,7 @@ export class TicketService {
 
       if (workflow) {
         const allLogs = await this.prisma.ticketApprovalLog.findMany({
-          where: { ticket_id: +ticketId, is_approved: true },
+          where: { ticket_id: BigInt(ticketId), is_approved: true },
         });
         const approvedLevelIds = new Set(allLogs.map(l => l.approval_workflow_level_id));
         const allRequiredApproved = workflow.approval_workflow_levels.every(
@@ -723,7 +723,7 @@ export class TicketService {
 
   async getApprovalHistory(ticketId: string) {
     const logs = await this.prisma.ticketApprovalLog.findMany({
-      where: { ticket_id: +ticketId },
+      where: { ticket_id: BigInt(ticketId) },
       include: {
         approver_user: { select: { id: true, name: true, email: true } },
         approval_workflow_level: true,

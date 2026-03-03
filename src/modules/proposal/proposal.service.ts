@@ -8,6 +8,9 @@ import {
   BulkSKUAllocateDto,
   BulkProposalSizingDto,
   CreateProposalSizingHeaderDto,
+  UpdateProposalHeaderDto,
+  UpdateSizingHeaderDto,
+  SaveFullProposalDto,
 } from './dto/proposal.dto';
 
 interface ProposalFilters {
@@ -407,7 +410,7 @@ export class ProposalService {
     return header;
   }
 
-  async updateSizingHeader(headerId: string, dto: any, userId: string) {
+  async updateSizingHeader(headerId: string, dto: UpdateSizingHeaderDto, userId: string) {
     const header = await this.findOrFail(this.prisma.proposalSizingHeader, headerId, 'Proposal Sizing Header') as any;
 
     const updateData: Record<string, any> = { updated_by: toBigInt(userId) };
@@ -495,6 +498,9 @@ export class ProposalService {
 
   async submit(id: string, userId: string) {
     const header = await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header') as any;
+    if (header.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to submit this proposal');
+    }
     if (header.status !== 'DRAFT') throw new BadRequestException(`Cannot submit with status: ${header.status}`);
     return this.prisma.sKUProposalHeader.update({ where: { id: toBigInt(id) }, data: { status: 'SUBMITTED' } });
   }
@@ -504,14 +510,27 @@ export class ProposalService {
     if (header.status !== 'SUBMITTED') {
       throw new BadRequestException(`Cannot approve/reject with status: ${header.status}. Must be SUBMITTED.`);
     }
+
+    // Verify the approver is assigned to this level
+    const workflowLevel = await this.prisma.approvalWorkflowLevel.findUnique({
+      where: { id: BigInt(level) },
+    });
+    if (!workflowLevel) throw new BadRequestException('Approval workflow level not found');
+    if (workflowLevel.approver_user_id !== BigInt(userId)) {
+      throw new ForbiddenException('You are not the designated approver for this level');
+    }
+
     const newStatus = action === 'REJECTED' ? 'REJECTED' : 'APPROVED';
     return this.prisma.sKUProposalHeader.update({ where: { id: toBigInt(id) }, data: { status: newStatus } });
   }
 
   // ─── UPDATE HEADER ────────────────────────────────────────────────────
 
-  async updateHeader(id: string, dto: any, userId: string) {
+  async updateHeader(id: string, dto: UpdateProposalHeaderDto, userId: string) {
     const header = await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header') as any;
+    if (header.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to modify this proposal');
+    }
     if (header.status !== 'DRAFT') throw new ForbiddenException('Only draft proposals can be edited');
     const updateData: Record<string, any> = { updated_by: toBigInt(userId) };
     if (dto.isFinalVersion !== undefined) updateData.is_final_version = dto.isFinalVersion;
@@ -529,20 +548,7 @@ export class ProposalService {
 
   // ─── SAVE FULL PROPOSAL (products + store allocations + sizing) ──────
 
-  async saveFullProposal(headerId: string, dto: {
-    products: Array<{
-      productId: string;
-      customerTarget: string;
-      unitCost: number;
-      srp: number;
-      allocations?: Array<{ storeId: string; quantity: number }>;
-    }>;
-    sizings?: Array<{
-      version: number;
-      isFinal?: boolean;
-      rows?: Array<{ skuProposalProductId: string; subcategorySizeId: string; actualSalesmixPct?: number; actualStPct?: number; proposalQuantity: number }>;
-    }>;
-  }, userId: string) {
+  async saveFullProposal(headerId: string, dto: SaveFullProposalDto, userId: string) {
     await this.findOrFail(this.prisma.sKUProposalHeader, headerId, 'SKU Proposal Header');
 
     await this.prisma.$transaction(async (tx) => {
@@ -691,8 +697,11 @@ export class ProposalService {
 
   // ─── DELETE HEADER ────────────────────────────────────────────────────
 
-  async remove(id: string) {
-    await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header');
+  async remove(id: string, userId: string) {
+    const header = await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header') as any;
+    if (header.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to delete this proposal');
+    }
     return this.prisma.sKUProposalHeader.delete({ where: { id: toBigInt(id) } });
   }
 }

@@ -3,10 +3,13 @@ import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery, ApiBody } from '@nestjs
 import { PlanningService } from './planning.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard, RequirePermissions } from '../../common/guards/permissions.guard';
-import { CreatePlanningDto, UpdatePlanningDto } from './dto/planning.dto';
+import { CreatePlanningDto, UpdatePlanningDto, UpdatePlanningDetailDto } from './dto/planning.dto';
+import { PERMISSIONS } from '../../common/constants/permissions';
+import { ApiErrorResponses, ApiGenericPaginatedResponse, ApiSuccessResponse, ApiMessageResponse } from '../../common/decorators/api-response.decorator';
 
 @ApiTags('planning')
 @ApiBearerAuth()
+@ApiErrorResponses()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 @Controller('planning')
 export class PlanningController {
@@ -15,8 +18,9 @@ export class PlanningController {
   // ─── LIST ──────────────────────────────────────────────────────────────────
 
   @Get()
-  @RequirePermissions('planning:read')
+  @RequirePermissions(PERMISSIONS.PLANNING.READ)
   @ApiOperation({ summary: 'List planning headers with filters and pagination' })
+  @ApiGenericPaginatedResponse()
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'pageSize', required: false, type: Number })
   @ApiQuery({ name: 'status', required: false, description: 'Filter by status (DRAFT, SUBMITTED, APPROVED, REJECTED)' })
@@ -31,29 +35,30 @@ export class PlanningController {
     @Query('brandId') brandId?: string,
     @Query('allocateHeaderId') allocateHeaderId?: string,
   ) {
-    const result = await this.planningService.findAll({ page, pageSize, status, budgetId, brandId, allocateHeaderId });
-    return { success: true, ...result };
+    return this.planningService.findAll({ page, pageSize, status, budgetId, brandId, allocateHeaderId });
   }
 
   // ─── FILTER OPTIONS FOR PLANNING DETAIL (Category tab) ───────────────────
 
   @Get('filter-options/categories')
-  @RequirePermissions('planning:read')
+  @RequirePermissions(PERMISSIONS.PLANNING.READ)
   @ApiOperation({ summary: 'Get Gender → Category → SubCategory hierarchy for Planning Detail filter dropdowns' })
+  @ApiSuccessResponse()
   @ApiQuery({ name: 'genderId', required: false, description: 'Filter by gender ID (cascading)' })
   @ApiQuery({ name: 'categoryId', required: false, description: 'Filter by category ID (cascading to sub-categories)' })
   async getCategoryFilterOptions(
     @Query('genderId') genderId?: string,
     @Query('categoryId') categoryId?: string,
   ) {
-    return { success: true, data: await this.planningService.getCategoryFilterOptions(genderId, categoryId) };
+    return this.planningService.getCategoryFilterOptions(genderId, categoryId);
   }
 
   // ─── HISTORICAL (comparison data) ─────────────────────────────────────────
 
   @Get('historical')
-  @RequirePermissions('planning:read')
+  @RequirePermissions(PERMISSIONS.PLANNING.READ)
   @ApiOperation({ summary: 'Get historical planning data for year/season/brand comparison' })
+  @ApiSuccessResponse()
   @ApiQuery({ name: 'fiscalYear', required: true, type: Number })
   @ApiQuery({ name: 'seasonGroupName', required: true, type: String })
   @ApiQuery({ name: 'seasonName', required: true, type: String })
@@ -64,61 +69,67 @@ export class PlanningController {
     @Query('seasonName') seasonName: string,
     @Query('brandId') brandId: string,
   ) {
-    return { success: true, data: await this.planningService.findHistorical({ fiscalYear: Number(fiscalYear), seasonGroupName, seasonName, brandId }) };
+    return this.planningService.findHistorical({ fiscalYear: Number(fiscalYear), seasonGroupName, seasonName, brandId });
   }
 
   // ─── GET ONE ───────────────────────────────────────────────────────────────
 
   @Get(':id')
-  @RequirePermissions('planning:read')
+  @RequirePermissions(PERMISSIONS.PLANNING.READ)
   @ApiOperation({ summary: 'Get planning header with all details (collections, genders, categories)' })
+  @ApiSuccessResponse()
   async findOne(@Param('id') id: string) {
-    return { success: true, data: await this.planningService.findOne(id) };
+    return this.planningService.findOne(id);
   }
 
   // ─── CREATE ────────────────────────────────────────────────────────────────
 
   @Post()
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Create new planning header with details' })
+  @ApiSuccessResponse('Planning created')
   @ApiBody({ type: CreatePlanningDto })
   async create(@Body() dto: CreatePlanningDto, @Request() req: any) {
-    return { success: true, data: await this.planningService.create(dto, req.user.sub) };
+    return this.planningService.create(dto, req.user.sub);
   }
 
   // ─── COPY FROM EXISTING ────────────────────────────────────────────────────
 
   @Post(':id/copy')
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Create new version by copying an existing one' })
+  @ApiSuccessResponse('Version copied')
   async createFromVersion(@Param('id') id: string, @Request() req: any) {
-    return { success: true, data: await this.planningService.createFromVersion(id, req.user.sub) };
+    return this.planningService.createFromVersion(id, req.user.sub);
   }
 
   // ─── UPDATE ────────────────────────────────────────────────────────────────
 
   @Put(':id')
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Update planning header details' })
+  @ApiSuccessResponse('Planning updated')
   @ApiBody({ type: UpdatePlanningDto })
   async update(@Param('id') id: string, @Body() dto: UpdatePlanningDto, @Request() req: any) {
-    return { success: true, data: await this.planningService.update(id, dto, req.user.sub) };
+    return this.planningService.update(id, dto, req.user.sub);
   }
 
   // ─── SUBMIT ────────────────────────────────────────────────────────────────
 
   @Post(':id/submit')
-  @RequirePermissions('planning:submit')
+  @RequirePermissions(PERMISSIONS.PLANNING.SUBMIT)
   @ApiOperation({ summary: 'Submit planning for approval (DRAFT → SUBMITTED)' })
+  @ApiMessageResponse('Planning submitted')
   async submit(@Param('id') id: string, @Request() req: any) {
-    return { success: true, data: await this.planningService.submit(id, req.user.sub) };
+    return this.planningService.submit(id, req.user.sub);
   }
 
   // ─── APPROVE BY LEVEL (used by approvalHelper) ────────────────────────────
 
   @Post(':id/approve/:level')
-  @RequirePermissions('planning:approve')
+  @RequirePermissions(PERMISSIONS.PLANNING.APPROVE)
   @ApiOperation({ summary: 'Approve or reject planning by level (action: APPROVED | REJECTED)' })
+  @ApiSuccessResponse()
   async approveByLevel(
     @Param('id') id: string,
     @Param('level') level: string,
@@ -126,39 +137,42 @@ export class PlanningController {
     @Body('comment') comment: string,
     @Request() req: any,
   ) {
-    return { success: true, data: await this.planningService.approveByLevel(id, level, action, comment, req.user.sub) };
+    return this.planningService.approveByLevel(id, level, action, comment, req.user.sub);
   }
 
   // ─── FINALIZE ──────────────────────────────────────────────────────────────
 
   @Post(':id/final')
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Mark planning version as final' })
+  @ApiMessageResponse('Planning finalized')
   async finalize(@Param('id') id: string, @Request() req: any) {
-    return { success: true, data: await this.planningService.finalize(id, req.user.sub) };
+    return this.planningService.finalize(id, req.user.sub);
   }
 
   // ─── UPDATE DETAIL ─────────────────────────────────────────────────────────
 
   @Patch(':id/details/:detailId')
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Update a single planning detail row' })
+  @ApiSuccessResponse('Detail updated')
   async updateDetail(
     @Param('id') id: string,
     @Param('detailId') detailId: string,
-    @Body() dto: any,
+    @Body() dto: UpdatePlanningDetailDto,
     @Request() req: any,
   ) {
-    return { success: true, data: await this.planningService.updateDetail(id, detailId, dto, req.user.sub) };
+    return this.planningService.updateDetail(id, detailId, dto, req.user.sub);
   }
 
   // ─── DELETE ────────────────────────────────────────────────────────────────
 
   @Delete(':id')
-  @RequirePermissions('planning:write')
+  @RequirePermissions(PERMISSIONS.PLANNING.WRITE)
   @ApiOperation({ summary: 'Delete planning header' })
-  async remove(@Param('id') id: string) {
-    await this.planningService.remove(id);
-    return { success: true, message: 'Planning header deleted' };
+  @ApiMessageResponse('Planning deleted')
+  async remove(@Param('id') id: string, @Request() req: any) {
+    await this.planningService.remove(id, req.user.sub);
+    return { message: 'Planning header deleted' };
   }
 }

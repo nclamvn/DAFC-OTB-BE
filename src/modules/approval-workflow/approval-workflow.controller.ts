@@ -2,40 +2,47 @@ import { Controller, Get, Post, Patch, Delete, Body, Param, Query, UseGuards } f
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard, RequirePermissions } from '../../common/guards/permissions.guard';
+import { PERMISSIONS } from '../../common/constants/permissions';
 import { ApprovalWorkflowService } from './approval-workflow.service';
+import { ApiErrorResponses, ApiSuccessResponse, ApiMessageResponse } from '../../common/decorators/api-response.decorator';
 
 @ApiTags('approval-workflow')
 @ApiBearerAuth()
+@ApiErrorResponses()
 @UseGuards(JwtAuthGuard, PermissionsGuard)
 @Controller('approval-workflow')
 export class ApprovalWorkflowController {
   constructor(private service: ApprovalWorkflowService) {}
 
   @Get()
-  @RequirePermissions('approval:read')
+  @RequirePermissions(PERMISSIONS.APPROVAL.READ)
   @ApiOperation({ summary: 'List all approval workflows' })
+  @ApiSuccessResponse()
   @ApiQuery({ name: 'groupBrandId', required: false })
   async findAll(@Query('groupBrandId') groupBrandId?: string) {
-    return { success: true, data: await this.service.findAll(groupBrandId) };
+    return this.service.findAll(groupBrandId);
   }
 
   @Get(':id')
-  @RequirePermissions('approval:read')
+  @RequirePermissions(PERMISSIONS.APPROVAL.READ)
   @ApiOperation({ summary: 'Get workflow by ID with levels' })
+  @ApiSuccessResponse()
   async findOne(@Param('id') id: string) {
-    return { success: true, data: await this.service.findOne(id) };
+    return this.service.findOne(id);
   }
 
   @Get('group-brand/:groupBrandId')
-  @RequirePermissions('approval:read')
+  @RequirePermissions(PERMISSIONS.APPROVAL.READ)
   @ApiOperation({ summary: 'Get workflows for a group brand' })
+  @ApiSuccessResponse()
   async findByGroupBrand(@Param('groupBrandId') groupBrandId: string) {
-    return { success: true, data: await this.service.findByGroupBrand(groupBrandId) };
+    return this.service.findByGroupBrand(groupBrandId);
   }
 
   @Post()
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Create a new approval workflow' })
+  @ApiSuccessResponse('Workflow created')
   async create(@Body() body: {
     groupBrandId: string;
     workflowName: string;
@@ -46,51 +53,56 @@ export class ApprovalWorkflowController {
       isRequired: boolean;
     }>;
   }) {
-    return { success: true, data: await this.service.create(body) };
+    return this.service.create(body);
   }
 
   @Post(':id/levels')
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Add a level to a workflow' })
+  @ApiSuccessResponse('Level added')
   async addLevel(@Param('id') id: string, @Body() body: {
     levelOrder: number;
     levelName: string;
     approverUserId: string;
     isRequired: boolean;
   }) {
-    return { success: true, data: await this.service.addLevel(id, body) };
+    return this.service.addLevel(id, body);
   }
 
   @Patch('levels/:levelId')
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Update a workflow level' })
+  @ApiSuccessResponse('Level updated')
   async updateLevel(@Param('levelId') levelId: string, @Body() body: {
     levelOrder?: number;
     levelName?: string;
     approverUserId?: string;
     isRequired?: boolean;
   }) {
-    return { success: true, data: await this.service.updateLevel(levelId, body) };
+    return this.service.updateLevel(levelId, body);
   }
 
   @Delete('levels/:levelId')
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Remove a workflow level' })
+  @ApiMessageResponse('Level deleted')
   async removeLevel(@Param('levelId') levelId: string) {
-    return { success: true, ...(await this.service.removeLevel(levelId)) };
+    return this.service.removeLevel(levelId);
   }
 
   @Delete(':id')
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Delete a workflow' })
+  @ApiMessageResponse('Workflow deleted')
   async remove(@Param('id') id: string) {
-    return { success: true, ...(await this.service.remove(id)) };
+    return this.service.remove(id);
   }
 
   @Post(':id/reorder')
-  @RequirePermissions('approval:write')
+  @RequirePermissions(PERMISSIONS.APPROVAL.WRITE)
   @ApiOperation({ summary: 'Reorder workflow levels' })
+  @ApiSuccessResponse('Levels reordered')
   async reorderLevels(@Param('id') id: string, @Body('levelIds') levelIds: string[]) {
-    return { success: true, data: await this.service.reorderLevels(id, levelIds) };
+    return this.service.reorderLevels(id, levelIds);
   }
 }

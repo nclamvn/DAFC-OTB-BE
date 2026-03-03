@@ -1,6 +1,6 @@
-import { Injectable, BadRequestException, NotFoundException, ForbiddenException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException, ForbiddenException, Logger } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { CreatePlanningDto, UpdatePlanningDto } from './dto/planning.dto';
+import { CreatePlanningDto, UpdatePlanningDto, UpdatePlanningDetailDto } from './dto/planning.dto';
 
 interface PlanningFilters {
   page?: number;
@@ -13,6 +13,8 @@ interface PlanningFilters {
 
 @Injectable()
 export class PlanningService {
+  private readonly logger = new Logger(PlanningService.name);
+
   constructor(private prisma: PrismaService) {}
 
   // ─── LIST ──────────────────────────────────────────────────────────────────
@@ -21,7 +23,7 @@ export class PlanningService {
     const page = Number(filters.page) || 1;
     const pageSize = Number(filters.pageSize) || 20;
 
-    const where: any = {};
+    const where: Record<string, unknown> = {};
     if (filters.status) where.status = filters.status;
     if (filters.allocateHeaderId) where.allocate_header_id = BigInt(filters.allocateHeaderId);
     // Always exclude snapshot records from normal queries
@@ -95,7 +97,7 @@ export class PlanningService {
       return planning;
     } catch (err) {
       if (err instanceof NotFoundException) throw err;
-      console.error(`[Planning.findOne] id=${id} error:`, err);
+      this.logger.error(`[Planning.findOne] id=${id} error:`, err);
       throw err;
     }
   }
@@ -167,7 +169,7 @@ export class PlanningService {
   // ─── CREATE ────────────────────────────────────────────────────────────────
 
   async create(dto: CreatePlanningDto, userId: string) {
-    console.log('[PlanningService.create] allocateHeaderId:', dto.allocateHeaderId,
+    this.logger.debug('[PlanningService.create] allocateHeaderId:', dto.allocateHeaderId,
       'seasonTypes:', dto.seasonTypes?.length || 0,
       'genders:', dto.genders?.length || 0,
       'categories:', dto.categories?.length || 0);
@@ -177,72 +179,77 @@ export class PlanningService {
     // Find brand_id from allocate_header, then scope version to same brand
     const ah = await this.prisma.allocateHeader.findUnique({ where: { id: allocateHeaderIdBig }, select: { brand_id: true } });
     if (!ah) throw new NotFoundException('AllocateHeader not found');
-    const versionWhere: any = { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } };
-    const lastHeader = await this.prisma.planningHeader.findFirst({
-      where: versionWhere,
-      orderBy: { version: 'desc' },
+
+    const header = await this.prisma.$transaction(async (tx) => {
+      const versionWhere: any = { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } };
+      const lastHeader = await tx.planningHeader.findFirst({
+        where: versionWhere,
+        orderBy: { version: 'desc' },
+      });
+      const version = (lastHeader?.version || 0) + 1;
+
+      // Step 1: Create header
+      const created = await tx.planningHeader.create({
+        data: {
+          version,
+          created_by: BigInt(userId),
+          allocate_header_id: allocateHeaderIdBig,
+        },
+      });
+
+      // Step 2: Bulk-insert child records using createMany
+      if (dto.seasonTypes && dto.seasonTypes.length > 0) {
+        await tx.planningCollection.createMany({
+          data: dto.seasonTypes.map(c => ({
+            season_type_id: BigInt(c.seasonTypeId),
+            store_id: BigInt(c.storeId),
+            planning_header_id: created.id,
+            actual_buy_pct: c.actualBuyPct || 0,
+            actual_sales_pct: c.actualSalesPct || 0,
+            actual_st_pct: c.actualStPct || 0,
+            actual_moc: c.actualMoc || 0,
+            proposed_buy_pct: c.proposedBuyPct,
+            otb_proposed_amount: c.otbProposedAmount,
+            pct_var_vs_last: c.pctVarVsLast || 0,
+          })),
+        });
+      }
+
+      if (dto.genders && dto.genders.length > 0) {
+        await tx.planningGender.createMany({
+          data: dto.genders.map(g => ({
+            gender_id: BigInt(g.genderId),
+            store_id: BigInt(g.storeId),
+            planning_header_id: created.id,
+            actual_buy_pct: g.actualBuyPct || 0,
+            actual_sales_pct: g.actualSalesPct || 0,
+            actual_st_pct: g.actualStPct || 0,
+            proposed_buy_pct: g.proposedBuyPct,
+            otb_proposed_amount: g.otbProposedAmount,
+            pct_var_vs_last: g.pctVarVsLast || 0,
+          })),
+        });
+      }
+
+      if (dto.categories && dto.categories.length > 0) {
+        await tx.planningCategory.createMany({
+          data: dto.categories.map(cat => ({
+            subcategory_id: BigInt(cat.subcategoryId),
+            planning_header_id: created.id,
+            actual_buy_pct: cat.actualBuyPct || 0,
+            actual_sales_pct: cat.actualSalesPct || 0,
+            actual_st_pct: cat.actualStPct || 0,
+            proposed_buy_pct: cat.proposedBuyPct,
+            otb_proposed_amount: cat.otbProposedAmount,
+            var_lastyear_pct: cat.varLastyearPct || 0,
+            otb_actual_amount: cat.otbActualAmount || 0,
+            otb_actual_buy_pct: cat.otbActualBuyPct || 0,
+          })),
+        });
+      }
+
+      return created;
     });
-    const version = (lastHeader?.version || 0) + 1;
-
-    // Step 1: Create header
-    const header = await this.prisma.planningHeader.create({
-      data: {
-        version,
-        created_by: BigInt(userId),
-        allocate_header_id: allocateHeaderIdBig,
-      },
-    });
-
-    // Step 2: Bulk-insert child records using createMany (same pattern as update)
-    if (dto.seasonTypes && dto.seasonTypes.length > 0) {
-      await this.prisma.planningCollection.createMany({
-        data: dto.seasonTypes.map(c => ({
-          season_type_id: BigInt(c.seasonTypeId),
-          store_id: BigInt(c.storeId),
-          planning_header_id: header.id,
-          actual_buy_pct: c.actualBuyPct || 0,
-          actual_sales_pct: c.actualSalesPct || 0,
-          actual_st_pct: c.actualStPct || 0,
-          actual_moc: c.actualMoc || 0,
-          proposed_buy_pct: c.proposedBuyPct,
-          otb_proposed_amount: c.otbProposedAmount,
-          pct_var_vs_last: c.pctVarVsLast || 0,
-        })),
-      });
-    }
-
-    if (dto.genders && dto.genders.length > 0) {
-      await this.prisma.planningGender.createMany({
-        data: dto.genders.map(g => ({
-          gender_id: BigInt(g.genderId),
-          store_id: BigInt(g.storeId),
-          planning_header_id: header.id,
-          actual_buy_pct: g.actualBuyPct || 0,
-          actual_sales_pct: g.actualSalesPct || 0,
-          actual_st_pct: g.actualStPct || 0,
-          proposed_buy_pct: g.proposedBuyPct,
-          otb_proposed_amount: g.otbProposedAmount,
-          pct_var_vs_last: g.pctVarVsLast || 0,
-        })),
-      });
-    }
-
-    if (dto.categories && dto.categories.length > 0) {
-      await this.prisma.planningCategory.createMany({
-        data: dto.categories.map(cat => ({
-          subcategory_id: BigInt(cat.subcategoryId),
-          planning_header_id: header.id,
-          actual_buy_pct: cat.actualBuyPct || 0,
-          actual_sales_pct: cat.actualSalesPct || 0,
-          actual_st_pct: cat.actualStPct || 0,
-          proposed_buy_pct: cat.proposedBuyPct,
-          otb_proposed_amount: cat.otbProposedAmount,
-          var_lastyear_pct: cat.varLastyearPct || 0,
-          otb_actual_amount: cat.otbActualAmount || 0,
-          otb_actual_buy_pct: cat.otbActualBuyPct || 0,
-        })),
-      });
-    }
 
     // Return full planning with includes
     return this.findOne(String(header.id));
@@ -254,65 +261,71 @@ export class PlanningService {
     const planning = await this.prisma.planningHeader.findUnique({ where: { id: BigInt(id) } });
     if (!planning) throw new NotFoundException('Planning header not found');
 
-    if (dto.allocateHeaderId !== undefined) {
-      await this.prisma.planningHeader.update({
-        where: { id: BigInt(id) },
-        data: { allocate_header_id: BigInt(dto.allocateHeaderId) },
-      });
+    if (planning.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to modify this planning');
     }
 
-    if (dto.seasonTypes) {
-      await this.prisma.planningCollection.deleteMany({ where: { planning_header_id: BigInt(id) } });
-      await this.prisma.planningCollection.createMany({
-        data: dto.seasonTypes.map(c => ({
-          season_type_id: BigInt(c.seasonTypeId),
-          store_id: BigInt(c.storeId),
-          planning_header_id: BigInt(id),
-          actual_buy_pct: c.actualBuyPct || 0,
-          actual_sales_pct: c.actualSalesPct || 0,
-          actual_st_pct: c.actualStPct || 0,
-          actual_moc: c.actualMoc || 0,
-          proposed_buy_pct: c.proposedBuyPct,
-          otb_proposed_amount: c.otbProposedAmount,
-          pct_var_vs_last: c.pctVarVsLast || 0,
-        })),
-      });
-    }
+    await this.prisma.$transaction(async (tx) => {
+      if (dto.allocateHeaderId !== undefined) {
+        await tx.planningHeader.update({
+          where: { id: BigInt(id) },
+          data: { allocate_header_id: BigInt(dto.allocateHeaderId) },
+        });
+      }
 
-    if (dto.genders) {
-      await this.prisma.planningGender.deleteMany({ where: { planning_header_id: BigInt(id) } });
-      await this.prisma.planningGender.createMany({
-        data: dto.genders.map(g => ({
-          gender_id: BigInt(g.genderId),
-          store_id: BigInt(g.storeId),
-          planning_header_id: BigInt(id),
-          actual_buy_pct: g.actualBuyPct || 0,
-          actual_sales_pct: g.actualSalesPct || 0,
-          actual_st_pct: g.actualStPct || 0,
-          proposed_buy_pct: g.proposedBuyPct,
-          otb_proposed_amount: g.otbProposedAmount,
-          pct_var_vs_last: g.pctVarVsLast || 0,
-        })),
-      });
-    }
+      if (dto.seasonTypes) {
+        await tx.planningCollection.deleteMany({ where: { planning_header_id: BigInt(id) } });
+        await tx.planningCollection.createMany({
+          data: dto.seasonTypes.map(c => ({
+            season_type_id: BigInt(c.seasonTypeId),
+            store_id: BigInt(c.storeId),
+            planning_header_id: BigInt(id),
+            actual_buy_pct: c.actualBuyPct || 0,
+            actual_sales_pct: c.actualSalesPct || 0,
+            actual_st_pct: c.actualStPct || 0,
+            actual_moc: c.actualMoc || 0,
+            proposed_buy_pct: c.proposedBuyPct,
+            otb_proposed_amount: c.otbProposedAmount,
+            pct_var_vs_last: c.pctVarVsLast || 0,
+          })),
+        });
+      }
 
-    if (dto.categories) {
-      await this.prisma.planningCategory.deleteMany({ where: { planning_header_id: BigInt(id) } });
-      await this.prisma.planningCategory.createMany({
-        data: dto.categories.map(cat => ({
-          subcategory_id: BigInt(cat.subcategoryId),
-          planning_header_id: BigInt(id),
-          actual_buy_pct: cat.actualBuyPct || 0,
-          actual_sales_pct: cat.actualSalesPct || 0,
-          actual_st_pct: cat.actualStPct || 0,
-          proposed_buy_pct: cat.proposedBuyPct,
-          otb_proposed_amount: cat.otbProposedAmount,
-          var_lastyear_pct: cat.varLastyearPct || 0,
-          otb_actual_amount: cat.otbActualAmount || 0,
-          otb_actual_buy_pct: cat.otbActualBuyPct || 0,
-        })),
-      });
-    }
+      if (dto.genders) {
+        await tx.planningGender.deleteMany({ where: { planning_header_id: BigInt(id) } });
+        await tx.planningGender.createMany({
+          data: dto.genders.map(g => ({
+            gender_id: BigInt(g.genderId),
+            store_id: BigInt(g.storeId),
+            planning_header_id: BigInt(id),
+            actual_buy_pct: g.actualBuyPct || 0,
+            actual_sales_pct: g.actualSalesPct || 0,
+            actual_st_pct: g.actualStPct || 0,
+            proposed_buy_pct: g.proposedBuyPct,
+            otb_proposed_amount: g.otbProposedAmount,
+            pct_var_vs_last: g.pctVarVsLast || 0,
+          })),
+        });
+      }
+
+      if (dto.categories) {
+        await tx.planningCategory.deleteMany({ where: { planning_header_id: BigInt(id) } });
+        await tx.planningCategory.createMany({
+          data: dto.categories.map(cat => ({
+            subcategory_id: BigInt(cat.subcategoryId),
+            planning_header_id: BigInt(id),
+            actual_buy_pct: cat.actualBuyPct || 0,
+            actual_sales_pct: cat.actualSalesPct || 0,
+            actual_st_pct: cat.actualStPct || 0,
+            proposed_buy_pct: cat.proposedBuyPct,
+            otb_proposed_amount: cat.otbProposedAmount,
+            var_lastyear_pct: cat.varLastyearPct || 0,
+            otb_actual_amount: cat.otbActualAmount || 0,
+            otb_actual_buy_pct: cat.otbActualBuyPct || 0,
+          })),
+        });
+      }
+    });
 
     return this.findOne(id);
   }
@@ -408,6 +421,16 @@ export class PlanningService {
     const planning = await this.prisma.planningHeader.findUnique({ where: { id: BigInt(id) } });
     if (!planning) throw new NotFoundException('Planning header not found');
     if (planning.status !== 'SUBMITTED') throw new BadRequestException(`Cannot approve/reject with status: ${planning.status}. Must be SUBMITTED.`);
+
+    // Verify the caller is the designated approver for this level
+    const workflowLevel = await this.prisma.approvalWorkflowLevel.findFirst({
+      where: { level_order: Number(level) },
+    });
+    if (!workflowLevel) throw new NotFoundException(`Workflow level ${level} not found`);
+    if (workflowLevel.approver_user_id !== BigInt(userId)) {
+      throw new ForbiddenException('You are not the designated approver for this level');
+    }
+
     const newStatus = action === 'REJECTED' ? 'REJECTED' : 'APPROVED';
     return this.prisma.planningHeader.update({ where: { id: BigInt(id) }, data: { status: newStatus } });
   }
@@ -422,11 +445,11 @@ export class PlanningService {
 
   // ─── UPDATE DETAIL ─────────────────────────────────────────────────────────
 
-  async updateDetail(planningId: string, detailId: string, dto: any, userId: string) {
+  async updateDetail(planningId: string, detailId: string, dto: UpdatePlanningDetailDto, userId: string) {
     const planning = await this.prisma.planningHeader.findUnique({ where: { id: BigInt(planningId) } });
     if (!planning) throw new NotFoundException('Planning header not found');
 
-    const updateData: any = {};
+    const updateData: Record<string, unknown> = {};
     if (dto.proposedBuyPct !== undefined) updateData.proposed_buy_pct = dto.proposedBuyPct;
     if (dto.otbProposedAmount !== undefined) updateData.otb_proposed_amount = dto.otbProposedAmount;
     if (dto.actualBuyPct !== undefined) updateData.actual_buy_pct = dto.actualBuyPct;
@@ -488,9 +511,13 @@ export class PlanningService {
 
   // ─── DELETE ────────────────────────────────────────────────────────────────
 
-  async remove(id: string) {
+  async remove(id: string, userId: string) {
     const planning = await this.prisma.planningHeader.findUnique({ where: { id: BigInt(id) } });
     if (!planning) throw new NotFoundException('Planning header not found');
+
+    if (planning.created_by !== BigInt(userId)) {
+      throw new ForbiddenException('You do not have permission to delete this planning');
+    }
 
     return this.prisma.planningHeader.delete({ where: { id: BigInt(id) } });
   }

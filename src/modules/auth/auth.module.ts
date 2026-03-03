@@ -14,7 +14,11 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'dafc-otb-secret-change-in-production',
+      secret: (() => {
+        const secret = process.env.JWT_SECRET;
+        if (!secret) throw new Error('JWT_SECRET environment variable is required');
+        return secret;
+      })(),
       signOptions: { expiresIn: '8h' },
     }),
   ],

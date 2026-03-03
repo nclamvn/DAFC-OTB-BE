@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNumber, IsArray, IsOptional, ValidateNested, IsNotEmpty, Min, IsInt } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsOptional, ValidateNested, IsNotEmpty, Min, Max, IsInt } from 'class-validator';
 import { Type } from 'class-transformer';
 
 // ─── Planning Season Type Detail ─────────────────────────────────────────────
@@ -38,11 +38,13 @@ export class PlanningSeasonTypeDto {
   @ApiProperty({ example: 0.3, description: 'Proposed buy percentage' })
   @IsNumber()
   @Min(0)
+  @Max(1)
   proposedBuyPct: number;
 
   @ApiProperty({ example: 5000000000, description: 'OTB proposed amount (VND)' })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   otbProposedAmount: number;
 
   @ApiPropertyOptional({ example: 0.05 })
@@ -82,11 +84,13 @@ export class PlanningGenderDto {
   @ApiProperty({ example: 0.3 })
   @IsNumber()
   @Min(0)
+  @Max(1)
   proposedBuyPct: number;
 
   @ApiProperty({ example: 5000000000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   otbProposedAmount: number;
 
   @ApiPropertyOptional({ example: 0 })
@@ -121,11 +125,13 @@ export class PlanningCategoryDto {
   @ApiProperty({ example: 0.3 })
   @IsNumber()
   @Min(0)
+  @Max(1)
   proposedBuyPct: number;
 
   @ApiProperty({ example: 5000000000 })
   @IsNumber()
   @Min(0)
+  @Max(999_999_999_999)
   otbProposedAmount: number;
 
   @ApiPropertyOptional({ example: 0 })
@@ -136,6 +142,7 @@ export class PlanningCategoryDto {
   @ApiPropertyOptional({ example: 0 })
   @IsNumber()
   @IsOptional()
+  @Max(999_999_999_999)
   otbActualAmount?: number;
 
   @ApiPropertyOptional({ example: 0 })
@@ -177,3 +184,52 @@ export class CreatePlanningDto {
 // ─── Update Planning DTO ─────────────────────────────────────────────────────
 
 export class UpdatePlanningDto extends CreatePlanningDto {}
+
+// ─── Update Planning Detail DTO (single row patch) ──────────────────────────
+
+export class UpdatePlanningDetailDto {
+  @ApiPropertyOptional({ example: 0.3 })
+  @IsNumber()
+  @IsOptional()
+  @Min(0)
+  @Max(1)
+  proposedBuyPct?: number;
+
+  @ApiPropertyOptional({ example: 5000000000 })
+  @IsNumber()
+  @IsOptional()
+  @Min(0)
+  @Max(999_999_999_999)
+  otbProposedAmount?: number;
+
+  @ApiPropertyOptional({ example: 0.1 })
+  @IsNumber()
+  @IsOptional()
+  actualBuyPct?: number;
+
+  @ApiPropertyOptional({ example: 0.1 })
+  @IsNumber()
+  @IsOptional()
+  actualSalesPct?: number;
+
+  @ApiPropertyOptional({ example: 0.1 })
+  @IsNumber()
+  @IsOptional()
+  actualStPct?: number;
+
+  @ApiPropertyOptional({ example: 0 })
+  @IsNumber()
+  @IsOptional()
+  varLastyearPct?: number;
+
+  @ApiPropertyOptional({ example: 0 })
+  @IsNumber()
+  @IsOptional()
+  @Max(999_999_999_999)
+  otbActualAmount?: number;
+
+  @ApiPropertyOptional({ example: 0 })
+  @IsNumber()
+  @IsOptional()
+  otbActualBuyPct?: number;
+}
