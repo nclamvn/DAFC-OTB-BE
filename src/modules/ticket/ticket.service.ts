@@ -526,9 +526,8 @@ export class TicketService {
                   include: {
                     product: {
                       include: {
-                        brand: true,
                         sub_category: {
-                          include: { category: { include: { gender: true } } },
+                          include: { category: { include: { gender: true, brand: true } } },
                         },
                       },
                     },

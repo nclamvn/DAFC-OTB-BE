@@ -145,18 +145,18 @@ async function main() {
   const [storeREX, storeTTP] = stores;
   console.log(`  ${stores.length} stores created`);
 
-  // ─── COLLECTIONS ──────────────────────────────────────────────────────
-  const collections = await Promise.all([
+  // ─── SEASON TYPES ────────────────────────────────────────────────────
+  const seasonTypes = await Promise.all([
     findOrCreate(
-      () => prisma.collection.findFirst({ where: { name: 'Carry Over' } }),
-      () => prisma.collection.create({ data: { name: 'Carry Over' } }),
+      () => prisma.seasonType.findFirst({ where: { name: 'Carry Over' } }),
+      () => prisma.seasonType.create({ data: { name: 'Carry Over' } }),
     ),
     findOrCreate(
-      () => prisma.collection.findFirst({ where: { name: 'Seasonal' } }),
-      () => prisma.collection.create({ data: { name: 'Seasonal' } }),
+      () => prisma.seasonType.findFirst({ where: { name: 'Seasonal' } }),
+      () => prisma.seasonType.create({ data: { name: 'Seasonal' } }),
     ),
   ]);
-  console.log(`  ${collections.length} collections created`);
+  console.log(`  ${seasonTypes.length} season types created`);
 
   // ─── SEASON GROUPS ────────────────────────────────────────────────────
   const seasonGroups = await Promise.all([
@@ -263,21 +263,21 @@ async function main() {
   const subCatMap = Object.fromEntries(subCategories.map(s => [s.name, s.id]));
 
   const productDefs = [
-    { sku_code: '8116333', product_name: 'FITZROVIA DK SHT',  sub_category_id: subCatMap['W Outerwear'], brand_id: brandBUR.id, theme: 'AUGUST (08)',     color: 'WINE RED',         composition: '100% COTTON',           srp: 87900000 },
-    { sku_code: '8113543', product_name: 'FLORISTON S',        sub_category_id: subCatMap['W Outerwear'], brand_id: brandBUR.id, theme: 'AUGUST (08)',     color: 'MAHOGANY',         composition: '100% POLYAMIDE (NYLON)', srp: 65900000 },
-    { sku_code: '8115960', product_name: 'OLDHAM CHK',         sub_category_id: subCatMap['W Outerwear'], brand_id: brandBUR.id, theme: 'AUGUST (08)',     color: 'POPPY IP CHECK',   composition: '100% COTTON',           srp: 71900000 },
-    { sku_code: '8116500', product_name: 'KENSINGTON TRENCH',  sub_category_id: subCatMap['W Outerwear'], brand_id: brandBUR.id, theme: 'SEPTEMBER (09)', color: 'HONEY',            composition: '100% COTTON',           srp: 95000000 },
-    { sku_code: '8116501', product_name: 'CHELSEA COAT',       sub_category_id: subCatMap['W Outerwear'], brand_id: brandBUR.id, theme: 'SEPTEMBER (09)', color: 'BLACK',            composition: '80% WOOL 20% CASHMERE', srp: 120000000 },
-    { sku_code: '8114202', product_name: 'GILLIAN WCHK',       sub_category_id: subCatMap['W Tops'],      brand_id: brandBUR.id, theme: 'SEPTEMBER (09)', color: 'TRUFFLE IP CHECK', composition: '70% WOOL 30% CASHMERE', srp: 49900000 },
-    { sku_code: '8115254', product_name: 'GEORGETTE WCHK',     sub_category_id: subCatMap['W Tops'],      brand_id: brandBUR.id, theme: 'SEPTEMBER (09)', color: 'TRUFFLE IP CHECK', composition: '70% WOOL 30% CASHMERE', srp: 58900000 },
-    { sku_code: '8115640', product_name: 'SCARLETT EKD',       sub_category_id: subCatMap['W Tops'],      brand_id: brandBUR.id, theme: 'SEPTEMBER (09)', color: 'CAMEL',            composition: '70% WOOL 30% CASHMERE', srp: 44900000 },
-    { sku_code: '8115700', product_name: 'VICTORIA BLOUSE',    sub_category_id: subCatMap['W Tops'],      brand_id: brandFER.id, theme: 'OCTOBER (10)',   color: 'IVORY',            composition: '100% SILK',             srp: 38000000 },
-    { sku_code: '8115701', product_name: 'EMMA SHIRT',         sub_category_id: subCatMap['W Tops'],      brand_id: brandFER.id, theme: 'OCTOBER (10)',   color: 'WHITE',            composition: '100% COTTON',           srp: 28000000 },
-    { sku_code: '9201001', product_name: 'HERITAGE TOTE',      sub_category_id: subCatMap['M Bags'],      brand_id: brandGUC.id, theme: 'OCTOBER (10)',   color: 'BLACK',            composition: '100% LEATHER',          srp: 65000000 },
-    { sku_code: '9201002', product_name: 'MESSENGER BAG',      sub_category_id: subCatMap['M Bags'],      brand_id: brandGUC.id, theme: 'OCTOBER (10)',   color: 'TAN',              composition: '100% LEATHER',          srp: 55000000 },
-    { sku_code: '9201003', product_name: 'BACKPACK CLASSIC',   sub_category_id: subCatMap['M Bags'],      brand_id: brandGUC.id, theme: 'NOVEMBER (11)',  color: 'NAVY',             composition: '100% NYLON',            srp: 42000000 },
-    { sku_code: '9101001', product_name: 'LOLA BAG',           sub_category_id: subCatMap['W Bags'],      brand_id: brandPRA.id, theme: 'AUGUST (08)',    color: 'BURGUNDY',         composition: '100% LEATHER',          srp: 78000000 },
-    { sku_code: '9101002', product_name: 'TB BAG SMALL',       sub_category_id: subCatMap['W Bags'],      brand_id: brandPRA.id, theme: 'SEPTEMBER (09)', color: 'BLACK',            composition: '100% LEATHER',          srp: 95000000 },
+    { sku_code: '8116333', product_name: 'FITZROVIA DK SHT',  sub_category_id: subCatMap['W Outerwear'], theme: 'AUGUST (08)',     color: 'WINE RED',         composition: '100% COTTON',           srp: 87900000 },
+    { sku_code: '8113543', product_name: 'FLORISTON S',        sub_category_id: subCatMap['W Outerwear'], theme: 'AUGUST (08)',     color: 'MAHOGANY',         composition: '100% POLYAMIDE (NYLON)', srp: 65900000 },
+    { sku_code: '8115960', product_name: 'OLDHAM CHK',         sub_category_id: subCatMap['W Outerwear'], theme: 'AUGUST (08)',     color: 'POPPY IP CHECK',   composition: '100% COTTON',           srp: 71900000 },
+    { sku_code: '8116500', product_name: 'KENSINGTON TRENCH',  sub_category_id: subCatMap['W Outerwear'], theme: 'SEPTEMBER (09)', color: 'HONEY',            composition: '100% COTTON',           srp: 95000000 },
+    { sku_code: '8116501', product_name: 'CHELSEA COAT',       sub_category_id: subCatMap['W Outerwear'], theme: 'SEPTEMBER (09)', color: 'BLACK',            composition: '80% WOOL 20% CASHMERE', srp: 120000000 },
+    { sku_code: '8114202', product_name: 'GILLIAN WCHK',       sub_category_id: subCatMap['W Tops'],      theme: 'SEPTEMBER (09)', color: 'TRUFFLE IP CHECK', composition: '70% WOOL 30% CASHMERE', srp: 49900000 },
+    { sku_code: '8115254', product_name: 'GEORGETTE WCHK',     sub_category_id: subCatMap['W Tops'],      theme: 'SEPTEMBER (09)', color: 'TRUFFLE IP CHECK', composition: '70% WOOL 30% CASHMERE', srp: 58900000 },
+    { sku_code: '8115640', product_name: 'SCARLETT EKD',       sub_category_id: subCatMap['W Tops'],      theme: 'SEPTEMBER (09)', color: 'CAMEL',            composition: '70% WOOL 30% CASHMERE', srp: 44900000 },
+    { sku_code: '8115700', product_name: 'VICTORIA BLOUSE',    sub_category_id: subCatMap['W Tops'],      theme: 'OCTOBER (10)',   color: 'IVORY',            composition: '100% SILK',             srp: 38000000 },
+    { sku_code: '8115701', product_name: 'EMMA SHIRT',         sub_category_id: subCatMap['W Tops'],      theme: 'OCTOBER (10)',   color: 'WHITE',            composition: '100% COTTON',           srp: 28000000 },
+    { sku_code: '9201001', product_name: 'HERITAGE TOTE',      sub_category_id: subCatMap['M Bags'],      theme: 'OCTOBER (10)',   color: 'BLACK',            composition: '100% LEATHER',          srp: 65000000 },
+    { sku_code: '9201002', product_name: 'MESSENGER BAG',      sub_category_id: subCatMap['M Bags'],      theme: 'OCTOBER (10)',   color: 'TAN',              composition: '100% LEATHER',          srp: 55000000 },
+    { sku_code: '9201003', product_name: 'BACKPACK CLASSIC',   sub_category_id: subCatMap['M Bags'],      theme: 'NOVEMBER (11)',  color: 'NAVY',             composition: '100% NYLON',            srp: 42000000 },
+    { sku_code: '9101001', product_name: 'LOLA BAG',           sub_category_id: subCatMap['W Bags'],      theme: 'AUGUST (08)',    color: 'BURGUNDY',         composition: '100% LEATHER',          srp: 78000000 },
+    { sku_code: '9101002', product_name: 'TB BAG SMALL',       sub_category_id: subCatMap['W Bags'],      theme: 'SEPTEMBER (09)', color: 'BLACK',            composition: '100% LEATHER',          srp: 95000000 },
   ];
 
   for (const prod of productDefs) {

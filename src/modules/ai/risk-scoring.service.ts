@@ -37,10 +37,9 @@ export class RiskScoringService {
           include: {
             product: {
               include: {
-                brand: true,
                 sub_category: {
                   include: {
-                    category: { include: { gender: true } },
+                    category: { include: { gender: true, brand: true } },
                   },
                 },
               },

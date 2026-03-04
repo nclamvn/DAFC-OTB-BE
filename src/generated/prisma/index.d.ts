@@ -3382,12 +3382,12 @@ export namespace Prisma {
    */
 
   export type BrandCountOutputType = {
-    products: number
+    categories: number
     allocate_headers: number
   }
 
   export type BrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | BrandCountOutputTypeCountProductsArgs
+    categories?: boolean | BrandCountOutputTypeCountCategoriesArgs
     allocate_headers?: boolean | BrandCountOutputTypeCountAllocate_headersArgs
   }
 
@@ -3405,8 +3405,8 @@ export namespace Prisma {
   /**
    * BrandCountOutputType without action
    */
-  export type BrandCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
+  export type BrandCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
   }
 
   /**
@@ -7514,7 +7514,7 @@ export namespace Prisma {
     updated_at?: boolean
     updated_by?: boolean
     group_brand?: boolean | GroupBrandDefaultArgs<ExtArgs>
-    products?: boolean | Brand$productsArgs<ExtArgs>
+    categories?: boolean | Brand$categoriesArgs<ExtArgs>
     allocate_headers?: boolean | Brand$allocate_headersArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brand"]>
@@ -7534,7 +7534,7 @@ export namespace Prisma {
 
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group_brand?: boolean | GroupBrandDefaultArgs<ExtArgs>
-    products?: boolean | Brand$productsArgs<ExtArgs>
+    categories?: boolean | Brand$categoriesArgs<ExtArgs>
     allocate_headers?: boolean | Brand$allocate_headersArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -7543,7 +7543,7 @@ export namespace Prisma {
     name: "Brand"
     objects: {
       group_brand: Prisma.$GroupBrandPayload<ExtArgs>
-      products: Prisma.$ProductPayload<ExtArgs>[]
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
       allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7897,7 +7897,7 @@ export namespace Prisma {
   export interface Prisma__BrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     group_brand<T extends GroupBrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GroupBrandDefaultArgs<ExtArgs>>): Prisma__GroupBrandClient<$Result.GetResult<Prisma.$GroupBrandPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    products<T extends Brand$productsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany"> | Null>
+    categories<T extends Brand$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Brand$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany"> | Null>
     allocate_headers<T extends Brand$allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Brand$allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8235,23 +8235,23 @@ export namespace Prisma {
   }
 
   /**
-   * Brand.products
+   * Brand.categories
    */
-  export type Brand$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Brand$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the Category
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: CategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
-    cursor?: ProductWhereUniqueInput
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
   }
 
   /**
@@ -8317,8 +8317,6 @@ export namespace Prisma {
     id: bigint | null
     code: string | null
     name: string | null
-    region: string | null
-    location: string | null
     is_active: boolean | null
     created_by: bigint | null
     created_at: Date | null
@@ -8330,8 +8328,6 @@ export namespace Prisma {
     id: bigint | null
     code: string | null
     name: string | null
-    region: string | null
-    location: string | null
     is_active: boolean | null
     created_by: bigint | null
     created_at: Date | null
@@ -8343,8 +8339,6 @@ export namespace Prisma {
     id: number
     code: number
     name: number
-    region: number
-    location: number
     is_active: number
     created_by: number
     created_at: number
@@ -8370,8 +8364,6 @@ export namespace Prisma {
     id?: true
     code?: true
     name?: true
-    region?: true
-    location?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -8383,8 +8375,6 @@ export namespace Prisma {
     id?: true
     code?: true
     name?: true
-    region?: true
-    location?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -8396,8 +8386,6 @@ export namespace Prisma {
     id?: true
     code?: true
     name?: true
-    region?: true
-    location?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -8496,8 +8484,6 @@ export namespace Prisma {
     id: bigint
     code: string
     name: string
-    region: string | null
-    location: string | null
     is_active: boolean
     created_by: bigint | null
     created_at: Date
@@ -8528,8 +8514,6 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     name?: boolean
-    region?: boolean
-    location?: boolean
     is_active?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -8547,8 +8531,6 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     name?: boolean
-    region?: boolean
-    location?: boolean
     is_active?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -8576,8 +8558,6 @@ export namespace Prisma {
       id: bigint
       code: string
       name: string
-      region: string | null
-      location: string | null
       is_active: boolean
       created_by: bigint | null
       created_at: Date
@@ -8959,8 +8939,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Store", 'BigInt'>
     readonly code: FieldRef<"Store", 'String'>
     readonly name: FieldRef<"Store", 'String'>
-    readonly region: FieldRef<"Store", 'String'>
-    readonly location: FieldRef<"Store", 'String'>
     readonly is_active: FieldRef<"Store", 'Boolean'>
     readonly created_by: FieldRef<"Store", 'BigInt'>
     readonly created_at: FieldRef<"Store", 'DateTime'>
@@ -13359,6 +13337,7 @@ export namespace Prisma {
   export type CategoryAvgAggregateOutputType = {
     id: number | null
     gender_id: number | null
+    brand_id: number | null
     created_by: number | null
     updated_by: number | null
   }
@@ -13366,6 +13345,7 @@ export namespace Prisma {
   export type CategorySumAggregateOutputType = {
     id: bigint | null
     gender_id: bigint | null
+    brand_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
   }
@@ -13374,6 +13354,7 @@ export namespace Prisma {
     id: bigint | null
     name: string | null
     gender_id: bigint | null
+    brand_id: bigint | null
     is_active: boolean | null
     created_by: bigint | null
     created_at: Date | null
@@ -13385,6 +13366,7 @@ export namespace Prisma {
     id: bigint | null
     name: string | null
     gender_id: bigint | null
+    brand_id: bigint | null
     is_active: boolean | null
     created_by: bigint | null
     created_at: Date | null
@@ -13396,6 +13378,7 @@ export namespace Prisma {
     id: number
     name: number
     gender_id: number
+    brand_id: number
     is_active: number
     created_by: number
     created_at: number
@@ -13408,6 +13391,7 @@ export namespace Prisma {
   export type CategoryAvgAggregateInputType = {
     id?: true
     gender_id?: true
+    brand_id?: true
     created_by?: true
     updated_by?: true
   }
@@ -13415,6 +13399,7 @@ export namespace Prisma {
   export type CategorySumAggregateInputType = {
     id?: true
     gender_id?: true
+    brand_id?: true
     created_by?: true
     updated_by?: true
   }
@@ -13423,6 +13408,7 @@ export namespace Prisma {
     id?: true
     name?: true
     gender_id?: true
+    brand_id?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -13434,6 +13420,7 @@ export namespace Prisma {
     id?: true
     name?: true
     gender_id?: true
+    brand_id?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -13445,6 +13432,7 @@ export namespace Prisma {
     id?: true
     name?: true
     gender_id?: true
+    brand_id?: true
     is_active?: true
     created_by?: true
     created_at?: true
@@ -13543,6 +13531,7 @@ export namespace Prisma {
     id: bigint
     name: string
     gender_id: bigint
+    brand_id: bigint | null
     is_active: boolean
     created_by: bigint | null
     created_at: Date
@@ -13573,6 +13562,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     gender_id?: boolean
+    brand_id?: boolean
     is_active?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -13580,6 +13570,7 @@ export namespace Prisma {
     updated_by?: boolean
     gender?: boolean | GenderDefaultArgs<ExtArgs>
     sub_categories?: boolean | Category$sub_categoriesArgs<ExtArgs>
+    brand?: boolean | Category$brandArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
@@ -13588,6 +13579,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     gender_id?: boolean
+    brand_id?: boolean
     is_active?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -13598,6 +13590,7 @@ export namespace Prisma {
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gender?: boolean | GenderDefaultArgs<ExtArgs>
     sub_categories?: boolean | Category$sub_categoriesArgs<ExtArgs>
+    brand?: boolean | Category$brandArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -13606,11 +13599,13 @@ export namespace Prisma {
     objects: {
       gender: Prisma.$GenderPayload<ExtArgs>
       sub_categories: Prisma.$SubCategoryPayload<ExtArgs>[]
+      brand: Prisma.$BrandPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       name: string
       gender_id: bigint
+      brand_id: bigint | null
       is_active: boolean
       created_by: bigint | null
       created_at: Date
@@ -13958,6 +13953,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     gender<T extends GenderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GenderDefaultArgs<ExtArgs>>): Prisma__GenderClient<$Result.GetResult<Prisma.$GenderPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     sub_categories<T extends Category$sub_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Category$sub_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubCategoryPayload<ExtArgs>, T, "findMany"> | Null>
+    brand<T extends Category$brandArgs<ExtArgs> = {}>(args?: Subset<T, Category$brandArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13990,6 +13986,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Category", 'BigInt'>
     readonly name: FieldRef<"Category", 'String'>
     readonly gender_id: FieldRef<"Category", 'BigInt'>
+    readonly brand_id: FieldRef<"Category", 'BigInt'>
     readonly is_active: FieldRef<"Category", 'Boolean'>
     readonly created_by: FieldRef<"Category", 'BigInt'>
     readonly created_at: FieldRef<"Category", 'DateTime'>
@@ -14310,6 +14307,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubCategoryScalarFieldEnum | SubCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category.brand
+   */
+  export type Category$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Brand
+     */
+    select?: BrandSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandInclude<ExtArgs> | null
+    where?: BrandWhereInput
   }
 
   /**
@@ -16345,8 +16357,8 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     id: number | null
     sub_category_id: number | null
-    brand_id: number | null
-    srp: Decimal | null
+    unit_price: Decimal | null
+    unit_cost: Decimal | null
     created_by: number | null
     updated_by: number | null
   }
@@ -16354,23 +16366,24 @@ export namespace Prisma {
   export type ProductSumAggregateOutputType = {
     id: bigint | null
     sub_category_id: bigint | null
-    brand_id: bigint | null
-    srp: Decimal | null
+    unit_price: Decimal | null
+    unit_cost: Decimal | null
     created_by: bigint | null
     updated_by: bigint | null
   }
 
   export type ProductMinAggregateOutputType = {
     id: bigint | null
+    item_code: string | null
     sku_code: string | null
     product_name: string | null
     sub_category_id: bigint | null
-    brand_id: bigint | null
-    family: string | null
+    rail: string | null
     theme: string | null
     color: string | null
     composition: string | null
-    srp: Decimal | null
+    unit_price: Decimal | null
+    unit_cost: Decimal | null
     image_url: string | null
     is_active: boolean | null
     created_by: bigint | null
@@ -16381,15 +16394,16 @@ export namespace Prisma {
 
   export type ProductMaxAggregateOutputType = {
     id: bigint | null
+    item_code: string | null
     sku_code: string | null
     product_name: string | null
     sub_category_id: bigint | null
-    brand_id: bigint | null
-    family: string | null
+    rail: string | null
     theme: string | null
     color: string | null
     composition: string | null
-    srp: Decimal | null
+    unit_price: Decimal | null
+    unit_cost: Decimal | null
     image_url: string | null
     is_active: boolean | null
     created_by: bigint | null
@@ -16400,15 +16414,16 @@ export namespace Prisma {
 
   export type ProductCountAggregateOutputType = {
     id: number
+    item_code: number
     sku_code: number
     product_name: number
     sub_category_id: number
-    brand_id: number
-    family: number
+    rail: number
     theme: number
     color: number
     composition: number
-    srp: number
+    unit_price: number
+    unit_cost: number
     image_url: number
     is_active: number
     created_by: number
@@ -16422,8 +16437,8 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     id?: true
     sub_category_id?: true
-    brand_id?: true
-    srp?: true
+    unit_price?: true
+    unit_cost?: true
     created_by?: true
     updated_by?: true
   }
@@ -16431,23 +16446,24 @@ export namespace Prisma {
   export type ProductSumAggregateInputType = {
     id?: true
     sub_category_id?: true
-    brand_id?: true
-    srp?: true
+    unit_price?: true
+    unit_cost?: true
     created_by?: true
     updated_by?: true
   }
 
   export type ProductMinAggregateInputType = {
     id?: true
+    item_code?: true
     sku_code?: true
     product_name?: true
     sub_category_id?: true
-    brand_id?: true
-    family?: true
+    rail?: true
     theme?: true
     color?: true
     composition?: true
-    srp?: true
+    unit_price?: true
+    unit_cost?: true
     image_url?: true
     is_active?: true
     created_by?: true
@@ -16458,15 +16474,16 @@ export namespace Prisma {
 
   export type ProductMaxAggregateInputType = {
     id?: true
+    item_code?: true
     sku_code?: true
     product_name?: true
     sub_category_id?: true
-    brand_id?: true
-    family?: true
+    rail?: true
     theme?: true
     color?: true
     composition?: true
-    srp?: true
+    unit_price?: true
+    unit_cost?: true
     image_url?: true
     is_active?: true
     created_by?: true
@@ -16477,15 +16494,16 @@ export namespace Prisma {
 
   export type ProductCountAggregateInputType = {
     id?: true
+    item_code?: true
     sku_code?: true
     product_name?: true
     sub_category_id?: true
-    brand_id?: true
-    family?: true
+    rail?: true
     theme?: true
     color?: true
     composition?: true
-    srp?: true
+    unit_price?: true
+    unit_cost?: true
     image_url?: true
     is_active?: true
     created_by?: true
@@ -16583,15 +16601,16 @@ export namespace Prisma {
 
   export type ProductGroupByOutputType = {
     id: bigint
+    item_code: string
     sku_code: string
     product_name: string
     sub_category_id: bigint
-    brand_id: bigint | null
-    family: string | null
+    rail: string | null
     theme: string | null
     color: string | null
     composition: string | null
-    srp: Decimal
+    unit_price: Decimal
+    unit_cost: Decimal
     image_url: string | null
     is_active: boolean
     created_by: bigint | null
@@ -16621,22 +16640,22 @@ export namespace Prisma {
 
   export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    item_code?: boolean
     sku_code?: boolean
     product_name?: boolean
     sub_category_id?: boolean
-    brand_id?: boolean
-    family?: boolean
+    rail?: boolean
     theme?: boolean
     color?: boolean
     composition?: boolean
-    srp?: boolean
+    unit_price?: boolean
+    unit_cost?: boolean
     image_url?: boolean
     is_active?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
-    brand?: boolean | Product$brandArgs<ExtArgs>
     sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
     sku_proposals?: boolean | Product$sku_proposalsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -16645,15 +16664,16 @@ export namespace Prisma {
 
   export type ProductSelectScalar = {
     id?: boolean
+    item_code?: boolean
     sku_code?: boolean
     product_name?: boolean
     sub_category_id?: boolean
-    brand_id?: boolean
-    family?: boolean
+    rail?: boolean
     theme?: boolean
     color?: boolean
     composition?: boolean
-    srp?: boolean
+    unit_price?: boolean
+    unit_cost?: boolean
     image_url?: boolean
     is_active?: boolean
     created_by?: boolean
@@ -16663,7 +16683,6 @@ export namespace Prisma {
   }
 
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | Product$brandArgs<ExtArgs>
     sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
     sku_proposals?: boolean | Product$sku_proposalsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -16672,21 +16691,21 @@ export namespace Prisma {
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
-      brand: Prisma.$BrandPayload<ExtArgs> | null
       sub_category: Prisma.$SubCategoryPayload<ExtArgs>
       sku_proposals: Prisma.$SKUProposalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
+      item_code: string
       sku_code: string
       product_name: string
       sub_category_id: bigint
-      brand_id: bigint | null
-      family: string | null
+      rail: string | null
       theme: string | null
       color: string | null
       composition: string | null
-      srp: Prisma.Decimal
+      unit_price: Prisma.Decimal
+      unit_cost: Prisma.Decimal
       image_url: string | null
       is_active: boolean
       created_by: bigint | null
@@ -17033,7 +17052,6 @@ export namespace Prisma {
    */
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    brand<T extends Product$brandArgs<ExtArgs> = {}>(args?: Subset<T, Product$brandArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     sub_category<T extends SubCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubCategoryDefaultArgs<ExtArgs>>): Prisma__SubCategoryClient<$Result.GetResult<Prisma.$SubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     sku_proposals<T extends Product$sku_proposalsArgs<ExtArgs> = {}>(args?: Subset<T, Product$sku_proposalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUProposalPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -17066,15 +17084,16 @@ export namespace Prisma {
    */ 
   interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'BigInt'>
+    readonly item_code: FieldRef<"Product", 'String'>
     readonly sku_code: FieldRef<"Product", 'String'>
     readonly product_name: FieldRef<"Product", 'String'>
     readonly sub_category_id: FieldRef<"Product", 'BigInt'>
-    readonly brand_id: FieldRef<"Product", 'BigInt'>
-    readonly family: FieldRef<"Product", 'String'>
+    readonly rail: FieldRef<"Product", 'String'>
     readonly theme: FieldRef<"Product", 'String'>
     readonly color: FieldRef<"Product", 'String'>
     readonly composition: FieldRef<"Product", 'String'>
-    readonly srp: FieldRef<"Product", 'Decimal'>
+    readonly unit_price: FieldRef<"Product", 'Decimal'>
+    readonly unit_cost: FieldRef<"Product", 'Decimal'>
     readonly image_url: FieldRef<"Product", 'String'>
     readonly is_active: FieldRef<"Product", 'Boolean'>
     readonly created_by: FieldRef<"Product", 'BigInt'>
@@ -17376,21 +17395,6 @@ export namespace Prisma {
      * Filter which Products to delete
      */
     where?: ProductWhereInput
-  }
-
-  /**
-   * Product.brand
-   */
-  export type Product$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Brand
-     */
-    select?: BrandSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BrandInclude<ExtArgs> | null
-    where?: BrandWhereInput
   }
 
   /**
@@ -34891,8 +34895,6 @@ export namespace Prisma {
     id: 'id',
     code: 'code',
     name: 'name',
-    region: 'region',
-    location: 'location',
     is_active: 'is_active',
     created_by: 'created_by',
     created_at: 'created_at',
@@ -34961,6 +34963,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     gender_id: 'gender_id',
+    brand_id: 'brand_id',
     is_active: 'is_active',
     created_by: 'created_by',
     created_at: 'created_at',
@@ -35000,15 +35003,16 @@ export namespace Prisma {
 
   export const ProductScalarFieldEnum: {
     id: 'id',
+    item_code: 'item_code',
     sku_code: 'sku_code',
     product_name: 'product_name',
     sub_category_id: 'sub_category_id',
-    brand_id: 'brand_id',
-    family: 'family',
+    rail: 'rail',
     theme: 'theme',
     color: 'color',
     composition: 'composition',
-    srp: 'srp',
+    unit_price: 'unit_price',
+    unit_cost: 'unit_cost',
     image_url: 'image_url',
     is_active: 'is_active',
     created_by: 'created_by',
@@ -35636,7 +35640,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Brand"> | Date | string
     updated_by?: BigIntNullableFilter<"Brand"> | bigint | number | null
     group_brand?: XOR<GroupBrandRelationFilter, GroupBrandWhereInput>
-    products?: ProductListRelationFilter
+    categories?: CategoryListRelationFilter
     allocate_headers?: AllocateHeaderListRelationFilter
   }
 
@@ -35651,7 +35655,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     group_brand?: GroupBrandOrderByWithRelationInput
-    products?: ProductOrderByRelationAggregateInput
+    categories?: CategoryOrderByRelationAggregateInput
     allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
   }
 
@@ -35669,7 +35673,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Brand"> | Date | string
     updated_by?: BigIntNullableFilter<"Brand"> | bigint | number | null
     group_brand?: XOR<GroupBrandRelationFilter, GroupBrandWhereInput>
-    products?: ProductListRelationFilter
+    categories?: CategoryListRelationFilter
     allocate_headers?: AllocateHeaderListRelationFilter
   }, "id">
 
@@ -35712,8 +35716,6 @@ export namespace Prisma {
     id?: BigIntFilter<"Store"> | bigint | number
     code?: StringFilter<"Store"> | string
     name?: StringFilter<"Store"> | string
-    region?: StringNullableFilter<"Store"> | string | null
-    location?: StringNullableFilter<"Store"> | string | null
     is_active?: BoolFilter<"Store"> | boolean
     created_by?: BigIntNullableFilter<"Store"> | bigint | number | null
     created_at?: DateTimeFilter<"Store"> | Date | string
@@ -35729,8 +35731,6 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     name?: SortOrder
-    region?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -35749,8 +35749,6 @@ export namespace Prisma {
     NOT?: StoreWhereInput | StoreWhereInput[]
     code?: StringFilter<"Store"> | string
     name?: StringFilter<"Store"> | string
-    region?: StringNullableFilter<"Store"> | string | null
-    location?: StringNullableFilter<"Store"> | string | null
     is_active?: BoolFilter<"Store"> | boolean
     created_by?: BigIntNullableFilter<"Store"> | bigint | number | null
     created_at?: DateTimeFilter<"Store"> | Date | string
@@ -35766,8 +35764,6 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     name?: SortOrder
-    region?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -35787,8 +35783,6 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"Store"> | bigint | number
     code?: StringWithAggregatesFilter<"Store"> | string
     name?: StringWithAggregatesFilter<"Store"> | string
-    region?: StringNullableWithAggregatesFilter<"Store"> | string | null
-    location?: StringNullableWithAggregatesFilter<"Store"> | string | null
     is_active?: BoolWithAggregatesFilter<"Store"> | boolean
     created_by?: BigIntNullableWithAggregatesFilter<"Store"> | bigint | number | null
     created_at?: DateTimeWithAggregatesFilter<"Store"> | Date | string
@@ -36096,6 +36090,7 @@ export namespace Prisma {
     id?: BigIntFilter<"Category"> | bigint | number
     name?: StringFilter<"Category"> | string
     gender_id?: BigIntFilter<"Category"> | bigint | number
+    brand_id?: BigIntNullableFilter<"Category"> | bigint | number | null
     is_active?: BoolFilter<"Category"> | boolean
     created_by?: BigIntNullableFilter<"Category"> | bigint | number | null
     created_at?: DateTimeFilter<"Category"> | Date | string
@@ -36103,12 +36098,14 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Category"> | bigint | number | null
     gender?: XOR<GenderRelationFilter, GenderWhereInput>
     sub_categories?: SubCategoryListRelationFilter
+    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
   }
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -36116,6 +36113,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     gender?: GenderOrderByWithRelationInput
     sub_categories?: SubCategoryOrderByRelationAggregateInput
+    brand?: BrandOrderByWithRelationInput
   }
 
   export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -36125,6 +36123,7 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     name?: StringFilter<"Category"> | string
     gender_id?: BigIntFilter<"Category"> | bigint | number
+    brand_id?: BigIntNullableFilter<"Category"> | bigint | number | null
     is_active?: BoolFilter<"Category"> | boolean
     created_by?: BigIntNullableFilter<"Category"> | bigint | number | null
     created_at?: DateTimeFilter<"Category"> | Date | string
@@ -36132,12 +36131,14 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Category"> | bigint | number | null
     gender?: XOR<GenderRelationFilter, GenderWhereInput>
     sub_categories?: SubCategoryListRelationFilter
+    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
   }, "id">
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -36157,6 +36158,7 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"Category"> | bigint | number
     name?: StringWithAggregatesFilter<"Category"> | string
     gender_id?: BigIntWithAggregatesFilter<"Category"> | bigint | number
+    brand_id?: BigIntNullableWithAggregatesFilter<"Category"> | bigint | number | null
     is_active?: BoolWithAggregatesFilter<"Category"> | boolean
     created_by?: BigIntNullableWithAggregatesFilter<"Category"> | bigint | number | null
     created_at?: DateTimeWithAggregatesFilter<"Category"> | Date | string
@@ -36320,44 +36322,44 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: BigIntFilter<"Product"> | bigint | number
+    item_code?: StringFilter<"Product"> | string
     sku_code?: StringFilter<"Product"> | string
     product_name?: StringFilter<"Product"> | string
     sub_category_id?: BigIntFilter<"Product"> | bigint | number
-    brand_id?: BigIntNullableFilter<"Product"> | bigint | number | null
-    family?: StringNullableFilter<"Product"> | string | null
+    rail?: StringNullableFilter<"Product"> | string | null
     theme?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     composition?: StringNullableFilter<"Product"> | string | null
-    srp?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringNullableFilter<"Product"> | string | null
     is_active?: BoolFilter<"Product"> | boolean
     created_by?: BigIntNullableFilter<"Product"> | bigint | number | null
     created_at?: DateTimeFilter<"Product"> | Date | string
     updated_at?: DateTimeFilter<"Product"> | Date | string
     updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
-    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
     sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
+    item_code?: SortOrder
     sku_code?: SortOrder
     product_name?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrderInput | SortOrder
-    family?: SortOrderInput | SortOrder
+    rail?: SortOrderInput | SortOrder
     theme?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     composition?: SortOrderInput | SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     image_url?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
-    brand?: BrandOrderByWithRelationInput
     sub_category?: SubCategoryOrderByWithRelationInput
     sku_proposals?: SKUProposalOrderByRelationAggregateInput
   }
@@ -36367,37 +36369,38 @@ export namespace Prisma {
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
+    item_code?: StringFilter<"Product"> | string
     sku_code?: StringFilter<"Product"> | string
     product_name?: StringFilter<"Product"> | string
     sub_category_id?: BigIntFilter<"Product"> | bigint | number
-    brand_id?: BigIntNullableFilter<"Product"> | bigint | number | null
-    family?: StringNullableFilter<"Product"> | string | null
+    rail?: StringNullableFilter<"Product"> | string | null
     theme?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     composition?: StringNullableFilter<"Product"> | string | null
-    srp?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringNullableFilter<"Product"> | string | null
     is_active?: BoolFilter<"Product"> | boolean
     created_by?: BigIntNullableFilter<"Product"> | bigint | number | null
     created_at?: DateTimeFilter<"Product"> | Date | string
     updated_at?: DateTimeFilter<"Product"> | Date | string
     updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
-    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
     sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
+    item_code?: SortOrder
     sku_code?: SortOrder
     product_name?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrderInput | SortOrder
-    family?: SortOrderInput | SortOrder
+    rail?: SortOrderInput | SortOrder
     theme?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     composition?: SortOrderInput | SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     image_url?: SortOrderInput | SortOrder
     is_active?: SortOrder
     created_by?: SortOrderInput | SortOrder
@@ -36416,15 +36419,16 @@ export namespace Prisma {
     OR?: ProductScalarWhereWithAggregatesInput[]
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"Product"> | bigint | number
+    item_code?: StringWithAggregatesFilter<"Product"> | string
     sku_code?: StringWithAggregatesFilter<"Product"> | string
     product_name?: StringWithAggregatesFilter<"Product"> | string
     sub_category_id?: BigIntWithAggregatesFilter<"Product"> | bigint | number
-    brand_id?: BigIntNullableWithAggregatesFilter<"Product"> | bigint | number | null
-    family?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    rail?: StringNullableWithAggregatesFilter<"Product"> | string | null
     theme?: StringNullableWithAggregatesFilter<"Product"> | string | null
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     composition?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    srp?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     image_url?: StringNullableWithAggregatesFilter<"Product"> | string | null
     is_active?: BoolWithAggregatesFilter<"Product"> | boolean
     created_by?: BigIntNullableWithAggregatesFilter<"Product"> | bigint | number | null
@@ -38262,7 +38266,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     group_brand: GroupBrandCreateNestedOneWithoutBrandsInput
-    products?: ProductCreateNestedManyWithoutBrandInput
+    categories?: CategoryCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
   }
 
@@ -38276,7 +38280,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    products?: ProductUncheckedCreateNestedManyWithoutBrandInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
   }
 
@@ -38290,7 +38294,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     group_brand?: GroupBrandUpdateOneRequiredWithoutBrandsNestedInput
-    products?: ProductUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
   }
 
@@ -38304,7 +38308,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    products?: ProductUncheckedUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
   }
 
@@ -38346,8 +38350,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -38363,8 +38365,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -38380,8 +38380,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38397,8 +38395,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38413,8 +38409,6 @@ export namespace Prisma {
   export type StoreCreateManyInput = {
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -38426,8 +38420,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38439,8 +38431,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38779,12 +38769,14 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     gender: GenderCreateNestedOneWithoutCategoriesInput
     sub_categories?: SubCategoryCreateNestedManyWithoutCategoryInput
+    brand?: BrandCreateNestedOneWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: bigint | number
     name: string
     gender_id: bigint | number
+    brand_id?: bigint | number | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -38803,12 +38795,14 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     gender?: GenderUpdateOneRequiredWithoutCategoriesNestedInput
     sub_categories?: SubCategoryUpdateManyWithoutCategoryNestedInput
+    brand?: BrandUpdateOneWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     gender_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38820,6 +38814,7 @@ export namespace Prisma {
   export type CategoryCreateManyInput = {
     name: string
     gender_id: bigint | number
+    brand_id?: bigint | number | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -38841,6 +38836,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     gender_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39009,35 +39005,37 @@ export namespace Prisma {
 
   export type ProductCreateInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    brand?: BrandCreateNestedOneWithoutProductsInput
     sub_category: SubCategoryCreateNestedOneWithoutProductsInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
     sub_category_id: bigint | number
-    brand_id?: bigint | number | null
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
@@ -39049,35 +39047,37 @@ export namespace Prisma {
 
   export type ProductUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    brand?: BrandUpdateOneWithoutProductsNestedInput
     sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
     sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -39088,15 +39088,16 @@ export namespace Prisma {
   }
 
   export type ProductCreateManyInput = {
+    item_code: string
     sku_code: string
     product_name: string
     sub_category_id: bigint | number
-    brand_id?: bigint | number | null
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
@@ -39107,13 +39108,15 @@ export namespace Prisma {
 
   export type ProductUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -39124,15 +39127,16 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
     sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -41145,13 +41149,13 @@ export namespace Prisma {
     isNot?: GroupBrandWhereInput
   }
 
-  export type ProductListRelationFilter = {
-    every?: ProductWhereInput
-    some?: ProductWhereInput
-    none?: ProductWhereInput
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
   }
 
-  export type ProductOrderByRelationAggregateInput = {
+  export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -41249,8 +41253,6 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     name?: SortOrder
-    region?: SortOrder
-    location?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41268,8 +41270,6 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     name?: SortOrder
-    region?: SortOrder
-    location?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41281,8 +41281,6 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     name?: SortOrder
-    region?: SortOrder
-    location?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41474,16 +41472,6 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
-  export type CategoryListRelationFilter = {
-    every?: CategoryWhereInput
-    some?: CategoryWhereInput
-    none?: CategoryWhereInput
-  }
-
-  export type CategoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type GenderCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -41537,6 +41525,11 @@ export namespace Prisma {
     none?: SubCategoryWhereInput
   }
 
+  export type BrandNullableRelationFilter = {
+    is?: BrandWhereInput | null
+    isNot?: BrandWhereInput | null
+  }
+
   export type SubCategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -41545,6 +41538,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41555,6 +41549,7 @@ export namespace Prisma {
   export type CategoryAvgOrderByAggregateInput = {
     id?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -41563,6 +41558,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41574,6 +41570,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -41584,6 +41581,7 @@ export namespace Prisma {
   export type CategorySumOrderByAggregateInput = {
     id?: SortOrder
     gender_id?: SortOrder
+    brand_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -41591,6 +41589,12 @@ export namespace Prisma {
   export type CategoryRelationFilter = {
     is?: CategoryWhereInput
     isNot?: CategoryWhereInput
+  }
+
+  export type ProductListRelationFilter = {
+    every?: ProductWhereInput
+    some?: ProductWhereInput
+    none?: ProductWhereInput
   }
 
   export type SubcategorySizeListRelationFilter = {
@@ -41603,6 +41607,10 @@ export namespace Prisma {
     every?: PlanningCategoryWhereInput
     some?: PlanningCategoryWhereInput
     none?: PlanningCategoryWhereInput
+  }
+
+  export type ProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type SubcategorySizeOrderByRelationAggregateInput = {
@@ -41730,11 +41738,6 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type BrandNullableRelationFilter = {
-    is?: BrandWhereInput | null
-    isNot?: BrandWhereInput | null
-  }
-
   export type SKUProposalListRelationFilter = {
     every?: SKUProposalWhereInput
     some?: SKUProposalWhereInput
@@ -41747,15 +41750,16 @@ export namespace Prisma {
 
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
+    item_code?: SortOrder
     sku_code?: SortOrder
     product_name?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrder
-    family?: SortOrder
+    rail?: SortOrder
     theme?: SortOrder
     color?: SortOrder
     composition?: SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     image_url?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
@@ -41767,23 +41771,24 @@ export namespace Prisma {
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
+    item_code?: SortOrder
     sku_code?: SortOrder
     product_name?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrder
-    family?: SortOrder
+    rail?: SortOrder
     theme?: SortOrder
     color?: SortOrder
     composition?: SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     image_url?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
@@ -41794,15 +41799,16 @@ export namespace Prisma {
 
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
+    item_code?: SortOrder
     sku_code?: SortOrder
     product_name?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrder
-    family?: SortOrder
+    rail?: SortOrder
     theme?: SortOrder
     color?: SortOrder
     composition?: SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     image_url?: SortOrder
     is_active?: SortOrder
     created_by?: SortOrder
@@ -41814,8 +41820,8 @@ export namespace Prisma {
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
     sub_category_id?: SortOrder
-    brand_id?: SortOrder
-    srp?: SortOrder
+    unit_price?: SortOrder
+    unit_cost?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -43504,11 +43510,11 @@ export namespace Prisma {
     connect?: GroupBrandWhereUniqueInput
   }
 
-  export type ProductCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput> | ProductCreateWithoutBrandInput[] | ProductUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutBrandInput | ProductCreateOrConnectWithoutBrandInput[]
-    createMany?: ProductCreateManyBrandInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  export type CategoryCreateNestedManyWithoutBrandInput = {
+    create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
+    createMany?: CategoryCreateManyBrandInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
   }
 
   export type AllocateHeaderCreateNestedManyWithoutBrandInput = {
@@ -43518,11 +43524,11 @@ export namespace Prisma {
     connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
   }
 
-  export type ProductUncheckedCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput> | ProductCreateWithoutBrandInput[] | ProductUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutBrandInput | ProductCreateOrConnectWithoutBrandInput[]
-    createMany?: ProductCreateManyBrandInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  export type CategoryUncheckedCreateNestedManyWithoutBrandInput = {
+    create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
+    createMany?: CategoryCreateManyBrandInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
   }
 
   export type AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput = {
@@ -43540,18 +43546,18 @@ export namespace Prisma {
     update?: XOR<XOR<GroupBrandUpdateToOneWithWhereWithoutBrandsInput, GroupBrandUpdateWithoutBrandsInput>, GroupBrandUncheckedUpdateWithoutBrandsInput>
   }
 
-  export type ProductUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput> | ProductCreateWithoutBrandInput[] | ProductUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutBrandInput | ProductCreateOrConnectWithoutBrandInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutBrandInput | ProductUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ProductCreateManyBrandInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutBrandInput | ProductUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutBrandInput | ProductUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  export type CategoryUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutBrandInput | CategoryUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: CategoryCreateManyBrandInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutBrandInput | CategoryUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutBrandInput | CategoryUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type AllocateHeaderUpdateManyWithoutBrandNestedInput = {
@@ -43568,18 +43574,18 @@ export namespace Prisma {
     deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
   }
 
-  export type ProductUncheckedUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput> | ProductCreateWithoutBrandInput[] | ProductUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutBrandInput | ProductCreateOrConnectWithoutBrandInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutBrandInput | ProductUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ProductCreateManyBrandInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutBrandInput | ProductUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutBrandInput | ProductUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  export type CategoryUncheckedUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutBrandInput | CategoryUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: CategoryCreateManyBrandInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutBrandInput | CategoryUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutBrandInput | CategoryUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput = {
@@ -44135,6 +44141,12 @@ export namespace Prisma {
     connect?: SubCategoryWhereUniqueInput | SubCategoryWhereUniqueInput[]
   }
 
+  export type BrandCreateNestedOneWithoutCategoriesInput = {
+    create?: XOR<BrandCreateWithoutCategoriesInput, BrandUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutCategoriesInput
+    connect?: BrandWhereUniqueInput
+  }
+
   export type SubCategoryUncheckedCreateNestedManyWithoutCategoryInput = {
     create?: XOR<SubCategoryCreateWithoutCategoryInput, SubCategoryUncheckedCreateWithoutCategoryInput> | SubCategoryCreateWithoutCategoryInput[] | SubCategoryUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: SubCategoryCreateOrConnectWithoutCategoryInput | SubCategoryCreateOrConnectWithoutCategoryInput[]
@@ -44162,6 +44174,16 @@ export namespace Prisma {
     update?: SubCategoryUpdateWithWhereUniqueWithoutCategoryInput | SubCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: SubCategoryUpdateManyWithWhereWithoutCategoryInput | SubCategoryUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: SubCategoryScalarWhereInput | SubCategoryScalarWhereInput[]
+  }
+
+  export type BrandUpdateOneWithoutCategoriesNestedInput = {
+    create?: XOR<BrandCreateWithoutCategoriesInput, BrandUncheckedCreateWithoutCategoriesInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutCategoriesInput
+    upsert?: BrandUpsertWithoutCategoriesInput
+    disconnect?: BrandWhereInput | boolean
+    delete?: BrandWhereInput | boolean
+    connect?: BrandWhereUniqueInput
+    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutCategoriesInput, BrandUpdateWithoutCategoriesInput>, BrandUncheckedUpdateWithoutCategoriesInput>
   }
 
   export type SubCategoryUncheckedUpdateManyWithoutCategoryNestedInput = {
@@ -44374,12 +44396,6 @@ export namespace Prisma {
     deleteMany?: ProposalSizingScalarWhereInput | ProposalSizingScalarWhereInput[]
   }
 
-  export type BrandCreateNestedOneWithoutProductsInput = {
-    create?: XOR<BrandCreateWithoutProductsInput, BrandUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutProductsInput
-    connect?: BrandWhereUniqueInput
-  }
-
   export type SubCategoryCreateNestedOneWithoutProductsInput = {
     create?: XOR<SubCategoryCreateWithoutProductsInput, SubCategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SubCategoryCreateOrConnectWithoutProductsInput
@@ -44406,16 +44422,6 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type BrandUpdateOneWithoutProductsNestedInput = {
-    create?: XOR<BrandCreateWithoutProductsInput, BrandUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutProductsInput
-    upsert?: BrandUpsertWithoutProductsInput
-    disconnect?: BrandWhereInput | boolean
-    delete?: BrandWhereInput | boolean
-    connect?: BrandWhereUniqueInput
-    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutProductsInput, BrandUpdateWithoutProductsInput>, BrandUncheckedUpdateWithoutProductsInput>
   }
 
   export type SubCategoryUpdateOneRequiredWithoutProductsNestedInput = {
@@ -46713,7 +46719,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    products?: ProductCreateNestedManyWithoutBrandInput
+    categories?: CategoryCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
   }
 
@@ -46726,7 +46732,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    products?: ProductUncheckedCreateNestedManyWithoutBrandInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
   }
 
@@ -46857,51 +46863,37 @@ export namespace Prisma {
     create: XOR<GroupBrandCreateWithoutBrandsInput, GroupBrandUncheckedCreateWithoutBrandsInput>
   }
 
-  export type ProductCreateWithoutBrandInput = {
+  export type CategoryCreateWithoutBrandInput = {
     id?: bigint | number
-    sku_code: string
-    product_name: string
-    family?: string | null
-    theme?: string | null
-    color?: string | null
-    composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
-    image_url?: string | null
+    name: string
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sub_category: SubCategoryCreateNestedOneWithoutProductsInput
-    sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
+    gender: GenderCreateNestedOneWithoutCategoriesInput
+    sub_categories?: SubCategoryCreateNestedManyWithoutCategoryInput
   }
 
-  export type ProductUncheckedCreateWithoutBrandInput = {
+  export type CategoryUncheckedCreateWithoutBrandInput = {
     id?: bigint | number
-    sku_code: string
-    product_name: string
-    sub_category_id: bigint | number
-    family?: string | null
-    theme?: string | null
-    color?: string | null
-    composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
-    image_url?: string | null
+    name: string
+    gender_id: bigint | number
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutProductInput
+    sub_categories?: SubCategoryUncheckedCreateNestedManyWithoutCategoryInput
   }
 
-  export type ProductCreateOrConnectWithoutBrandInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput>
+  export type CategoryCreateOrConnectWithoutBrandInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput>
   }
 
-  export type ProductCreateManyBrandInputEnvelope = {
-    data: ProductCreateManyBrandInput | ProductCreateManyBrandInput[]
+  export type CategoryCreateManyBrandInputEnvelope = {
+    data: CategoryCreateManyBrandInput | CategoryCreateManyBrandInput[]
   }
 
   export type AllocateHeaderCreateWithoutBrandInput = {
@@ -46980,42 +46972,35 @@ export namespace Prisma {
     approval_workflows?: ApprovalWorkflowUncheckedUpdateManyWithoutGroup_brandNestedInput
   }
 
-  export type ProductUpsertWithWhereUniqueWithoutBrandInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutBrandInput, ProductUncheckedUpdateWithoutBrandInput>
-    create: XOR<ProductCreateWithoutBrandInput, ProductUncheckedCreateWithoutBrandInput>
+  export type CategoryUpsertWithWhereUniqueWithoutBrandInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutBrandInput, CategoryUncheckedUpdateWithoutBrandInput>
+    create: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput>
   }
 
-  export type ProductUpdateWithWhereUniqueWithoutBrandInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutBrandInput, ProductUncheckedUpdateWithoutBrandInput>
+  export type CategoryUpdateWithWhereUniqueWithoutBrandInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutBrandInput, CategoryUncheckedUpdateWithoutBrandInput>
   }
 
-  export type ProductUpdateManyWithWhereWithoutBrandInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutBrandInput>
+  export type CategoryUpdateManyWithWhereWithoutBrandInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutBrandInput>
   }
 
-  export type ProductScalarWhereInput = {
-    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    OR?: ProductScalarWhereInput[]
-    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
-    id?: BigIntFilter<"Product"> | bigint | number
-    sku_code?: StringFilter<"Product"> | string
-    product_name?: StringFilter<"Product"> | string
-    sub_category_id?: BigIntFilter<"Product"> | bigint | number
-    brand_id?: BigIntNullableFilter<"Product"> | bigint | number | null
-    family?: StringNullableFilter<"Product"> | string | null
-    theme?: StringNullableFilter<"Product"> | string | null
-    color?: StringNullableFilter<"Product"> | string | null
-    composition?: StringNullableFilter<"Product"> | string | null
-    srp?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    image_url?: StringNullableFilter<"Product"> | string | null
-    is_active?: BoolFilter<"Product"> | boolean
-    created_by?: BigIntNullableFilter<"Product"> | bigint | number | null
-    created_at?: DateTimeFilter<"Product"> | Date | string
-    updated_at?: DateTimeFilter<"Product"> | Date | string
-    updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: BigIntFilter<"Category"> | bigint | number
+    name?: StringFilter<"Category"> | string
+    gender_id?: BigIntFilter<"Category"> | bigint | number
+    brand_id?: BigIntNullableFilter<"Category"> | bigint | number | null
+    is_active?: BoolFilter<"Category"> | boolean
+    created_by?: BigIntNullableFilter<"Category"> | bigint | number | null
+    created_at?: DateTimeFilter<"Category"> | Date | string
+    updated_at?: DateTimeFilter<"Category"> | Date | string
+    updated_by?: BigIntNullableFilter<"Category"> | bigint | number | null
   }
 
   export type AllocateHeaderUpsertWithWhereUniqueWithoutBrandInput = {
@@ -47714,11 +47699,13 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sub_categories?: SubCategoryCreateNestedManyWithoutCategoryInput
+    brand?: BrandCreateNestedOneWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateWithoutGenderInput = {
     id?: bigint | number
     name: string
+    brand_id?: bigint | number | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -47791,20 +47778,6 @@ export namespace Prisma {
   export type CategoryUpdateManyWithWhereWithoutGenderInput = {
     where: CategoryScalarWhereInput
     data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutGenderInput>
-  }
-
-  export type CategoryScalarWhereInput = {
-    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
-    OR?: CategoryScalarWhereInput[]
-    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
-    id?: BigIntFilter<"Category"> | bigint | number
-    name?: StringFilter<"Category"> | string
-    gender_id?: BigIntFilter<"Category"> | bigint | number
-    is_active?: BoolFilter<"Category"> | boolean
-    created_by?: BigIntNullableFilter<"Category"> | bigint | number | null
-    created_at?: DateTimeFilter<"Category"> | Date | string
-    updated_at?: DateTimeFilter<"Category"> | Date | string
-    updated_by?: BigIntNullableFilter<"Category"> | bigint | number | null
   }
 
   export type PlanningGenderUpsertWithWhereUniqueWithoutGenderInput = {
@@ -47885,6 +47858,37 @@ export namespace Prisma {
     data: SubCategoryCreateManyCategoryInput | SubCategoryCreateManyCategoryInput[]
   }
 
+  export type BrandCreateWithoutCategoriesInput = {
+    id?: bigint | number
+    code: string
+    name: string
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    group_brand: GroupBrandCreateNestedOneWithoutBrandsInput
+    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
+  }
+
+  export type BrandUncheckedCreateWithoutCategoriesInput = {
+    id?: bigint | number
+    code: string
+    name: string
+    group_brand_id: bigint | number
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
+  }
+
+  export type BrandCreateOrConnectWithoutCategoriesInput = {
+    where: BrandWhereUniqueInput
+    create: XOR<BrandCreateWithoutCategoriesInput, BrandUncheckedCreateWithoutCategoriesInput>
+  }
+
   export type GenderUpsertWithoutCategoriesInput = {
     update: XOR<GenderUpdateWithoutCategoriesInput, GenderUncheckedUpdateWithoutCategoriesInput>
     create: XOR<GenderCreateWithoutCategoriesInput, GenderUncheckedCreateWithoutCategoriesInput>
@@ -47948,6 +47952,43 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"SubCategory"> | bigint | number | null
   }
 
+  export type BrandUpsertWithoutCategoriesInput = {
+    update: XOR<BrandUpdateWithoutCategoriesInput, BrandUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<BrandCreateWithoutCategoriesInput, BrandUncheckedCreateWithoutCategoriesInput>
+    where?: BrandWhereInput
+  }
+
+  export type BrandUpdateToOneWithWhereWithoutCategoriesInput = {
+    where?: BrandWhereInput
+    data: XOR<BrandUpdateWithoutCategoriesInput, BrandUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type BrandUpdateWithoutCategoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    group_brand?: GroupBrandUpdateOneRequiredWithoutBrandsNestedInput
+    allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
+  }
+
+  export type BrandUncheckedUpdateWithoutCategoriesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    group_brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
+  }
+
   export type CategoryCreateWithoutSub_categoriesInput = {
     id?: bigint | number
     name: string
@@ -47957,12 +47998,14 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     gender: GenderCreateNestedOneWithoutCategoriesInput
+    brand?: BrandCreateNestedOneWithoutCategoriesInput
   }
 
   export type CategoryUncheckedCreateWithoutSub_categoriesInput = {
     id?: bigint | number
     name: string
     gender_id: bigint | number
+    brand_id?: bigint | number | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -47977,33 +48020,35 @@ export namespace Prisma {
 
   export type ProductCreateWithoutSub_categoryInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    brand?: BrandCreateNestedOneWithoutProductsInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSub_categoryInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
-    brand_id?: bigint | number | null
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
@@ -48114,12 +48159,14 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     gender?: GenderUpdateOneRequiredWithoutCategoriesNestedInput
+    brand?: BrandUpdateOneWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutSub_categoriesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     gender_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -48141,6 +48188,29 @@ export namespace Prisma {
   export type ProductUpdateManyWithWhereWithoutSub_categoryInput = {
     where: ProductScalarWhereInput
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutSub_categoryInput>
+  }
+
+  export type ProductScalarWhereInput = {
+    AND?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    OR?: ProductScalarWhereInput[]
+    NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
+    id?: BigIntFilter<"Product"> | bigint | number
+    item_code?: StringFilter<"Product"> | string
+    sku_code?: StringFilter<"Product"> | string
+    product_name?: StringFilter<"Product"> | string
+    sub_category_id?: BigIntFilter<"Product"> | bigint | number
+    rail?: StringNullableFilter<"Product"> | string | null
+    theme?: StringNullableFilter<"Product"> | string | null
+    color?: StringNullableFilter<"Product"> | string | null
+    composition?: StringNullableFilter<"Product"> | string | null
+    unit_price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    image_url?: StringNullableFilter<"Product"> | string | null
+    is_active?: BoolFilter<"Product"> | boolean
+    created_by?: BigIntNullableFilter<"Product"> | bigint | number | null
+    created_at?: DateTimeFilter<"Product"> | Date | string
+    updated_at?: DateTimeFilter<"Product"> | Date | string
+    updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
   }
 
   export type SubcategorySizeUpsertWithWhereUniqueWithoutSub_categoryInput = {
@@ -48345,37 +48415,6 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"ProposalSizing"> | bigint | number | null
   }
 
-  export type BrandCreateWithoutProductsInput = {
-    id?: bigint | number
-    code: string
-    name: string
-    is_active?: boolean
-    created_by?: bigint | number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    updated_by?: bigint | number | null
-    group_brand: GroupBrandCreateNestedOneWithoutBrandsInput
-    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
-  }
-
-  export type BrandUncheckedCreateWithoutProductsInput = {
-    id?: bigint | number
-    code: string
-    name: string
-    group_brand_id: bigint | number
-    is_active?: boolean
-    created_by?: bigint | number | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    updated_by?: bigint | number | null
-    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
-  }
-
-  export type BrandCreateOrConnectWithoutProductsInput = {
-    where: BrandWhereUniqueInput
-    create: XOR<BrandCreateWithoutProductsInput, BrandUncheckedCreateWithoutProductsInput>
-  }
-
   export type SubCategoryCreateWithoutProductsInput = {
     id?: bigint | number
     name: string
@@ -48442,43 +48481,6 @@ export namespace Prisma {
 
   export type SKUProposalCreateManyProductInputEnvelope = {
     data: SKUProposalCreateManyProductInput | SKUProposalCreateManyProductInput[]
-  }
-
-  export type BrandUpsertWithoutProductsInput = {
-    update: XOR<BrandUpdateWithoutProductsInput, BrandUncheckedUpdateWithoutProductsInput>
-    create: XOR<BrandCreateWithoutProductsInput, BrandUncheckedCreateWithoutProductsInput>
-    where?: BrandWhereInput
-  }
-
-  export type BrandUpdateToOneWithWhereWithoutProductsInput = {
-    where?: BrandWhereInput
-    data: XOR<BrandUpdateWithoutProductsInput, BrandUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type BrandUpdateWithoutProductsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    group_brand?: GroupBrandUpdateOneRequiredWithoutBrandsNestedInput
-    allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
-  }
-
-  export type BrandUncheckedUpdateWithoutProductsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    group_brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type SubCategoryUpsertWithoutProductsInput = {
@@ -48797,7 +48799,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     group_brand: GroupBrandCreateNestedOneWithoutBrandsInput
-    products?: ProductCreateNestedManyWithoutBrandInput
+    categories?: CategoryCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutAllocate_headersInput = {
@@ -48810,7 +48812,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    products?: ProductUncheckedCreateNestedManyWithoutBrandInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutAllocate_headersInput = {
@@ -49059,7 +49061,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     group_brand?: GroupBrandUpdateOneRequiredWithoutBrandsNestedInput
-    products?: ProductUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutAllocate_headersInput = {
@@ -49072,7 +49074,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    products?: ProductUncheckedUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type UserUpsertWithoutCreated_allocate_headersInput = {
@@ -49252,8 +49254,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -49268,8 +49268,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -49403,8 +49401,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49419,8 +49415,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49883,8 +49877,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -49899,8 +49891,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -49995,8 +49985,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50011,8 +49999,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50093,8 +50079,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -50109,8 +50093,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -50207,8 +50189,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50223,8 +50203,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50723,34 +50701,36 @@ export namespace Prisma {
 
   export type ProductCreateWithoutSku_proposalsInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
-    brand?: BrandCreateNestedOneWithoutProductsInput
     sub_category: SubCategoryCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutSku_proposalsInput = {
     id?: bigint | number
+    item_code: string
     sku_code: string
     product_name: string
     sub_category_id: bigint | number
-    brand_id?: bigint | number | null
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
@@ -50878,34 +50858,36 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutSku_proposalsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    brand?: BrandUpdateOneWithoutProductsNestedInput
     sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSku_proposalsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
     sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -50983,8 +50965,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -50999,8 +50979,6 @@ export namespace Prisma {
     id?: bigint | number
     code: string
     name: string
-    region?: string | null
-    location?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -51070,8 +51048,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51086,8 +51062,6 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    region?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52941,7 +52915,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    products?: ProductUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
   }
 
@@ -52954,7 +52928,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    products?: ProductUncheckedUpdateManyWithoutBrandNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
   }
 
@@ -52998,16 +52972,9 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
-  export type ProductCreateManyBrandInput = {
-    sku_code: string
-    product_name: string
-    sub_category_id: bigint | number
-    family?: string | null
-    theme?: string | null
-    color?: string | null
-    composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
-    image_url?: string | null
+  export type CategoryCreateManyBrandInput = {
+    name: string
+    gender_id: bigint | number
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -53027,55 +52994,34 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
-  export type ProductUpdateWithoutBrandInput = {
+  export type CategoryUpdateWithoutBrandInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_code?: StringFieldUpdateOperationsInput | string
-    product_name?: StringFieldUpdateOperationsInput | string
-    family?: NullableStringFieldUpdateOperationsInput | string | null
-    theme?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
-    sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
+    gender?: GenderUpdateOneRequiredWithoutCategoriesNestedInput
+    sub_categories?: SubCategoryUpdateManyWithoutCategoryNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutBrandInput = {
+  export type CategoryUncheckedUpdateWithoutBrandInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_code?: StringFieldUpdateOperationsInput | string
-    product_name?: StringFieldUpdateOperationsInput | string
-    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    family?: NullableStringFieldUpdateOperationsInput | string | null
-    theme?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    gender_id?: BigIntFieldUpdateOperationsInput | bigint | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    sku_proposals?: SKUProposalUncheckedUpdateManyWithoutProductNestedInput
+    sub_categories?: SubCategoryUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
-  export type ProductUncheckedUpdateManyWithoutBrandInput = {
+  export type CategoryUncheckedUpdateManyWithoutBrandInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    sku_code?: StringFieldUpdateOperationsInput | string
-    product_name?: StringFieldUpdateOperationsInput | string
-    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    family?: NullableStringFieldUpdateOperationsInput | string | null
-    theme?: NullableStringFieldUpdateOperationsInput | string | null
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    gender_id?: BigIntFieldUpdateOperationsInput | bigint | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53644,6 +53590,7 @@ export namespace Prisma {
 
   export type CategoryCreateManyGenderInput = {
     name: string
+    brand_id?: bigint | number | null
     is_active?: boolean
     created_by?: bigint | number | null
     created_at?: Date | string
@@ -53675,11 +53622,13 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sub_categories?: SubCategoryUpdateManyWithoutCategoryNestedInput
+    brand?: BrandUpdateOneWithoutCategoriesNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutGenderInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53691,6 +53640,7 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyWithoutGenderInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53792,14 +53742,15 @@ export namespace Prisma {
   }
 
   export type ProductCreateManySub_categoryInput = {
+    item_code: string
     sku_code: string
     product_name: string
-    brand_id?: bigint | number | null
-    family?: string | null
+    rail?: string | null
     theme?: string | null
     color?: string | null
     composition?: string | null
-    srp: Decimal | DecimalJsLike | number | string
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
     image_url?: string | null
     is_active?: boolean
     created_by?: bigint | number | null
@@ -53834,33 +53785,35 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutSub_categoryInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    brand?: BrandUpdateOneWithoutProductsNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSub_categoryInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -53872,14 +53825,15 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyWithoutSub_categoryInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
     sku_code?: StringFieldUpdateOperationsInput | string
     product_name?: StringFieldUpdateOperationsInput | string
-    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    family?: NullableStringFieldUpdateOperationsInput | string | null
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
     theme?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
-    srp?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null

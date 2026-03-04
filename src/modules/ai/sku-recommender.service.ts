@@ -45,14 +45,13 @@ export class SkuRecommenderService {
       is_active: true,
       sub_category_id: +input.subCategoryId,
     };
-    if (input.brandId) where.brand_id = +input.brandId;
+    if (input.brandId) where.sub_category = { category: { brand_id: +input.brandId } };
 
     const products = await this.prisma.product.findMany({
       where,
       include: {
-        brand: true,
         sub_category: {
-          include: { category: { include: { gender: true } } },
+          include: { category: { include: { gender: true, brand: true } } },
         },
       },
       orderBy: { sku_code: 'asc' },
@@ -73,7 +72,7 @@ export class SkuRecommenderService {
 
     // Score products based on available attributes
     const scored: SkuRecommendationItem[] = products.map(product => {
-      const srp = Number(product.srp);
+      const srp = Number(product.unit_price);
       let score = 50; // base score
       const reasons: string[] = [];
 
@@ -167,7 +166,7 @@ export class SkuRecommenderService {
           product_id: +productId,
           customer_target: 'Regular',
           unit_cost: 0,
-          srp: product.srp,
+          srp: product.unit_price,
         },
       });
       added++;

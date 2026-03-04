@@ -55,8 +55,8 @@ async function main() {
   const groupLuxury = await prisma.groupBrand.findUniqueOrThrow({ where: { code: 'LUXURY' } });
   const groupPremium = await prisma.groupBrand.findUniqueOrThrow({ where: { code: 'PREMIUM' } });
 
-  const collCarryOver = await prisma.collection.findUniqueOrThrow({ where: { name: 'Carry Over' } });
-  const collSeasonal = await prisma.collection.findUniqueOrThrow({ where: { name: 'Seasonal' } });
+  const stCarryOver = await prisma.seasonType.findFirstOrThrow({ where: { name: 'Carry Over' } });
+  const stSeasonal = await prisma.seasonType.findFirstOrThrow({ where: { name: 'Seasonal' } });
 
   const sgSS = await prisma.seasonGroup.findUniqueOrThrow({ where: { name: 'SS' } });
   const sgFW = await prisma.seasonGroup.findUniqueOrThrow({ where: { name: 'FW' } });
@@ -95,48 +95,48 @@ async function main() {
 
   const newProducts = [
     // Ferragamo Women's RTW
-    { sku_code: 'FER-W-OW-001', product_name: 'GANCINI BELTED COAT', sub_category_id: 'w_outerwear', theme: 'SEPTEMBER (09)', color: 'CAMEL', composition: '80% WOOL 20% CASHMERE', srp: 89000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-OW-002', product_name: 'DOUBLE-BREASTED TRENCH', sub_category_id: 'w_outerwear', theme: 'OCTOBER (10)', color: 'HONEY', composition: '100% COTTON', srp: 75000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-OW-003', product_name: 'CAPE PONCHO CASHMERE', sub_category_id: 'w_outerwear', theme: 'NOVEMBER (11)', color: 'IVORY', composition: '80% WOOL 20% CASHMERE', srp: 95000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-TP-001', product_name: 'SILK BOW BLOUSE', sub_category_id: 'w_tops', theme: 'AUGUST (08)', color: 'DUSTY PINK', composition: '100% SILK', srp: 32000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-TP-002', product_name: 'GANCINI KNIT TOP', sub_category_id: 'w_tops', theme: 'SEPTEMBER (09)', color: 'BLACK', composition: '80% WOOL 20% CASHMERE', srp: 28500000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-TP-003', product_name: 'PRINTED POPLIN SHIRT', sub_category_id: 'w_tops', theme: 'OCTOBER (10)', color: 'FOREST GREEN', composition: '100% COTTON', srp: 24000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-DR-001', product_name: 'WRAP DRESS CREPE', sub_category_id: 'w_dresses', theme: 'SEPTEMBER (09)', color: 'WINE RED', composition: '100% SILK', srp: 52000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-DR-002', product_name: 'MIDI DRESS PLISSE', sub_category_id: 'w_dresses', theme: 'OCTOBER (10)', color: 'EMERALD', composition: '100% POLYAMIDE', srp: 48000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-DR-003', product_name: 'COCKTAIL DRESS SATIN', sub_category_id: 'w_dresses', theme: 'NOVEMBER (11)', color: 'BURGUNDY', composition: '100% SILK', srp: 65000000, brand_id: brandFER.id },
+    { sku_code: 'FER-W-OW-001', product_name: 'GANCINI BELTED COAT', sub_category_id: 'w_outerwear', theme: 'SEPTEMBER (09)', color: 'CAMEL', composition: '80% WOOL 20% CASHMERE', srp: 89000000 },
+    { sku_code: 'FER-W-OW-002', product_name: 'DOUBLE-BREASTED TRENCH', sub_category_id: 'w_outerwear', theme: 'OCTOBER (10)', color: 'HONEY', composition: '100% COTTON', srp: 75000000 },
+    { sku_code: 'FER-W-OW-003', product_name: 'CAPE PONCHO CASHMERE', sub_category_id: 'w_outerwear', theme: 'NOVEMBER (11)', color: 'IVORY', composition: '80% WOOL 20% CASHMERE', srp: 95000000 },
+    { sku_code: 'FER-W-TP-001', product_name: 'SILK BOW BLOUSE', sub_category_id: 'w_tops', theme: 'AUGUST (08)', color: 'DUSTY PINK', composition: '100% SILK', srp: 32000000 },
+    { sku_code: 'FER-W-TP-002', product_name: 'GANCINI KNIT TOP', sub_category_id: 'w_tops', theme: 'SEPTEMBER (09)', color: 'BLACK', composition: '80% WOOL 20% CASHMERE', srp: 28500000 },
+    { sku_code: 'FER-W-TP-003', product_name: 'PRINTED POPLIN SHIRT', sub_category_id: 'w_tops', theme: 'OCTOBER (10)', color: 'FOREST GREEN', composition: '100% COTTON', srp: 24000000 },
+    { sku_code: 'FER-W-DR-001', product_name: 'WRAP DRESS CREPE', sub_category_id: 'w_dresses', theme: 'SEPTEMBER (09)', color: 'WINE RED', composition: '100% SILK', srp: 52000000 },
+    { sku_code: 'FER-W-DR-002', product_name: 'MIDI DRESS PLISSE', sub_category_id: 'w_dresses', theme: 'OCTOBER (10)', color: 'EMERALD', composition: '100% POLYAMIDE', srp: 48000000 },
+    { sku_code: 'FER-W-DR-003', product_name: 'COCKTAIL DRESS SATIN', sub_category_id: 'w_dresses', theme: 'NOVEMBER (11)', color: 'BURGUNDY', composition: '100% SILK', srp: 65000000 },
     // Ferragamo Women's Bags
-    { sku_code: 'FER-W-BG-001', product_name: 'VARA BOW TOTE', sub_category_id: 'w_bags', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 85000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-BG-002', product_name: 'TRIFOLIO CROSSBODY', sub_category_id: 'w_bags', theme: 'SEPTEMBER (09)', color: 'DUSTY PINK', composition: '100% LEATHER', srp: 62000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-BG-003', product_name: 'GANCINI CLUTCH', sub_category_id: 'w_bags', theme: 'OCTOBER (10)', color: 'WINE RED', composition: '100% LEATHER', srp: 45000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-BG-004', product_name: 'STUDIO TOP HANDLE', sub_category_id: 'w_bags', theme: 'NOVEMBER (11)', color: 'HONEY', composition: '100% LEATHER', srp: 98000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-BG-005', product_name: 'WANDA MINI BAG', sub_category_id: 'w_bags', theme: 'DECEMBER (12)', color: 'IVORY', composition: 'CANVAS/LEATHER', srp: 42000000, brand_id: brandFER.id },
+    { sku_code: 'FER-W-BG-001', product_name: 'VARA BOW TOTE', sub_category_id: 'w_bags', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 85000000 },
+    { sku_code: 'FER-W-BG-002', product_name: 'TRIFOLIO CROSSBODY', sub_category_id: 'w_bags', theme: 'SEPTEMBER (09)', color: 'DUSTY PINK', composition: '100% LEATHER', srp: 62000000 },
+    { sku_code: 'FER-W-BG-003', product_name: 'GANCINI CLUTCH', sub_category_id: 'w_bags', theme: 'OCTOBER (10)', color: 'WINE RED', composition: '100% LEATHER', srp: 45000000 },
+    { sku_code: 'FER-W-BG-004', product_name: 'STUDIO TOP HANDLE', sub_category_id: 'w_bags', theme: 'NOVEMBER (11)', color: 'HONEY', composition: '100% LEATHER', srp: 98000000 },
+    { sku_code: 'FER-W-BG-005', product_name: 'WANDA MINI BAG', sub_category_id: 'w_bags', theme: 'DECEMBER (12)', color: 'IVORY', composition: 'CANVAS/LEATHER', srp: 42000000 },
     // Ferragamo Women's SLG
-    { sku_code: 'FER-W-SL-001', product_name: 'VARA BOW WALLET', sub_category_id: 'w_slg', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 18000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-SL-002', product_name: 'GANCINI CARD HOLDER', sub_category_id: 'w_slg', theme: 'SEPTEMBER (09)', color: 'DUSTY PINK', composition: '100% LEATHER', srp: 12000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-SL-003', product_name: 'ZIP AROUND WALLET', sub_category_id: 'w_slg', theme: 'OCTOBER (10)', color: 'BURGUNDY', composition: '100% LEATHER', srp: 22000000, brand_id: brandFER.id },
+    { sku_code: 'FER-W-SL-001', product_name: 'VARA BOW WALLET', sub_category_id: 'w_slg', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 18000000 },
+    { sku_code: 'FER-W-SL-002', product_name: 'GANCINI CARD HOLDER', sub_category_id: 'w_slg', theme: 'SEPTEMBER (09)', color: 'DUSTY PINK', composition: '100% LEATHER', srp: 12000000 },
+    { sku_code: 'FER-W-SL-003', product_name: 'ZIP AROUND WALLET', sub_category_id: 'w_slg', theme: 'OCTOBER (10)', color: 'BURGUNDY', composition: '100% LEATHER', srp: 22000000 },
     // Ferragamo Women's Shoes
-    { sku_code: 'FER-W-SH-001', product_name: 'VARA BOW PUMP', sub_category_id: 'w_shoes', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 28000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-SH-002', product_name: 'VARINA BALLET FLAT', sub_category_id: 'w_shoes', theme: 'SEPTEMBER (09)', color: 'HONEY', composition: '100% LEATHER', srp: 25000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-SH-003', product_name: 'GANCINI SANDAL', sub_category_id: 'w_shoes', theme: 'OCTOBER (10)', color: 'TAN', composition: '100% LEATHER', srp: 32000000, brand_id: brandFER.id },
-    { sku_code: 'FER-W-SH-004', product_name: 'PLATFORM LOAFER', sub_category_id: 'w_shoes', theme: 'NOVEMBER (11)', color: 'WINE RED', composition: '100% LEATHER', srp: 38000000, brand_id: brandFER.id },
+    { sku_code: 'FER-W-SH-001', product_name: 'VARA BOW PUMP', sub_category_id: 'w_shoes', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 28000000 },
+    { sku_code: 'FER-W-SH-002', product_name: 'VARINA BALLET FLAT', sub_category_id: 'w_shoes', theme: 'SEPTEMBER (09)', color: 'HONEY', composition: '100% LEATHER', srp: 25000000 },
+    { sku_code: 'FER-W-SH-003', product_name: 'GANCINI SANDAL', sub_category_id: 'w_shoes', theme: 'OCTOBER (10)', color: 'TAN', composition: '100% LEATHER', srp: 32000000 },
+    { sku_code: 'FER-W-SH-004', product_name: 'PLATFORM LOAFER', sub_category_id: 'w_shoes', theme: 'NOVEMBER (11)', color: 'WINE RED', composition: '100% LEATHER', srp: 38000000 },
     // Ferragamo Men's
-    { sku_code: 'FER-M-OW-001', product_name: 'GANCINI BOMBER JACKET', sub_category_id: 'm_outerwear', theme: 'SEPTEMBER (09)', color: 'NAVY', composition: '100% NYLON', srp: 55000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-OW-002', product_name: 'WOOL OVERCOAT', sub_category_id: 'm_outerwear', theme: 'OCTOBER (10)', color: 'GREY', composition: '80% WOOL 20% CASHMERE', srp: 78000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-TP-001', product_name: 'GANCINI POLO', sub_category_id: 'm_tops', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% COTTON', srp: 22000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-TP-002', product_name: 'SILK DRESS SHIRT', sub_category_id: 'm_tops', theme: 'SEPTEMBER (09)', color: 'IVORY', composition: '100% SILK', srp: 32000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-BG-001', product_name: 'REVIVAL BRIEFCASE', sub_category_id: 'm_bags', theme: 'OCTOBER (10)', color: 'BLACK', composition: '100% LEATHER', srp: 72000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-BG-002', product_name: 'GANCINI BACKPACK', sub_category_id: 'm_bags', theme: 'NOVEMBER (11)', color: 'NAVY', composition: '100% NYLON', srp: 48000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-SL-001', product_name: 'GANCINI BIFOLD WALLET', sub_category_id: 'm_slg', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 15000000, brand_id: brandFER.id },
-    { sku_code: 'FER-M-SL-002', product_name: 'CARD CASE EMBOSSED', sub_category_id: 'm_slg', theme: 'SEPTEMBER (09)', color: 'TAN', composition: '100% LEATHER', srp: 10000000, brand_id: brandFER.id },
+    { sku_code: 'FER-M-OW-001', product_name: 'GANCINI BOMBER JACKET', sub_category_id: 'm_outerwear', theme: 'SEPTEMBER (09)', color: 'NAVY', composition: '100% NYLON', srp: 55000000 },
+    { sku_code: 'FER-M-OW-002', product_name: 'WOOL OVERCOAT', sub_category_id: 'm_outerwear', theme: 'OCTOBER (10)', color: 'GREY', composition: '80% WOOL 20% CASHMERE', srp: 78000000 },
+    { sku_code: 'FER-M-TP-001', product_name: 'GANCINI POLO', sub_category_id: 'm_tops', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% COTTON', srp: 22000000 },
+    { sku_code: 'FER-M-TP-002', product_name: 'SILK DRESS SHIRT', sub_category_id: 'm_tops', theme: 'SEPTEMBER (09)', color: 'IVORY', composition: '100% SILK', srp: 32000000 },
+    { sku_code: 'FER-M-BG-001', product_name: 'REVIVAL BRIEFCASE', sub_category_id: 'm_bags', theme: 'OCTOBER (10)', color: 'BLACK', composition: '100% LEATHER', srp: 72000000 },
+    { sku_code: 'FER-M-BG-002', product_name: 'GANCINI BACKPACK', sub_category_id: 'm_bags', theme: 'NOVEMBER (11)', color: 'NAVY', composition: '100% NYLON', srp: 48000000 },
+    { sku_code: 'FER-M-SL-001', product_name: 'GANCINI BIFOLD WALLET', sub_category_id: 'm_slg', theme: 'AUGUST (08)', color: 'BLACK', composition: '100% LEATHER', srp: 15000000 },
+    { sku_code: 'FER-M-SL-002', product_name: 'CARD CASE EMBOSSED', sub_category_id: 'm_slg', theme: 'SEPTEMBER (09)', color: 'TAN', composition: '100% LEATHER', srp: 10000000 },
     // Burberry Women's
-    { sku_code: 'BUR-W-OW-001', product_name: 'CHECK QUILTED JACKET', sub_category_id: 'w_outerwear', theme: 'OCTOBER (10)', color: 'CAMEL', composition: '100% POLYAMIDE', srp: 68000000, brand_id: brandBUR.id },
-    { sku_code: 'BUR-W-BG-001', product_name: 'POCKET BAG MEDIUM', sub_category_id: 'w_bags', theme: 'SEPTEMBER (09)', color: 'TAN', composition: '100% LEATHER', srp: 78000000, brand_id: brandBUR.id },
-    { sku_code: 'BUR-W-BG-002', product_name: 'NOTE CROSSBODY', sub_category_id: 'w_bags', theme: 'OCTOBER (10)', color: 'BLACK', composition: 'CANVAS/LEATHER', srp: 52000000, brand_id: brandBUR.id },
-    { sku_code: 'BUR-W-SL-001', product_name: 'CHECK CONTINENTAL WALLET', sub_category_id: 'w_slg', theme: 'AUGUST (08)', color: 'TAN', composition: 'CANVAS/LEATHER', srp: 19000000, brand_id: brandBUR.id },
+    { sku_code: 'BUR-W-OW-001', product_name: 'CHECK QUILTED JACKET', sub_category_id: 'w_outerwear', theme: 'OCTOBER (10)', color: 'CAMEL', composition: '100% POLYAMIDE', srp: 68000000 },
+    { sku_code: 'BUR-W-BG-001', product_name: 'POCKET BAG MEDIUM', sub_category_id: 'w_bags', theme: 'SEPTEMBER (09)', color: 'TAN', composition: '100% LEATHER', srp: 78000000 },
+    { sku_code: 'BUR-W-BG-002', product_name: 'NOTE CROSSBODY', sub_category_id: 'w_bags', theme: 'OCTOBER (10)', color: 'BLACK', composition: 'CANVAS/LEATHER', srp: 52000000 },
+    { sku_code: 'BUR-W-SL-001', product_name: 'CHECK CONTINENTAL WALLET', sub_category_id: 'w_slg', theme: 'AUGUST (08)', color: 'TAN', composition: 'CANVAS/LEATHER', srp: 19000000 },
     // Burberry Men's
-    { sku_code: 'BUR-M-OW-001', product_name: 'QUILTED THERMOREGULATED JACKET', sub_category_id: 'm_outerwear', theme: 'NOVEMBER (11)', color: 'BLACK', composition: '100% POLYAMIDE', srp: 62000000, brand_id: brandBUR.id },
-    { sku_code: 'BUR-M-TP-001', product_name: 'CHECK COTTON POLO', sub_category_id: 'm_tops', theme: 'AUGUST (08)', color: 'NAVY', composition: '100% COTTON', srp: 18000000, brand_id: brandBUR.id },
-    { sku_code: 'BUR-M-BG-001', product_name: 'CHECK MESSENGER BAG', sub_category_id: 'm_bags', theme: 'OCTOBER (10)', color: 'TAN', composition: 'CANVAS/LEATHER', srp: 48000000, brand_id: brandBUR.id },
+    { sku_code: 'BUR-M-OW-001', product_name: 'QUILTED THERMOREGULATED JACKET', sub_category_id: 'm_outerwear', theme: 'NOVEMBER (11)', color: 'BLACK', composition: '100% POLYAMIDE', srp: 62000000 },
+    { sku_code: 'BUR-M-TP-001', product_name: 'CHECK COTTON POLO', sub_category_id: 'm_tops', theme: 'AUGUST (08)', color: 'NAVY', composition: '100% COTTON', srp: 18000000 },
+    { sku_code: 'BUR-M-BG-001', product_name: 'CHECK MESSENGER BAG', sub_category_id: 'm_bags', theme: 'OCTOBER (10)', color: 'TAN', composition: 'CANVAS/LEATHER', srp: 48000000 },
   ];
 
   for (const prod of newProducts) {
@@ -262,13 +262,13 @@ async function main() {
 
       // PlanningCollections
       const collDetails = [
-        { collectionId: collCarryOver.id, pct: 0.40 },
-        { collectionId: collSeasonal.id, pct: 0.60 },
+        { seasonTypeId: stCarryOver.id, pct: 0.40 },
+        { seasonTypeId: stSeasonal.id, pct: 0.60 },
       ];
       for (const cd of collDetails) {
         await prisma.planningCollection.create({
           data: {
-            collection_id: cd.collectionId,
+            season_type_id: cd.seasonTypeId,
             store_id: storeEntry.store.id,
             planning_header_id: ph.id,
             actual_buy_pct: d(cd.pct * 100),

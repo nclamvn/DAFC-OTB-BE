@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 
 export interface DimensionRecommendation {
-  dimensionType: 'collection' | 'gender' | 'category';
+  dimensionType: 'seasonType' | 'gender' | 'category';
   dimensionValue: string;
   dimensionId: number | bigint;
   recommendedPct: number;
@@ -13,7 +13,7 @@ export interface DimensionRecommendation {
 
 export interface AllocationResult {
   budgetAmount: number;
-  collections: DimensionRecommendation[];
+  seasonTypes: DimensionRecommendation[];
   genders: DimensionRecommendation[];
   categories: DimensionRecommendation[];
   overallConfidence: number;
@@ -35,15 +35,15 @@ export class OtbAllocationService {
   }): Promise<AllocationResult> {
     const warnings: string[] = [];
 
-    const collections = await this.recommendCollections(input.budgetAmount);
+    const seasonTypes = await this.recommendSeasonTypes(input.budgetAmount);
     const genders = await this.recommendGenders(input.budgetAmount);
     const categories = await this.recommendCategories(input.budgetAmount);
 
-    this.normalize(collections);
+    this.normalize(seasonTypes);
     this.normalize(genders);
     this.normalize(categories);
 
-    const all = [...collections, ...genders, ...categories];
+    const all = [...seasonTypes, ...genders, ...categories];
     const overallConfidence = all.length > 0
       ? all.reduce((s, r) => s + r.confidence, 0) / all.length
       : 0;
@@ -54,7 +54,7 @@ export class OtbAllocationService {
 
     return {
       budgetAmount: input.budgetAmount,
-      collections,
+      seasonTypes,
       genders,
       categories,
       overallConfidence,
@@ -69,7 +69,7 @@ export class OtbAllocationService {
     const recommendation = await this.generateAllocation({ budgetAmount });
 
     const allRecs = [
-      ...recommendation.collections,
+      ...recommendation.seasonTypes,
       ...recommendation.genders,
       ...recommendation.categories,
     ];
@@ -107,22 +107,22 @@ export class OtbAllocationService {
 
   // ── private helpers ────────────────────────────────────────────────────
 
-  private async recommendCollections(budgetAmount: number): Promise<DimensionRecommendation[]> {
-    const collections = await this.prisma.seasonType.findMany({
+  private async recommendSeasonTypes(budgetAmount: number): Promise<DimensionRecommendation[]> {
+    const seasonTypes = await this.prisma.seasonType.findMany({
       where: { is_active: true },
     });
 
-    if (collections.length === 0) return [];
+    if (seasonTypes.length === 0) return [];
 
-    const equalPct = 100 / collections.length;
-    return collections.map(c => ({
-      dimensionType: 'collection' as const,
+    const equalPct = 100 / seasonTypes.length;
+    return seasonTypes.map(c => ({
+      dimensionType: 'seasonType' as const,
       dimensionValue: c.name,
       dimensionId: c.id,
       recommendedPct: Math.round(equalPct * 10) / 10,
       recommendedAmt: Math.round(budgetAmount * (equalPct / 100)),
       confidence: 0.5,
-      reasoning: `Equal distribution across ${collections.length} collections. Adjust based on seasonal strategy.`,
+      reasoning: `Equal distribution across ${seasonTypes.length} season types. Adjust based on seasonal strategy.`,
     }));
   }
 

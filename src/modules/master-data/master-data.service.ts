@@ -235,7 +235,7 @@ export class MasterDataService {
     const pageSize = filters?.pageSize || 50;
 
     const where: Prisma.ProductWhereInput = { is_active: true };
-    if (filters?.brandId) where.brand_id = BigInt(filters.brandId);
+    if (filters?.brandId) where.sub_category = { category: { brand_id: BigInt(filters.brandId) } };
     if (filters?.subCategoryId) where.sub_category_id = BigInt(filters.subCategoryId);
     if (filters?.search) {
       where.OR = [
@@ -248,11 +248,10 @@ export class MasterDataService {
       this.prisma.product.findMany({
         where,
         include: {
-          brand: true,
           sub_category: {
             include: {
               category: {
-                include: { gender: true },
+                include: { gender: true, brand: true },
               },
             },
           },

@@ -115,9 +115,8 @@ export class ProposalService {
           include: {
             product: {
               include: {
-                brand: true,
                 sub_category: {
-                  include: { category: { include: { gender: true } } },
+                  include: { category: { include: { gender: true, brand: true } } },
                 },
               },
             },
@@ -183,9 +182,8 @@ export class ProposalService {
           include: {
             product: {
               include: {
-                brand: true,
                 sub_category: {
-                  include: { category: { include: { gender: true } } },
+                  include: { category: { include: { gender: true, brand: true } } },
                 },
               },
             },

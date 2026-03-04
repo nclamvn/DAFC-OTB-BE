@@ -2,6 +2,17 @@
 // DAFC OTB Planning System - Database Schema
 // Tech: SQL Server + Prisma ORM
 // Updated: 2026-02-25 — Migrate to SQL Server, all ID & FK fields to BigInt
+//
+// ⚠️  SAFETY RULES:
+//   - Chỉ thao tác trên schema dbo (SQL Server default)
+//   - KHÔNG dùng `prisma migrate reset` — sẽ xóa toàn bộ DB
+//   - KHÔNG dùng `prisma db push --force-reset` — sẽ xóa toàn bộ tables
+//   - KHÔNG dùng `prisma db push --accept-data-loss` — sẽ xóa cột/bảng
+//   - Migration workflow an toàn:
+//       1. npm run prisma:migrate:create  → tạo file SQL, KHÔNG apply
+//       2. Review file SQL trong prisma/migrations/
+//       3. npm run prisma:migrate:deploy  → apply migrations đã review
+//   - Seed chỉ dùng findOrCreate — KHÔNG delete data đã có
 // ============================================================================
 generator client {
   provider = "prisma-client-js"
@@ -93,7 +104,7 @@ model Brand {
 
   // Relations
   group_brand      GroupBrand       @relation("GroupBrandToBrand", fields: [group_brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  products         Product[]        @relation("BrandToProduct")
+  categories       Category[]       @relation("BrandToCategory")
   allocate_headers AllocateHeader[] @relation("BrandToAllocateHeader")
 
   @@map("brand")
@@ -107,8 +118,6 @@ model Store {
   id         BigInt   @id @default(autoincrement())
   code       String
   name       String
-  region     String?
-  location   String?
   is_active  Boolean  @default(true)
   created_by BigInt?
   created_at DateTime @default(now(), map: "stores_created_at_df")
@@ -140,7 +149,7 @@ model SeasonType {
   // Relations
   planning_collections PlanningCollection[] @relation("SeasonTypeToPlanningCollection")
 
-  @@map("collection")
+  @@map("season_type")
 }
 
 model SeasonGroup {
@@ -172,7 +181,7 @@ model Season {
   updated_by      BigInt?
 
   // Relations
-  season_group     SeasonGroup      @relation("SeasonGroupToSeason", fields: [season_group_id], references: [id], onDelete: Cascade, map: "season_group_id_fkey")
+  season_group     SeasonGroup      @relation("SeasonGroupToSeason", fields: [season_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "season_group_id_fkey")
   budget_allocates BudgetAllocate[] @relation("SeasonToBudgetAllocate")
   tickets          Ticket[]         @relation("SeasonToTicket")
 
@@ -199,6 +208,7 @@ model Category {
   id         BigInt   @id @default(autoincrement())
   name       String
   gender_id  BigInt
+  brand_id   BigInt?
   is_active  Boolean  @default(true)
   created_by BigInt?
   created_at DateTime @default(now())
@@ -208,6 +218,7 @@ model Category {
   // Relations
   gender         Gender        @relation("GenderToCategory", fields: [gender_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   sub_categories SubCategory[] @relation("CategoryToSubCategory")
+  brand          Brand?        @relation("BrandToCategory", fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("category")
 }
@@ -253,15 +264,16 @@ model SubcategorySize {
 
 model Product {
   id              BigInt   @id @default(autoincrement())
+  item_code       String
   sku_code        String
   product_name    String
   sub_category_id BigInt
-  brand_id        BigInt?
-  family          String?
+  rail            String?
   theme           String?
   color           String?
   composition     String?
-  srp             Decimal  @db.Decimal(18, 2)
+  unit_price      Decimal  @db.Decimal(18, 2)
+  unit_cost       Decimal  @db.Decimal(18, 2)
   image_url       String?
   is_active       Boolean  @default(true)
   created_by      BigInt?
@@ -270,7 +282,6 @@ model Product {
   updated_by      BigInt?
 
   // Relations
-  brand         Brand?        @relation("BrandToProduct", fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   sub_category  SubCategory   @relation("SubCategoryToProduct", fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   sku_proposals SKUProposal[] @relation("ProductToSKUProposal")
 
@@ -374,7 +385,7 @@ model PlanningHeader {
 
 model PlanningCollection {
   id                  BigInt   @id @default(autoincrement())
-  season_type_id      BigInt   @map("collection_id")
+  season_type_id      BigInt
   store_id            BigInt
   planning_header_id  BigInt
   actual_buy_pct      Decimal  @default(0) @db.Decimal(18, 2)
