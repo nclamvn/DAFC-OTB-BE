@@ -45,10 +45,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
           status = HttpStatus.CONFLICT;
           message = 'Duplicate entry - record already exists';
           break;
-        case 'P2003': // Foreign key constraint
+        case 'P2003': { // Foreign key constraint
           status = HttpStatus.BAD_REQUEST;
-          message = 'Invalid reference - related record not found';
+          const fkField = (exception.meta as any)?.field_name || (exception.meta as any)?.modelName || 'unknown';
+          message = `Invalid reference - related record not found (field: ${fkField})`;
           break;
+        }
         case 'P2014': // Relation violation
           status = HttpStatus.BAD_REQUEST;
           message = 'Relation constraint violation';

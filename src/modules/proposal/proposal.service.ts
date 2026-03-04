@@ -552,10 +552,10 @@ export class ProposalService {
     await this.findOrFail(this.prisma.sKUProposalHeader, headerId, 'SKU Proposal Header');
 
     await this.prisma.$transaction(async (tx) => {
-      // Delete existing children (cascade deletes sku_allocates)
-      await tx.sKUProposal.deleteMany({ where: { sku_proposal_header_id: toBigInt(headerId) } });
-      // Delete existing sizing headers (cascade deletes proposal_sizings)
+      // Delete sizing headers FIRST (cascade deletes proposal_sizings which reference sku_proposals)
       await tx.proposalSizingHeader.deleteMany({ where: { sku_proposal_header_id: toBigInt(headerId) } });
+      // Then delete sku_proposals (cascade deletes sku_allocates)
+      await tx.sKUProposal.deleteMany({ where: { sku_proposal_header_id: toBigInt(headerId) } });
 
       // Re-create all SKU proposals + store allocations
       const productIdMap = new Map<string, bigint>(); // productId → skuProposal.id

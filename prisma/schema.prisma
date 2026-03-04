@@ -2,6 +2,17 @@
 // DAFC OTB Planning System - Database Schema
 // Tech: SQL Server + Prisma ORM
 // Updated: 2026-02-25 — Migrate to SQL Server, all ID & FK fields to BigInt
+//
+// ⚠️  SAFETY RULES:
+//   - Chỉ thao tác trên schema dbo (SQL Server default)
+//   - KHÔNG dùng `prisma migrate reset` — sẽ xóa toàn bộ DB
+//   - KHÔNG dùng `prisma db push --force-reset` — sẽ xóa toàn bộ tables
+//   - KHÔNG dùng `prisma db push --accept-data-loss` — sẽ xóa cột/bảng
+//   - Migration workflow an toàn:
+//       1. npm run prisma:migrate:create  → tạo file SQL, KHÔNG apply
+//       2. Review file SQL trong prisma/migrations/
+//       3. npm run prisma:migrate:deploy  → apply migrations đã review
+//   - Seed chỉ dùng findOrCreate — KHÔNG delete data đã có
 // ============================================================================
 generator client {
   provider = "prisma-client-js"
