@@ -1,7 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ClientSecretCredential } from '@azure/identity';
-import { Client } from '@microsoft/microsoft-graph-client';
-import { TokenCredentialAuthenticationProvider } from '@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials';
+import * as nodemailer from 'nodemailer';
 import * as jwt from 'jsonwebtoken';
 
 // ─── Email Action Token ──────────────────────────────────────────────────────
@@ -38,30 +36,44 @@ export interface ApprovalEmailData {
 @Injectable()
 export class MailService {
   private readonly logger = new Logger(MailService.name);
-  private graphClient: Client | null = null;
+  private transporter: nodemailer.Transporter | null = null;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // GRAPH API CLIENT
+  // SMTP TRANSPORTER (nodemailer)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  private getClient(): Client {
-    if (this.graphClient) return this.graphClient;
+  private async getTransporter(): Promise<nodemailer.Transporter> {
+    if (this.transporter) return this.transporter;
 
-    const clientId = process.env.Client_ID;
-    const clientSecret = process.env.Secret_key;
-    const tenantId = process.env.Tenant_ID;
+    const host = process.env.MAIL_HOST;
+    const user = process.env.MAIL_USER;
+    const pass = process.env.MAIL_PASS;
 
-    if (!clientId || !clientSecret || !tenantId) {
-      throw new Error('Azure AD credentials (Client_ID, Secret_key, Tenant_ID) not configured');
+    // If SMTP credentials are configured, use them (production)
+    if (host && user && pass) {
+      const port = parseInt(process.env.MAIL_PORT || '587', 10);
+      this.transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure: port === 465,
+        auth: { user, pass },
+      });
+      this.logger.log(`SMTP transporter initialized: ${user}@${host}:${port}`);
+      return this.transporter;
     }
 
-    const credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
-    const authProvider = new TokenCredentialAuthenticationProvider(credential, {
-      scopes: ['https://graph.microsoft.com/.default'],
+    // Fallback: use Ethereal test account (dev/testing)
+    this.logger.warn('SMTP not configured — creating Ethereal test account...');
+    const testAccount = await nodemailer.createTestAccount();
+    this.transporter = nodemailer.createTransport({
+      host: testAccount.smtp.host,
+      port: testAccount.smtp.port,
+      secure: testAccount.smtp.secure,
+      auth: { user: testAccount.user, pass: testAccount.pass },
     });
-
-    this.graphClient = Client.initWithMiddleware({ authProvider });
-    return this.graphClient;
+    this.logger.log(`Ethereal test account: ${testAccount.user}`);
+    this.logger.log(`View emails at: https://ethereal.email/login (user: ${testAccount.user}, pass: ${testAccount.pass})`);
+    return this.transporter;
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -89,9 +101,9 @@ export class MailService {
   // ═══════════════════════════════════════════════════════════════════════════
 
   async sendApprovalEmail(data: ApprovalEmailData): Promise<void> {
-    const mailFrom = process.env.MAIL_FROM;
+    const mailFrom = process.env.MAIL_FROM || process.env.MAIL_USER;
     if (!mailFrom) {
-      this.logger.warn('MAIL_FROM not configured, skipping approval email');
+      this.logger.warn('MAIL_FROM / MAIL_USER not configured, skipping approval email');
       return;
     }
 
@@ -118,18 +130,20 @@ export class MailService {
     const htmlBody = this.buildApprovalHtml(data, approveUrl, rejectUrl);
 
     try {
-      const client = this.getClient();
-      await client.api(`/users/${mailFrom}/sendMail`).post({
-        message: {
-          subject,
-          body: { contentType: 'HTML', content: htmlBody },
-          toRecipients: [
-            { emailAddress: { address: data.approverEmail, name: data.approverName } },
-          ],
-        },
-        saveToSentItems: false,
+      const transporter = await this.getTransporter();
+      const info = await transporter.sendMail({
+        from: `"DAFC OTB System" <${mailFrom || 'test@ethereal.email'}>`,
+        to: `"${data.approverName}" <${data.approverEmail}>`,
+        subject,
+        html: htmlBody,
       });
       this.logger.log(`Approval email sent to ${data.approverEmail} for ticket #${data.ticketId}`);
+
+      // Log Ethereal preview URL (only works with test accounts)
+      const previewUrl = nodemailer.getTestMessageUrl(info);
+      if (previewUrl) {
+        this.logger.log(`📧 Preview email: ${previewUrl}`);
+      }
     } catch (err: any) {
       this.logger.error(`Failed to send approval email for ticket #${data.ticketId}: ${err.message}`);
     }

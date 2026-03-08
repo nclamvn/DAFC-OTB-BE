@@ -278,14 +278,16 @@ exports.Prisma.ProductScalarFieldEnum = {
 };
 
 exports.Prisma.ProductRecommendScalarFieldEnum = {
+  id: 'id',
   year: 'year',
-  season_name: 'season_name',
+  season_id: 'season_id',
   item_code: 'item_code',
-  sku: 'sku',
-  brand_name: 'brand_name',
-  gender_id: 'gender_id',
-  category: 'category',
-  sub_category: 'sub_category'
+  sku_code: 'sku_code',
+  product_id: 'product_id',
+  sub_category_id: 'sub_category_id',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.BudgetScalarFieldEnum = {
@@ -536,6 +538,72 @@ exports.Prisma.SellthroughBySubcategoryAggScalarFieldEnum = {
   st: 'st'
 };
 
+exports.Prisma.OrderConfirmationScalarFieldEnum = {
+  id: 'id',
+  ticket_id: 'ticket_id',
+  image_url: 'image_url',
+  sku: 'sku',
+  name: 'name',
+  collection_name: 'collection_name',
+  color: 'color',
+  division: 'division',
+  product_type: 'product_type',
+  department: 'department',
+  carry_forward: 'carry_forward',
+  composition: 'composition',
+  theme: 'theme',
+  style_name: 'style_name',
+  total_units: 'total_units',
+  size: 'size',
+  brand_id: 'brand_id',
+  color_code: 'color_code',
+  fsr: 'fsr',
+  wholesale_sgd: 'wholesale_sgd',
+  rrp_sgd: 'rrp_sgd',
+  regional_rrp: 'regional_rrp',
+  total_price_sgd: 'total_price_sgd',
+  mod: 'mod',
+  ves: 'ves',
+  in_catalogue: 'in_catalogue',
+  gruppo: 'gruppo',
+  tipology: 'tipology',
+  sku_type: 'sku_type',
+  gca: 'gca',
+  window: 'window',
+  heel: 'heel',
+  dimension: 'dimension',
+  finish: 'finish',
+  delivery: 'delivery',
+  currency: 'currency',
+  price_mod_single: 'price_mod_single',
+  price_mod_single_retail: 'price_mod_single_retail',
+  amount: 'amount',
+  amount_retail: 'amount_retail',
+  product_status: 'product_status',
+  size2: 'size2',
+  status: 'status',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by'
+};
+
+exports.Prisma.ReceiptConfirmationScalarFieldEnum = {
+  id: 'id',
+  order_confirmation_id: 'order_confirmation_id',
+  ticket_id: 'ticket_id',
+  received_units: 'received_units',
+  actual_unit_price: 'actual_unit_price',
+  actual_total_price: 'actual_total_price',
+  receipt_currency: 'receipt_currency',
+  receipt_comment: 'receipt_comment',
+  status: 'status',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  updated_by: 'updated_by'
+};
+
 exports.Prisma.ApprovalStatusScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -638,6 +706,8 @@ exports.Prisma.ModelName = {
   SellthroughByGenderAgg: 'SellthroughByGenderAgg',
   SellthroughBySeasonTypeAgg: 'SellthroughBySeasonTypeAgg',
   SellthroughBySubcategoryAgg: 'SellthroughBySubcategoryAgg',
+  OrderConfirmation: 'OrderConfirmation',
+  ReceiptConfirmation: 'ReceiptConfirmation',
   ApprovalStatus: 'ApprovalStatus',
   Ticket: 'Ticket',
   ApprovalWorkflow: 'ApprovalWorkflow',

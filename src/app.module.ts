@@ -12,6 +12,8 @@ import { ApprovalWorkflowModule } from './modules/approval-workflow/approval-wor
 import { TicketModule } from './modules/ticket/ticket.module';
 import { HealthModule } from './modules/health/health.module';
 import { MailModule } from './modules/mail/mail.module';
+import { OrderModule } from './modules/order/order.module';
+import { ReceiptModule } from './modules/receipt/receipt.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { MailModule } from './modules/mail/mail.module';
     AiModule,
     ApprovalWorkflowModule,
     TicketModule,
+    OrderModule,
+    ReceiptModule,
     HealthModule,
   ],
 })

@@ -80,7 +80,7 @@ export type SubcategorySize = $Result.DefaultSelection<Prisma.$SubcategorySizePa
 export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
 /**
  * Model ProductRecommend
- * No PK — use raw queries via PrismaService.$queryRaw
+ * 
  */
 export type ProductRecommend = $Result.DefaultSelection<Prisma.$ProductRecommendPayload>
 /**
@@ -168,6 +168,16 @@ export type SellthroughBySeasonTypeAgg = $Result.DefaultSelection<Prisma.$Sellth
  * 
  */
 export type SellthroughBySubcategoryAgg = $Result.DefaultSelection<Prisma.$SellthroughBySubcategoryAggPayload>
+/**
+ * Model OrderConfirmation
+ * 
+ */
+export type OrderConfirmation = $Result.DefaultSelection<Prisma.$OrderConfirmationPayload>
+/**
+ * Model ReceiptConfirmation
+ * 
+ */
+export type ReceiptConfirmation = $Result.DefaultSelection<Prisma.$ReceiptConfirmationPayload>
 /**
  * Model ApprovalStatus
  * 
@@ -626,6 +636,26 @@ export class PrismaClient<
     * ```
     */
   get sellthroughBySubcategoryAgg(): Prisma.SellthroughBySubcategoryAggDelegate<ExtArgs>;
+
+  /**
+   * `prisma.orderConfirmation`: Exposes CRUD operations for the **OrderConfirmation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrderConfirmations
+    * const orderConfirmations = await prisma.orderConfirmation.findMany()
+    * ```
+    */
+  get orderConfirmation(): Prisma.OrderConfirmationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.receiptConfirmation`: Exposes CRUD operations for the **ReceiptConfirmation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReceiptConfirmations
+    * const receiptConfirmations = await prisma.receiptConfirmation.findMany()
+    * ```
+    */
+  get receiptConfirmation(): Prisma.ReceiptConfirmationDelegate<ExtArgs>;
 
   /**
    * `prisma.approvalStatus`: Exposes CRUD operations for the **ApprovalStatus** model.
@@ -1148,6 +1178,8 @@ export namespace Prisma {
     SellthroughByGenderAgg: 'SellthroughByGenderAgg',
     SellthroughBySeasonTypeAgg: 'SellthroughBySeasonTypeAgg',
     SellthroughBySubcategoryAgg: 'SellthroughBySubcategoryAgg',
+    OrderConfirmation: 'OrderConfirmation',
+    ReceiptConfirmation: 'ReceiptConfirmation',
     ApprovalStatus: 'ApprovalStatus',
     Ticket: 'Ticket',
     ApprovalWorkflow: 'ApprovalWorkflow',
@@ -1168,7 +1200,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "role" | "groupBrand" | "brand" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "productRecommend" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
+      modelProps: "user" | "role" | "groupBrand" | "brand" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "productRecommend" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "orderConfirmation" | "receiptConfirmation" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3218,6 +3250,138 @@ export namespace Prisma {
           }
         }
       }
+      OrderConfirmation: {
+        payload: Prisma.$OrderConfirmationPayload<ExtArgs>
+        fields: Prisma.OrderConfirmationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrderConfirmationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrderConfirmationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          findFirst: {
+            args: Prisma.OrderConfirmationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrderConfirmationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          findMany: {
+            args: Prisma.OrderConfirmationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>[]
+          }
+          create: {
+            args: Prisma.OrderConfirmationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          createMany: {
+            args: Prisma.OrderConfirmationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.OrderConfirmationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          update: {
+            args: Prisma.OrderConfirmationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrderConfirmationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrderConfirmationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.OrderConfirmationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderConfirmationPayload>
+          }
+          aggregate: {
+            args: Prisma.OrderConfirmationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrderConfirmation>
+          }
+          groupBy: {
+            args: Prisma.OrderConfirmationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrderConfirmationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrderConfirmationCountArgs<ExtArgs>
+            result: $Utils.Optional<OrderConfirmationCountAggregateOutputType> | number
+          }
+        }
+      }
+      ReceiptConfirmation: {
+        payload: Prisma.$ReceiptConfirmationPayload<ExtArgs>
+        fields: Prisma.ReceiptConfirmationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReceiptConfirmationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReceiptConfirmationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          findFirst: {
+            args: Prisma.ReceiptConfirmationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReceiptConfirmationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          findMany: {
+            args: Prisma.ReceiptConfirmationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>[]
+          }
+          create: {
+            args: Prisma.ReceiptConfirmationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          createMany: {
+            args: Prisma.ReceiptConfirmationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ReceiptConfirmationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          update: {
+            args: Prisma.ReceiptConfirmationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReceiptConfirmationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReceiptConfirmationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ReceiptConfirmationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReceiptConfirmationPayload>
+          }
+          aggregate: {
+            args: Prisma.ReceiptConfirmationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReceiptConfirmation>
+          }
+          groupBy: {
+            args: Prisma.ReceiptConfirmationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReceiptConfirmationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReceiptConfirmationCountArgs<ExtArgs>
+            result: $Utils.Optional<ReceiptConfirmationCountAggregateOutputType> | number
+          }
+        }
+      }
       ApprovalStatus: {
         payload: Prisma.$ApprovalStatusPayload<ExtArgs>
         fields: Prisma.ApprovalStatusFieldRefs
@@ -3715,6 +3879,8 @@ export namespace Prisma {
     created_sku_proposal_headers: number
     created_proposal_sizing_headers: number
     created_tickets: number
+    created_order_confirmations: number
+    created_receipt_confirmations: number
     approval_workflow_levels: number
     ticket_approval_logs: number
   }
@@ -3726,6 +3892,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: boolean | UserCountOutputTypeCountCreated_sku_proposal_headersArgs
     created_proposal_sizing_headers?: boolean | UserCountOutputTypeCountCreated_proposal_sizing_headersArgs
     created_tickets?: boolean | UserCountOutputTypeCountCreated_ticketsArgs
+    created_order_confirmations?: boolean | UserCountOutputTypeCountCreated_order_confirmationsArgs
+    created_receipt_confirmations?: boolean | UserCountOutputTypeCountCreated_receipt_confirmationsArgs
     approval_workflow_levels?: boolean | UserCountOutputTypeCountApproval_workflow_levelsArgs
     ticket_approval_logs?: boolean | UserCountOutputTypeCountTicket_approval_logsArgs
   }
@@ -3781,6 +3949,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCreated_ticketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TicketWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreated_order_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderConfirmationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreated_receipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceiptConfirmationWhereInput
   }
 
   /**
@@ -4099,6 +4281,7 @@ export namespace Prisma {
   export type SeasonCountOutputType = {
     budget_allocates: number
     tickets: number
+    product_recommends: number
     history_agg: number
     sales_history_agg: number
   }
@@ -4106,6 +4289,7 @@ export namespace Prisma {
   export type SeasonCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     budget_allocates?: boolean | SeasonCountOutputTypeCountBudget_allocatesArgs
     tickets?: boolean | SeasonCountOutputTypeCountTicketsArgs
+    product_recommends?: boolean | SeasonCountOutputTypeCountProduct_recommendsArgs
     history_agg?: boolean | SeasonCountOutputTypeCountHistory_aggArgs
     sales_history_agg?: boolean | SeasonCountOutputTypeCountSales_history_aggArgs
   }
@@ -4133,6 +4317,13 @@ export namespace Prisma {
    */
   export type SeasonCountOutputTypeCountTicketsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TicketWhereInput
+  }
+
+  /**
+   * SeasonCountOutputType without action
+   */
+  export type SeasonCountOutputTypeCountProduct_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductRecommendWhereInput
   }
 
   /**
@@ -4267,6 +4458,7 @@ export namespace Prisma {
     planning_categories: number
     history_agg: number
     sales_history_agg: number
+    product_recommends: number
   }
 
   export type SubCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4275,6 +4467,7 @@ export namespace Prisma {
     planning_categories?: boolean | SubCategoryCountOutputTypeCountPlanning_categoriesArgs
     history_agg?: boolean | SubCategoryCountOutputTypeCountHistory_aggArgs
     sales_history_agg?: boolean | SubCategoryCountOutputTypeCountSales_history_aggArgs
+    product_recommends?: boolean | SubCategoryCountOutputTypeCountProduct_recommendsArgs
   }
 
   // Custom InputTypes
@@ -4323,6 +4516,13 @@ export namespace Prisma {
     where?: SalesHistoryAggWhereInput
   }
 
+  /**
+   * SubCategoryCountOutputType without action
+   */
+  export type SubCategoryCountOutputTypeCountProduct_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductRecommendWhereInput
+  }
+
 
   /**
    * Count Type SubcategorySizeCountOutputType
@@ -4361,10 +4561,12 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     sku_proposals: number
+    product_recommends: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sku_proposals?: boolean | ProductCountOutputTypeCountSku_proposalsArgs
+    product_recommends?: boolean | ProductCountOutputTypeCountProduct_recommendsArgs
   }
 
   // Custom InputTypes
@@ -4383,6 +4585,13 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountSku_proposalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SKUProposalWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountProduct_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductRecommendWhereInput
   }
 
 
@@ -4636,17 +4845,52 @@ export namespace Prisma {
 
 
   /**
+   * Count Type OrderConfirmationCountOutputType
+   */
+
+  export type OrderConfirmationCountOutputType = {
+    receipt_confirmations: number
+  }
+
+  export type OrderConfirmationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    receipt_confirmations?: boolean | OrderConfirmationCountOutputTypeCountReceipt_confirmationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * OrderConfirmationCountOutputType without action
+   */
+  export type OrderConfirmationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmationCountOutputType
+     */
+    select?: OrderConfirmationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * OrderConfirmationCountOutputType without action
+   */
+  export type OrderConfirmationCountOutputTypeCountReceipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceiptConfirmationWhereInput
+  }
+
+
+  /**
    * Count Type TicketCountOutputType
    */
 
   export type TicketCountOutputType = {
     ticket_approval_logs: number
     snapshot_allocate_headers: number
+    order_confirmations: number
+    receipt_confirmations: number
   }
 
   export type TicketCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ticket_approval_logs?: boolean | TicketCountOutputTypeCountTicket_approval_logsArgs
     snapshot_allocate_headers?: boolean | TicketCountOutputTypeCountSnapshot_allocate_headersArgs
+    order_confirmations?: boolean | TicketCountOutputTypeCountOrder_confirmationsArgs
+    receipt_confirmations?: boolean | TicketCountOutputTypeCountReceipt_confirmationsArgs
   }
 
   // Custom InputTypes
@@ -4672,6 +4916,20 @@ export namespace Prisma {
    */
   export type TicketCountOutputTypeCountSnapshot_allocate_headersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AllocateHeaderWhereInput
+  }
+
+  /**
+   * TicketCountOutputType without action
+   */
+  export type TicketCountOutputTypeCountOrder_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderConfirmationWhereInput
+  }
+
+  /**
+   * TicketCountOutputType without action
+   */
+  export type TicketCountOutputTypeCountReceipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceiptConfirmationWhereInput
   }
 
 
@@ -4990,6 +5248,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: boolean | User$created_sku_proposal_headersArgs<ExtArgs>
     created_proposal_sizing_headers?: boolean | User$created_proposal_sizing_headersArgs<ExtArgs>
     created_tickets?: boolean | User$created_ticketsArgs<ExtArgs>
+    created_order_confirmations?: boolean | User$created_order_confirmationsArgs<ExtArgs>
+    created_receipt_confirmations?: boolean | User$created_receipt_confirmationsArgs<ExtArgs>
     approval_workflow_levels?: boolean | User$approval_workflow_levelsArgs<ExtArgs>
     ticket_approval_logs?: boolean | User$ticket_approval_logsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -5017,6 +5277,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: boolean | User$created_sku_proposal_headersArgs<ExtArgs>
     created_proposal_sizing_headers?: boolean | User$created_proposal_sizing_headersArgs<ExtArgs>
     created_tickets?: boolean | User$created_ticketsArgs<ExtArgs>
+    created_order_confirmations?: boolean | User$created_order_confirmationsArgs<ExtArgs>
+    created_receipt_confirmations?: boolean | User$created_receipt_confirmationsArgs<ExtArgs>
     approval_workflow_levels?: boolean | User$approval_workflow_levelsArgs<ExtArgs>
     ticket_approval_logs?: boolean | User$ticket_approval_logsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -5032,6 +5294,8 @@ export namespace Prisma {
       created_sku_proposal_headers: Prisma.$SKUProposalHeaderPayload<ExtArgs>[]
       created_proposal_sizing_headers: Prisma.$ProposalSizingHeaderPayload<ExtArgs>[]
       created_tickets: Prisma.$TicketPayload<ExtArgs>[]
+      created_order_confirmations: Prisma.$OrderConfirmationPayload<ExtArgs>[]
+      created_receipt_confirmations: Prisma.$ReceiptConfirmationPayload<ExtArgs>[]
       approval_workflow_levels: Prisma.$ApprovalWorkflowLevelPayload<ExtArgs>[]
       ticket_approval_logs: Prisma.$TicketApprovalLogPayload<ExtArgs>[]
     }
@@ -5393,6 +5657,8 @@ export namespace Prisma {
     created_sku_proposal_headers<T extends User$created_sku_proposal_headersArgs<ExtArgs> = {}>(args?: Subset<T, User$created_sku_proposal_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUProposalHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     created_proposal_sizing_headers<T extends User$created_proposal_sizing_headersArgs<ExtArgs> = {}>(args?: Subset<T, User$created_proposal_sizing_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProposalSizingHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     created_tickets<T extends User$created_ticketsArgs<ExtArgs> = {}>(args?: Subset<T, User$created_ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
+    created_order_confirmations<T extends User$created_order_confirmationsArgs<ExtArgs> = {}>(args?: Subset<T, User$created_order_confirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findMany"> | Null>
+    created_receipt_confirmations<T extends User$created_receipt_confirmationsArgs<ExtArgs> = {}>(args?: Subset<T, User$created_receipt_confirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findMany"> | Null>
     approval_workflow_levels<T extends User$approval_workflow_levelsArgs<ExtArgs> = {}>(args?: Subset<T, User$approval_workflow_levelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalWorkflowLevelPayload<ExtArgs>, T, "findMany"> | Null>
     ticket_approval_logs<T extends User$ticket_approval_logsArgs<ExtArgs> = {}>(args?: Subset<T, User$ticket_approval_logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketApprovalLogPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -5849,6 +6115,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
+  }
+
+  /**
+   * User.created_order_confirmations
+   */
+  export type User$created_order_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    where?: OrderConfirmationWhereInput
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    cursor?: OrderConfirmationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderConfirmationScalarFieldEnum | OrderConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * User.created_receipt_confirmations
+   */
+  export type User$created_receipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    where?: ReceiptConfirmationWhereInput
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
   }
 
   /**
@@ -12305,6 +12611,7 @@ export namespace Prisma {
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     budget_allocates?: boolean | Season$budget_allocatesArgs<ExtArgs>
     tickets?: boolean | Season$ticketsArgs<ExtArgs>
+    product_recommends?: boolean | Season$product_recommendsArgs<ExtArgs>
     history_agg?: boolean | Season$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | Season$sales_history_aggArgs<ExtArgs>
     _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
@@ -12327,6 +12634,7 @@ export namespace Prisma {
     season_group?: boolean | SeasonGroupDefaultArgs<ExtArgs>
     budget_allocates?: boolean | Season$budget_allocatesArgs<ExtArgs>
     tickets?: boolean | Season$ticketsArgs<ExtArgs>
+    product_recommends?: boolean | Season$product_recommendsArgs<ExtArgs>
     history_agg?: boolean | Season$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | Season$sales_history_aggArgs<ExtArgs>
     _count?: boolean | SeasonCountOutputTypeDefaultArgs<ExtArgs>
@@ -12338,6 +12646,7 @@ export namespace Prisma {
       season_group: Prisma.$SeasonGroupPayload<ExtArgs>
       budget_allocates: Prisma.$BudgetAllocatePayload<ExtArgs>[]
       tickets: Prisma.$TicketPayload<ExtArgs>[]
+      product_recommends: Prisma.$ProductRecommendPayload<ExtArgs>[]
       history_agg: Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>[]
       sales_history_agg: Prisma.$SalesHistoryAggPayload<ExtArgs>[]
     }
@@ -12694,6 +13003,7 @@ export namespace Prisma {
     season_group<T extends SeasonGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonGroupDefaultArgs<ExtArgs>>): Prisma__SeasonGroupClient<$Result.GetResult<Prisma.$SeasonGroupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     budget_allocates<T extends Season$budget_allocatesArgs<ExtArgs> = {}>(args?: Subset<T, Season$budget_allocatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetAllocatePayload<ExtArgs>, T, "findMany"> | Null>
     tickets<T extends Season$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Season$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
+    product_recommends<T extends Season$product_recommendsArgs<ExtArgs> = {}>(args?: Subset<T, Season$product_recommendsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findMany"> | Null>
     history_agg<T extends Season$history_aggArgs<ExtArgs> = {}>(args?: Subset<T, Season$history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
     sales_history_agg<T extends Season$sales_history_aggArgs<ExtArgs> = {}>(args?: Subset<T, Season$sales_history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalesHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
     /**
@@ -13069,6 +13379,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
+  }
+
+  /**
+   * Season.product_recommends
+   */
+  export type Season$product_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    where?: ProductRecommendWhereInput
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    cursor?: ProductRecommendWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
   }
 
   /**
@@ -15467,6 +15797,7 @@ export namespace Prisma {
     planning_categories?: boolean | SubCategory$planning_categoriesArgs<ExtArgs>
     history_agg?: boolean | SubCategory$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | SubCategory$sales_history_aggArgs<ExtArgs>
+    product_recommends?: boolean | SubCategory$product_recommendsArgs<ExtArgs>
     _count?: boolean | SubCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["subCategory"]>
 
@@ -15489,6 +15820,7 @@ export namespace Prisma {
     planning_categories?: boolean | SubCategory$planning_categoriesArgs<ExtArgs>
     history_agg?: boolean | SubCategory$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | SubCategory$sales_history_aggArgs<ExtArgs>
+    product_recommends?: boolean | SubCategory$product_recommendsArgs<ExtArgs>
     _count?: boolean | SubCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -15501,6 +15833,7 @@ export namespace Prisma {
       planning_categories: Prisma.$PlanningCategoryPayload<ExtArgs>[]
       history_agg: Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>[]
       sales_history_agg: Prisma.$SalesHistoryAggPayload<ExtArgs>[]
+      product_recommends: Prisma.$ProductRecommendPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -15857,6 +16190,7 @@ export namespace Prisma {
     planning_categories<T extends SubCategory$planning_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, SubCategory$planning_categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlanningCategoryPayload<ExtArgs>, T, "findMany"> | Null>
     history_agg<T extends SubCategory$history_aggArgs<ExtArgs> = {}>(args?: Subset<T, SubCategory$history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
     sales_history_agg<T extends SubCategory$sales_history_aggArgs<ExtArgs> = {}>(args?: Subset<T, SubCategory$sales_history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalesHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
+    product_recommends<T extends SubCategory$product_recommendsArgs<ExtArgs> = {}>(args?: Subset<T, SubCategory$product_recommendsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16289,6 +16623,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SalesHistoryAggScalarFieldEnum | SalesHistoryAggScalarFieldEnum[]
+  }
+
+  /**
+   * SubCategory.product_recommends
+   */
+  export type SubCategory$product_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    where?: ProductRecommendWhereInput
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    cursor?: ProductRecommendWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
   }
 
   /**
@@ -17594,6 +17948,7 @@ export namespace Prisma {
     updated_by?: boolean
     sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
     sku_proposals?: boolean | Product$sku_proposalsArgs<ExtArgs>
+    product_recommends?: boolean | Product$product_recommendsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -17621,6 +17976,7 @@ export namespace Prisma {
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
     sku_proposals?: boolean | Product$sku_proposalsArgs<ExtArgs>
+    product_recommends?: boolean | Product$product_recommendsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -17629,6 +17985,7 @@ export namespace Prisma {
     objects: {
       sub_category: Prisma.$SubCategoryPayload<ExtArgs>
       sku_proposals: Prisma.$SKUProposalPayload<ExtArgs>[]
+      product_recommends: Prisma.$ProductRecommendPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -17990,6 +18347,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     sub_category<T extends SubCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubCategoryDefaultArgs<ExtArgs>>): Prisma__SubCategoryClient<$Result.GetResult<Prisma.$SubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     sku_proposals<T extends Product$sku_proposalsArgs<ExtArgs> = {}>(args?: Subset<T, Product$sku_proposalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SKUProposalPayload<ExtArgs>, T, "findMany"> | Null>
+    product_recommends<T extends Product$product_recommendsArgs<ExtArgs> = {}>(args?: Subset<T, Product$product_recommendsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18354,6 +18712,26 @@ export namespace Prisma {
   }
 
   /**
+   * Product.product_recommends
+   */
+  export type Product$product_recommendsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    where?: ProductRecommendWhereInput
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    cursor?: ProductRecommendWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
+  }
+
+  /**
    * Product without action
    */
   export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18381,91 +18759,115 @@ export namespace Prisma {
   }
 
   export type ProductRecommendAvgAggregateOutputType = {
+    id: number | null
     year: number | null
-    gender_id: number | null
+    season_id: number | null
+    product_id: number | null
+    sub_category_id: number | null
   }
 
   export type ProductRecommendSumAggregateOutputType = {
+    id: bigint | null
     year: number | null
-    gender_id: number | null
+    season_id: bigint | null
+    product_id: bigint | null
+    sub_category_id: bigint | null
   }
 
   export type ProductRecommendMinAggregateOutputType = {
+    id: bigint | null
     year: number | null
-    season_name: string | null
+    season_id: bigint | null
     item_code: string | null
-    sku: string | null
-    brand_name: string | null
-    gender_id: number | null
-    category: string | null
-    sub_category: string | null
+    sku_code: string | null
+    product_id: bigint | null
+    sub_category_id: bigint | null
+    is_active: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
   }
 
   export type ProductRecommendMaxAggregateOutputType = {
+    id: bigint | null
     year: number | null
-    season_name: string | null
+    season_id: bigint | null
     item_code: string | null
-    sku: string | null
-    brand_name: string | null
-    gender_id: number | null
-    category: string | null
-    sub_category: string | null
+    sku_code: string | null
+    product_id: bigint | null
+    sub_category_id: bigint | null
+    is_active: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
   }
 
   export type ProductRecommendCountAggregateOutputType = {
+    id: number
     year: number
-    season_name: number
+    season_id: number
     item_code: number
-    sku: number
-    brand_name: number
-    gender_id: number
-    category: number
-    sub_category: number
+    sku_code: number
+    product_id: number
+    sub_category_id: number
+    is_active: number
+    created_at: number
+    updated_at: number
     _all: number
   }
 
 
   export type ProductRecommendAvgAggregateInputType = {
+    id?: true
     year?: true
-    gender_id?: true
+    season_id?: true
+    product_id?: true
+    sub_category_id?: true
   }
 
   export type ProductRecommendSumAggregateInputType = {
+    id?: true
     year?: true
-    gender_id?: true
+    season_id?: true
+    product_id?: true
+    sub_category_id?: true
   }
 
   export type ProductRecommendMinAggregateInputType = {
+    id?: true
     year?: true
-    season_name?: true
+    season_id?: true
     item_code?: true
-    sku?: true
-    brand_name?: true
-    gender_id?: true
-    category?: true
-    sub_category?: true
+    sku_code?: true
+    product_id?: true
+    sub_category_id?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type ProductRecommendMaxAggregateInputType = {
+    id?: true
     year?: true
-    season_name?: true
+    season_id?: true
     item_code?: true
-    sku?: true
-    brand_name?: true
-    gender_id?: true
-    category?: true
-    sub_category?: true
+    sku_code?: true
+    product_id?: true
+    sub_category_id?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type ProductRecommendCountAggregateInputType = {
+    id?: true
     year?: true
-    season_name?: true
+    season_id?: true
     item_code?: true
-    sku?: true
-    brand_name?: true
-    gender_id?: true
-    category?: true
-    sub_category?: true
+    sku_code?: true
+    product_id?: true
+    sub_category_id?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
     _all?: true
   }
 
@@ -18556,14 +18958,16 @@ export namespace Prisma {
   }
 
   export type ProductRecommendGroupByOutputType = {
+    id: bigint
     year: number
-    season_name: string
+    season_id: bigint
     item_code: string
-    sku: string
-    brand_name: string | null
-    gender_id: number | null
-    category: string | null
-    sub_category: string | null
+    sku_code: string
+    product_id: bigint
+    sub_category_id: bigint
+    is_active: boolean
+    created_at: Date
+    updated_at: Date
     _count: ProductRecommendCountAggregateOutputType | null
     _avg: ProductRecommendAvgAggregateOutputType | null
     _sum: ProductRecommendSumAggregateOutputType | null
@@ -18586,41 +18990,59 @@ export namespace Prisma {
 
 
   export type ProductRecommendSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     year?: boolean
-    season_name?: boolean
+    season_id?: boolean
     item_code?: boolean
-    sku?: boolean
-    brand_name?: boolean
-    gender_id?: boolean
-    category?: boolean
-    sub_category?: boolean
+    sku_code?: boolean
+    product_id?: boolean
+    sub_category_id?: boolean
+    is_active?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    season?: boolean | SeasonDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productRecommend"]>
 
 
   export type ProductRecommendSelectScalar = {
+    id?: boolean
     year?: boolean
-    season_name?: boolean
+    season_id?: boolean
     item_code?: boolean
-    sku?: boolean
-    brand_name?: boolean
-    gender_id?: boolean
-    category?: boolean
-    sub_category?: boolean
+    sku_code?: boolean
+    product_id?: boolean
+    sub_category_id?: boolean
+    is_active?: boolean
+    created_at?: boolean
+    updated_at?: boolean
   }
 
+  export type ProductRecommendInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    season?: boolean | SeasonDefaultArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    sub_category?: boolean | SubCategoryDefaultArgs<ExtArgs>
+  }
 
   export type $ProductRecommendPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ProductRecommend"
-    objects: {}
+    objects: {
+      season: Prisma.$SeasonPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs>
+      sub_category: Prisma.$SubCategoryPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
+      id: bigint
       year: number
-      season_name: string
+      season_id: bigint
       item_code: string
-      sku: string
-      brand_name: string | null
-      gender_id: number | null
-      category: string | null
-      sub_category: string | null
+      sku_code: string
+      product_id: bigint
+      sub_category_id: bigint
+      is_active: boolean
+      created_at: Date
+      updated_at: Date
     }, ExtArgs["result"]["productRecommend"]>
     composites: {}
   }
@@ -18704,8 +19126,8 @@ export namespace Prisma {
      * // Get first 10 ProductRecommends
      * const productRecommends = await prisma.productRecommend.findMany({ take: 10 })
      * 
-     * // Only select the `year`
-     * const productRecommendWithYearOnly = await prisma.productRecommend.findMany({ select: { year: true } })
+     * // Only select the `id`
+     * const productRecommendWithIdOnly = await prisma.productRecommend.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends ProductRecommendFindManyArgs>(args?: SelectSubset<T, ProductRecommendFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findMany">>
@@ -18961,6 +19383,9 @@ export namespace Prisma {
    */
   export interface Prisma__ProductRecommendClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    season<T extends SeasonDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SeasonDefaultArgs<ExtArgs>>): Prisma__SeasonClient<$Result.GetResult<Prisma.$SeasonPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    sub_category<T extends SubCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubCategoryDefaultArgs<ExtArgs>>): Prisma__SubCategoryClient<$Result.GetResult<Prisma.$SubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18990,14 +19415,16 @@ export namespace Prisma {
    * Fields of the ProductRecommend model
    */ 
   interface ProductRecommendFieldRefs {
+    readonly id: FieldRef<"ProductRecommend", 'BigInt'>
     readonly year: FieldRef<"ProductRecommend", 'Int'>
-    readonly season_name: FieldRef<"ProductRecommend", 'String'>
+    readonly season_id: FieldRef<"ProductRecommend", 'BigInt'>
     readonly item_code: FieldRef<"ProductRecommend", 'String'>
-    readonly sku: FieldRef<"ProductRecommend", 'String'>
-    readonly brand_name: FieldRef<"ProductRecommend", 'String'>
-    readonly gender_id: FieldRef<"ProductRecommend", 'Int'>
-    readonly category: FieldRef<"ProductRecommend", 'String'>
-    readonly sub_category: FieldRef<"ProductRecommend", 'String'>
+    readonly sku_code: FieldRef<"ProductRecommend", 'String'>
+    readonly product_id: FieldRef<"ProductRecommend", 'BigInt'>
+    readonly sub_category_id: FieldRef<"ProductRecommend", 'BigInt'>
+    readonly is_active: FieldRef<"ProductRecommend", 'Boolean'>
+    readonly created_at: FieldRef<"ProductRecommend", 'DateTime'>
+    readonly updated_at: FieldRef<"ProductRecommend", 'DateTime'>
   }
     
 
@@ -19010,6 +19437,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductRecommend
      */
     select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
     /**
      * Filter, which ProductRecommend to fetch.
      */
@@ -19025,6 +19456,10 @@ export namespace Prisma {
      */
     select?: ProductRecommendSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    /**
      * Filter, which ProductRecommend to fetch.
      */
     where: ProductRecommendWhereUniqueInput
@@ -19038,6 +19473,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductRecommend
      */
     select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
     /**
      * Filter, which ProductRecommend to fetch.
      */
@@ -19083,6 +19522,10 @@ export namespace Prisma {
      */
     select?: ProductRecommendSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    /**
      * Filter, which ProductRecommend to fetch.
      */
     where?: ProductRecommendWhereInput
@@ -19127,6 +19570,10 @@ export namespace Prisma {
      */
     select?: ProductRecommendSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    /**
      * Filter, which ProductRecommends to fetch.
      */
     where?: ProductRecommendWhereInput
@@ -19166,9 +19613,13 @@ export namespace Prisma {
      */
     select?: ProductRecommendSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    /**
      * The data needed to create a ProductRecommend.
      */
-    data?: XOR<ProductRecommendCreateInput, ProductRecommendUncheckedCreateInput>
+    data: XOR<ProductRecommendCreateInput, ProductRecommendUncheckedCreateInput>
   }
 
   /**
@@ -19189,6 +19640,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductRecommend
      */
     select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
     /**
      * The data needed to update a ProductRecommend.
      */
@@ -19222,6 +19677,10 @@ export namespace Prisma {
      */
     select?: ProductRecommendSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
+    /**
      * The filter to search for the ProductRecommend to update in case it exists.
      */
     where: ProductRecommendWhereUniqueInput
@@ -19243,6 +19702,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductRecommend
      */
     select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
     /**
      * Filter which ProductRecommend to delete.
      */
@@ -19267,6 +19730,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductRecommend
      */
     select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductRecommendInclude<ExtArgs> | null
   }
 
 
@@ -36876,6 +37343,2524 @@ export namespace Prisma {
 
 
   /**
+   * Model OrderConfirmation
+   */
+
+  export type AggregateOrderConfirmation = {
+    _count: OrderConfirmationCountAggregateOutputType | null
+    _avg: OrderConfirmationAvgAggregateOutputType | null
+    _sum: OrderConfirmationSumAggregateOutputType | null
+    _min: OrderConfirmationMinAggregateOutputType | null
+    _max: OrderConfirmationMaxAggregateOutputType | null
+  }
+
+  export type OrderConfirmationAvgAggregateOutputType = {
+    id: number | null
+    ticket_id: number | null
+    total_units: number | null
+    wholesale_sgd: Decimal | null
+    rrp_sgd: Decimal | null
+    regional_rrp: Decimal | null
+    total_price_sgd: Decimal | null
+    price_mod_single: Decimal | null
+    price_mod_single_retail: Decimal | null
+    amount: Decimal | null
+    amount_retail: Decimal | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type OrderConfirmationSumAggregateOutputType = {
+    id: bigint | null
+    ticket_id: bigint | null
+    total_units: number | null
+    wholesale_sgd: Decimal | null
+    rrp_sgd: Decimal | null
+    regional_rrp: Decimal | null
+    total_price_sgd: Decimal | null
+    price_mod_single: Decimal | null
+    price_mod_single_retail: Decimal | null
+    amount: Decimal | null
+    amount_retail: Decimal | null
+    created_by: bigint | null
+    updated_by: bigint | null
+  }
+
+  export type OrderConfirmationMinAggregateOutputType = {
+    id: bigint | null
+    ticket_id: bigint | null
+    image_url: string | null
+    sku: string | null
+    name: string | null
+    collection_name: string | null
+    color: string | null
+    division: string | null
+    product_type: string | null
+    department: string | null
+    carry_forward: string | null
+    composition: string | null
+    theme: string | null
+    style_name: string | null
+    total_units: number | null
+    size: string | null
+    brand_id: string | null
+    color_code: string | null
+    fsr: string | null
+    wholesale_sgd: Decimal | null
+    rrp_sgd: Decimal | null
+    regional_rrp: Decimal | null
+    total_price_sgd: Decimal | null
+    mod: string | null
+    ves: string | null
+    in_catalogue: string | null
+    gruppo: string | null
+    tipology: string | null
+    sku_type: string | null
+    gca: string | null
+    window: string | null
+    heel: string | null
+    dimension: string | null
+    finish: string | null
+    delivery: string | null
+    currency: string | null
+    price_mod_single: Decimal | null
+    price_mod_single_retail: Decimal | null
+    amount: Decimal | null
+    amount_retail: Decimal | null
+    product_status: string | null
+    size2: string | null
+    status: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+    updated_by: bigint | null
+  }
+
+  export type OrderConfirmationMaxAggregateOutputType = {
+    id: bigint | null
+    ticket_id: bigint | null
+    image_url: string | null
+    sku: string | null
+    name: string | null
+    collection_name: string | null
+    color: string | null
+    division: string | null
+    product_type: string | null
+    department: string | null
+    carry_forward: string | null
+    composition: string | null
+    theme: string | null
+    style_name: string | null
+    total_units: number | null
+    size: string | null
+    brand_id: string | null
+    color_code: string | null
+    fsr: string | null
+    wholesale_sgd: Decimal | null
+    rrp_sgd: Decimal | null
+    regional_rrp: Decimal | null
+    total_price_sgd: Decimal | null
+    mod: string | null
+    ves: string | null
+    in_catalogue: string | null
+    gruppo: string | null
+    tipology: string | null
+    sku_type: string | null
+    gca: string | null
+    window: string | null
+    heel: string | null
+    dimension: string | null
+    finish: string | null
+    delivery: string | null
+    currency: string | null
+    price_mod_single: Decimal | null
+    price_mod_single_retail: Decimal | null
+    amount: Decimal | null
+    amount_retail: Decimal | null
+    product_status: string | null
+    size2: string | null
+    status: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+    updated_by: bigint | null
+  }
+
+  export type OrderConfirmationCountAggregateOutputType = {
+    id: number
+    ticket_id: number
+    image_url: number
+    sku: number
+    name: number
+    collection_name: number
+    color: number
+    division: number
+    product_type: number
+    department: number
+    carry_forward: number
+    composition: number
+    theme: number
+    style_name: number
+    total_units: number
+    size: number
+    brand_id: number
+    color_code: number
+    fsr: number
+    wholesale_sgd: number
+    rrp_sgd: number
+    regional_rrp: number
+    total_price_sgd: number
+    mod: number
+    ves: number
+    in_catalogue: number
+    gruppo: number
+    tipology: number
+    sku_type: number
+    gca: number
+    window: number
+    heel: number
+    dimension: number
+    finish: number
+    delivery: number
+    currency: number
+    price_mod_single: number
+    price_mod_single_retail: number
+    amount: number
+    amount_retail: number
+    product_status: number
+    size2: number
+    status: number
+    created_by: number
+    created_at: number
+    updated_at: number
+    updated_by: number
+    _all: number
+  }
+
+
+  export type OrderConfirmationAvgAggregateInputType = {
+    id?: true
+    ticket_id?: true
+    total_units?: true
+    wholesale_sgd?: true
+    rrp_sgd?: true
+    regional_rrp?: true
+    total_price_sgd?: true
+    price_mod_single?: true
+    price_mod_single_retail?: true
+    amount?: true
+    amount_retail?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type OrderConfirmationSumAggregateInputType = {
+    id?: true
+    ticket_id?: true
+    total_units?: true
+    wholesale_sgd?: true
+    rrp_sgd?: true
+    regional_rrp?: true
+    total_price_sgd?: true
+    price_mod_single?: true
+    price_mod_single_retail?: true
+    amount?: true
+    amount_retail?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type OrderConfirmationMinAggregateInputType = {
+    id?: true
+    ticket_id?: true
+    image_url?: true
+    sku?: true
+    name?: true
+    collection_name?: true
+    color?: true
+    division?: true
+    product_type?: true
+    department?: true
+    carry_forward?: true
+    composition?: true
+    theme?: true
+    style_name?: true
+    total_units?: true
+    size?: true
+    brand_id?: true
+    color_code?: true
+    fsr?: true
+    wholesale_sgd?: true
+    rrp_sgd?: true
+    regional_rrp?: true
+    total_price_sgd?: true
+    mod?: true
+    ves?: true
+    in_catalogue?: true
+    gruppo?: true
+    tipology?: true
+    sku_type?: true
+    gca?: true
+    window?: true
+    heel?: true
+    dimension?: true
+    finish?: true
+    delivery?: true
+    currency?: true
+    price_mod_single?: true
+    price_mod_single_retail?: true
+    amount?: true
+    amount_retail?: true
+    product_status?: true
+    size2?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+  }
+
+  export type OrderConfirmationMaxAggregateInputType = {
+    id?: true
+    ticket_id?: true
+    image_url?: true
+    sku?: true
+    name?: true
+    collection_name?: true
+    color?: true
+    division?: true
+    product_type?: true
+    department?: true
+    carry_forward?: true
+    composition?: true
+    theme?: true
+    style_name?: true
+    total_units?: true
+    size?: true
+    brand_id?: true
+    color_code?: true
+    fsr?: true
+    wholesale_sgd?: true
+    rrp_sgd?: true
+    regional_rrp?: true
+    total_price_sgd?: true
+    mod?: true
+    ves?: true
+    in_catalogue?: true
+    gruppo?: true
+    tipology?: true
+    sku_type?: true
+    gca?: true
+    window?: true
+    heel?: true
+    dimension?: true
+    finish?: true
+    delivery?: true
+    currency?: true
+    price_mod_single?: true
+    price_mod_single_retail?: true
+    amount?: true
+    amount_retail?: true
+    product_status?: true
+    size2?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+  }
+
+  export type OrderConfirmationCountAggregateInputType = {
+    id?: true
+    ticket_id?: true
+    image_url?: true
+    sku?: true
+    name?: true
+    collection_name?: true
+    color?: true
+    division?: true
+    product_type?: true
+    department?: true
+    carry_forward?: true
+    composition?: true
+    theme?: true
+    style_name?: true
+    total_units?: true
+    size?: true
+    brand_id?: true
+    color_code?: true
+    fsr?: true
+    wholesale_sgd?: true
+    rrp_sgd?: true
+    regional_rrp?: true
+    total_price_sgd?: true
+    mod?: true
+    ves?: true
+    in_catalogue?: true
+    gruppo?: true
+    tipology?: true
+    sku_type?: true
+    gca?: true
+    window?: true
+    heel?: true
+    dimension?: true
+    finish?: true
+    delivery?: true
+    currency?: true
+    price_mod_single?: true
+    price_mod_single_retail?: true
+    amount?: true
+    amount_retail?: true
+    product_status?: true
+    size2?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+    _all?: true
+  }
+
+  export type OrderConfirmationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderConfirmation to aggregate.
+     */
+    where?: OrderConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderConfirmations to fetch.
+     */
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrderConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OrderConfirmations
+    **/
+    _count?: true | OrderConfirmationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrderConfirmationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderConfirmationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrderConfirmationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrderConfirmationMaxAggregateInputType
+  }
+
+  export type GetOrderConfirmationAggregateType<T extends OrderConfirmationAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrderConfirmation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrderConfirmation[P]>
+      : GetScalarType<T[P], AggregateOrderConfirmation[P]>
+  }
+
+
+
+
+  export type OrderConfirmationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderConfirmationWhereInput
+    orderBy?: OrderConfirmationOrderByWithAggregationInput | OrderConfirmationOrderByWithAggregationInput[]
+    by: OrderConfirmationScalarFieldEnum[] | OrderConfirmationScalarFieldEnum
+    having?: OrderConfirmationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrderConfirmationCountAggregateInputType | true
+    _avg?: OrderConfirmationAvgAggregateInputType
+    _sum?: OrderConfirmationSumAggregateInputType
+    _min?: OrderConfirmationMinAggregateInputType
+    _max?: OrderConfirmationMaxAggregateInputType
+  }
+
+  export type OrderConfirmationGroupByOutputType = {
+    id: bigint
+    ticket_id: bigint
+    image_url: string | null
+    sku: string
+    name: string | null
+    collection_name: string | null
+    color: string | null
+    division: string | null
+    product_type: string | null
+    department: string | null
+    carry_forward: string | null
+    composition: string | null
+    theme: string | null
+    style_name: string | null
+    total_units: number | null
+    size: string | null
+    brand_id: string | null
+    color_code: string | null
+    fsr: string | null
+    wholesale_sgd: Decimal | null
+    rrp_sgd: Decimal | null
+    regional_rrp: Decimal | null
+    total_price_sgd: Decimal | null
+    mod: string | null
+    ves: string | null
+    in_catalogue: string | null
+    gruppo: string | null
+    tipology: string | null
+    sku_type: string | null
+    gca: string | null
+    window: string | null
+    heel: string | null
+    dimension: string | null
+    finish: string | null
+    delivery: string | null
+    currency: string | null
+    price_mod_single: Decimal | null
+    price_mod_single_retail: Decimal | null
+    amount: Decimal | null
+    amount_retail: Decimal | null
+    product_status: string | null
+    size2: string | null
+    status: string
+    created_by: bigint | null
+    created_at: Date
+    updated_at: Date
+    updated_by: bigint | null
+    _count: OrderConfirmationCountAggregateOutputType | null
+    _avg: OrderConfirmationAvgAggregateOutputType | null
+    _sum: OrderConfirmationSumAggregateOutputType | null
+    _min: OrderConfirmationMinAggregateOutputType | null
+    _max: OrderConfirmationMaxAggregateOutputType | null
+  }
+
+  type GetOrderConfirmationGroupByPayload<T extends OrderConfirmationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrderConfirmationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrderConfirmationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrderConfirmationGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderConfirmationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrderConfirmationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticket_id?: boolean
+    image_url?: boolean
+    sku?: boolean
+    name?: boolean
+    collection_name?: boolean
+    color?: boolean
+    division?: boolean
+    product_type?: boolean
+    department?: boolean
+    carry_forward?: boolean
+    composition?: boolean
+    theme?: boolean
+    style_name?: boolean
+    total_units?: boolean
+    size?: boolean
+    brand_id?: boolean
+    color_code?: boolean
+    fsr?: boolean
+    wholesale_sgd?: boolean
+    rrp_sgd?: boolean
+    regional_rrp?: boolean
+    total_price_sgd?: boolean
+    mod?: boolean
+    ves?: boolean
+    in_catalogue?: boolean
+    gruppo?: boolean
+    tipology?: boolean
+    sku_type?: boolean
+    gca?: boolean
+    window?: boolean
+    heel?: boolean
+    dimension?: boolean
+    finish?: boolean
+    delivery?: boolean
+    currency?: boolean
+    price_mod_single?: boolean
+    price_mod_single_retail?: boolean
+    amount?: boolean
+    amount_retail?: boolean
+    product_status?: boolean
+    size2?: boolean
+    status?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    updated_by?: boolean
+    ticket?: boolean | TicketDefaultArgs<ExtArgs>
+    creator?: boolean | OrderConfirmation$creatorArgs<ExtArgs>
+    receipt_confirmations?: boolean | OrderConfirmation$receipt_confirmationsArgs<ExtArgs>
+    _count?: boolean | OrderConfirmationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["orderConfirmation"]>
+
+
+  export type OrderConfirmationSelectScalar = {
+    id?: boolean
+    ticket_id?: boolean
+    image_url?: boolean
+    sku?: boolean
+    name?: boolean
+    collection_name?: boolean
+    color?: boolean
+    division?: boolean
+    product_type?: boolean
+    department?: boolean
+    carry_forward?: boolean
+    composition?: boolean
+    theme?: boolean
+    style_name?: boolean
+    total_units?: boolean
+    size?: boolean
+    brand_id?: boolean
+    color_code?: boolean
+    fsr?: boolean
+    wholesale_sgd?: boolean
+    rrp_sgd?: boolean
+    regional_rrp?: boolean
+    total_price_sgd?: boolean
+    mod?: boolean
+    ves?: boolean
+    in_catalogue?: boolean
+    gruppo?: boolean
+    tipology?: boolean
+    sku_type?: boolean
+    gca?: boolean
+    window?: boolean
+    heel?: boolean
+    dimension?: boolean
+    finish?: boolean
+    delivery?: boolean
+    currency?: boolean
+    price_mod_single?: boolean
+    price_mod_single_retail?: boolean
+    amount?: boolean
+    amount_retail?: boolean
+    product_status?: boolean
+    size2?: boolean
+    status?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    updated_by?: boolean
+  }
+
+  export type OrderConfirmationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ticket?: boolean | TicketDefaultArgs<ExtArgs>
+    creator?: boolean | OrderConfirmation$creatorArgs<ExtArgs>
+    receipt_confirmations?: boolean | OrderConfirmation$receipt_confirmationsArgs<ExtArgs>
+    _count?: boolean | OrderConfirmationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $OrderConfirmationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OrderConfirmation"
+    objects: {
+      ticket: Prisma.$TicketPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs> | null
+      receipt_confirmations: Prisma.$ReceiptConfirmationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      ticket_id: bigint
+      image_url: string | null
+      sku: string
+      name: string | null
+      collection_name: string | null
+      color: string | null
+      division: string | null
+      product_type: string | null
+      department: string | null
+      carry_forward: string | null
+      composition: string | null
+      theme: string | null
+      style_name: string | null
+      total_units: number | null
+      size: string | null
+      brand_id: string | null
+      color_code: string | null
+      fsr: string | null
+      wholesale_sgd: Prisma.Decimal | null
+      rrp_sgd: Prisma.Decimal | null
+      regional_rrp: Prisma.Decimal | null
+      total_price_sgd: Prisma.Decimal | null
+      mod: string | null
+      ves: string | null
+      in_catalogue: string | null
+      gruppo: string | null
+      tipology: string | null
+      sku_type: string | null
+      gca: string | null
+      window: string | null
+      heel: string | null
+      dimension: string | null
+      finish: string | null
+      delivery: string | null
+      currency: string | null
+      price_mod_single: Prisma.Decimal | null
+      price_mod_single_retail: Prisma.Decimal | null
+      amount: Prisma.Decimal | null
+      amount_retail: Prisma.Decimal | null
+      product_status: string | null
+      size2: string | null
+      status: string
+      created_by: bigint | null
+      created_at: Date
+      updated_at: Date
+      updated_by: bigint | null
+    }, ExtArgs["result"]["orderConfirmation"]>
+    composites: {}
+  }
+
+  type OrderConfirmationGetPayload<S extends boolean | null | undefined | OrderConfirmationDefaultArgs> = $Result.GetResult<Prisma.$OrderConfirmationPayload, S>
+
+  type OrderConfirmationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<OrderConfirmationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: OrderConfirmationCountAggregateInputType | true
+    }
+
+  export interface OrderConfirmationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrderConfirmation'], meta: { name: 'OrderConfirmation' } }
+    /**
+     * Find zero or one OrderConfirmation that matches the filter.
+     * @param {OrderConfirmationFindUniqueArgs} args - Arguments to find a OrderConfirmation
+     * @example
+     * // Get one OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OrderConfirmationFindUniqueArgs>(args: SelectSubset<T, OrderConfirmationFindUniqueArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one OrderConfirmation that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {OrderConfirmationFindUniqueOrThrowArgs} args - Arguments to find a OrderConfirmation
+     * @example
+     * // Get one OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OrderConfirmationFindUniqueOrThrowArgs>(args: SelectSubset<T, OrderConfirmationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first OrderConfirmation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationFindFirstArgs} args - Arguments to find a OrderConfirmation
+     * @example
+     * // Get one OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OrderConfirmationFindFirstArgs>(args?: SelectSubset<T, OrderConfirmationFindFirstArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first OrderConfirmation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationFindFirstOrThrowArgs} args - Arguments to find a OrderConfirmation
+     * @example
+     * // Get one OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OrderConfirmationFindFirstOrThrowArgs>(args?: SelectSubset<T, OrderConfirmationFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more OrderConfirmations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OrderConfirmations
+     * const orderConfirmations = await prisma.orderConfirmation.findMany()
+     * 
+     * // Get first 10 OrderConfirmations
+     * const orderConfirmations = await prisma.orderConfirmation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const orderConfirmationWithIdOnly = await prisma.orderConfirmation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OrderConfirmationFindManyArgs>(args?: SelectSubset<T, OrderConfirmationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a OrderConfirmation.
+     * @param {OrderConfirmationCreateArgs} args - Arguments to create a OrderConfirmation.
+     * @example
+     * // Create one OrderConfirmation
+     * const OrderConfirmation = await prisma.orderConfirmation.create({
+     *   data: {
+     *     // ... data to create a OrderConfirmation
+     *   }
+     * })
+     * 
+     */
+    create<T extends OrderConfirmationCreateArgs>(args: SelectSubset<T, OrderConfirmationCreateArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many OrderConfirmations.
+     * @param {OrderConfirmationCreateManyArgs} args - Arguments to create many OrderConfirmations.
+     * @example
+     * // Create many OrderConfirmations
+     * const orderConfirmation = await prisma.orderConfirmation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OrderConfirmationCreateManyArgs>(args?: SelectSubset<T, OrderConfirmationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a OrderConfirmation.
+     * @param {OrderConfirmationDeleteArgs} args - Arguments to delete one OrderConfirmation.
+     * @example
+     * // Delete one OrderConfirmation
+     * const OrderConfirmation = await prisma.orderConfirmation.delete({
+     *   where: {
+     *     // ... filter to delete one OrderConfirmation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OrderConfirmationDeleteArgs>(args: SelectSubset<T, OrderConfirmationDeleteArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one OrderConfirmation.
+     * @param {OrderConfirmationUpdateArgs} args - Arguments to update one OrderConfirmation.
+     * @example
+     * // Update one OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OrderConfirmationUpdateArgs>(args: SelectSubset<T, OrderConfirmationUpdateArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more OrderConfirmations.
+     * @param {OrderConfirmationDeleteManyArgs} args - Arguments to filter OrderConfirmations to delete.
+     * @example
+     * // Delete a few OrderConfirmations
+     * const { count } = await prisma.orderConfirmation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OrderConfirmationDeleteManyArgs>(args?: SelectSubset<T, OrderConfirmationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OrderConfirmations
+     * const orderConfirmation = await prisma.orderConfirmation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OrderConfirmationUpdateManyArgs>(args: SelectSubset<T, OrderConfirmationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one OrderConfirmation.
+     * @param {OrderConfirmationUpsertArgs} args - Arguments to update or create a OrderConfirmation.
+     * @example
+     * // Update or create a OrderConfirmation
+     * const orderConfirmation = await prisma.orderConfirmation.upsert({
+     *   create: {
+     *     // ... data to create a OrderConfirmation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OrderConfirmation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OrderConfirmationUpsertArgs>(args: SelectSubset<T, OrderConfirmationUpsertArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of OrderConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationCountArgs} args - Arguments to filter OrderConfirmations to count.
+     * @example
+     * // Count the number of OrderConfirmations
+     * const count = await prisma.orderConfirmation.count({
+     *   where: {
+     *     // ... the filter for the OrderConfirmations we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrderConfirmationCountArgs>(
+      args?: Subset<T, OrderConfirmationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrderConfirmationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OrderConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrderConfirmationAggregateArgs>(args: Subset<T, OrderConfirmationAggregateArgs>): Prisma.PrismaPromise<GetOrderConfirmationAggregateType<T>>
+
+    /**
+     * Group by OrderConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderConfirmationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrderConfirmationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrderConfirmationGroupByArgs['orderBy'] }
+        : { orderBy?: OrderConfirmationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrderConfirmationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderConfirmationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OrderConfirmation model
+   */
+  readonly fields: OrderConfirmationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OrderConfirmation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrderConfirmationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ticket<T extends TicketDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TicketDefaultArgs<ExtArgs>>): Prisma__TicketClient<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    creator<T extends OrderConfirmation$creatorArgs<ExtArgs> = {}>(args?: Subset<T, OrderConfirmation$creatorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    receipt_confirmations<T extends OrderConfirmation$receipt_confirmationsArgs<ExtArgs> = {}>(args?: Subset<T, OrderConfirmation$receipt_confirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OrderConfirmation model
+   */ 
+  interface OrderConfirmationFieldRefs {
+    readonly id: FieldRef<"OrderConfirmation", 'BigInt'>
+    readonly ticket_id: FieldRef<"OrderConfirmation", 'BigInt'>
+    readonly image_url: FieldRef<"OrderConfirmation", 'String'>
+    readonly sku: FieldRef<"OrderConfirmation", 'String'>
+    readonly name: FieldRef<"OrderConfirmation", 'String'>
+    readonly collection_name: FieldRef<"OrderConfirmation", 'String'>
+    readonly color: FieldRef<"OrderConfirmation", 'String'>
+    readonly division: FieldRef<"OrderConfirmation", 'String'>
+    readonly product_type: FieldRef<"OrderConfirmation", 'String'>
+    readonly department: FieldRef<"OrderConfirmation", 'String'>
+    readonly carry_forward: FieldRef<"OrderConfirmation", 'String'>
+    readonly composition: FieldRef<"OrderConfirmation", 'String'>
+    readonly theme: FieldRef<"OrderConfirmation", 'String'>
+    readonly style_name: FieldRef<"OrderConfirmation", 'String'>
+    readonly total_units: FieldRef<"OrderConfirmation", 'Int'>
+    readonly size: FieldRef<"OrderConfirmation", 'String'>
+    readonly brand_id: FieldRef<"OrderConfirmation", 'String'>
+    readonly color_code: FieldRef<"OrderConfirmation", 'String'>
+    readonly fsr: FieldRef<"OrderConfirmation", 'String'>
+    readonly wholesale_sgd: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly rrp_sgd: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly regional_rrp: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly total_price_sgd: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly mod: FieldRef<"OrderConfirmation", 'String'>
+    readonly ves: FieldRef<"OrderConfirmation", 'String'>
+    readonly in_catalogue: FieldRef<"OrderConfirmation", 'String'>
+    readonly gruppo: FieldRef<"OrderConfirmation", 'String'>
+    readonly tipology: FieldRef<"OrderConfirmation", 'String'>
+    readonly sku_type: FieldRef<"OrderConfirmation", 'String'>
+    readonly gca: FieldRef<"OrderConfirmation", 'String'>
+    readonly window: FieldRef<"OrderConfirmation", 'String'>
+    readonly heel: FieldRef<"OrderConfirmation", 'String'>
+    readonly dimension: FieldRef<"OrderConfirmation", 'String'>
+    readonly finish: FieldRef<"OrderConfirmation", 'String'>
+    readonly delivery: FieldRef<"OrderConfirmation", 'String'>
+    readonly currency: FieldRef<"OrderConfirmation", 'String'>
+    readonly price_mod_single: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly price_mod_single_retail: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly amount: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly amount_retail: FieldRef<"OrderConfirmation", 'Decimal'>
+    readonly product_status: FieldRef<"OrderConfirmation", 'String'>
+    readonly size2: FieldRef<"OrderConfirmation", 'String'>
+    readonly status: FieldRef<"OrderConfirmation", 'String'>
+    readonly created_by: FieldRef<"OrderConfirmation", 'BigInt'>
+    readonly created_at: FieldRef<"OrderConfirmation", 'DateTime'>
+    readonly updated_at: FieldRef<"OrderConfirmation", 'DateTime'>
+    readonly updated_by: FieldRef<"OrderConfirmation", 'BigInt'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OrderConfirmation findUnique
+   */
+  export type OrderConfirmationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderConfirmation to fetch.
+     */
+    where: OrderConfirmationWhereUniqueInput
+  }
+
+  /**
+   * OrderConfirmation findUniqueOrThrow
+   */
+  export type OrderConfirmationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderConfirmation to fetch.
+     */
+    where: OrderConfirmationWhereUniqueInput
+  }
+
+  /**
+   * OrderConfirmation findFirst
+   */
+  export type OrderConfirmationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderConfirmation to fetch.
+     */
+    where?: OrderConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderConfirmations to fetch.
+     */
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderConfirmations.
+     */
+    cursor?: OrderConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderConfirmations.
+     */
+    distinct?: OrderConfirmationScalarFieldEnum | OrderConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * OrderConfirmation findFirstOrThrow
+   */
+  export type OrderConfirmationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderConfirmation to fetch.
+     */
+    where?: OrderConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderConfirmations to fetch.
+     */
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderConfirmations.
+     */
+    cursor?: OrderConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderConfirmations.
+     */
+    distinct?: OrderConfirmationScalarFieldEnum | OrderConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * OrderConfirmation findMany
+   */
+  export type OrderConfirmationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderConfirmations to fetch.
+     */
+    where?: OrderConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderConfirmations to fetch.
+     */
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OrderConfirmations.
+     */
+    cursor?: OrderConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderConfirmations.
+     */
+    skip?: number
+    distinct?: OrderConfirmationScalarFieldEnum | OrderConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * OrderConfirmation create
+   */
+  export type OrderConfirmationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OrderConfirmation.
+     */
+    data: XOR<OrderConfirmationCreateInput, OrderConfirmationUncheckedCreateInput>
+  }
+
+  /**
+   * OrderConfirmation createMany
+   */
+  export type OrderConfirmationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OrderConfirmations.
+     */
+    data: OrderConfirmationCreateManyInput | OrderConfirmationCreateManyInput[]
+  }
+
+  /**
+   * OrderConfirmation update
+   */
+  export type OrderConfirmationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OrderConfirmation.
+     */
+    data: XOR<OrderConfirmationUpdateInput, OrderConfirmationUncheckedUpdateInput>
+    /**
+     * Choose, which OrderConfirmation to update.
+     */
+    where: OrderConfirmationWhereUniqueInput
+  }
+
+  /**
+   * OrderConfirmation updateMany
+   */
+  export type OrderConfirmationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OrderConfirmations.
+     */
+    data: XOR<OrderConfirmationUpdateManyMutationInput, OrderConfirmationUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderConfirmations to update
+     */
+    where?: OrderConfirmationWhereInput
+  }
+
+  /**
+   * OrderConfirmation upsert
+   */
+  export type OrderConfirmationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OrderConfirmation to update in case it exists.
+     */
+    where: OrderConfirmationWhereUniqueInput
+    /**
+     * In case the OrderConfirmation found by the `where` argument doesn't exist, create a new OrderConfirmation with this data.
+     */
+    create: XOR<OrderConfirmationCreateInput, OrderConfirmationUncheckedCreateInput>
+    /**
+     * In case the OrderConfirmation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrderConfirmationUpdateInput, OrderConfirmationUncheckedUpdateInput>
+  }
+
+  /**
+   * OrderConfirmation delete
+   */
+  export type OrderConfirmationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter which OrderConfirmation to delete.
+     */
+    where: OrderConfirmationWhereUniqueInput
+  }
+
+  /**
+   * OrderConfirmation deleteMany
+   */
+  export type OrderConfirmationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderConfirmations to delete
+     */
+    where?: OrderConfirmationWhereInput
+  }
+
+  /**
+   * OrderConfirmation.creator
+   */
+  export type OrderConfirmation$creatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * OrderConfirmation.receipt_confirmations
+   */
+  export type OrderConfirmation$receipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    where?: ReceiptConfirmationWhereInput
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * OrderConfirmation without action
+   */
+  export type OrderConfirmationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReceiptConfirmation
+   */
+
+  export type AggregateReceiptConfirmation = {
+    _count: ReceiptConfirmationCountAggregateOutputType | null
+    _avg: ReceiptConfirmationAvgAggregateOutputType | null
+    _sum: ReceiptConfirmationSumAggregateOutputType | null
+    _min: ReceiptConfirmationMinAggregateOutputType | null
+    _max: ReceiptConfirmationMaxAggregateOutputType | null
+  }
+
+  export type ReceiptConfirmationAvgAggregateOutputType = {
+    id: number | null
+    order_confirmation_id: number | null
+    ticket_id: number | null
+    received_units: number | null
+    actual_unit_price: Decimal | null
+    actual_total_price: Decimal | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type ReceiptConfirmationSumAggregateOutputType = {
+    id: bigint | null
+    order_confirmation_id: bigint | null
+    ticket_id: bigint | null
+    received_units: number | null
+    actual_unit_price: Decimal | null
+    actual_total_price: Decimal | null
+    created_by: bigint | null
+    updated_by: bigint | null
+  }
+
+  export type ReceiptConfirmationMinAggregateOutputType = {
+    id: bigint | null
+    order_confirmation_id: bigint | null
+    ticket_id: bigint | null
+    received_units: number | null
+    actual_unit_price: Decimal | null
+    actual_total_price: Decimal | null
+    receipt_currency: string | null
+    receipt_comment: string | null
+    status: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+    updated_by: bigint | null
+  }
+
+  export type ReceiptConfirmationMaxAggregateOutputType = {
+    id: bigint | null
+    order_confirmation_id: bigint | null
+    ticket_id: bigint | null
+    received_units: number | null
+    actual_unit_price: Decimal | null
+    actual_total_price: Decimal | null
+    receipt_currency: string | null
+    receipt_comment: string | null
+    status: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+    updated_by: bigint | null
+  }
+
+  export type ReceiptConfirmationCountAggregateOutputType = {
+    id: number
+    order_confirmation_id: number
+    ticket_id: number
+    received_units: number
+    actual_unit_price: number
+    actual_total_price: number
+    receipt_currency: number
+    receipt_comment: number
+    status: number
+    created_by: number
+    created_at: number
+    updated_at: number
+    updated_by: number
+    _all: number
+  }
+
+
+  export type ReceiptConfirmationAvgAggregateInputType = {
+    id?: true
+    order_confirmation_id?: true
+    ticket_id?: true
+    received_units?: true
+    actual_unit_price?: true
+    actual_total_price?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type ReceiptConfirmationSumAggregateInputType = {
+    id?: true
+    order_confirmation_id?: true
+    ticket_id?: true
+    received_units?: true
+    actual_unit_price?: true
+    actual_total_price?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type ReceiptConfirmationMinAggregateInputType = {
+    id?: true
+    order_confirmation_id?: true
+    ticket_id?: true
+    received_units?: true
+    actual_unit_price?: true
+    actual_total_price?: true
+    receipt_currency?: true
+    receipt_comment?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+  }
+
+  export type ReceiptConfirmationMaxAggregateInputType = {
+    id?: true
+    order_confirmation_id?: true
+    ticket_id?: true
+    received_units?: true
+    actual_unit_price?: true
+    actual_total_price?: true
+    receipt_currency?: true
+    receipt_comment?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+  }
+
+  export type ReceiptConfirmationCountAggregateInputType = {
+    id?: true
+    order_confirmation_id?: true
+    ticket_id?: true
+    received_units?: true
+    actual_unit_price?: true
+    actual_total_price?: true
+    receipt_currency?: true
+    receipt_comment?: true
+    status?: true
+    created_by?: true
+    created_at?: true
+    updated_at?: true
+    updated_by?: true
+    _all?: true
+  }
+
+  export type ReceiptConfirmationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReceiptConfirmation to aggregate.
+     */
+    where?: ReceiptConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceiptConfirmations to fetch.
+     */
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceiptConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceiptConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReceiptConfirmations
+    **/
+    _count?: true | ReceiptConfirmationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReceiptConfirmationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReceiptConfirmationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReceiptConfirmationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReceiptConfirmationMaxAggregateInputType
+  }
+
+  export type GetReceiptConfirmationAggregateType<T extends ReceiptConfirmationAggregateArgs> = {
+        [P in keyof T & keyof AggregateReceiptConfirmation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReceiptConfirmation[P]>
+      : GetScalarType<T[P], AggregateReceiptConfirmation[P]>
+  }
+
+
+
+
+  export type ReceiptConfirmationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReceiptConfirmationWhereInput
+    orderBy?: ReceiptConfirmationOrderByWithAggregationInput | ReceiptConfirmationOrderByWithAggregationInput[]
+    by: ReceiptConfirmationScalarFieldEnum[] | ReceiptConfirmationScalarFieldEnum
+    having?: ReceiptConfirmationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReceiptConfirmationCountAggregateInputType | true
+    _avg?: ReceiptConfirmationAvgAggregateInputType
+    _sum?: ReceiptConfirmationSumAggregateInputType
+    _min?: ReceiptConfirmationMinAggregateInputType
+    _max?: ReceiptConfirmationMaxAggregateInputType
+  }
+
+  export type ReceiptConfirmationGroupByOutputType = {
+    id: bigint
+    order_confirmation_id: bigint
+    ticket_id: bigint
+    received_units: number | null
+    actual_unit_price: Decimal | null
+    actual_total_price: Decimal | null
+    receipt_currency: string | null
+    receipt_comment: string | null
+    status: string
+    created_by: bigint | null
+    created_at: Date
+    updated_at: Date
+    updated_by: bigint | null
+    _count: ReceiptConfirmationCountAggregateOutputType | null
+    _avg: ReceiptConfirmationAvgAggregateOutputType | null
+    _sum: ReceiptConfirmationSumAggregateOutputType | null
+    _min: ReceiptConfirmationMinAggregateOutputType | null
+    _max: ReceiptConfirmationMaxAggregateOutputType | null
+  }
+
+  type GetReceiptConfirmationGroupByPayload<T extends ReceiptConfirmationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReceiptConfirmationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReceiptConfirmationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReceiptConfirmationGroupByOutputType[P]>
+            : GetScalarType<T[P], ReceiptConfirmationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReceiptConfirmationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    order_confirmation_id?: boolean
+    ticket_id?: boolean
+    received_units?: boolean
+    actual_unit_price?: boolean
+    actual_total_price?: boolean
+    receipt_currency?: boolean
+    receipt_comment?: boolean
+    status?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    updated_by?: boolean
+    order_confirmation?: boolean | OrderConfirmationDefaultArgs<ExtArgs>
+    ticket?: boolean | TicketDefaultArgs<ExtArgs>
+    creator?: boolean | ReceiptConfirmation$creatorArgs<ExtArgs>
+  }, ExtArgs["result"]["receiptConfirmation"]>
+
+
+  export type ReceiptConfirmationSelectScalar = {
+    id?: boolean
+    order_confirmation_id?: boolean
+    ticket_id?: boolean
+    received_units?: boolean
+    actual_unit_price?: boolean
+    actual_total_price?: boolean
+    receipt_currency?: boolean
+    receipt_comment?: boolean
+    status?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    updated_by?: boolean
+  }
+
+  export type ReceiptConfirmationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order_confirmation?: boolean | OrderConfirmationDefaultArgs<ExtArgs>
+    ticket?: boolean | TicketDefaultArgs<ExtArgs>
+    creator?: boolean | ReceiptConfirmation$creatorArgs<ExtArgs>
+  }
+
+  export type $ReceiptConfirmationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReceiptConfirmation"
+    objects: {
+      order_confirmation: Prisma.$OrderConfirmationPayload<ExtArgs>
+      ticket: Prisma.$TicketPayload<ExtArgs>
+      creator: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      order_confirmation_id: bigint
+      ticket_id: bigint
+      received_units: number | null
+      actual_unit_price: Prisma.Decimal | null
+      actual_total_price: Prisma.Decimal | null
+      receipt_currency: string | null
+      receipt_comment: string | null
+      status: string
+      created_by: bigint | null
+      created_at: Date
+      updated_at: Date
+      updated_by: bigint | null
+    }, ExtArgs["result"]["receiptConfirmation"]>
+    composites: {}
+  }
+
+  type ReceiptConfirmationGetPayload<S extends boolean | null | undefined | ReceiptConfirmationDefaultArgs> = $Result.GetResult<Prisma.$ReceiptConfirmationPayload, S>
+
+  type ReceiptConfirmationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ReceiptConfirmationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ReceiptConfirmationCountAggregateInputType | true
+    }
+
+  export interface ReceiptConfirmationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReceiptConfirmation'], meta: { name: 'ReceiptConfirmation' } }
+    /**
+     * Find zero or one ReceiptConfirmation that matches the filter.
+     * @param {ReceiptConfirmationFindUniqueArgs} args - Arguments to find a ReceiptConfirmation
+     * @example
+     * // Get one ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReceiptConfirmationFindUniqueArgs>(args: SelectSubset<T, ReceiptConfirmationFindUniqueArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ReceiptConfirmation that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ReceiptConfirmationFindUniqueOrThrowArgs} args - Arguments to find a ReceiptConfirmation
+     * @example
+     * // Get one ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReceiptConfirmationFindUniqueOrThrowArgs>(args: SelectSubset<T, ReceiptConfirmationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ReceiptConfirmation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationFindFirstArgs} args - Arguments to find a ReceiptConfirmation
+     * @example
+     * // Get one ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReceiptConfirmationFindFirstArgs>(args?: SelectSubset<T, ReceiptConfirmationFindFirstArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ReceiptConfirmation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationFindFirstOrThrowArgs} args - Arguments to find a ReceiptConfirmation
+     * @example
+     * // Get one ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReceiptConfirmationFindFirstOrThrowArgs>(args?: SelectSubset<T, ReceiptConfirmationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ReceiptConfirmations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReceiptConfirmations
+     * const receiptConfirmations = await prisma.receiptConfirmation.findMany()
+     * 
+     * // Get first 10 ReceiptConfirmations
+     * const receiptConfirmations = await prisma.receiptConfirmation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const receiptConfirmationWithIdOnly = await prisma.receiptConfirmation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReceiptConfirmationFindManyArgs>(args?: SelectSubset<T, ReceiptConfirmationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ReceiptConfirmation.
+     * @param {ReceiptConfirmationCreateArgs} args - Arguments to create a ReceiptConfirmation.
+     * @example
+     * // Create one ReceiptConfirmation
+     * const ReceiptConfirmation = await prisma.receiptConfirmation.create({
+     *   data: {
+     *     // ... data to create a ReceiptConfirmation
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReceiptConfirmationCreateArgs>(args: SelectSubset<T, ReceiptConfirmationCreateArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ReceiptConfirmations.
+     * @param {ReceiptConfirmationCreateManyArgs} args - Arguments to create many ReceiptConfirmations.
+     * @example
+     * // Create many ReceiptConfirmations
+     * const receiptConfirmation = await prisma.receiptConfirmation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReceiptConfirmationCreateManyArgs>(args?: SelectSubset<T, ReceiptConfirmationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ReceiptConfirmation.
+     * @param {ReceiptConfirmationDeleteArgs} args - Arguments to delete one ReceiptConfirmation.
+     * @example
+     * // Delete one ReceiptConfirmation
+     * const ReceiptConfirmation = await prisma.receiptConfirmation.delete({
+     *   where: {
+     *     // ... filter to delete one ReceiptConfirmation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReceiptConfirmationDeleteArgs>(args: SelectSubset<T, ReceiptConfirmationDeleteArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ReceiptConfirmation.
+     * @param {ReceiptConfirmationUpdateArgs} args - Arguments to update one ReceiptConfirmation.
+     * @example
+     * // Update one ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReceiptConfirmationUpdateArgs>(args: SelectSubset<T, ReceiptConfirmationUpdateArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ReceiptConfirmations.
+     * @param {ReceiptConfirmationDeleteManyArgs} args - Arguments to filter ReceiptConfirmations to delete.
+     * @example
+     * // Delete a few ReceiptConfirmations
+     * const { count } = await prisma.receiptConfirmation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReceiptConfirmationDeleteManyArgs>(args?: SelectSubset<T, ReceiptConfirmationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReceiptConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReceiptConfirmations
+     * const receiptConfirmation = await prisma.receiptConfirmation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReceiptConfirmationUpdateManyArgs>(args: SelectSubset<T, ReceiptConfirmationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ReceiptConfirmation.
+     * @param {ReceiptConfirmationUpsertArgs} args - Arguments to update or create a ReceiptConfirmation.
+     * @example
+     * // Update or create a ReceiptConfirmation
+     * const receiptConfirmation = await prisma.receiptConfirmation.upsert({
+     *   create: {
+     *     // ... data to create a ReceiptConfirmation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReceiptConfirmation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReceiptConfirmationUpsertArgs>(args: SelectSubset<T, ReceiptConfirmationUpsertArgs<ExtArgs>>): Prisma__ReceiptConfirmationClient<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ReceiptConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationCountArgs} args - Arguments to filter ReceiptConfirmations to count.
+     * @example
+     * // Count the number of ReceiptConfirmations
+     * const count = await prisma.receiptConfirmation.count({
+     *   where: {
+     *     // ... the filter for the ReceiptConfirmations we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReceiptConfirmationCountArgs>(
+      args?: Subset<T, ReceiptConfirmationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReceiptConfirmationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReceiptConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReceiptConfirmationAggregateArgs>(args: Subset<T, ReceiptConfirmationAggregateArgs>): Prisma.PrismaPromise<GetReceiptConfirmationAggregateType<T>>
+
+    /**
+     * Group by ReceiptConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReceiptConfirmationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReceiptConfirmationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReceiptConfirmationGroupByArgs['orderBy'] }
+        : { orderBy?: ReceiptConfirmationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReceiptConfirmationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReceiptConfirmationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReceiptConfirmation model
+   */
+  readonly fields: ReceiptConfirmationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReceiptConfirmation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReceiptConfirmationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    order_confirmation<T extends OrderConfirmationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrderConfirmationDefaultArgs<ExtArgs>>): Prisma__OrderConfirmationClient<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    ticket<T extends TicketDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TicketDefaultArgs<ExtArgs>>): Prisma__TicketClient<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    creator<T extends ReceiptConfirmation$creatorArgs<ExtArgs> = {}>(args?: Subset<T, ReceiptConfirmation$creatorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReceiptConfirmation model
+   */ 
+  interface ReceiptConfirmationFieldRefs {
+    readonly id: FieldRef<"ReceiptConfirmation", 'BigInt'>
+    readonly order_confirmation_id: FieldRef<"ReceiptConfirmation", 'BigInt'>
+    readonly ticket_id: FieldRef<"ReceiptConfirmation", 'BigInt'>
+    readonly received_units: FieldRef<"ReceiptConfirmation", 'Int'>
+    readonly actual_unit_price: FieldRef<"ReceiptConfirmation", 'Decimal'>
+    readonly actual_total_price: FieldRef<"ReceiptConfirmation", 'Decimal'>
+    readonly receipt_currency: FieldRef<"ReceiptConfirmation", 'String'>
+    readonly receipt_comment: FieldRef<"ReceiptConfirmation", 'String'>
+    readonly status: FieldRef<"ReceiptConfirmation", 'String'>
+    readonly created_by: FieldRef<"ReceiptConfirmation", 'BigInt'>
+    readonly created_at: FieldRef<"ReceiptConfirmation", 'DateTime'>
+    readonly updated_at: FieldRef<"ReceiptConfirmation", 'DateTime'>
+    readonly updated_by: FieldRef<"ReceiptConfirmation", 'BigInt'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReceiptConfirmation findUnique
+   */
+  export type ReceiptConfirmationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceiptConfirmation to fetch.
+     */
+    where: ReceiptConfirmationWhereUniqueInput
+  }
+
+  /**
+   * ReceiptConfirmation findUniqueOrThrow
+   */
+  export type ReceiptConfirmationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceiptConfirmation to fetch.
+     */
+    where: ReceiptConfirmationWhereUniqueInput
+  }
+
+  /**
+   * ReceiptConfirmation findFirst
+   */
+  export type ReceiptConfirmationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceiptConfirmation to fetch.
+     */
+    where?: ReceiptConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceiptConfirmations to fetch.
+     */
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReceiptConfirmations.
+     */
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceiptConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceiptConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReceiptConfirmations.
+     */
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * ReceiptConfirmation findFirstOrThrow
+   */
+  export type ReceiptConfirmationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceiptConfirmation to fetch.
+     */
+    where?: ReceiptConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceiptConfirmations to fetch.
+     */
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReceiptConfirmations.
+     */
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceiptConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceiptConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReceiptConfirmations.
+     */
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * ReceiptConfirmation findMany
+   */
+  export type ReceiptConfirmationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReceiptConfirmations to fetch.
+     */
+    where?: ReceiptConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReceiptConfirmations to fetch.
+     */
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReceiptConfirmations.
+     */
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReceiptConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReceiptConfirmations.
+     */
+    skip?: number
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * ReceiptConfirmation create
+   */
+  export type ReceiptConfirmationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReceiptConfirmation.
+     */
+    data: XOR<ReceiptConfirmationCreateInput, ReceiptConfirmationUncheckedCreateInput>
+  }
+
+  /**
+   * ReceiptConfirmation createMany
+   */
+  export type ReceiptConfirmationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReceiptConfirmations.
+     */
+    data: ReceiptConfirmationCreateManyInput | ReceiptConfirmationCreateManyInput[]
+  }
+
+  /**
+   * ReceiptConfirmation update
+   */
+  export type ReceiptConfirmationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReceiptConfirmation.
+     */
+    data: XOR<ReceiptConfirmationUpdateInput, ReceiptConfirmationUncheckedUpdateInput>
+    /**
+     * Choose, which ReceiptConfirmation to update.
+     */
+    where: ReceiptConfirmationWhereUniqueInput
+  }
+
+  /**
+   * ReceiptConfirmation updateMany
+   */
+  export type ReceiptConfirmationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReceiptConfirmations.
+     */
+    data: XOR<ReceiptConfirmationUpdateManyMutationInput, ReceiptConfirmationUncheckedUpdateManyInput>
+    /**
+     * Filter which ReceiptConfirmations to update
+     */
+    where?: ReceiptConfirmationWhereInput
+  }
+
+  /**
+   * ReceiptConfirmation upsert
+   */
+  export type ReceiptConfirmationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReceiptConfirmation to update in case it exists.
+     */
+    where: ReceiptConfirmationWhereUniqueInput
+    /**
+     * In case the ReceiptConfirmation found by the `where` argument doesn't exist, create a new ReceiptConfirmation with this data.
+     */
+    create: XOR<ReceiptConfirmationCreateInput, ReceiptConfirmationUncheckedCreateInput>
+    /**
+     * In case the ReceiptConfirmation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReceiptConfirmationUpdateInput, ReceiptConfirmationUncheckedUpdateInput>
+  }
+
+  /**
+   * ReceiptConfirmation delete
+   */
+  export type ReceiptConfirmationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter which ReceiptConfirmation to delete.
+     */
+    where: ReceiptConfirmationWhereUniqueInput
+  }
+
+  /**
+   * ReceiptConfirmation deleteMany
+   */
+  export type ReceiptConfirmationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReceiptConfirmations to delete
+     */
+    where?: ReceiptConfirmationWhereInput
+  }
+
+  /**
+   * ReceiptConfirmation.creator
+   */
+  export type ReceiptConfirmation$creatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * ReceiptConfirmation without action
+   */
+  export type ReceiptConfirmationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model ApprovalStatus
    */
 
@@ -38026,6 +41011,8 @@ export namespace Prisma {
     creator?: boolean | UserDefaultArgs<ExtArgs>
     ticket_approval_logs?: boolean | Ticket$ticket_approval_logsArgs<ExtArgs>
     snapshot_allocate_headers?: boolean | Ticket$snapshot_allocate_headersArgs<ExtArgs>
+    order_confirmations?: boolean | Ticket$order_confirmationsArgs<ExtArgs>
+    receipt_confirmations?: boolean | Ticket$receipt_confirmationsArgs<ExtArgs>
     _count?: boolean | TicketCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ticket"]>
 
@@ -38049,6 +41036,8 @@ export namespace Prisma {
     creator?: boolean | UserDefaultArgs<ExtArgs>
     ticket_approval_logs?: boolean | Ticket$ticket_approval_logsArgs<ExtArgs>
     snapshot_allocate_headers?: boolean | Ticket$snapshot_allocate_headersArgs<ExtArgs>
+    order_confirmations?: boolean | Ticket$order_confirmationsArgs<ExtArgs>
+    receipt_confirmations?: boolean | Ticket$receipt_confirmationsArgs<ExtArgs>
     _count?: boolean | TicketCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -38061,6 +41050,8 @@ export namespace Prisma {
       creator: Prisma.$UserPayload<ExtArgs>
       ticket_approval_logs: Prisma.$TicketApprovalLogPayload<ExtArgs>[]
       snapshot_allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
+      order_confirmations: Prisma.$OrderConfirmationPayload<ExtArgs>[]
+      receipt_confirmations: Prisma.$ReceiptConfirmationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -38418,6 +41409,8 @@ export namespace Prisma {
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     ticket_approval_logs<T extends Ticket$ticket_approval_logsArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$ticket_approval_logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketApprovalLogPayload<ExtArgs>, T, "findMany"> | Null>
     snapshot_allocate_headers<T extends Ticket$snapshot_allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$snapshot_allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
+    order_confirmations<T extends Ticket$order_confirmationsArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$order_confirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderConfirmationPayload<ExtArgs>, T, "findMany"> | Null>
+    receipt_confirmations<T extends Ticket$receipt_confirmationsArgs<ExtArgs> = {}>(args?: Subset<T, Ticket$receipt_confirmationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReceiptConfirmationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -38791,6 +41784,46 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AllocateHeaderScalarFieldEnum | AllocateHeaderScalarFieldEnum[]
+  }
+
+  /**
+   * Ticket.order_confirmations
+   */
+  export type Ticket$order_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderConfirmation
+     */
+    select?: OrderConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderConfirmationInclude<ExtArgs> | null
+    where?: OrderConfirmationWhereInput
+    orderBy?: OrderConfirmationOrderByWithRelationInput | OrderConfirmationOrderByWithRelationInput[]
+    cursor?: OrderConfirmationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderConfirmationScalarFieldEnum | OrderConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * Ticket.receipt_confirmations
+   */
+  export type Ticket$receipt_confirmationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReceiptConfirmation
+     */
+    select?: ReceiptConfirmationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReceiptConfirmationInclude<ExtArgs> | null
+    where?: ReceiptConfirmationWhereInput
+    orderBy?: ReceiptConfirmationOrderByWithRelationInput | ReceiptConfirmationOrderByWithRelationInput[]
+    cursor?: ReceiptConfirmationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReceiptConfirmationScalarFieldEnum | ReceiptConfirmationScalarFieldEnum[]
   }
 
   /**
@@ -42012,14 +45045,16 @@ export namespace Prisma {
 
 
   export const ProductRecommendScalarFieldEnum: {
+    id: 'id',
     year: 'year',
-    season_name: 'season_name',
+    season_id: 'season_id',
     item_code: 'item_code',
-    sku: 'sku',
-    brand_name: 'brand_name',
-    gender_id: 'gender_id',
-    category: 'category',
-    sub_category: 'sub_category'
+    sku_code: 'sku_code',
+    product_id: 'product_id',
+    sub_category_id: 'sub_category_id',
+    is_active: 'is_active',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
   };
 
   export type ProductRecommendScalarFieldEnum = (typeof ProductRecommendScalarFieldEnum)[keyof typeof ProductRecommendScalarFieldEnum]
@@ -42324,6 +45359,78 @@ export namespace Prisma {
   export type SellthroughBySubcategoryAggScalarFieldEnum = (typeof SellthroughBySubcategoryAggScalarFieldEnum)[keyof typeof SellthroughBySubcategoryAggScalarFieldEnum]
 
 
+  export const OrderConfirmationScalarFieldEnum: {
+    id: 'id',
+    ticket_id: 'ticket_id',
+    image_url: 'image_url',
+    sku: 'sku',
+    name: 'name',
+    collection_name: 'collection_name',
+    color: 'color',
+    division: 'division',
+    product_type: 'product_type',
+    department: 'department',
+    carry_forward: 'carry_forward',
+    composition: 'composition',
+    theme: 'theme',
+    style_name: 'style_name',
+    total_units: 'total_units',
+    size: 'size',
+    brand_id: 'brand_id',
+    color_code: 'color_code',
+    fsr: 'fsr',
+    wholesale_sgd: 'wholesale_sgd',
+    rrp_sgd: 'rrp_sgd',
+    regional_rrp: 'regional_rrp',
+    total_price_sgd: 'total_price_sgd',
+    mod: 'mod',
+    ves: 'ves',
+    in_catalogue: 'in_catalogue',
+    gruppo: 'gruppo',
+    tipology: 'tipology',
+    sku_type: 'sku_type',
+    gca: 'gca',
+    window: 'window',
+    heel: 'heel',
+    dimension: 'dimension',
+    finish: 'finish',
+    delivery: 'delivery',
+    currency: 'currency',
+    price_mod_single: 'price_mod_single',
+    price_mod_single_retail: 'price_mod_single_retail',
+    amount: 'amount',
+    amount_retail: 'amount_retail',
+    product_status: 'product_status',
+    size2: 'size2',
+    status: 'status',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    updated_by: 'updated_by'
+  };
+
+  export type OrderConfirmationScalarFieldEnum = (typeof OrderConfirmationScalarFieldEnum)[keyof typeof OrderConfirmationScalarFieldEnum]
+
+
+  export const ReceiptConfirmationScalarFieldEnum: {
+    id: 'id',
+    order_confirmation_id: 'order_confirmation_id',
+    ticket_id: 'ticket_id',
+    received_units: 'received_units',
+    actual_unit_price: 'actual_unit_price',
+    actual_total_price: 'actual_total_price',
+    receipt_currency: 'receipt_currency',
+    receipt_comment: 'receipt_comment',
+    status: 'status',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    updated_by: 'updated_by'
+  };
+
+  export type ReceiptConfirmationScalarFieldEnum = (typeof ReceiptConfirmationScalarFieldEnum)[keyof typeof ReceiptConfirmationScalarFieldEnum]
+
+
   export const ApprovalStatusScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -42492,6 +45599,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderListRelationFilter
     created_proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
     created_tickets?: TicketListRelationFilter
+    created_order_confirmations?: OrderConfirmationListRelationFilter
+    created_receipt_confirmations?: ReceiptConfirmationListRelationFilter
     approval_workflow_levels?: ApprovalWorkflowLevelListRelationFilter
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
   }
@@ -42514,6 +45623,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderOrderByRelationAggregateInput
     created_proposal_sizing_headers?: ProposalSizingHeaderOrderByRelationAggregateInput
     created_tickets?: TicketOrderByRelationAggregateInput
+    created_order_confirmations?: OrderConfirmationOrderByRelationAggregateInput
+    created_receipt_confirmations?: ReceiptConfirmationOrderByRelationAggregateInput
     approval_workflow_levels?: ApprovalWorkflowLevelOrderByRelationAggregateInput
     ticket_approval_logs?: TicketApprovalLogOrderByRelationAggregateInput
   }
@@ -42539,6 +45650,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderListRelationFilter
     created_proposal_sizing_headers?: ProposalSizingHeaderListRelationFilter
     created_tickets?: TicketListRelationFilter
+    created_order_confirmations?: OrderConfirmationListRelationFilter
+    created_receipt_confirmations?: ReceiptConfirmationListRelationFilter
     approval_workflow_levels?: ApprovalWorkflowLevelListRelationFilter
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
   }, "id" | "email">
@@ -43064,6 +46177,7 @@ export namespace Prisma {
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     budget_allocates?: BudgetAllocateListRelationFilter
     tickets?: TicketListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
   }
@@ -43081,6 +46195,7 @@ export namespace Prisma {
     season_group?: SeasonGroupOrderByWithRelationInput
     budget_allocates?: BudgetAllocateOrderByRelationAggregateInput
     tickets?: TicketOrderByRelationAggregateInput
+    product_recommends?: ProductRecommendOrderByRelationAggregateInput
     history_agg?: SubCategorySizeHistoryAggOrderByRelationAggregateInput
     sales_history_agg?: SalesHistoryAggOrderByRelationAggregateInput
   }
@@ -43101,6 +46216,7 @@ export namespace Prisma {
     season_group?: XOR<SeasonGroupRelationFilter, SeasonGroupWhereInput>
     budget_allocates?: BudgetAllocateListRelationFilter
     tickets?: TicketListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
   }, "id">
@@ -43320,6 +46436,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
   }
 
   export type SubCategoryOrderByWithRelationInput = {
@@ -43337,6 +46454,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryOrderByRelationAggregateInput
     history_agg?: SubCategorySizeHistoryAggOrderByRelationAggregateInput
     sales_history_agg?: SalesHistoryAggOrderByRelationAggregateInput
+    product_recommends?: ProductRecommendOrderByRelationAggregateInput
   }
 
   export type SubCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -43357,6 +46475,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
   }, "id">
 
   export type SubCategoryOrderByWithAggregationInput = {
@@ -43482,6 +46601,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
     sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -43504,6 +46624,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     sub_category?: SubCategoryOrderByWithRelationInput
     sku_proposals?: SKUProposalOrderByRelationAggregateInput
+    product_recommends?: ProductRecommendOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -43529,6 +46650,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Product"> | bigint | number | null
     sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
     sku_proposals?: SKUProposalListRelationFilter
+    product_recommends?: ProductRecommendListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -43583,51 +46705,67 @@ export namespace Prisma {
     AND?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
     OR?: ProductRecommendWhereInput[]
     NOT?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
+    id?: BigIntFilter<"ProductRecommend"> | bigint | number
     year?: IntFilter<"ProductRecommend"> | number
-    season_name?: StringFilter<"ProductRecommend"> | string
+    season_id?: BigIntFilter<"ProductRecommend"> | bigint | number
     item_code?: StringFilter<"ProductRecommend"> | string
-    sku?: StringFilter<"ProductRecommend"> | string
-    brand_name?: StringNullableFilter<"ProductRecommend"> | string | null
-    gender_id?: IntNullableFilter<"ProductRecommend"> | number | null
-    category?: StringNullableFilter<"ProductRecommend"> | string | null
-    sub_category?: StringNullableFilter<"ProductRecommend"> | string | null
+    sku_code?: StringFilter<"ProductRecommend"> | string
+    product_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    sub_category_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    is_active?: BoolFilter<"ProductRecommend"> | boolean
+    created_at?: DateTimeFilter<"ProductRecommend"> | Date | string
+    updated_at?: DateTimeFilter<"ProductRecommend"> | Date | string
+    season?: XOR<SeasonRelationFilter, SeasonWhereInput>
+    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
   }
 
   export type ProductRecommendOrderByWithRelationInput = {
+    id?: SortOrder
     year?: SortOrder
-    season_name?: SortOrder
+    season_id?: SortOrder
     item_code?: SortOrder
-    sku?: SortOrder
-    brand_name?: SortOrderInput | SortOrder
-    gender_id?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    sub_category?: SortOrderInput | SortOrder
+    sku_code?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    season?: SeasonOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+    sub_category?: SubCategoryOrderByWithRelationInput
   }
 
   export type ProductRecommendWhereUniqueInput = Prisma.AtLeast<{
-    year_season_name_item_code_sku?: ProductRecommendYearSeason_nameItem_codeSkuCompoundUniqueInput
+    id?: bigint | number
     AND?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
     OR?: ProductRecommendWhereInput[]
     NOT?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
     year?: IntFilter<"ProductRecommend"> | number
-    season_name?: StringFilter<"ProductRecommend"> | string
+    season_id?: BigIntFilter<"ProductRecommend"> | bigint | number
     item_code?: StringFilter<"ProductRecommend"> | string
-    sku?: StringFilter<"ProductRecommend"> | string
-    brand_name?: StringNullableFilter<"ProductRecommend"> | string | null
-    gender_id?: IntNullableFilter<"ProductRecommend"> | number | null
-    category?: StringNullableFilter<"ProductRecommend"> | string | null
-    sub_category?: StringNullableFilter<"ProductRecommend"> | string | null
-  }, "year_season_name_item_code_sku">
+    sku_code?: StringFilter<"ProductRecommend"> | string
+    product_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    sub_category_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    is_active?: BoolFilter<"ProductRecommend"> | boolean
+    created_at?: DateTimeFilter<"ProductRecommend"> | Date | string
+    updated_at?: DateTimeFilter<"ProductRecommend"> | Date | string
+    season?: XOR<SeasonRelationFilter, SeasonWhereInput>
+    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    sub_category?: XOR<SubCategoryRelationFilter, SubCategoryWhereInput>
+  }, "id">
 
   export type ProductRecommendOrderByWithAggregationInput = {
+    id?: SortOrder
     year?: SortOrder
-    season_name?: SortOrder
+    season_id?: SortOrder
     item_code?: SortOrder
-    sku?: SortOrder
-    brand_name?: SortOrderInput | SortOrder
-    gender_id?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    sub_category?: SortOrderInput | SortOrder
+    sku_code?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     _count?: ProductRecommendCountOrderByAggregateInput
     _avg?: ProductRecommendAvgOrderByAggregateInput
     _max?: ProductRecommendMaxOrderByAggregateInput
@@ -43639,14 +46777,16 @@ export namespace Prisma {
     AND?: ProductRecommendScalarWhereWithAggregatesInput | ProductRecommendScalarWhereWithAggregatesInput[]
     OR?: ProductRecommendScalarWhereWithAggregatesInput[]
     NOT?: ProductRecommendScalarWhereWithAggregatesInput | ProductRecommendScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"ProductRecommend"> | bigint | number
     year?: IntWithAggregatesFilter<"ProductRecommend"> | number
-    season_name?: StringWithAggregatesFilter<"ProductRecommend"> | string
+    season_id?: BigIntWithAggregatesFilter<"ProductRecommend"> | bigint | number
     item_code?: StringWithAggregatesFilter<"ProductRecommend"> | string
-    sku?: StringWithAggregatesFilter<"ProductRecommend"> | string
-    brand_name?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
-    gender_id?: IntNullableWithAggregatesFilter<"ProductRecommend"> | number | null
-    category?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
-    sub_category?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
+    sku_code?: StringWithAggregatesFilter<"ProductRecommend"> | string
+    product_id?: BigIntWithAggregatesFilter<"ProductRecommend"> | bigint | number
+    sub_category_id?: BigIntWithAggregatesFilter<"ProductRecommend"> | bigint | number
+    is_active?: BoolWithAggregatesFilter<"ProductRecommend"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"ProductRecommend"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"ProductRecommend"> | Date | string
   }
 
   export type BudgetWhereInput = {
@@ -45298,6 +48438,382 @@ export namespace Prisma {
     st?: DecimalNullableWithAggregatesFilter<"SellthroughBySubcategoryAgg"> | Decimal | DecimalJsLike | number | string | null
   }
 
+  export type OrderConfirmationWhereInput = {
+    AND?: OrderConfirmationWhereInput | OrderConfirmationWhereInput[]
+    OR?: OrderConfirmationWhereInput[]
+    NOT?: OrderConfirmationWhereInput | OrderConfirmationWhereInput[]
+    id?: BigIntFilter<"OrderConfirmation"> | bigint | number
+    ticket_id?: BigIntFilter<"OrderConfirmation"> | bigint | number
+    image_url?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku?: StringFilter<"OrderConfirmation"> | string
+    name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    collection_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color?: StringNullableFilter<"OrderConfirmation"> | string | null
+    division?: StringNullableFilter<"OrderConfirmation"> | string | null
+    product_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    department?: StringNullableFilter<"OrderConfirmation"> | string | null
+    carry_forward?: StringNullableFilter<"OrderConfirmation"> | string | null
+    composition?: StringNullableFilter<"OrderConfirmation"> | string | null
+    theme?: StringNullableFilter<"OrderConfirmation"> | string | null
+    style_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    total_units?: IntNullableFilter<"OrderConfirmation"> | number | null
+    size?: StringNullableFilter<"OrderConfirmation"> | string | null
+    brand_id?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color_code?: StringNullableFilter<"OrderConfirmation"> | string | null
+    fsr?: StringNullableFilter<"OrderConfirmation"> | string | null
+    wholesale_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    mod?: StringNullableFilter<"OrderConfirmation"> | string | null
+    ves?: StringNullableFilter<"OrderConfirmation"> | string | null
+    in_catalogue?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gruppo?: StringNullableFilter<"OrderConfirmation"> | string | null
+    tipology?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gca?: StringNullableFilter<"OrderConfirmation"> | string | null
+    window?: StringNullableFilter<"OrderConfirmation"> | string | null
+    heel?: StringNullableFilter<"OrderConfirmation"> | string | null
+    dimension?: StringNullableFilter<"OrderConfirmation"> | string | null
+    finish?: StringNullableFilter<"OrderConfirmation"> | string | null
+    delivery?: StringNullableFilter<"OrderConfirmation"> | string | null
+    currency?: StringNullableFilter<"OrderConfirmation"> | string | null
+    price_mod_single?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    product_status?: StringNullableFilter<"OrderConfirmation"> | string | null
+    size2?: StringNullableFilter<"OrderConfirmation"> | string | null
+    status?: StringFilter<"OrderConfirmation"> | string
+    created_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+    ticket?: XOR<TicketRelationFilter, TicketWhereInput>
+    creator?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    receipt_confirmations?: ReceiptConfirmationListRelationFilter
+  }
+
+  export type OrderConfirmationOrderByWithRelationInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    sku?: SortOrder
+    name?: SortOrderInput | SortOrder
+    collection_name?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    division?: SortOrderInput | SortOrder
+    product_type?: SortOrderInput | SortOrder
+    department?: SortOrderInput | SortOrder
+    carry_forward?: SortOrderInput | SortOrder
+    composition?: SortOrderInput | SortOrder
+    theme?: SortOrderInput | SortOrder
+    style_name?: SortOrderInput | SortOrder
+    total_units?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    brand_id?: SortOrderInput | SortOrder
+    color_code?: SortOrderInput | SortOrder
+    fsr?: SortOrderInput | SortOrder
+    wholesale_sgd?: SortOrderInput | SortOrder
+    rrp_sgd?: SortOrderInput | SortOrder
+    regional_rrp?: SortOrderInput | SortOrder
+    total_price_sgd?: SortOrderInput | SortOrder
+    mod?: SortOrderInput | SortOrder
+    ves?: SortOrderInput | SortOrder
+    in_catalogue?: SortOrderInput | SortOrder
+    gruppo?: SortOrderInput | SortOrder
+    tipology?: SortOrderInput | SortOrder
+    sku_type?: SortOrderInput | SortOrder
+    gca?: SortOrderInput | SortOrder
+    window?: SortOrderInput | SortOrder
+    heel?: SortOrderInput | SortOrder
+    dimension?: SortOrderInput | SortOrder
+    finish?: SortOrderInput | SortOrder
+    delivery?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    price_mod_single?: SortOrderInput | SortOrder
+    price_mod_single_retail?: SortOrderInput | SortOrder
+    amount?: SortOrderInput | SortOrder
+    amount_retail?: SortOrderInput | SortOrder
+    product_status?: SortOrderInput | SortOrder
+    size2?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    ticket?: TicketOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+    receipt_confirmations?: ReceiptConfirmationOrderByRelationAggregateInput
+  }
+
+  export type OrderConfirmationWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: OrderConfirmationWhereInput | OrderConfirmationWhereInput[]
+    OR?: OrderConfirmationWhereInput[]
+    NOT?: OrderConfirmationWhereInput | OrderConfirmationWhereInput[]
+    ticket_id?: BigIntFilter<"OrderConfirmation"> | bigint | number
+    image_url?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku?: StringFilter<"OrderConfirmation"> | string
+    name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    collection_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color?: StringNullableFilter<"OrderConfirmation"> | string | null
+    division?: StringNullableFilter<"OrderConfirmation"> | string | null
+    product_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    department?: StringNullableFilter<"OrderConfirmation"> | string | null
+    carry_forward?: StringNullableFilter<"OrderConfirmation"> | string | null
+    composition?: StringNullableFilter<"OrderConfirmation"> | string | null
+    theme?: StringNullableFilter<"OrderConfirmation"> | string | null
+    style_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    total_units?: IntNullableFilter<"OrderConfirmation"> | number | null
+    size?: StringNullableFilter<"OrderConfirmation"> | string | null
+    brand_id?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color_code?: StringNullableFilter<"OrderConfirmation"> | string | null
+    fsr?: StringNullableFilter<"OrderConfirmation"> | string | null
+    wholesale_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    mod?: StringNullableFilter<"OrderConfirmation"> | string | null
+    ves?: StringNullableFilter<"OrderConfirmation"> | string | null
+    in_catalogue?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gruppo?: StringNullableFilter<"OrderConfirmation"> | string | null
+    tipology?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gca?: StringNullableFilter<"OrderConfirmation"> | string | null
+    window?: StringNullableFilter<"OrderConfirmation"> | string | null
+    heel?: StringNullableFilter<"OrderConfirmation"> | string | null
+    dimension?: StringNullableFilter<"OrderConfirmation"> | string | null
+    finish?: StringNullableFilter<"OrderConfirmation"> | string | null
+    delivery?: StringNullableFilter<"OrderConfirmation"> | string | null
+    currency?: StringNullableFilter<"OrderConfirmation"> | string | null
+    price_mod_single?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    product_status?: StringNullableFilter<"OrderConfirmation"> | string | null
+    size2?: StringNullableFilter<"OrderConfirmation"> | string | null
+    status?: StringFilter<"OrderConfirmation"> | string
+    created_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+    ticket?: XOR<TicketRelationFilter, TicketWhereInput>
+    creator?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    receipt_confirmations?: ReceiptConfirmationListRelationFilter
+  }, "id">
+
+  export type OrderConfirmationOrderByWithAggregationInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    sku?: SortOrder
+    name?: SortOrderInput | SortOrder
+    collection_name?: SortOrderInput | SortOrder
+    color?: SortOrderInput | SortOrder
+    division?: SortOrderInput | SortOrder
+    product_type?: SortOrderInput | SortOrder
+    department?: SortOrderInput | SortOrder
+    carry_forward?: SortOrderInput | SortOrder
+    composition?: SortOrderInput | SortOrder
+    theme?: SortOrderInput | SortOrder
+    style_name?: SortOrderInput | SortOrder
+    total_units?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    brand_id?: SortOrderInput | SortOrder
+    color_code?: SortOrderInput | SortOrder
+    fsr?: SortOrderInput | SortOrder
+    wholesale_sgd?: SortOrderInput | SortOrder
+    rrp_sgd?: SortOrderInput | SortOrder
+    regional_rrp?: SortOrderInput | SortOrder
+    total_price_sgd?: SortOrderInput | SortOrder
+    mod?: SortOrderInput | SortOrder
+    ves?: SortOrderInput | SortOrder
+    in_catalogue?: SortOrderInput | SortOrder
+    gruppo?: SortOrderInput | SortOrder
+    tipology?: SortOrderInput | SortOrder
+    sku_type?: SortOrderInput | SortOrder
+    gca?: SortOrderInput | SortOrder
+    window?: SortOrderInput | SortOrder
+    heel?: SortOrderInput | SortOrder
+    dimension?: SortOrderInput | SortOrder
+    finish?: SortOrderInput | SortOrder
+    delivery?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    price_mod_single?: SortOrderInput | SortOrder
+    price_mod_single_retail?: SortOrderInput | SortOrder
+    amount?: SortOrderInput | SortOrder
+    amount_retail?: SortOrderInput | SortOrder
+    product_status?: SortOrderInput | SortOrder
+    size2?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    _count?: OrderConfirmationCountOrderByAggregateInput
+    _avg?: OrderConfirmationAvgOrderByAggregateInput
+    _max?: OrderConfirmationMaxOrderByAggregateInput
+    _min?: OrderConfirmationMinOrderByAggregateInput
+    _sum?: OrderConfirmationSumOrderByAggregateInput
+  }
+
+  export type OrderConfirmationScalarWhereWithAggregatesInput = {
+    AND?: OrderConfirmationScalarWhereWithAggregatesInput | OrderConfirmationScalarWhereWithAggregatesInput[]
+    OR?: OrderConfirmationScalarWhereWithAggregatesInput[]
+    NOT?: OrderConfirmationScalarWhereWithAggregatesInput | OrderConfirmationScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"OrderConfirmation"> | bigint | number
+    ticket_id?: BigIntWithAggregatesFilter<"OrderConfirmation"> | bigint | number
+    image_url?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    sku?: StringWithAggregatesFilter<"OrderConfirmation"> | string
+    name?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    collection_name?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    color?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    division?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    product_type?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    department?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    carry_forward?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    composition?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    theme?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    style_name?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    total_units?: IntNullableWithAggregatesFilter<"OrderConfirmation"> | number | null
+    size?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    brand_id?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    color_code?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    fsr?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    wholesale_sgd?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    mod?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    ves?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    in_catalogue?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    gruppo?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    tipology?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    sku_type?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    gca?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    window?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    heel?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    dimension?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    finish?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    delivery?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    currency?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    price_mod_single?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: DecimalNullableWithAggregatesFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    product_status?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    size2?: StringNullableWithAggregatesFilter<"OrderConfirmation"> | string | null
+    status?: StringWithAggregatesFilter<"OrderConfirmation"> | string
+    created_by?: BigIntNullableWithAggregatesFilter<"OrderConfirmation"> | bigint | number | null
+    created_at?: DateTimeWithAggregatesFilter<"OrderConfirmation"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"OrderConfirmation"> | Date | string
+    updated_by?: BigIntNullableWithAggregatesFilter<"OrderConfirmation"> | bigint | number | null
+  }
+
+  export type ReceiptConfirmationWhereInput = {
+    AND?: ReceiptConfirmationWhereInput | ReceiptConfirmationWhereInput[]
+    OR?: ReceiptConfirmationWhereInput[]
+    NOT?: ReceiptConfirmationWhereInput | ReceiptConfirmationWhereInput[]
+    id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    order_confirmation_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    ticket_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    received_units?: IntNullableFilter<"ReceiptConfirmation"> | number | null
+    actual_unit_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    receipt_comment?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    status?: StringFilter<"ReceiptConfirmation"> | string
+    created_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+    order_confirmation?: XOR<OrderConfirmationRelationFilter, OrderConfirmationWhereInput>
+    ticket?: XOR<TicketRelationFilter, TicketWhereInput>
+    creator?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }
+
+  export type ReceiptConfirmationOrderByWithRelationInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrderInput | SortOrder
+    actual_unit_price?: SortOrderInput | SortOrder
+    actual_total_price?: SortOrderInput | SortOrder
+    receipt_currency?: SortOrderInput | SortOrder
+    receipt_comment?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    order_confirmation?: OrderConfirmationOrderByWithRelationInput
+    ticket?: TicketOrderByWithRelationInput
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type ReceiptConfirmationWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: ReceiptConfirmationWhereInput | ReceiptConfirmationWhereInput[]
+    OR?: ReceiptConfirmationWhereInput[]
+    NOT?: ReceiptConfirmationWhereInput | ReceiptConfirmationWhereInput[]
+    order_confirmation_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    ticket_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    received_units?: IntNullableFilter<"ReceiptConfirmation"> | number | null
+    actual_unit_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    receipt_comment?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    status?: StringFilter<"ReceiptConfirmation"> | string
+    created_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+    order_confirmation?: XOR<OrderConfirmationRelationFilter, OrderConfirmationWhereInput>
+    ticket?: XOR<TicketRelationFilter, TicketWhereInput>
+    creator?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type ReceiptConfirmationOrderByWithAggregationInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrderInput | SortOrder
+    actual_unit_price?: SortOrderInput | SortOrder
+    actual_total_price?: SortOrderInput | SortOrder
+    receipt_currency?: SortOrderInput | SortOrder
+    receipt_comment?: SortOrderInput | SortOrder
+    status?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    _count?: ReceiptConfirmationCountOrderByAggregateInput
+    _avg?: ReceiptConfirmationAvgOrderByAggregateInput
+    _max?: ReceiptConfirmationMaxOrderByAggregateInput
+    _min?: ReceiptConfirmationMinOrderByAggregateInput
+    _sum?: ReceiptConfirmationSumOrderByAggregateInput
+  }
+
+  export type ReceiptConfirmationScalarWhereWithAggregatesInput = {
+    AND?: ReceiptConfirmationScalarWhereWithAggregatesInput | ReceiptConfirmationScalarWhereWithAggregatesInput[]
+    OR?: ReceiptConfirmationScalarWhereWithAggregatesInput[]
+    NOT?: ReceiptConfirmationScalarWhereWithAggregatesInput | ReceiptConfirmationScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"ReceiptConfirmation"> | bigint | number
+    order_confirmation_id?: BigIntWithAggregatesFilter<"ReceiptConfirmation"> | bigint | number
+    ticket_id?: BigIntWithAggregatesFilter<"ReceiptConfirmation"> | bigint | number
+    received_units?: IntNullableWithAggregatesFilter<"ReceiptConfirmation"> | number | null
+    actual_unit_price?: DecimalNullableWithAggregatesFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: DecimalNullableWithAggregatesFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: StringNullableWithAggregatesFilter<"ReceiptConfirmation"> | string | null
+    receipt_comment?: StringNullableWithAggregatesFilter<"ReceiptConfirmation"> | string | null
+    status?: StringWithAggregatesFilter<"ReceiptConfirmation"> | string
+    created_by?: BigIntNullableWithAggregatesFilter<"ReceiptConfirmation"> | bigint | number | null
+    created_at?: DateTimeWithAggregatesFilter<"ReceiptConfirmation"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"ReceiptConfirmation"> | Date | string
+    updated_by?: BigIntNullableWithAggregatesFilter<"ReceiptConfirmation"> | bigint | number | null
+  }
+
   export type ApprovalStatusWhereInput = {
     AND?: ApprovalStatusWhereInput | ApprovalStatusWhereInput[]
     OR?: ApprovalStatusWhereInput[]
@@ -45381,6 +48897,8 @@ export namespace Prisma {
     creator?: XOR<UserRelationFilter, UserWhereInput>
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
     snapshot_allocate_headers?: AllocateHeaderListRelationFilter
+    order_confirmations?: OrderConfirmationListRelationFilter
+    receipt_confirmations?: ReceiptConfirmationListRelationFilter
   }
 
   export type TicketOrderByWithRelationInput = {
@@ -45399,6 +48917,8 @@ export namespace Prisma {
     creator?: UserOrderByWithRelationInput
     ticket_approval_logs?: TicketApprovalLogOrderByRelationAggregateInput
     snapshot_allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
+    order_confirmations?: OrderConfirmationOrderByRelationAggregateInput
+    receipt_confirmations?: ReceiptConfirmationOrderByRelationAggregateInput
   }
 
   export type TicketWhereUniqueInput = Prisma.AtLeast<{
@@ -45420,6 +48940,8 @@ export namespace Prisma {
     creator?: XOR<UserRelationFilter, UserWhereInput>
     ticket_approval_logs?: TicketApprovalLogListRelationFilter
     snapshot_allocate_headers?: AllocateHeaderListRelationFilter
+    order_confirmations?: OrderConfirmationListRelationFilter
+    receipt_confirmations?: ReceiptConfirmationListRelationFilter
   }, "id">
 
   export type TicketOrderByWithAggregationInput = {
@@ -45722,6 +49244,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -45743,6 +49267,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -45764,6 +49290,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -45785,6 +49313,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -46365,6 +49895,7 @@ export namespace Prisma {
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
     tickets?: TicketCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
   }
@@ -46381,6 +49912,7 @@ export namespace Prisma {
     no?: number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
     tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
@@ -46397,6 +49929,7 @@ export namespace Prisma {
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
   }
@@ -46413,6 +49946,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
   }
@@ -46643,6 +50177,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateInput = {
@@ -46659,6 +50194,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUpdateInput = {
@@ -46675,6 +50211,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateInput = {
@@ -46691,6 +50228,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryCreateManyInput = {
@@ -46815,6 +50353,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     sub_category: SubCategoryCreateNestedOneWithoutProductsInput
     sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -46836,6 +50375,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutProductInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -46857,6 +50397,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
     sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -46878,6 +50419,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUncheckedUpdateManyWithoutProductNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -46939,80 +50481,90 @@ export namespace Prisma {
   }
 
   export type ProductRecommendCreateInput = {
-    year?: number
-    season_name?: string
-    item_code?: string
-    sku?: string
-    brand_name?: string | null
-    gender_id?: number | null
-    category?: string | null
-    sub_category?: string | null
+    id?: bigint | number
+    year: number
+    item_code: string
+    sku_code: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    season: SeasonCreateNestedOneWithoutProduct_recommendsInput
+    product: ProductCreateNestedOneWithoutProduct_recommendsInput
+    sub_category: SubCategoryCreateNestedOneWithoutProduct_recommendsInput
   }
 
   export type ProductRecommendUncheckedCreateInput = {
-    year?: number
-    season_name?: string
-    item_code?: string
-    sku?: string
-    brand_name?: string | null
-    gender_id?: number | null
-    category?: string | null
-    sub_category?: string | null
+    id?: bigint | number
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type ProductRecommendUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     year?: IntFieldUpdateOperationsInput | number
-    season_name?: StringFieldUpdateOperationsInput | string
     item_code?: StringFieldUpdateOperationsInput | string
-    sku?: StringFieldUpdateOperationsInput | string
-    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
-    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_code?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    season?: SeasonUpdateOneRequiredWithoutProduct_recommendsNestedInput
+    product?: ProductUpdateOneRequiredWithoutProduct_recommendsNestedInput
+    sub_category?: SubCategoryUpdateOneRequiredWithoutProduct_recommendsNestedInput
   }
 
   export type ProductRecommendUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     year?: IntFieldUpdateOperationsInput | number
-    season_name?: StringFieldUpdateOperationsInput | string
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     item_code?: StringFieldUpdateOperationsInput | string
-    sku?: StringFieldUpdateOperationsInput | string
-    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
-    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductRecommendCreateManyInput = {
-    year?: number
-    season_name?: string
-    item_code?: string
-    sku?: string
-    brand_name?: string | null
-    gender_id?: number | null
-    category?: string | null
-    sub_category?: string | null
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type ProductRecommendUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     year?: IntFieldUpdateOperationsInput | number
-    season_name?: StringFieldUpdateOperationsInput | string
     item_code?: StringFieldUpdateOperationsInput | string
-    sku?: StringFieldUpdateOperationsInput | string
-    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
-    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_code?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductRecommendUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
     year?: IntFieldUpdateOperationsInput | number
-    season_name?: StringFieldUpdateOperationsInput | string
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
     item_code?: StringFieldUpdateOperationsInput | string
-    sku?: StringFieldUpdateOperationsInput | string
-    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
-    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BudgetCreateInput = {
@@ -48746,6 +52298,465 @@ export namespace Prisma {
     st?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
+  export type OrderConfirmationCreateInput = {
+    id?: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket: TicketCreateNestedOneWithoutOrder_confirmationsInput
+    creator?: UserCreateNestedOneWithoutCreated_order_confirmationsInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationUncheckedCreateInput = {
+    id?: bigint | number
+    ticket_id: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket?: TicketUpdateOneRequiredWithoutOrder_confirmationsNestedInput
+    creator?: UserUpdateOneWithoutCreated_order_confirmationsNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationCreateManyInput = {
+    ticket_id: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type OrderConfirmationUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type OrderConfirmationUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateInput = {
+    id?: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    order_confirmation: OrderConfirmationCreateNestedOneWithoutReceipt_confirmationsInput
+    ticket: TicketCreateNestedOneWithoutReceipt_confirmationsInput
+    creator?: UserCreateNestedOneWithoutCreated_receipt_confirmationsInput
+  }
+
+  export type ReceiptConfirmationUncheckedCreateInput = {
+    id?: bigint | number
+    order_confirmation_id: bigint | number
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    order_confirmation?: OrderConfirmationUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+    ticket?: TicketUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+    creator?: UserUpdateOneWithoutCreated_receipt_confirmationsNestedInput
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateManyInput = {
+    order_confirmation_id: bigint | number
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
   export type ApprovalStatusCreateInput = {
     id?: bigint | number
     name: string
@@ -48827,6 +52838,8 @@ export namespace Prisma {
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateInput = {
@@ -48841,6 +52854,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUpdateInput = {
@@ -48855,6 +52870,8 @@ export namespace Prisma {
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateInput = {
@@ -48869,6 +52886,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketCreateManyInput = {
@@ -49242,6 +53261,18 @@ export namespace Prisma {
     none?: TicketWhereInput
   }
 
+  export type OrderConfirmationListRelationFilter = {
+    every?: OrderConfirmationWhereInput
+    some?: OrderConfirmationWhereInput
+    none?: OrderConfirmationWhereInput
+  }
+
+  export type ReceiptConfirmationListRelationFilter = {
+    every?: ReceiptConfirmationWhereInput
+    some?: ReceiptConfirmationWhereInput
+    none?: ReceiptConfirmationWhereInput
+  }
+
   export type ApprovalWorkflowLevelListRelationFilter = {
     every?: ApprovalWorkflowLevelWhereInput
     some?: ApprovalWorkflowLevelWhereInput
@@ -49275,6 +53306,14 @@ export namespace Prisma {
   }
 
   export type TicketOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OrderConfirmationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReceiptConfirmationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -49874,6 +53913,16 @@ export namespace Prisma {
     isNot?: SeasonGroupWhereInput
   }
 
+  export type ProductRecommendListRelationFilter = {
+    every?: ProductRecommendWhereInput
+    some?: ProductRecommendWhereInput
+    none?: ProductRecommendWhereInput
+  }
+
+  export type ProductRecommendOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type SeasonCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -50307,54 +54356,69 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type ProductRecommendYearSeason_nameItem_codeSkuCompoundUniqueInput = {
-    year: number
-    season_name: string
-    item_code: string
-    sku: string
+  export type SeasonRelationFilter = {
+    is?: SeasonWhereInput
+    isNot?: SeasonWhereInput
+  }
+
+  export type ProductRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
   }
 
   export type ProductRecommendCountOrderByAggregateInput = {
+    id?: SortOrder
     year?: SortOrder
-    season_name?: SortOrder
+    season_id?: SortOrder
     item_code?: SortOrder
-    sku?: SortOrder
-    brand_name?: SortOrder
-    gender_id?: SortOrder
-    category?: SortOrder
-    sub_category?: SortOrder
+    sku_code?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type ProductRecommendAvgOrderByAggregateInput = {
+    id?: SortOrder
     year?: SortOrder
-    gender_id?: SortOrder
+    season_id?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
   }
 
   export type ProductRecommendMaxOrderByAggregateInput = {
+    id?: SortOrder
     year?: SortOrder
-    season_name?: SortOrder
+    season_id?: SortOrder
     item_code?: SortOrder
-    sku?: SortOrder
-    brand_name?: SortOrder
-    gender_id?: SortOrder
-    category?: SortOrder
-    sub_category?: SortOrder
+    sku_code?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type ProductRecommendMinOrderByAggregateInput = {
+    id?: SortOrder
     year?: SortOrder
-    season_name?: SortOrder
+    season_id?: SortOrder
     item_code?: SortOrder
-    sku?: SortOrder
-    brand_name?: SortOrder
-    gender_id?: SortOrder
-    category?: SortOrder
-    sub_category?: SortOrder
+    sku_code?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type ProductRecommendSumOrderByAggregateInput = {
+    id?: SortOrder
     year?: SortOrder
-    gender_id?: SortOrder
+    season_id?: SortOrder
+    product_id?: SortOrder
+    sub_category_id?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -50518,11 +54582,6 @@ export namespace Prisma {
   export type StoreRelationFilter = {
     is?: StoreWhereInput
     isNot?: StoreWhereInput
-  }
-
-  export type SeasonRelationFilter = {
-    is?: SeasonWhereInput
-    isNot?: SeasonWhereInput
   }
 
   export type BudgetAllocateCountOrderByAggregateInput = {
@@ -50956,11 +55015,6 @@ export namespace Prisma {
   export type SKUProposalHeaderRelationFilter = {
     is?: SKUProposalHeaderWhereInput
     isNot?: SKUProposalHeaderWhereInput
-  }
-
-  export type ProductRelationFilter = {
-    is?: ProductWhereInput
-    isNot?: ProductWhereInput
   }
 
   export type SKUProposalCountOrderByAggregateInput = {
@@ -51630,6 +55684,273 @@ export namespace Prisma {
     st?: SortOrder
   }
 
+  export type TicketRelationFilter = {
+    is?: TicketWhereInput
+    isNot?: TicketWhereInput
+  }
+
+  export type UserNullableRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type OrderConfirmationCountOrderByAggregateInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    image_url?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    collection_name?: SortOrder
+    color?: SortOrder
+    division?: SortOrder
+    product_type?: SortOrder
+    department?: SortOrder
+    carry_forward?: SortOrder
+    composition?: SortOrder
+    theme?: SortOrder
+    style_name?: SortOrder
+    total_units?: SortOrder
+    size?: SortOrder
+    brand_id?: SortOrder
+    color_code?: SortOrder
+    fsr?: SortOrder
+    wholesale_sgd?: SortOrder
+    rrp_sgd?: SortOrder
+    regional_rrp?: SortOrder
+    total_price_sgd?: SortOrder
+    mod?: SortOrder
+    ves?: SortOrder
+    in_catalogue?: SortOrder
+    gruppo?: SortOrder
+    tipology?: SortOrder
+    sku_type?: SortOrder
+    gca?: SortOrder
+    window?: SortOrder
+    heel?: SortOrder
+    dimension?: SortOrder
+    finish?: SortOrder
+    delivery?: SortOrder
+    currency?: SortOrder
+    price_mod_single?: SortOrder
+    price_mod_single_retail?: SortOrder
+    amount?: SortOrder
+    amount_retail?: SortOrder
+    product_status?: SortOrder
+    size2?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type OrderConfirmationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    total_units?: SortOrder
+    wholesale_sgd?: SortOrder
+    rrp_sgd?: SortOrder
+    regional_rrp?: SortOrder
+    total_price_sgd?: SortOrder
+    price_mod_single?: SortOrder
+    price_mod_single_retail?: SortOrder
+    amount?: SortOrder
+    amount_retail?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type OrderConfirmationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    image_url?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    collection_name?: SortOrder
+    color?: SortOrder
+    division?: SortOrder
+    product_type?: SortOrder
+    department?: SortOrder
+    carry_forward?: SortOrder
+    composition?: SortOrder
+    theme?: SortOrder
+    style_name?: SortOrder
+    total_units?: SortOrder
+    size?: SortOrder
+    brand_id?: SortOrder
+    color_code?: SortOrder
+    fsr?: SortOrder
+    wholesale_sgd?: SortOrder
+    rrp_sgd?: SortOrder
+    regional_rrp?: SortOrder
+    total_price_sgd?: SortOrder
+    mod?: SortOrder
+    ves?: SortOrder
+    in_catalogue?: SortOrder
+    gruppo?: SortOrder
+    tipology?: SortOrder
+    sku_type?: SortOrder
+    gca?: SortOrder
+    window?: SortOrder
+    heel?: SortOrder
+    dimension?: SortOrder
+    finish?: SortOrder
+    delivery?: SortOrder
+    currency?: SortOrder
+    price_mod_single?: SortOrder
+    price_mod_single_retail?: SortOrder
+    amount?: SortOrder
+    amount_retail?: SortOrder
+    product_status?: SortOrder
+    size2?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type OrderConfirmationMinOrderByAggregateInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    image_url?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    collection_name?: SortOrder
+    color?: SortOrder
+    division?: SortOrder
+    product_type?: SortOrder
+    department?: SortOrder
+    carry_forward?: SortOrder
+    composition?: SortOrder
+    theme?: SortOrder
+    style_name?: SortOrder
+    total_units?: SortOrder
+    size?: SortOrder
+    brand_id?: SortOrder
+    color_code?: SortOrder
+    fsr?: SortOrder
+    wholesale_sgd?: SortOrder
+    rrp_sgd?: SortOrder
+    regional_rrp?: SortOrder
+    total_price_sgd?: SortOrder
+    mod?: SortOrder
+    ves?: SortOrder
+    in_catalogue?: SortOrder
+    gruppo?: SortOrder
+    tipology?: SortOrder
+    sku_type?: SortOrder
+    gca?: SortOrder
+    window?: SortOrder
+    heel?: SortOrder
+    dimension?: SortOrder
+    finish?: SortOrder
+    delivery?: SortOrder
+    currency?: SortOrder
+    price_mod_single?: SortOrder
+    price_mod_single_retail?: SortOrder
+    amount?: SortOrder
+    amount_retail?: SortOrder
+    product_status?: SortOrder
+    size2?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type OrderConfirmationSumOrderByAggregateInput = {
+    id?: SortOrder
+    ticket_id?: SortOrder
+    total_units?: SortOrder
+    wholesale_sgd?: SortOrder
+    rrp_sgd?: SortOrder
+    regional_rrp?: SortOrder
+    total_price_sgd?: SortOrder
+    price_mod_single?: SortOrder
+    price_mod_single_retail?: SortOrder
+    amount?: SortOrder
+    amount_retail?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type OrderConfirmationRelationFilter = {
+    is?: OrderConfirmationWhereInput
+    isNot?: OrderConfirmationWhereInput
+  }
+
+  export type ReceiptConfirmationCountOrderByAggregateInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrder
+    actual_unit_price?: SortOrder
+    actual_total_price?: SortOrder
+    receipt_currency?: SortOrder
+    receipt_comment?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type ReceiptConfirmationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrder
+    actual_unit_price?: SortOrder
+    actual_total_price?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type ReceiptConfirmationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrder
+    actual_unit_price?: SortOrder
+    actual_total_price?: SortOrder
+    receipt_currency?: SortOrder
+    receipt_comment?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type ReceiptConfirmationMinOrderByAggregateInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrder
+    actual_unit_price?: SortOrder
+    actual_total_price?: SortOrder
+    receipt_currency?: SortOrder
+    receipt_comment?: SortOrder
+    status?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type ReceiptConfirmationSumOrderByAggregateInput = {
+    id?: SortOrder
+    order_confirmation_id?: SortOrder
+    ticket_id?: SortOrder
+    received_units?: SortOrder
+    actual_unit_price?: SortOrder
+    actual_total_price?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
   export type ApprovalStatusCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -51843,11 +56164,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type TicketRelationFilter = {
-    is?: TicketWhereInput
-    isNot?: TicketWhereInput
-  }
-
   export type ApprovalWorkflowLevelRelationFilter = {
     is?: ApprovalWorkflowLevelWhereInput
     isNot?: ApprovalWorkflowLevelWhereInput
@@ -51975,6 +56291,20 @@ export namespace Prisma {
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
+  export type OrderConfirmationCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput> | OrderConfirmationCreateWithoutCreatorInput[] | OrderConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutCreatorInput | OrderConfirmationCreateOrConnectWithoutCreatorInput[]
+    createMany?: OrderConfirmationCreateManyCreatorInputEnvelope
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+  }
+
+  export type ReceiptConfirmationCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput> | ReceiptConfirmationCreateWithoutCreatorInput[] | ReceiptConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutCreatorInput | ReceiptConfirmationCreateOrConnectWithoutCreatorInput[]
+    createMany?: ReceiptConfirmationCreateManyCreatorInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+  }
+
   export type ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput = {
     create?: XOR<ApprovalWorkflowLevelCreateWithoutApprover_userInput, ApprovalWorkflowLevelUncheckedCreateWithoutApprover_userInput> | ApprovalWorkflowLevelCreateWithoutApprover_userInput[] | ApprovalWorkflowLevelUncheckedCreateWithoutApprover_userInput[]
     connectOrCreate?: ApprovalWorkflowLevelCreateOrConnectWithoutApprover_userInput | ApprovalWorkflowLevelCreateOrConnectWithoutApprover_userInput[]
@@ -52029,6 +56359,20 @@ export namespace Prisma {
     connectOrCreate?: TicketCreateOrConnectWithoutCreatorInput | TicketCreateOrConnectWithoutCreatorInput[]
     createMany?: TicketCreateManyCreatorInputEnvelope
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
+  export type OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput> | OrderConfirmationCreateWithoutCreatorInput[] | OrderConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutCreatorInput | OrderConfirmationCreateOrConnectWithoutCreatorInput[]
+    createMany?: OrderConfirmationCreateManyCreatorInputEnvelope
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput> | ReceiptConfirmationCreateWithoutCreatorInput[] | ReceiptConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutCreatorInput | ReceiptConfirmationCreateOrConnectWithoutCreatorInput[]
+    createMany?: ReceiptConfirmationCreateManyCreatorInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
   }
 
   export type ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput = {
@@ -52157,6 +56501,34 @@ export namespace Prisma {
     deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
   }
 
+  export type OrderConfirmationUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput> | OrderConfirmationCreateWithoutCreatorInput[] | OrderConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutCreatorInput | OrderConfirmationCreateOrConnectWithoutCreatorInput[]
+    upsert?: OrderConfirmationUpsertWithWhereUniqueWithoutCreatorInput | OrderConfirmationUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: OrderConfirmationCreateManyCreatorInputEnvelope
+    set?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    disconnect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    delete?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    update?: OrderConfirmationUpdateWithWhereUniqueWithoutCreatorInput | OrderConfirmationUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: OrderConfirmationUpdateManyWithWhereWithoutCreatorInput | OrderConfirmationUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+  }
+
+  export type ReceiptConfirmationUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput> | ReceiptConfirmationCreateWithoutCreatorInput[] | ReceiptConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutCreatorInput | ReceiptConfirmationCreateOrConnectWithoutCreatorInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutCreatorInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ReceiptConfirmationCreateManyCreatorInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutCreatorInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutCreatorInput | ReceiptConfirmationUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+  }
+
   export type ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput = {
     create?: XOR<ApprovalWorkflowLevelCreateWithoutApprover_userInput, ApprovalWorkflowLevelUncheckedCreateWithoutApprover_userInput> | ApprovalWorkflowLevelCreateWithoutApprover_userInput[] | ApprovalWorkflowLevelUncheckedCreateWithoutApprover_userInput[]
     connectOrCreate?: ApprovalWorkflowLevelCreateOrConnectWithoutApprover_userInput | ApprovalWorkflowLevelCreateOrConnectWithoutApprover_userInput[]
@@ -52267,6 +56639,34 @@ export namespace Prisma {
     update?: TicketUpdateWithWhereUniqueWithoutCreatorInput | TicketUpdateWithWhereUniqueWithoutCreatorInput[]
     updateMany?: TicketUpdateManyWithWhereWithoutCreatorInput | TicketUpdateManyWithWhereWithoutCreatorInput[]
     deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
+  export type OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput> | OrderConfirmationCreateWithoutCreatorInput[] | OrderConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutCreatorInput | OrderConfirmationCreateOrConnectWithoutCreatorInput[]
+    upsert?: OrderConfirmationUpsertWithWhereUniqueWithoutCreatorInput | OrderConfirmationUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: OrderConfirmationCreateManyCreatorInputEnvelope
+    set?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    disconnect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    delete?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    update?: OrderConfirmationUpdateWithWhereUniqueWithoutCreatorInput | OrderConfirmationUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: OrderConfirmationUpdateManyWithWhereWithoutCreatorInput | OrderConfirmationUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput> | ReceiptConfirmationCreateWithoutCreatorInput[] | ReceiptConfirmationUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutCreatorInput | ReceiptConfirmationCreateOrConnectWithoutCreatorInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutCreatorInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ReceiptConfirmationCreateManyCreatorInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutCreatorInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutCreatorInput | ReceiptConfirmationUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
   }
 
   export type ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput = {
@@ -53107,6 +57507,13 @@ export namespace Prisma {
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
+  export type ProductRecommendCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput> | ProductRecommendCreateWithoutSeasonInput[] | ProductRecommendUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSeasonInput | ProductRecommendCreateOrConnectWithoutSeasonInput[]
+    createMany?: ProductRecommendCreateManySeasonInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+  }
+
   export type SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput = {
     create?: XOR<SubCategorySizeHistoryAggCreateWithoutSeasonInput, SubCategorySizeHistoryAggUncheckedCreateWithoutSeasonInput> | SubCategorySizeHistoryAggCreateWithoutSeasonInput[] | SubCategorySizeHistoryAggUncheckedCreateWithoutSeasonInput[]
     connectOrCreate?: SubCategorySizeHistoryAggCreateOrConnectWithoutSeasonInput | SubCategorySizeHistoryAggCreateOrConnectWithoutSeasonInput[]
@@ -53133,6 +57540,13 @@ export namespace Prisma {
     connectOrCreate?: TicketCreateOrConnectWithoutSeasonInput | TicketCreateOrConnectWithoutSeasonInput[]
     createMany?: TicketCreateManySeasonInputEnvelope
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
+  }
+
+  export type ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput = {
+    create?: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput> | ProductRecommendCreateWithoutSeasonInput[] | ProductRecommendUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSeasonInput | ProductRecommendCreateOrConnectWithoutSeasonInput[]
+    createMany?: ProductRecommendCreateManySeasonInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
   }
 
   export type SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput = {
@@ -53183,6 +57597,20 @@ export namespace Prisma {
     update?: TicketUpdateWithWhereUniqueWithoutSeasonInput | TicketUpdateWithWhereUniqueWithoutSeasonInput[]
     updateMany?: TicketUpdateManyWithWhereWithoutSeasonInput | TicketUpdateManyWithWhereWithoutSeasonInput[]
     deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
+  export type ProductRecommendUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput> | ProductRecommendCreateWithoutSeasonInput[] | ProductRecommendUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSeasonInput | ProductRecommendCreateOrConnectWithoutSeasonInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutSeasonInput | ProductRecommendUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: ProductRecommendCreateManySeasonInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutSeasonInput | ProductRecommendUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutSeasonInput | ProductRecommendUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
   }
 
   export type SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput = {
@@ -53239,6 +57667,20 @@ export namespace Prisma {
     update?: TicketUpdateWithWhereUniqueWithoutSeasonInput | TicketUpdateWithWhereUniqueWithoutSeasonInput[]
     updateMany?: TicketUpdateManyWithWhereWithoutSeasonInput | TicketUpdateManyWithWhereWithoutSeasonInput[]
     deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
+  export type ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput> | ProductRecommendCreateWithoutSeasonInput[] | ProductRecommendUncheckedCreateWithoutSeasonInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSeasonInput | ProductRecommendCreateOrConnectWithoutSeasonInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutSeasonInput | ProductRecommendUpsertWithWhereUniqueWithoutSeasonInput[]
+    createMany?: ProductRecommendCreateManySeasonInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutSeasonInput | ProductRecommendUpdateWithWhereUniqueWithoutSeasonInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutSeasonInput | ProductRecommendUpdateManyWithWhereWithoutSeasonInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
   }
 
   export type SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput = {
@@ -53634,6 +58076,13 @@ export namespace Prisma {
     connect?: SalesHistoryAggWhereUniqueInput | SalesHistoryAggWhereUniqueInput[]
   }
 
+  export type ProductRecommendCreateNestedManyWithoutSub_categoryInput = {
+    create?: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput> | ProductRecommendCreateWithoutSub_categoryInput[] | ProductRecommendUncheckedCreateWithoutSub_categoryInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSub_categoryInput | ProductRecommendCreateOrConnectWithoutSub_categoryInput[]
+    createMany?: ProductRecommendCreateManySub_categoryInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutSub_categoryInput = {
     create?: XOR<ProductCreateWithoutSub_categoryInput, ProductUncheckedCreateWithoutSub_categoryInput> | ProductCreateWithoutSub_categoryInput[] | ProductUncheckedCreateWithoutSub_categoryInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSub_categoryInput | ProductCreateOrConnectWithoutSub_categoryInput[]
@@ -53667,6 +58116,13 @@ export namespace Prisma {
     connectOrCreate?: SalesHistoryAggCreateOrConnectWithoutSub_categoryInput | SalesHistoryAggCreateOrConnectWithoutSub_categoryInput[]
     createMany?: SalesHistoryAggCreateManySub_categoryInputEnvelope
     connect?: SalesHistoryAggWhereUniqueInput | SalesHistoryAggWhereUniqueInput[]
+  }
+
+  export type ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput = {
+    create?: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput> | ProductRecommendCreateWithoutSub_categoryInput[] | ProductRecommendUncheckedCreateWithoutSub_categoryInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSub_categoryInput | ProductRecommendCreateOrConnectWithoutSub_categoryInput[]
+    createMany?: ProductRecommendCreateManySub_categoryInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
   }
 
   export type CategoryUpdateOneRequiredWithoutSub_categoriesNestedInput = {
@@ -53747,6 +58203,20 @@ export namespace Prisma {
     deleteMany?: SalesHistoryAggScalarWhereInput | SalesHistoryAggScalarWhereInput[]
   }
 
+  export type ProductRecommendUpdateManyWithoutSub_categoryNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput> | ProductRecommendCreateWithoutSub_categoryInput[] | ProductRecommendUncheckedCreateWithoutSub_categoryInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSub_categoryInput | ProductRecommendCreateOrConnectWithoutSub_categoryInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutSub_categoryInput | ProductRecommendUpsertWithWhereUniqueWithoutSub_categoryInput[]
+    createMany?: ProductRecommendCreateManySub_categoryInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutSub_categoryInput | ProductRecommendUpdateWithWhereUniqueWithoutSub_categoryInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutSub_categoryInput | ProductRecommendUpdateManyWithWhereWithoutSub_categoryInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateManyWithoutSub_categoryNestedInput = {
     create?: XOR<ProductCreateWithoutSub_categoryInput, ProductUncheckedCreateWithoutSub_categoryInput> | ProductCreateWithoutSub_categoryInput[] | ProductUncheckedCreateWithoutSub_categoryInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutSub_categoryInput | ProductCreateOrConnectWithoutSub_categoryInput[]
@@ -53815,6 +58285,20 @@ export namespace Prisma {
     update?: SalesHistoryAggUpdateWithWhereUniqueWithoutSub_categoryInput | SalesHistoryAggUpdateWithWhereUniqueWithoutSub_categoryInput[]
     updateMany?: SalesHistoryAggUpdateManyWithWhereWithoutSub_categoryInput | SalesHistoryAggUpdateManyWithWhereWithoutSub_categoryInput[]
     deleteMany?: SalesHistoryAggScalarWhereInput | SalesHistoryAggScalarWhereInput[]
+  }
+
+  export type ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput> | ProductRecommendCreateWithoutSub_categoryInput[] | ProductRecommendUncheckedCreateWithoutSub_categoryInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutSub_categoryInput | ProductRecommendCreateOrConnectWithoutSub_categoryInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutSub_categoryInput | ProductRecommendUpsertWithWhereUniqueWithoutSub_categoryInput[]
+    createMany?: ProductRecommendCreateManySub_categoryInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutSub_categoryInput | ProductRecommendUpdateWithWhereUniqueWithoutSub_categoryInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutSub_categoryInput | ProductRecommendUpdateManyWithWhereWithoutSub_categoryInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
   }
 
   export type SubCategoryCreateNestedOneWithoutSubcategory_sizesInput = {
@@ -53886,11 +58370,25 @@ export namespace Prisma {
     connect?: SKUProposalWhereUniqueInput | SKUProposalWhereUniqueInput[]
   }
 
+  export type ProductRecommendCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput> | ProductRecommendCreateWithoutProductInput[] | ProductRecommendUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutProductInput | ProductRecommendCreateOrConnectWithoutProductInput[]
+    createMany?: ProductRecommendCreateManyProductInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+  }
+
   export type SKUProposalUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<SKUProposalCreateWithoutProductInput, SKUProposalUncheckedCreateWithoutProductInput> | SKUProposalCreateWithoutProductInput[] | SKUProposalUncheckedCreateWithoutProductInput[]
     connectOrCreate?: SKUProposalCreateOrConnectWithoutProductInput | SKUProposalCreateOrConnectWithoutProductInput[]
     createMany?: SKUProposalCreateManyProductInputEnvelope
     connect?: SKUProposalWhereUniqueInput | SKUProposalWhereUniqueInput[]
+  }
+
+  export type ProductRecommendUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput> | ProductRecommendCreateWithoutProductInput[] | ProductRecommendUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutProductInput | ProductRecommendCreateOrConnectWithoutProductInput[]
+    createMany?: ProductRecommendCreateManyProductInputEnvelope
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -53923,6 +58421,20 @@ export namespace Prisma {
     deleteMany?: SKUProposalScalarWhereInput | SKUProposalScalarWhereInput[]
   }
 
+  export type ProductRecommendUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput> | ProductRecommendCreateWithoutProductInput[] | ProductRecommendUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutProductInput | ProductRecommendCreateOrConnectWithoutProductInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutProductInput | ProductRecommendUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductRecommendCreateManyProductInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutProductInput | ProductRecommendUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutProductInput | ProductRecommendUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
+  }
+
   export type SKUProposalUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<SKUProposalCreateWithoutProductInput, SKUProposalUncheckedCreateWithoutProductInput> | SKUProposalCreateWithoutProductInput[] | SKUProposalUncheckedCreateWithoutProductInput[]
     connectOrCreate?: SKUProposalCreateOrConnectWithoutProductInput | SKUProposalCreateOrConnectWithoutProductInput[]
@@ -53937,12 +58449,68 @@ export namespace Prisma {
     deleteMany?: SKUProposalScalarWhereInput | SKUProposalScalarWhereInput[]
   }
 
+  export type ProductRecommendUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput> | ProductRecommendCreateWithoutProductInput[] | ProductRecommendUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductRecommendCreateOrConnectWithoutProductInput | ProductRecommendCreateOrConnectWithoutProductInput[]
+    upsert?: ProductRecommendUpsertWithWhereUniqueWithoutProductInput | ProductRecommendUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductRecommendCreateManyProductInputEnvelope
+    set?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    disconnect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    delete?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
+    update?: ProductRecommendUpdateWithWhereUniqueWithoutProductInput | ProductRecommendUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductRecommendUpdateManyWithWhereWithoutProductInput | ProductRecommendUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
+  }
+
+  export type SeasonCreateNestedOneWithoutProduct_recommendsInput = {
+    create?: XOR<SeasonCreateWithoutProduct_recommendsInput, SeasonUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutProduct_recommendsInput
+    connect?: SeasonWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutProduct_recommendsInput = {
+    create?: XOR<ProductCreateWithoutProduct_recommendsInput, ProductUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutProduct_recommendsInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type SubCategoryCreateNestedOneWithoutProduct_recommendsInput = {
+    create?: XOR<SubCategoryCreateWithoutProduct_recommendsInput, SubCategoryUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: SubCategoryCreateOrConnectWithoutProduct_recommendsInput
+    connect?: SubCategoryWhereUniqueInput
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type SeasonUpdateOneRequiredWithoutProduct_recommendsNestedInput = {
+    create?: XOR<SeasonCreateWithoutProduct_recommendsInput, SeasonUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: SeasonCreateOrConnectWithoutProduct_recommendsInput
+    upsert?: SeasonUpsertWithoutProduct_recommendsInput
+    connect?: SeasonWhereUniqueInput
+    update?: XOR<XOR<SeasonUpdateToOneWithWhereWithoutProduct_recommendsInput, SeasonUpdateWithoutProduct_recommendsInput>, SeasonUncheckedUpdateWithoutProduct_recommendsInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutProduct_recommendsNestedInput = {
+    create?: XOR<ProductCreateWithoutProduct_recommendsInput, ProductUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutProduct_recommendsInput
+    upsert?: ProductUpsertWithoutProduct_recommendsInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutProduct_recommendsInput, ProductUpdateWithoutProduct_recommendsInput>, ProductUncheckedUpdateWithoutProduct_recommendsInput>
+  }
+
+  export type SubCategoryUpdateOneRequiredWithoutProduct_recommendsNestedInput = {
+    create?: XOR<SubCategoryCreateWithoutProduct_recommendsInput, SubCategoryUncheckedCreateWithoutProduct_recommendsInput>
+    connectOrCreate?: SubCategoryCreateOrConnectWithoutProduct_recommendsInput
+    upsert?: SubCategoryUpsertWithoutProduct_recommendsInput
+    connect?: SubCategoryWhereUniqueInput
+    update?: XOR<XOR<SubCategoryUpdateToOneWithWhereWithoutProduct_recommendsInput, SubCategoryUpdateWithoutProduct_recommendsInput>, SubCategoryUncheckedUpdateWithoutProduct_recommendsInput>
   }
 
   export type UserCreateNestedOneWithoutCreated_budgetsInput = {
@@ -55113,6 +59681,122 @@ export namespace Prisma {
     update?: XOR<XOR<SeasonUpdateToOneWithWhereWithoutSales_history_aggInput, SeasonUpdateWithoutSales_history_aggInput>, SeasonUncheckedUpdateWithoutSales_history_aggInput>
   }
 
+  export type TicketCreateNestedOneWithoutOrder_confirmationsInput = {
+    create?: XOR<TicketCreateWithoutOrder_confirmationsInput, TicketUncheckedCreateWithoutOrder_confirmationsInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutOrder_confirmationsInput
+    connect?: TicketWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutCreated_order_confirmationsInput = {
+    create?: XOR<UserCreateWithoutCreated_order_confirmationsInput, UserUncheckedCreateWithoutCreated_order_confirmationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreated_order_confirmationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ReceiptConfirmationCreateNestedManyWithoutOrder_confirmationInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput> | ReceiptConfirmationCreateWithoutOrder_confirmationInput[] | ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput | ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput[]
+    createMany?: ReceiptConfirmationCreateManyOrder_confirmationInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedCreateNestedManyWithoutOrder_confirmationInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput> | ReceiptConfirmationCreateWithoutOrder_confirmationInput[] | ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput | ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput[]
+    createMany?: ReceiptConfirmationCreateManyOrder_confirmationInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+  }
+
+  export type TicketUpdateOneRequiredWithoutOrder_confirmationsNestedInput = {
+    create?: XOR<TicketCreateWithoutOrder_confirmationsInput, TicketUncheckedCreateWithoutOrder_confirmationsInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutOrder_confirmationsInput
+    upsert?: TicketUpsertWithoutOrder_confirmationsInput
+    connect?: TicketWhereUniqueInput
+    update?: XOR<XOR<TicketUpdateToOneWithWhereWithoutOrder_confirmationsInput, TicketUpdateWithoutOrder_confirmationsInput>, TicketUncheckedUpdateWithoutOrder_confirmationsInput>
+  }
+
+  export type UserUpdateOneWithoutCreated_order_confirmationsNestedInput = {
+    create?: XOR<UserCreateWithoutCreated_order_confirmationsInput, UserUncheckedCreateWithoutCreated_order_confirmationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreated_order_confirmationsInput
+    upsert?: UserUpsertWithoutCreated_order_confirmationsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreated_order_confirmationsInput, UserUpdateWithoutCreated_order_confirmationsInput>, UserUncheckedUpdateWithoutCreated_order_confirmationsInput>
+  }
+
+  export type ReceiptConfirmationUpdateManyWithoutOrder_confirmationNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput> | ReceiptConfirmationCreateWithoutOrder_confirmationInput[] | ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput | ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutOrder_confirmationInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutOrder_confirmationInput[]
+    createMany?: ReceiptConfirmationCreateManyOrder_confirmationInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutOrder_confirmationInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutOrder_confirmationInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutOrder_confirmationInput | ReceiptConfirmationUpdateManyWithWhereWithoutOrder_confirmationInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput> | ReceiptConfirmationCreateWithoutOrder_confirmationInput[] | ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput | ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutOrder_confirmationInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutOrder_confirmationInput[]
+    createMany?: ReceiptConfirmationCreateManyOrder_confirmationInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutOrder_confirmationInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutOrder_confirmationInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutOrder_confirmationInput | ReceiptConfirmationUpdateManyWithWhereWithoutOrder_confirmationInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+  }
+
+  export type OrderConfirmationCreateNestedOneWithoutReceipt_confirmationsInput = {
+    create?: XOR<OrderConfirmationCreateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedCreateWithoutReceipt_confirmationsInput>
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutReceipt_confirmationsInput
+    connect?: OrderConfirmationWhereUniqueInput
+  }
+
+  export type TicketCreateNestedOneWithoutReceipt_confirmationsInput = {
+    create?: XOR<TicketCreateWithoutReceipt_confirmationsInput, TicketUncheckedCreateWithoutReceipt_confirmationsInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutReceipt_confirmationsInput
+    connect?: TicketWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutCreated_receipt_confirmationsInput = {
+    create?: XOR<UserCreateWithoutCreated_receipt_confirmationsInput, UserUncheckedCreateWithoutCreated_receipt_confirmationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreated_receipt_confirmationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type OrderConfirmationUpdateOneRequiredWithoutReceipt_confirmationsNestedInput = {
+    create?: XOR<OrderConfirmationCreateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedCreateWithoutReceipt_confirmationsInput>
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutReceipt_confirmationsInput
+    upsert?: OrderConfirmationUpsertWithoutReceipt_confirmationsInput
+    connect?: OrderConfirmationWhereUniqueInput
+    update?: XOR<XOR<OrderConfirmationUpdateToOneWithWhereWithoutReceipt_confirmationsInput, OrderConfirmationUpdateWithoutReceipt_confirmationsInput>, OrderConfirmationUncheckedUpdateWithoutReceipt_confirmationsInput>
+  }
+
+  export type TicketUpdateOneRequiredWithoutReceipt_confirmationsNestedInput = {
+    create?: XOR<TicketCreateWithoutReceipt_confirmationsInput, TicketUncheckedCreateWithoutReceipt_confirmationsInput>
+    connectOrCreate?: TicketCreateOrConnectWithoutReceipt_confirmationsInput
+    upsert?: TicketUpsertWithoutReceipt_confirmationsInput
+    connect?: TicketWhereUniqueInput
+    update?: XOR<XOR<TicketUpdateToOneWithWhereWithoutReceipt_confirmationsInput, TicketUpdateWithoutReceipt_confirmationsInput>, TicketUncheckedUpdateWithoutReceipt_confirmationsInput>
+  }
+
+  export type UserUpdateOneWithoutCreated_receipt_confirmationsNestedInput = {
+    create?: XOR<UserCreateWithoutCreated_receipt_confirmationsInput, UserUncheckedCreateWithoutCreated_receipt_confirmationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreated_receipt_confirmationsInput
+    upsert?: UserUpsertWithoutCreated_receipt_confirmationsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreated_receipt_confirmationsInput, UserUpdateWithoutCreated_receipt_confirmationsInput>, UserUncheckedUpdateWithoutCreated_receipt_confirmationsInput>
+  }
+
   export type BudgetCreateNestedOneWithoutTicketsInput = {
     create?: XOR<BudgetCreateWithoutTicketsInput, BudgetUncheckedCreateWithoutTicketsInput>
     connectOrCreate?: BudgetCreateOrConnectWithoutTicketsInput
@@ -55151,6 +59835,20 @@ export namespace Prisma {
     connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
   }
 
+  export type OrderConfirmationCreateNestedManyWithoutTicketInput = {
+    create?: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput> | OrderConfirmationCreateWithoutTicketInput[] | OrderConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutTicketInput | OrderConfirmationCreateOrConnectWithoutTicketInput[]
+    createMany?: OrderConfirmationCreateManyTicketInputEnvelope
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+  }
+
+  export type ReceiptConfirmationCreateNestedManyWithoutTicketInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput> | ReceiptConfirmationCreateWithoutTicketInput[] | ReceiptConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutTicketInput | ReceiptConfirmationCreateOrConnectWithoutTicketInput[]
+    createMany?: ReceiptConfirmationCreateManyTicketInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+  }
+
   export type TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput = {
     create?: XOR<TicketApprovalLogCreateWithoutTicketInput, TicketApprovalLogUncheckedCreateWithoutTicketInput> | TicketApprovalLogCreateWithoutTicketInput[] | TicketApprovalLogUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: TicketApprovalLogCreateOrConnectWithoutTicketInput | TicketApprovalLogCreateOrConnectWithoutTicketInput[]
@@ -55163,6 +59861,20 @@ export namespace Prisma {
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutTicketInput | AllocateHeaderCreateOrConnectWithoutTicketInput[]
     createMany?: AllocateHeaderCreateManyTicketInputEnvelope
     connect?: AllocateHeaderWhereUniqueInput | AllocateHeaderWhereUniqueInput[]
+  }
+
+  export type OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput> | OrderConfirmationCreateWithoutTicketInput[] | OrderConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutTicketInput | OrderConfirmationCreateOrConnectWithoutTicketInput[]
+    createMany?: OrderConfirmationCreateManyTicketInputEnvelope
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput> | ReceiptConfirmationCreateWithoutTicketInput[] | ReceiptConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutTicketInput | ReceiptConfirmationCreateOrConnectWithoutTicketInput[]
+    createMany?: ReceiptConfirmationCreateManyTicketInputEnvelope
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
   }
 
   export type BudgetUpdateOneRequiredWithoutTicketsNestedInput = {
@@ -55225,6 +59937,34 @@ export namespace Prisma {
     deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
   }
 
+  export type OrderConfirmationUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput> | OrderConfirmationCreateWithoutTicketInput[] | OrderConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutTicketInput | OrderConfirmationCreateOrConnectWithoutTicketInput[]
+    upsert?: OrderConfirmationUpsertWithWhereUniqueWithoutTicketInput | OrderConfirmationUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: OrderConfirmationCreateManyTicketInputEnvelope
+    set?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    disconnect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    delete?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    update?: OrderConfirmationUpdateWithWhereUniqueWithoutTicketInput | OrderConfirmationUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: OrderConfirmationUpdateManyWithWhereWithoutTicketInput | OrderConfirmationUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+  }
+
+  export type ReceiptConfirmationUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput> | ReceiptConfirmationCreateWithoutTicketInput[] | ReceiptConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutTicketInput | ReceiptConfirmationCreateOrConnectWithoutTicketInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutTicketInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: ReceiptConfirmationCreateManyTicketInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutTicketInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutTicketInput | ReceiptConfirmationUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+  }
+
   export type TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput = {
     create?: XOR<TicketApprovalLogCreateWithoutTicketInput, TicketApprovalLogUncheckedCreateWithoutTicketInput> | TicketApprovalLogCreateWithoutTicketInput[] | TicketApprovalLogUncheckedCreateWithoutTicketInput[]
     connectOrCreate?: TicketApprovalLogCreateOrConnectWithoutTicketInput | TicketApprovalLogCreateOrConnectWithoutTicketInput[]
@@ -55251,6 +59991,34 @@ export namespace Prisma {
     update?: AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput | AllocateHeaderUpdateWithWhereUniqueWithoutTicketInput[]
     updateMany?: AllocateHeaderUpdateManyWithWhereWithoutTicketInput | AllocateHeaderUpdateManyWithWhereWithoutTicketInput[]
     deleteMany?: AllocateHeaderScalarWhereInput | AllocateHeaderScalarWhereInput[]
+  }
+
+  export type OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput> | OrderConfirmationCreateWithoutTicketInput[] | OrderConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: OrderConfirmationCreateOrConnectWithoutTicketInput | OrderConfirmationCreateOrConnectWithoutTicketInput[]
+    upsert?: OrderConfirmationUpsertWithWhereUniqueWithoutTicketInput | OrderConfirmationUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: OrderConfirmationCreateManyTicketInputEnvelope
+    set?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    disconnect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    delete?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    connect?: OrderConfirmationWhereUniqueInput | OrderConfirmationWhereUniqueInput[]
+    update?: OrderConfirmationUpdateWithWhereUniqueWithoutTicketInput | OrderConfirmationUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: OrderConfirmationUpdateManyWithWhereWithoutTicketInput | OrderConfirmationUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput = {
+    create?: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput> | ReceiptConfirmationCreateWithoutTicketInput[] | ReceiptConfirmationUncheckedCreateWithoutTicketInput[]
+    connectOrCreate?: ReceiptConfirmationCreateOrConnectWithoutTicketInput | ReceiptConfirmationCreateOrConnectWithoutTicketInput[]
+    upsert?: ReceiptConfirmationUpsertWithWhereUniqueWithoutTicketInput | ReceiptConfirmationUpsertWithWhereUniqueWithoutTicketInput[]
+    createMany?: ReceiptConfirmationCreateManyTicketInputEnvelope
+    set?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    disconnect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    delete?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    connect?: ReceiptConfirmationWhereUniqueInput | ReceiptConfirmationWhereUniqueInput[]
+    update?: ReceiptConfirmationUpdateWithWhereUniqueWithoutTicketInput | ReceiptConfirmationUpdateWithWhereUniqueWithoutTicketInput[]
+    updateMany?: ReceiptConfirmationUpdateManyWithWhereWithoutTicketInput | ReceiptConfirmationUpdateManyWithWhereWithoutTicketInput[]
+    deleteMany?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
   }
 
   export type GroupBrandCreateNestedOneWithoutApproval_workflowsInput = {
@@ -55953,6 +60721,8 @@ export namespace Prisma {
     season: SeasonCreateNestedOneWithoutTicketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutCreatorInput = {
@@ -55966,6 +60736,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutCreatorInput = {
@@ -55975,6 +60747,154 @@ export namespace Prisma {
 
   export type TicketCreateManyCreatorInputEnvelope = {
     data: TicketCreateManyCreatorInput | TicketCreateManyCreatorInput[]
+  }
+
+  export type OrderConfirmationCreateWithoutCreatorInput = {
+    id?: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket: TicketCreateNestedOneWithoutOrder_confirmationsInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationUncheckedCreateWithoutCreatorInput = {
+    id?: bigint | number
+    ticket_id: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationCreateOrConnectWithoutCreatorInput = {
+    where: OrderConfirmationWhereUniqueInput
+    create: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type OrderConfirmationCreateManyCreatorInputEnvelope = {
+    data: OrderConfirmationCreateManyCreatorInput | OrderConfirmationCreateManyCreatorInput[]
+  }
+
+  export type ReceiptConfirmationCreateWithoutCreatorInput = {
+    id?: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    order_confirmation: OrderConfirmationCreateNestedOneWithoutReceipt_confirmationsInput
+    ticket: TicketCreateNestedOneWithoutReceipt_confirmationsInput
+  }
+
+  export type ReceiptConfirmationUncheckedCreateWithoutCreatorInput = {
+    id?: bigint | number
+    order_confirmation_id: bigint | number
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateOrConnectWithoutCreatorInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    create: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ReceiptConfirmationCreateManyCreatorInputEnvelope = {
+    data: ReceiptConfirmationCreateManyCreatorInput | ReceiptConfirmationCreateManyCreatorInput[]
   }
 
   export type ApprovalWorkflowLevelCreateWithoutApprover_userInput = {
@@ -56268,6 +61188,110 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"Ticket"> | bigint | number | null
   }
 
+  export type OrderConfirmationUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: OrderConfirmationWhereUniqueInput
+    update: XOR<OrderConfirmationUpdateWithoutCreatorInput, OrderConfirmationUncheckedUpdateWithoutCreatorInput>
+    create: XOR<OrderConfirmationCreateWithoutCreatorInput, OrderConfirmationUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type OrderConfirmationUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: OrderConfirmationWhereUniqueInput
+    data: XOR<OrderConfirmationUpdateWithoutCreatorInput, OrderConfirmationUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type OrderConfirmationUpdateManyWithWhereWithoutCreatorInput = {
+    where: OrderConfirmationScalarWhereInput
+    data: XOR<OrderConfirmationUpdateManyMutationInput, OrderConfirmationUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type OrderConfirmationScalarWhereInput = {
+    AND?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+    OR?: OrderConfirmationScalarWhereInput[]
+    NOT?: OrderConfirmationScalarWhereInput | OrderConfirmationScalarWhereInput[]
+    id?: BigIntFilter<"OrderConfirmation"> | bigint | number
+    ticket_id?: BigIntFilter<"OrderConfirmation"> | bigint | number
+    image_url?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku?: StringFilter<"OrderConfirmation"> | string
+    name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    collection_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color?: StringNullableFilter<"OrderConfirmation"> | string | null
+    division?: StringNullableFilter<"OrderConfirmation"> | string | null
+    product_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    department?: StringNullableFilter<"OrderConfirmation"> | string | null
+    carry_forward?: StringNullableFilter<"OrderConfirmation"> | string | null
+    composition?: StringNullableFilter<"OrderConfirmation"> | string | null
+    theme?: StringNullableFilter<"OrderConfirmation"> | string | null
+    style_name?: StringNullableFilter<"OrderConfirmation"> | string | null
+    total_units?: IntNullableFilter<"OrderConfirmation"> | number | null
+    size?: StringNullableFilter<"OrderConfirmation"> | string | null
+    brand_id?: StringNullableFilter<"OrderConfirmation"> | string | null
+    color_code?: StringNullableFilter<"OrderConfirmation"> | string | null
+    fsr?: StringNullableFilter<"OrderConfirmation"> | string | null
+    wholesale_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    mod?: StringNullableFilter<"OrderConfirmation"> | string | null
+    ves?: StringNullableFilter<"OrderConfirmation"> | string | null
+    in_catalogue?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gruppo?: StringNullableFilter<"OrderConfirmation"> | string | null
+    tipology?: StringNullableFilter<"OrderConfirmation"> | string | null
+    sku_type?: StringNullableFilter<"OrderConfirmation"> | string | null
+    gca?: StringNullableFilter<"OrderConfirmation"> | string | null
+    window?: StringNullableFilter<"OrderConfirmation"> | string | null
+    heel?: StringNullableFilter<"OrderConfirmation"> | string | null
+    dimension?: StringNullableFilter<"OrderConfirmation"> | string | null
+    finish?: StringNullableFilter<"OrderConfirmation"> | string | null
+    delivery?: StringNullableFilter<"OrderConfirmation"> | string | null
+    currency?: StringNullableFilter<"OrderConfirmation"> | string | null
+    price_mod_single?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: DecimalNullableFilter<"OrderConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    product_status?: StringNullableFilter<"OrderConfirmation"> | string | null
+    size2?: StringNullableFilter<"OrderConfirmation"> | string | null
+    status?: StringFilter<"OrderConfirmation"> | string
+    created_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"OrderConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"OrderConfirmation"> | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    update: XOR<ReceiptConfirmationUpdateWithoutCreatorInput, ReceiptConfirmationUncheckedUpdateWithoutCreatorInput>
+    create: XOR<ReceiptConfirmationCreateWithoutCreatorInput, ReceiptConfirmationUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ReceiptConfirmationUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    data: XOR<ReceiptConfirmationUpdateWithoutCreatorInput, ReceiptConfirmationUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type ReceiptConfirmationUpdateManyWithWhereWithoutCreatorInput = {
+    where: ReceiptConfirmationScalarWhereInput
+    data: XOR<ReceiptConfirmationUpdateManyMutationInput, ReceiptConfirmationUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type ReceiptConfirmationScalarWhereInput = {
+    AND?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+    OR?: ReceiptConfirmationScalarWhereInput[]
+    NOT?: ReceiptConfirmationScalarWhereInput | ReceiptConfirmationScalarWhereInput[]
+    id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    order_confirmation_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    ticket_id?: BigIntFilter<"ReceiptConfirmation"> | bigint | number
+    received_units?: IntNullableFilter<"ReceiptConfirmation"> | number | null
+    actual_unit_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: DecimalNullableFilter<"ReceiptConfirmation"> | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    receipt_comment?: StringNullableFilter<"ReceiptConfirmation"> | string | null
+    status?: StringFilter<"ReceiptConfirmation"> | string
+    created_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+    created_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_at?: DateTimeFilter<"ReceiptConfirmation"> | Date | string
+    updated_by?: BigIntNullableFilter<"ReceiptConfirmation"> | bigint | number | null
+  }
+
   export type ApprovalWorkflowLevelUpsertWithWhereUniqueWithoutApprover_userInput = {
     where: ApprovalWorkflowLevelWhereUniqueInput
     update: XOR<ApprovalWorkflowLevelUpdateWithoutApprover_userInput, ApprovalWorkflowLevelUncheckedUpdateWithoutApprover_userInput>
@@ -56349,6 +61373,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -56369,6 +61395,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -57455,6 +62483,7 @@ export namespace Prisma {
     no?: number | null
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
     tickets?: TicketCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
   }
@@ -57470,6 +62499,7 @@ export namespace Prisma {
     no?: number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
     tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
@@ -57527,6 +62557,8 @@ export namespace Prisma {
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutSeason_groupInput = {
@@ -57540,6 +62572,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutSeason_groupInput = {
@@ -57689,6 +62723,8 @@ export namespace Prisma {
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutSeasonInput = {
@@ -57702,6 +62738,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutSeasonInput = {
@@ -57711,6 +62749,39 @@ export namespace Prisma {
 
   export type TicketCreateManySeasonInputEnvelope = {
     data: TicketCreateManySeasonInput | TicketCreateManySeasonInput[]
+  }
+
+  export type ProductRecommendCreateWithoutSeasonInput = {
+    id?: bigint | number
+    year: number
+    item_code: string
+    sku_code: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    product: ProductCreateNestedOneWithoutProduct_recommendsInput
+    sub_category: SubCategoryCreateNestedOneWithoutProduct_recommendsInput
+  }
+
+  export type ProductRecommendUncheckedCreateWithoutSeasonInput = {
+    id?: bigint | number
+    year: number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ProductRecommendCreateOrConnectWithoutSeasonInput = {
+    where: ProductRecommendWhereUniqueInput
+    create: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type ProductRecommendCreateManySeasonInputEnvelope = {
+    data: ProductRecommendCreateManySeasonInput | ProductRecommendCreateManySeasonInput[]
   }
 
   export type SubCategorySizeHistoryAggCreateWithoutSeasonInput = {
@@ -57878,6 +62949,38 @@ export namespace Prisma {
   export type TicketUpdateManyWithWhereWithoutSeasonInput = {
     where: TicketScalarWhereInput
     data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutSeasonInput>
+  }
+
+  export type ProductRecommendUpsertWithWhereUniqueWithoutSeasonInput = {
+    where: ProductRecommendWhereUniqueInput
+    update: XOR<ProductRecommendUpdateWithoutSeasonInput, ProductRecommendUncheckedUpdateWithoutSeasonInput>
+    create: XOR<ProductRecommendCreateWithoutSeasonInput, ProductRecommendUncheckedCreateWithoutSeasonInput>
+  }
+
+  export type ProductRecommendUpdateWithWhereUniqueWithoutSeasonInput = {
+    where: ProductRecommendWhereUniqueInput
+    data: XOR<ProductRecommendUpdateWithoutSeasonInput, ProductRecommendUncheckedUpdateWithoutSeasonInput>
+  }
+
+  export type ProductRecommendUpdateManyWithWhereWithoutSeasonInput = {
+    where: ProductRecommendScalarWhereInput
+    data: XOR<ProductRecommendUpdateManyMutationInput, ProductRecommendUncheckedUpdateManyWithoutSeasonInput>
+  }
+
+  export type ProductRecommendScalarWhereInput = {
+    AND?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
+    OR?: ProductRecommendScalarWhereInput[]
+    NOT?: ProductRecommendScalarWhereInput | ProductRecommendScalarWhereInput[]
+    id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    year?: IntFilter<"ProductRecommend"> | number
+    season_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    item_code?: StringFilter<"ProductRecommend"> | string
+    sku_code?: StringFilter<"ProductRecommend"> | string
+    product_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    sub_category_id?: BigIntFilter<"ProductRecommend"> | bigint | number
+    is_active?: BoolFilter<"ProductRecommend"> | boolean
+    created_at?: DateTimeFilter<"ProductRecommend"> | Date | string
+    updated_at?: DateTimeFilter<"ProductRecommend"> | Date | string
   }
 
   export type SubCategorySizeHistoryAggUpsertWithWhereUniqueWithoutSeasonInput = {
@@ -58196,6 +63299,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutCategoryInput = {
@@ -58211,6 +63315,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutCategoryInput = {
@@ -58546,6 +63651,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSub_categoryInput = {
@@ -58566,6 +63672,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutProductInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSub_categoryInput = {
@@ -58747,6 +63854,39 @@ export namespace Prisma {
     data: SalesHistoryAggCreateManySub_categoryInput | SalesHistoryAggCreateManySub_categoryInput[]
   }
 
+  export type ProductRecommendCreateWithoutSub_categoryInput = {
+    id?: bigint | number
+    year: number
+    item_code: string
+    sku_code: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    season: SeasonCreateNestedOneWithoutProduct_recommendsInput
+    product: ProductCreateNestedOneWithoutProduct_recommendsInput
+  }
+
+  export type ProductRecommendUncheckedCreateWithoutSub_categoryInput = {
+    id?: bigint | number
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ProductRecommendCreateOrConnectWithoutSub_categoryInput = {
+    where: ProductRecommendWhereUniqueInput
+    create: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput>
+  }
+
+  export type ProductRecommendCreateManySub_categoryInputEnvelope = {
+    data: ProductRecommendCreateManySub_categoryInput | ProductRecommendCreateManySub_categoryInput[]
+  }
+
   export type CategoryUpsertWithoutSub_categoriesInput = {
     update: XOR<CategoryUpdateWithoutSub_categoriesInput, CategoryUncheckedUpdateWithoutSub_categoriesInput>
     create: XOR<CategoryCreateWithoutSub_categoriesInput, CategoryUncheckedCreateWithoutSub_categoriesInput>
@@ -58923,6 +64063,22 @@ export namespace Prisma {
     data: XOR<SalesHistoryAggUpdateManyMutationInput, SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryInput>
   }
 
+  export type ProductRecommendUpsertWithWhereUniqueWithoutSub_categoryInput = {
+    where: ProductRecommendWhereUniqueInput
+    update: XOR<ProductRecommendUpdateWithoutSub_categoryInput, ProductRecommendUncheckedUpdateWithoutSub_categoryInput>
+    create: XOR<ProductRecommendCreateWithoutSub_categoryInput, ProductRecommendUncheckedCreateWithoutSub_categoryInput>
+  }
+
+  export type ProductRecommendUpdateWithWhereUniqueWithoutSub_categoryInput = {
+    where: ProductRecommendWhereUniqueInput
+    data: XOR<ProductRecommendUpdateWithoutSub_categoryInput, ProductRecommendUncheckedUpdateWithoutSub_categoryInput>
+  }
+
+  export type ProductRecommendUpdateManyWithWhereWithoutSub_categoryInput = {
+    where: ProductRecommendScalarWhereInput
+    data: XOR<ProductRecommendUpdateManyMutationInput, ProductRecommendUncheckedUpdateManyWithoutSub_categoryInput>
+  }
+
   export type SubCategoryCreateWithoutSubcategory_sizesInput = {
     id?: bigint | number
     name: string
@@ -58936,6 +64092,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutSubcategory_sizesInput = {
@@ -58951,6 +64108,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutSubcategory_sizesInput = {
@@ -59017,6 +64175,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutSubcategory_sizesInput = {
@@ -59032,6 +64191,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type ProposalSizingUpsertWithWhereUniqueWithoutSubcategory_sizeInput = {
@@ -59080,6 +64240,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutProductsInput = {
@@ -59095,6 +64256,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutProductsInput = {
@@ -59139,6 +64301,39 @@ export namespace Prisma {
     data: SKUProposalCreateManyProductInput | SKUProposalCreateManyProductInput[]
   }
 
+  export type ProductRecommendCreateWithoutProductInput = {
+    id?: bigint | number
+    year: number
+    item_code: string
+    sku_code: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    season: SeasonCreateNestedOneWithoutProduct_recommendsInput
+    sub_category: SubCategoryCreateNestedOneWithoutProduct_recommendsInput
+  }
+
+  export type ProductRecommendUncheckedCreateWithoutProductInput = {
+    id?: bigint | number
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ProductRecommendCreateOrConnectWithoutProductInput = {
+    where: ProductRecommendWhereUniqueInput
+    create: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductRecommendCreateManyProductInputEnvelope = {
+    data: ProductRecommendCreateManyProductInput | ProductRecommendCreateManyProductInput[]
+  }
+
   export type SubCategoryUpsertWithoutProductsInput = {
     update: XOR<SubCategoryUpdateWithoutProductsInput, SubCategoryUncheckedUpdateWithoutProductsInput>
     create: XOR<SubCategoryCreateWithoutProductsInput, SubCategoryUncheckedCreateWithoutProductsInput>
@@ -59163,6 +64358,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutProductsInput = {
@@ -59178,6 +64374,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SKUProposalUpsertWithWhereUniqueWithoutProductInput = {
@@ -59212,6 +64409,282 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"SKUProposal"> | bigint | number | null
   }
 
+  export type ProductRecommendUpsertWithWhereUniqueWithoutProductInput = {
+    where: ProductRecommendWhereUniqueInput
+    update: XOR<ProductRecommendUpdateWithoutProductInput, ProductRecommendUncheckedUpdateWithoutProductInput>
+    create: XOR<ProductRecommendCreateWithoutProductInput, ProductRecommendUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductRecommendUpdateWithWhereUniqueWithoutProductInput = {
+    where: ProductRecommendWhereUniqueInput
+    data: XOR<ProductRecommendUpdateWithoutProductInput, ProductRecommendUncheckedUpdateWithoutProductInput>
+  }
+
+  export type ProductRecommendUpdateManyWithWhereWithoutProductInput = {
+    where: ProductRecommendScalarWhereInput
+    data: XOR<ProductRecommendUpdateManyMutationInput, ProductRecommendUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type SeasonCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    name: string
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    no?: number | null
+    season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
+    budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
+    tickets?: TicketCreateNestedManyWithoutSeasonInput
+    history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
+    sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
+  }
+
+  export type SeasonUncheckedCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    name: string
+    season_group_id: bigint | number
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    no?: number | null
+    budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
+    sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
+  }
+
+  export type SeasonCreateOrConnectWithoutProduct_recommendsInput = {
+    where: SeasonWhereUniqueInput
+    create: XOR<SeasonCreateWithoutProduct_recommendsInput, SeasonUncheckedCreateWithoutProduct_recommendsInput>
+  }
+
+  export type ProductCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    item_code: string
+    sku_code: string
+    product_name: string
+    rail?: string | null
+    theme?: string | null
+    color?: string | null
+    composition?: string | null
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
+    image_url?: string | null
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    sub_category: SubCategoryCreateNestedOneWithoutProductsInput
+    sku_proposals?: SKUProposalCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    item_code: string
+    sku_code: string
+    product_name: string
+    sub_category_id: bigint | number
+    rail?: string | null
+    theme?: string | null
+    color?: string | null
+    composition?: string | null
+    unit_price: Decimal | DecimalJsLike | number | string
+    unit_cost: Decimal | DecimalJsLike | number | string
+    image_url?: string | null
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    sku_proposals?: SKUProposalUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutProduct_recommendsInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutProduct_recommendsInput, ProductUncheckedCreateWithoutProduct_recommendsInput>
+  }
+
+  export type SubCategoryCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    name: string
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    category: CategoryCreateNestedOneWithoutSub_categoriesInput
+    products?: ProductCreateNestedManyWithoutSub_categoryInput
+    subcategory_sizes?: SubcategorySizeCreateNestedManyWithoutSub_categoryInput
+    planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
+    history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
+    sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+  }
+
+  export type SubCategoryUncheckedCreateWithoutProduct_recommendsInput = {
+    id?: bigint | number
+    name: string
+    category_id: bigint | number
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    products?: ProductUncheckedCreateNestedManyWithoutSub_categoryInput
+    subcategory_sizes?: SubcategorySizeUncheckedCreateNestedManyWithoutSub_categoryInput
+    planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+  }
+
+  export type SubCategoryCreateOrConnectWithoutProduct_recommendsInput = {
+    where: SubCategoryWhereUniqueInput
+    create: XOR<SubCategoryCreateWithoutProduct_recommendsInput, SubCategoryUncheckedCreateWithoutProduct_recommendsInput>
+  }
+
+  export type SeasonUpsertWithoutProduct_recommendsInput = {
+    update: XOR<SeasonUpdateWithoutProduct_recommendsInput, SeasonUncheckedUpdateWithoutProduct_recommendsInput>
+    create: XOR<SeasonCreateWithoutProduct_recommendsInput, SeasonUncheckedCreateWithoutProduct_recommendsInput>
+    where?: SeasonWhereInput
+  }
+
+  export type SeasonUpdateToOneWithWhereWithoutProduct_recommendsInput = {
+    where?: SeasonWhereInput
+    data: XOR<SeasonUpdateWithoutProduct_recommendsInput, SeasonUncheckedUpdateWithoutProduct_recommendsInput>
+  }
+
+  export type SeasonUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    no?: NullableIntFieldUpdateOperationsInput | number | null
+    season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
+    budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
+    sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type SeasonUncheckedUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    no?: NullableIntFieldUpdateOperationsInput | number | null
+    budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
+    sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type ProductUpsertWithoutProduct_recommendsInput = {
+    update: XOR<ProductUpdateWithoutProduct_recommendsInput, ProductUncheckedUpdateWithoutProduct_recommendsInput>
+    create: XOR<ProductCreateWithoutProduct_recommendsInput, ProductUncheckedCreateWithoutProduct_recommendsInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutProduct_recommendsInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutProduct_recommendsInput, ProductUncheckedUpdateWithoutProduct_recommendsInput>
+  }
+
+  export type ProductUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
+    sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_name?: StringFieldUpdateOperationsInput | string
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    rail?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    unit_price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    unit_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    sku_proposals?: SKUProposalUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type SubCategoryUpsertWithoutProduct_recommendsInput = {
+    update: XOR<SubCategoryUpdateWithoutProduct_recommendsInput, SubCategoryUncheckedUpdateWithoutProduct_recommendsInput>
+    create: XOR<SubCategoryCreateWithoutProduct_recommendsInput, SubCategoryUncheckedCreateWithoutProduct_recommendsInput>
+    where?: SubCategoryWhereInput
+  }
+
+  export type SubCategoryUpdateToOneWithWhereWithoutProduct_recommendsInput = {
+    where?: SubCategoryWhereInput
+    data: XOR<SubCategoryUpdateWithoutProduct_recommendsInput, SubCategoryUncheckedUpdateWithoutProduct_recommendsInput>
+  }
+
+  export type SubCategoryUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    category?: CategoryUpdateOneRequiredWithoutSub_categoriesNestedInput
+    products?: ProductUpdateManyWithoutSub_categoryNestedInput
+    subcategory_sizes?: SubcategorySizeUpdateManyWithoutSub_categoryNestedInput
+    planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
+    history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+  }
+
+  export type SubCategoryUncheckedUpdateWithoutProduct_recommendsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    products?: ProductUncheckedUpdateManyWithoutSub_categoryNestedInput
+    subcategory_sizes?: SubcategorySizeUncheckedUpdateManyWithoutSub_categoryNestedInput
+    planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+  }
+
   export type UserCreateWithoutCreated_budgetsInput = {
     id?: bigint | number
     email: string
@@ -59228,6 +64701,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -59248,6 +64723,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -59309,6 +64786,8 @@ export namespace Prisma {
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutBudgetInput = {
@@ -59322,6 +64801,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutBudgetInput = {
@@ -59360,6 +64841,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -59380,6 +64863,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -59500,6 +64985,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -59520,6 +65007,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -59540,6 +65029,8 @@ export namespace Prisma {
     season: SeasonCreateNestedOneWithoutTicketsInput
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutSnapshot_allocate_headersInput = {
@@ -59553,6 +65044,8 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutSnapshot_allocate_headersInput = {
@@ -59772,6 +65265,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -59792,6 +65287,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -59818,6 +65315,8 @@ export namespace Prisma {
     season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutSnapshot_allocate_headersInput = {
@@ -59831,6 +65330,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type BudgetAllocateUpsertWithWhereUniqueWithoutAllocate_headerInput = {
@@ -59997,6 +65498,7 @@ export namespace Prisma {
     no?: number | null
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     tickets?: TicketCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
   }
@@ -60012,6 +65514,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     no?: number | null
     tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
@@ -60166,6 +65669,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
   }
@@ -60181,6 +65685,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     no?: NullableIntFieldUpdateOperationsInput | number | null
     tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
   }
@@ -60201,6 +65706,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -60221,6 +65728,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -60421,6 +65930,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -60441,6 +65952,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -60981,6 +66494,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeCreateNestedManyWithoutSub_categoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutPlanning_categoriesInput = {
@@ -60996,6 +66510,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedCreateNestedManyWithoutSub_categoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutPlanning_categoriesInput = {
@@ -61060,6 +66575,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUpdateManyWithoutSub_categoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutPlanning_categoriesInput = {
@@ -61075,6 +66591,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedUpdateManyWithoutSub_categoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type PlanningHeaderUpsertWithoutPlanning_categoriesInput = {
@@ -61169,6 +66686,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -61189,6 +66708,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -61336,6 +66857,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -61356,6 +66879,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -61441,6 +66966,7 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     sub_category: SubCategoryCreateNestedOneWithoutProductsInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSku_proposalsInput = {
@@ -61461,6 +66987,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSku_proposalsInput = {
@@ -61598,6 +67125,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sub_category?: SubCategoryUpdateOneRequiredWithoutProductsNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSku_proposalsInput = {
@@ -61618,6 +67146,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type SKUAllocateUpsertWithWhereUniqueWithoutSku_proposalInput = {
@@ -61851,6 +67380,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderCreateNestedManyWithoutCreatorInput
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -61871,6 +67402,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -61979,6 +67512,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUpdateManyWithoutCreatorNestedInput
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -61999,6 +67534,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -62356,6 +67893,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeCreateNestedManyWithoutSub_categoryInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutHistory_aggInput = {
@@ -62371,6 +67909,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedCreateNestedManyWithoutSub_categoryInput
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutHistory_aggInput = {
@@ -62390,6 +67929,7 @@ export namespace Prisma {
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
     tickets?: TicketCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
   }
 
@@ -62405,6 +67945,7 @@ export namespace Prisma {
     no?: number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
     tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
 
@@ -62597,6 +68138,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUpdateManyWithoutSub_categoryNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutHistory_aggInput = {
@@ -62612,6 +68154,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedUpdateManyWithoutSub_categoryNestedInput
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SeasonUpsertWithoutHistory_aggInput = {
@@ -62637,6 +68180,7 @@ export namespace Prisma {
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
   }
 
@@ -62652,6 +68196,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
   }
 
@@ -62804,6 +68349,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeCreateNestedManyWithoutSub_categoryInput
     planning_categories?: PlanningCategoryCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryUncheckedCreateWithoutSales_history_aggInput = {
@@ -62819,6 +68365,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedCreateNestedManyWithoutSub_categoryInput
     planning_categories?: PlanningCategoryUncheckedCreateNestedManyWithoutSubcategoryInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSub_categoryInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSub_categoryInput
   }
 
   export type SubCategoryCreateOrConnectWithoutSales_history_aggInput = {
@@ -62865,6 +68412,7 @@ export namespace Prisma {
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
     tickets?: TicketCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
   }
 
@@ -62880,6 +68428,7 @@ export namespace Prisma {
     no?: number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
     tickets?: TicketUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
 
@@ -63072,6 +68621,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUpdateManyWithoutSub_categoryNestedInput
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutSales_history_aggInput = {
@@ -63087,6 +68637,7 @@ export namespace Prisma {
     subcategory_sizes?: SubcategorySizeUncheckedUpdateManyWithoutSub_categoryNestedInput
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SeasonTypeUpsertWithoutSales_history_aggInput = {
@@ -63145,6 +68696,7 @@ export namespace Prisma {
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
   }
 
@@ -63160,7 +68712,639 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
+  }
+
+  export type TicketCreateWithoutOrder_confirmationsInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutOrder_confirmationsInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutOrder_confirmationsInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutOrder_confirmationsInput, TicketUncheckedCreateWithoutOrder_confirmationsInput>
+  }
+
+  export type UserCreateWithoutCreated_order_confirmationsInput = {
+    id?: bigint | number
+    email: string
+    name: string
+    password_hash: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    store_access?: string
+    brand_access?: string
+    role: RoleCreateNestedOneWithoutUsersInput
+    created_budgets?: BudgetCreateNestedManyWithoutCreatorInput
+    created_allocate_headers?: AllocateHeaderCreateNestedManyWithoutCreatorInput
+    created_planning_headers?: PlanningHeaderCreateNestedManyWithoutCreatorInput
+    created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
+    created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
+    approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
+  }
+
+  export type UserUncheckedCreateWithoutCreated_order_confirmationsInput = {
+    id?: bigint | number
+    email: string
+    name: string
+    password_hash: string
+    role_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    store_access?: string
+    brand_access?: string
+    created_budgets?: BudgetUncheckedCreateNestedManyWithoutCreatorInput
+    created_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
+  }
+
+  export type UserCreateOrConnectWithoutCreated_order_confirmationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreated_order_confirmationsInput, UserUncheckedCreateWithoutCreated_order_confirmationsInput>
+  }
+
+  export type ReceiptConfirmationCreateWithoutOrder_confirmationInput = {
+    id?: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket: TicketCreateNestedOneWithoutReceipt_confirmationsInput
+    creator?: UserCreateNestedOneWithoutCreated_receipt_confirmationsInput
+  }
+
+  export type ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput = {
+    id?: bigint | number
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateOrConnectWithoutOrder_confirmationInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    create: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput>
+  }
+
+  export type ReceiptConfirmationCreateManyOrder_confirmationInputEnvelope = {
+    data: ReceiptConfirmationCreateManyOrder_confirmationInput | ReceiptConfirmationCreateManyOrder_confirmationInput[]
+  }
+
+  export type TicketUpsertWithoutOrder_confirmationsInput = {
+    update: XOR<TicketUpdateWithoutOrder_confirmationsInput, TicketUncheckedUpdateWithoutOrder_confirmationsInput>
+    create: XOR<TicketCreateWithoutOrder_confirmationsInput, TicketUncheckedCreateWithoutOrder_confirmationsInput>
+    where?: TicketWhereInput
+  }
+
+  export type TicketUpdateToOneWithWhereWithoutOrder_confirmationsInput = {
+    where?: TicketWhereInput
+    data: XOR<TicketUpdateWithoutOrder_confirmationsInput, TicketUncheckedUpdateWithoutOrder_confirmationsInput>
+  }
+
+  export type TicketUpdateWithoutOrder_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutOrder_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type UserUpsertWithoutCreated_order_confirmationsInput = {
+    update: XOR<UserUpdateWithoutCreated_order_confirmationsInput, UserUncheckedUpdateWithoutCreated_order_confirmationsInput>
+    create: XOR<UserCreateWithoutCreated_order_confirmationsInput, UserUncheckedCreateWithoutCreated_order_confirmationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreated_order_confirmationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreated_order_confirmationsInput, UserUncheckedUpdateWithoutCreated_order_confirmationsInput>
+  }
+
+  export type UserUpdateWithoutCreated_order_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    store_access?: StringFieldUpdateOperationsInput | string
+    brand_access?: StringFieldUpdateOperationsInput | string
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    created_budgets?: BudgetUpdateManyWithoutCreatorNestedInput
+    created_allocate_headers?: AllocateHeaderUpdateManyWithoutCreatorNestedInput
+    created_planning_headers?: PlanningHeaderUpdateManyWithoutCreatorNestedInput
+    created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
+    created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreated_order_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    role_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    store_access?: StringFieldUpdateOperationsInput | string
+    brand_access?: StringFieldUpdateOperationsInput | string
+    created_budgets?: BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+    created_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
+  }
+
+  export type ReceiptConfirmationUpsertWithWhereUniqueWithoutOrder_confirmationInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    update: XOR<ReceiptConfirmationUpdateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedUpdateWithoutOrder_confirmationInput>
+    create: XOR<ReceiptConfirmationCreateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedCreateWithoutOrder_confirmationInput>
+  }
+
+  export type ReceiptConfirmationUpdateWithWhereUniqueWithoutOrder_confirmationInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    data: XOR<ReceiptConfirmationUpdateWithoutOrder_confirmationInput, ReceiptConfirmationUncheckedUpdateWithoutOrder_confirmationInput>
+  }
+
+  export type ReceiptConfirmationUpdateManyWithWhereWithoutOrder_confirmationInput = {
+    where: ReceiptConfirmationScalarWhereInput
+    data: XOR<ReceiptConfirmationUpdateManyMutationInput, ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationInput>
+  }
+
+  export type OrderConfirmationCreateWithoutReceipt_confirmationsInput = {
+    id?: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket: TicketCreateNestedOneWithoutOrder_confirmationsInput
+    creator?: UserCreateNestedOneWithoutCreated_order_confirmationsInput
+  }
+
+  export type OrderConfirmationUncheckedCreateWithoutReceipt_confirmationsInput = {
+    id?: bigint | number
+    ticket_id: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type OrderConfirmationCreateOrConnectWithoutReceipt_confirmationsInput = {
+    where: OrderConfirmationWhereUniqueInput
+    create: XOR<OrderConfirmationCreateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedCreateWithoutReceipt_confirmationsInput>
+  }
+
+  export type TicketCreateWithoutReceipt_confirmationsInput = {
+    id?: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    budget: BudgetCreateNestedOneWithoutTicketsInput
+    season_group: SeasonGroupCreateNestedOneWithoutTicketsInput
+    season: SeasonCreateNestedOneWithoutTicketsInput
+    creator: UserCreateNestedOneWithoutCreated_ticketsInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketUncheckedCreateWithoutReceipt_confirmationsInput = {
+    id?: bigint | number
+    budget_id: bigint | number
+    season_group_id: bigint | number
+    season_id: bigint | number
+    status?: string
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutTicketInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+  }
+
+  export type TicketCreateOrConnectWithoutReceipt_confirmationsInput = {
+    where: TicketWhereUniqueInput
+    create: XOR<TicketCreateWithoutReceipt_confirmationsInput, TicketUncheckedCreateWithoutReceipt_confirmationsInput>
+  }
+
+  export type UserCreateWithoutCreated_receipt_confirmationsInput = {
+    id?: bigint | number
+    email: string
+    name: string
+    password_hash: string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    store_access?: string
+    brand_access?: string
+    role: RoleCreateNestedOneWithoutUsersInput
+    created_budgets?: BudgetCreateNestedManyWithoutCreatorInput
+    created_allocate_headers?: AllocateHeaderCreateNestedManyWithoutCreatorInput
+    created_planning_headers?: PlanningHeaderCreateNestedManyWithoutCreatorInput
+    created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
+    created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
+    ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
+  }
+
+  export type UserUncheckedCreateWithoutCreated_receipt_confirmationsInput = {
+    id?: bigint | number
+    email: string
+    name: string
+    password_hash: string
+    role_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    store_access?: string
+    brand_access?: string
+    created_budgets?: BudgetUncheckedCreateNestedManyWithoutCreatorInput
+    created_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
+    ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
+  }
+
+  export type UserCreateOrConnectWithoutCreated_receipt_confirmationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreated_receipt_confirmationsInput, UserUncheckedCreateWithoutCreated_receipt_confirmationsInput>
+  }
+
+  export type OrderConfirmationUpsertWithoutReceipt_confirmationsInput = {
+    update: XOR<OrderConfirmationUpdateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedUpdateWithoutReceipt_confirmationsInput>
+    create: XOR<OrderConfirmationCreateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedCreateWithoutReceipt_confirmationsInput>
+    where?: OrderConfirmationWhereInput
+  }
+
+  export type OrderConfirmationUpdateToOneWithWhereWithoutReceipt_confirmationsInput = {
+    where?: OrderConfirmationWhereInput
+    data: XOR<OrderConfirmationUpdateWithoutReceipt_confirmationsInput, OrderConfirmationUncheckedUpdateWithoutReceipt_confirmationsInput>
+  }
+
+  export type OrderConfirmationUpdateWithoutReceipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket?: TicketUpdateOneRequiredWithoutOrder_confirmationsNestedInput
+    creator?: UserUpdateOneWithoutCreated_order_confirmationsNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateWithoutReceipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type TicketUpsertWithoutReceipt_confirmationsInput = {
+    update: XOR<TicketUpdateWithoutReceipt_confirmationsInput, TicketUncheckedUpdateWithoutReceipt_confirmationsInput>
+    create: XOR<TicketCreateWithoutReceipt_confirmationsInput, TicketUncheckedCreateWithoutReceipt_confirmationsInput>
+    where?: TicketWhereInput
+  }
+
+  export type TicketUpdateToOneWithWhereWithoutReceipt_confirmationsInput = {
+    where?: TicketWhereInput
+    data: XOR<TicketUpdateWithoutReceipt_confirmationsInput, TicketUncheckedUpdateWithoutReceipt_confirmationsInput>
+  }
+
+  export type TicketUpdateWithoutReceipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    budget?: BudgetUpdateOneRequiredWithoutTicketsNestedInput
+    season_group?: SeasonGroupUpdateOneRequiredWithoutTicketsNestedInput
+    season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
+    creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+  }
+
+  export type TicketUncheckedUpdateWithoutReceipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
+    snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+  }
+
+  export type UserUpsertWithoutCreated_receipt_confirmationsInput = {
+    update: XOR<UserUpdateWithoutCreated_receipt_confirmationsInput, UserUncheckedUpdateWithoutCreated_receipt_confirmationsInput>
+    create: XOR<UserCreateWithoutCreated_receipt_confirmationsInput, UserUncheckedCreateWithoutCreated_receipt_confirmationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreated_receipt_confirmationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreated_receipt_confirmationsInput, UserUncheckedUpdateWithoutCreated_receipt_confirmationsInput>
+  }
+
+  export type UserUpdateWithoutCreated_receipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    store_access?: StringFieldUpdateOperationsInput | string
+    brand_access?: StringFieldUpdateOperationsInput | string
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    created_budgets?: BudgetUpdateManyWithoutCreatorNestedInput
+    created_allocate_headers?: AllocateHeaderUpdateManyWithoutCreatorNestedInput
+    created_planning_headers?: PlanningHeaderUpdateManyWithoutCreatorNestedInput
+    created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
+    created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
+    ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreated_receipt_confirmationsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    role_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    store_access?: StringFieldUpdateOperationsInput | string
+    brand_access?: StringFieldUpdateOperationsInput | string
+    created_budgets?: BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+    created_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
+    ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
 
   export type BudgetCreateWithoutTicketsInput = {
@@ -63238,6 +69422,7 @@ export namespace Prisma {
     no?: number | null
     season_group: SeasonGroupCreateNestedOneWithoutSeasonsInput
     budget_allocates?: BudgetAllocateCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutSeasonInput
   }
@@ -63253,6 +69438,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     no?: number | null
     budget_allocates?: BudgetAllocateUncheckedCreateNestedManyWithoutSeasonInput
+    product_recommends?: ProductRecommendUncheckedCreateNestedManyWithoutSeasonInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutSeasonInput
   }
@@ -63278,6 +69464,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderCreateNestedManyWithoutCreatorInput
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
@@ -63298,6 +69486,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
@@ -63381,6 +69571,154 @@ export namespace Prisma {
 
   export type AllocateHeaderCreateManyTicketInputEnvelope = {
     data: AllocateHeaderCreateManyTicketInput | AllocateHeaderCreateManyTicketInput[]
+  }
+
+  export type OrderConfirmationCreateWithoutTicketInput = {
+    id?: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    creator?: UserCreateNestedOneWithoutCreated_order_confirmationsInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationUncheckedCreateWithoutTicketInput = {
+    id?: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutOrder_confirmationInput
+  }
+
+  export type OrderConfirmationCreateOrConnectWithoutTicketInput = {
+    where: OrderConfirmationWhereUniqueInput
+    create: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput>
+  }
+
+  export type OrderConfirmationCreateManyTicketInputEnvelope = {
+    data: OrderConfirmationCreateManyTicketInput | OrderConfirmationCreateManyTicketInput[]
+  }
+
+  export type ReceiptConfirmationCreateWithoutTicketInput = {
+    id?: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    order_confirmation: OrderConfirmationCreateNestedOneWithoutReceipt_confirmationsInput
+    creator?: UserCreateNestedOneWithoutCreated_receipt_confirmationsInput
+  }
+
+  export type ReceiptConfirmationUncheckedCreateWithoutTicketInput = {
+    id?: bigint | number
+    order_confirmation_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateOrConnectWithoutTicketInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    create: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput>
+  }
+
+  export type ReceiptConfirmationCreateManyTicketInputEnvelope = {
+    data: ReceiptConfirmationCreateManyTicketInput | ReceiptConfirmationCreateManyTicketInput[]
   }
 
   export type BudgetUpsertWithoutTicketsInput = {
@@ -63481,6 +69819,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     season_group?: SeasonGroupUpdateOneRequiredWithoutSeasonsNestedInput
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
   }
@@ -63496,6 +69835,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
   }
@@ -63527,6 +69867,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUpdateManyWithoutCreatorNestedInput
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -63547,6 +69889,8 @@ export namespace Prisma {
     created_planning_headers?: PlanningHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -63581,6 +69925,38 @@ export namespace Prisma {
   export type AllocateHeaderUpdateManyWithWhereWithoutTicketInput = {
     where: AllocateHeaderScalarWhereInput
     data: XOR<AllocateHeaderUpdateManyMutationInput, AllocateHeaderUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type OrderConfirmationUpsertWithWhereUniqueWithoutTicketInput = {
+    where: OrderConfirmationWhereUniqueInput
+    update: XOR<OrderConfirmationUpdateWithoutTicketInput, OrderConfirmationUncheckedUpdateWithoutTicketInput>
+    create: XOR<OrderConfirmationCreateWithoutTicketInput, OrderConfirmationUncheckedCreateWithoutTicketInput>
+  }
+
+  export type OrderConfirmationUpdateWithWhereUniqueWithoutTicketInput = {
+    where: OrderConfirmationWhereUniqueInput
+    data: XOR<OrderConfirmationUpdateWithoutTicketInput, OrderConfirmationUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type OrderConfirmationUpdateManyWithWhereWithoutTicketInput = {
+    where: OrderConfirmationScalarWhereInput
+    data: XOR<OrderConfirmationUpdateManyMutationInput, OrderConfirmationUncheckedUpdateManyWithoutTicketInput>
+  }
+
+  export type ReceiptConfirmationUpsertWithWhereUniqueWithoutTicketInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    update: XOR<ReceiptConfirmationUpdateWithoutTicketInput, ReceiptConfirmationUncheckedUpdateWithoutTicketInput>
+    create: XOR<ReceiptConfirmationCreateWithoutTicketInput, ReceiptConfirmationUncheckedCreateWithoutTicketInput>
+  }
+
+  export type ReceiptConfirmationUpdateWithWhereUniqueWithoutTicketInput = {
+    where: ReceiptConfirmationWhereUniqueInput
+    data: XOR<ReceiptConfirmationUpdateWithoutTicketInput, ReceiptConfirmationUncheckedUpdateWithoutTicketInput>
+  }
+
+  export type ReceiptConfirmationUpdateManyWithWhereWithoutTicketInput = {
+    where: ReceiptConfirmationScalarWhereInput
+    data: XOR<ReceiptConfirmationUpdateManyMutationInput, ReceiptConfirmationUncheckedUpdateManyWithoutTicketInput>
   }
 
   export type GroupBrandCreateWithoutApproval_workflowsInput = {
@@ -63740,6 +70116,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     ticket_approval_logs?: TicketApprovalLogCreateNestedManyWithoutApprover_userInput
   }
 
@@ -63760,6 +70138,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     ticket_approval_logs?: TicketApprovalLogUncheckedCreateNestedManyWithoutApprover_userInput
   }
 
@@ -63862,6 +70242,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
 
@@ -63882,6 +70264,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
 
@@ -63912,6 +70296,8 @@ export namespace Prisma {
     season: SeasonCreateNestedOneWithoutTicketsInput
     creator: UserCreateNestedOneWithoutCreated_ticketsInput
     snapshot_allocate_headers?: AllocateHeaderCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutTicketInput
   }
 
   export type TicketUncheckedCreateWithoutTicket_approval_logsInput = {
@@ -63925,6 +70311,8 @@ export namespace Prisma {
     updated_at?: Date | string
     updated_by?: bigint | number | null
     snapshot_allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutTicketInput
+    order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutTicketInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutTicketInput
   }
 
   export type TicketCreateOrConnectWithoutTicket_approval_logsInput = {
@@ -63980,6 +70368,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelCreateNestedManyWithoutApprover_userInput
   }
 
@@ -64000,6 +70390,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedCreateNestedManyWithoutCreatorInput
     created_tickets?: TicketUncheckedCreateNestedManyWithoutCreatorInput
+    created_order_confirmations?: OrderConfirmationUncheckedCreateNestedManyWithoutCreatorInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedCreateNestedManyWithoutCreatorInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedCreateNestedManyWithoutApprover_userInput
   }
 
@@ -64030,6 +70422,8 @@ export namespace Prisma {
     season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutTicket_approval_logsInput = {
@@ -64043,6 +70437,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type ApprovalWorkflowLevelUpsertWithoutTicket_approval_logsInput = {
@@ -64110,6 +70506,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
   }
 
@@ -64130,6 +70528,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
   }
 
@@ -64189,6 +70589,68 @@ export namespace Prisma {
     budget_id: bigint | number
     season_group_id: bigint | number
     season_id: bigint | number
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type OrderConfirmationCreateManyCreatorInput = {
+    ticket_id: bigint | number
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateManyCreatorInput = {
+    order_confirmation_id: bigint | number
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
     status?: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -64422,6 +70884,8 @@ export namespace Prisma {
     season?: SeasonUpdateOneRequiredWithoutTicketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutCreatorInput = {
@@ -64435,6 +70899,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutCreatorInput = {
@@ -64442,6 +70908,200 @@ export namespace Prisma {
     budget_id?: BigIntFieldUpdateOperationsInput | bigint | number
     season_group_id?: BigIntFieldUpdateOperationsInput | bigint | number
     season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type OrderConfirmationUpdateWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket?: TicketUpdateOneRequiredWithoutOrder_confirmationsNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateManyWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpdateWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    order_confirmation?: OrderConfirmationUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+    ticket?: TicketUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutCreatorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -64552,6 +71212,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutApprover_userNestedInput
   }
@@ -64572,6 +71234,8 @@ export namespace Prisma {
     created_sku_proposal_headers?: SKUProposalHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_proposal_sizing_headers?: ProposalSizingHeaderUncheckedUpdateManyWithoutCreatorNestedInput
     created_tickets?: TicketUncheckedUpdateManyWithoutCreatorNestedInput
+    created_order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
+    created_receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutCreatorNestedInput
     approval_workflow_levels?: ApprovalWorkflowLevelUncheckedUpdateManyWithoutApprover_userNestedInput
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutApprover_userNestedInput
   }
@@ -65502,6 +72166,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSeasonNestedInput
   }
@@ -65517,6 +72182,7 @@ export namespace Prisma {
     no?: NullableIntFieldUpdateOperationsInput | number | null
     budget_allocates?: BudgetAllocateUncheckedUpdateManyWithoutSeasonNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutSeasonNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSeasonNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSeasonNestedInput
   }
@@ -65579,6 +72245,8 @@ export namespace Prisma {
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutSeason_groupInput = {
@@ -65592,6 +72260,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutSeason_groupInput = {
@@ -65624,6 +72294,17 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+  }
+
+  export type ProductRecommendCreateManySeasonInput = {
+    year: number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
   }
 
   export type SubCategorySizeHistoryAggCreateManySeasonInput = {
@@ -65711,6 +72392,8 @@ export namespace Prisma {
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutSeasonInput = {
@@ -65724,6 +72407,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutSeasonInput = {
@@ -65735,6 +72420,42 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ProductRecommendUpdateWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutProduct_recommendsNestedInput
+    sub_category?: SubCategoryUpdateOneRequiredWithoutProduct_recommendsNestedInput
+  }
+
+  export type ProductRecommendUncheckedUpdateWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductRecommendUncheckedUpdateManyWithoutSeasonInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubCategorySizeHistoryAggUpdateWithoutSeasonInput = {
@@ -66187,6 +72908,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateWithoutCategoryInput = {
@@ -66202,6 +72924,7 @@ export namespace Prisma {
     planning_categories?: PlanningCategoryUncheckedUpdateManyWithoutSubcategoryNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutSub_categoryNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutSub_categoryNestedInput
   }
 
   export type SubCategoryUncheckedUpdateManyWithoutCategoryInput = {
@@ -66414,6 +73137,17 @@ export namespace Prisma {
     st?: Decimal | DecimalJsLike | number | string | null
   }
 
+  export type ProductRecommendCreateManySub_categoryInput = {
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    product_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
   export type ProductUpdateWithoutSub_categoryInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     item_code?: StringFieldUpdateOperationsInput | string
@@ -66432,6 +73166,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUpdateManyWithoutProductNestedInput
+    product_recommends?: ProductRecommendUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSub_categoryInput = {
@@ -66452,6 +73187,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     sku_proposals?: SKUProposalUncheckedUpdateManyWithoutProductNestedInput
+    product_recommends?: ProductRecommendUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutSub_categoryInput = {
@@ -66673,6 +73409,42 @@ export namespace Prisma {
     st?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
   }
 
+  export type ProductRecommendUpdateWithoutSub_categoryInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    season?: SeasonUpdateOneRequiredWithoutProduct_recommendsNestedInput
+    product?: ProductUpdateOneRequiredWithoutProduct_recommendsNestedInput
+  }
+
+  export type ProductRecommendUncheckedUpdateWithoutSub_categoryInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductRecommendUncheckedUpdateManyWithoutSub_categoryInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    product_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProposalSizingCreateManySubcategory_sizeInput = {
     proposal_sizing_header_id: bigint | number
     sku_proposal_id: bigint | number
@@ -66735,6 +73507,17 @@ export namespace Prisma {
     updated_by?: bigint | number | null
   }
 
+  export type ProductRecommendCreateManyProductInput = {
+    year: number
+    season_id: bigint | number
+    item_code: string
+    sku_code: string
+    sub_category_id: bigint | number
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
   export type SKUProposalUpdateWithoutProductInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customer_target?: StringFieldUpdateOperationsInput | string
@@ -66773,6 +73556,42 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ProductRecommendUpdateWithoutProductInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    season?: SeasonUpdateOneRequiredWithoutProduct_recommendsNestedInput
+    sub_category?: SubCategoryUpdateOneRequiredWithoutProduct_recommendsNestedInput
+  }
+
+  export type ProductRecommendUncheckedUpdateWithoutProductInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductRecommendUncheckedUpdateManyWithoutProductInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    year?: IntFieldUpdateOperationsInput | number
+    season_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku_code?: StringFieldUpdateOperationsInput | string
+    sub_category_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AllocateHeaderCreateManyBudgetInput = {
@@ -66853,6 +73672,8 @@ export namespace Prisma {
     creator?: UserUpdateOneRequiredWithoutCreated_ticketsNestedInput
     ticket_approval_logs?: TicketApprovalLogUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateWithoutBudgetInput = {
@@ -66866,6 +73687,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     ticket_approval_logs?: TicketApprovalLogUncheckedUpdateManyWithoutTicketNestedInput
     snapshot_allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutTicketNestedInput
+    order_confirmations?: OrderConfirmationUncheckedUpdateManyWithoutTicketNestedInput
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutTicketNestedInput
   }
 
   export type TicketUncheckedUpdateManyWithoutBudgetInput = {
@@ -67452,6 +74275,65 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
+  export type ReceiptConfirmationCreateManyOrder_confirmationInput = {
+    ticket_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpdateWithoutOrder_confirmationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    ticket?: TicketUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+    creator?: UserUpdateOneWithoutCreated_receipt_confirmationsNestedInput
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateWithoutOrder_confirmationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    ticket_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
   export type TicketApprovalLogCreateManyTicketInput = {
     approval_workflow_level_id: bigint | number
     approver_user_id: bigint | number
@@ -67471,6 +74353,68 @@ export namespace Prisma {
     is_final_version?: boolean
     is_snapshot?: boolean
     created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type OrderConfirmationCreateManyTicketInput = {
+    image_url?: string | null
+    sku: string
+    name?: string | null
+    collection_name?: string | null
+    color?: string | null
+    division?: string | null
+    product_type?: string | null
+    department?: string | null
+    carry_forward?: string | null
+    composition?: string | null
+    theme?: string | null
+    style_name?: string | null
+    total_units?: number | null
+    size?: string | null
+    brand_id?: string | null
+    color_code?: string | null
+    fsr?: string | null
+    wholesale_sgd?: Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: Decimal | DecimalJsLike | number | string | null
+    mod?: string | null
+    ves?: string | null
+    in_catalogue?: string | null
+    gruppo?: string | null
+    tipology?: string | null
+    sku_type?: string | null
+    gca?: string | null
+    window?: string | null
+    heel?: string | null
+    dimension?: string | null
+    finish?: string | null
+    delivery?: string | null
+    currency?: string | null
+    price_mod_single?: Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: Decimal | DecimalJsLike | number | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    amount_retail?: Decimal | DecimalJsLike | number | string | null
+    product_status?: string | null
+    size2?: string | null
+    status?: string
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+  }
+
+  export type ReceiptConfirmationCreateManyTicketInput = {
+    order_confirmation_id: bigint | number
+    received_units?: number | null
+    actual_unit_price?: Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: string | null
+    receipt_comment?: string | null
+    status?: string
+    created_by?: bigint | number | null
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
@@ -67555,6 +74499,200 @@ export namespace Prisma {
     is_final_version?: BoolFieldUpdateOperationsInput | boolean
     is_snapshot?: BoolFieldUpdateOperationsInput | boolean
     created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type OrderConfirmationUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    creator?: UserUpdateOneWithoutCreated_order_confirmationsNestedInput
+    receipt_confirmations?: ReceiptConfirmationUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    receipt_confirmations?: ReceiptConfirmationUncheckedUpdateManyWithoutOrder_confirmationNestedInput
+  }
+
+  export type OrderConfirmationUncheckedUpdateManyWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    collection_name?: NullableStringFieldUpdateOperationsInput | string | null
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    product_type?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    carry_forward?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    theme?: NullableStringFieldUpdateOperationsInput | string | null
+    style_name?: NullableStringFieldUpdateOperationsInput | string | null
+    total_units?: NullableIntFieldUpdateOperationsInput | number | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    brand_id?: NullableStringFieldUpdateOperationsInput | string | null
+    color_code?: NullableStringFieldUpdateOperationsInput | string | null
+    fsr?: NullableStringFieldUpdateOperationsInput | string | null
+    wholesale_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rrp_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    regional_rrp?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_price_sgd?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mod?: NullableStringFieldUpdateOperationsInput | string | null
+    ves?: NullableStringFieldUpdateOperationsInput | string | null
+    in_catalogue?: NullableStringFieldUpdateOperationsInput | string | null
+    gruppo?: NullableStringFieldUpdateOperationsInput | string | null
+    tipology?: NullableStringFieldUpdateOperationsInput | string | null
+    sku_type?: NullableStringFieldUpdateOperationsInput | string | null
+    gca?: NullableStringFieldUpdateOperationsInput | string | null
+    window?: NullableStringFieldUpdateOperationsInput | string | null
+    heel?: NullableStringFieldUpdateOperationsInput | string | null
+    dimension?: NullableStringFieldUpdateOperationsInput | string | null
+    finish?: NullableStringFieldUpdateOperationsInput | string | null
+    delivery?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    price_mod_single?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price_mod_single_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    amount_retail?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    product_status?: NullableStringFieldUpdateOperationsInput | string | null
+    size2?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    order_confirmation?: OrderConfirmationUpdateOneRequiredWithoutReceipt_confirmationsNestedInput
+    creator?: UserUpdateOneWithoutCreated_receipt_confirmationsNestedInput
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReceiptConfirmationUncheckedUpdateManyWithoutTicketInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    order_confirmation_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    received_units?: NullableIntFieldUpdateOperationsInput | number | null
+    actual_unit_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    actual_total_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    receipt_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    receipt_comment?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -67742,6 +74880,10 @@ export namespace Prisma {
      */
     export type ProposalSizingHeaderCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProposalSizingHeaderCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use OrderConfirmationCountOutputTypeDefaultArgs instead
+     */
+    export type OrderConfirmationCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = OrderConfirmationCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use TicketCountOutputTypeDefaultArgs instead
      */
     export type TicketCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TicketCountOutputTypeDefaultArgs<ExtArgs>
@@ -67877,6 +75019,14 @@ export namespace Prisma {
      * @deprecated Use SellthroughBySubcategoryAggDefaultArgs instead
      */
     export type SellthroughBySubcategoryAggArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SellthroughBySubcategoryAggDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use OrderConfirmationDefaultArgs instead
+     */
+    export type OrderConfirmationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = OrderConfirmationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ReceiptConfirmationDefaultArgs instead
+     */
+    export type ReceiptConfirmationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ReceiptConfirmationDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ApprovalStatusDefaultArgs instead
      */

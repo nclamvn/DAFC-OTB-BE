@@ -26,4 +26,8 @@ export const PERMISSIONS = {
     READ: 'approval:read',
     WRITE: 'approval:write',
   },
+  ORDER: {
+    READ: 'order:read',
+    WRITE: 'order:write',
+  },
 } as const;

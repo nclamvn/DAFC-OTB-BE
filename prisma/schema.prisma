@@ -48,6 +48,8 @@ model User {
   created_sku_proposal_headers      SKUProposalHeader[]       @relation("CreatedSKUProposalHeaders")
   created_proposal_sizing_headers   ProposalSizingHeader[]    @relation("CreatedProposalSizingHeaders")
   created_tickets                   Ticket[]                  @relation("CreatedTickets")
+  created_order_confirmations       OrderConfirmation[]       @relation("CreatedOrderConfirmations")
+  created_receipt_confirmations     ReceiptConfirmation[]     @relation("CreatedReceiptConfirmations")
   approval_workflow_levels          ApprovalWorkflowLevel[]   @relation("ApproverUser")
   ticket_approval_logs              TicketApprovalLog[]       @relation("ApproverLogs")
 
@@ -190,8 +192,9 @@ model Season {
   // Relations
   season_group     SeasonGroup      @relation("SeasonGroupToSeason", fields: [season_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "season_group_id_fkey")
   budget_allocates BudgetAllocate[] @relation("SeasonToBudgetAllocate")
-  tickets          Ticket[]         @relation("SeasonToTicket")
-  history_agg       SubCategorySizeHistoryAgg[] @relation("SeasonToHistoryAgg")
+  tickets            Ticket[]                    @relation("SeasonToTicket")
+  product_recommends ProductRecommend[]          @relation("SeasonToProductRecommend")
+  history_agg        SubCategorySizeHistoryAgg[] @relation("SeasonToHistoryAgg")
   sales_history_agg          SalesHistoryAgg[]                    @relation("SeasonToSalesHistoryAgg")
 
   @@map("season")
@@ -251,8 +254,9 @@ model SubCategory {
   products            Product[]            @relation("SubCategoryToProduct")
   subcategory_sizes   SubcategorySize[]    @relation("SubCategoryToSize")
   planning_categories PlanningCategory[]   @relation("SubCategoryToPlanningCategory")
-  history_agg         SubCategorySizeHistoryAgg[] @relation("SubCategoryToHistoryAgg")
-  sales_history_agg          SalesHistoryAgg[]                    @relation("SubCategoryToSalesHistoryAgg")
+  history_agg          SubCategorySizeHistoryAgg[] @relation("SubCategoryToHistoryAgg")
+  sales_history_agg    SalesHistoryAgg[]          @relation("SubCategoryToSalesHistoryAgg")
+  product_recommends   ProductRecommend[]         @relation("SubCategoryToProductRecommend")
 
   @@map("sub_category")
 }
@@ -298,24 +302,30 @@ model Product {
 
   // Relations
   sub_category  SubCategory   @relation("SubCategoryToProduct", fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  sku_proposals      SKUProposal[]      @relation("ProductToSKUProposal")
+  sku_proposals        SKUProposal[]        @relation("ProductToSKUProposal")
+  product_recommends   ProductRecommend[]   @relation("ProductToProductRecommend")
 
   @@map("product")
 }
 
-/// No PK — use raw queries via PrismaService.$queryRaw
 model ProductRecommend {
-  year         Int      @default(0)
-  season_name  String   @default("") @db.NVarChar(30)
-  item_code    String   @default("") @db.NVarChar(20)
-  sku          String   @default("") @db.NVarChar(20)
-  brand_name   String?  @db.NVarChar(30)
-  gender_id    Int?
-  category     String?  @db.NVarChar(250)
-  sub_category String?  @db.NVarChar(250)
+  id              BigInt   @id @default(autoincrement())
+  year            Int
+  season_id       BigInt
+  item_code       String
+  sku_code        String
+  product_id      BigInt
+  sub_category_id BigInt
+  is_active       Boolean  @default(true)
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
 
-  @@id([year, season_name, item_code, sku])
-  @@map("product_recommend_temp")
+  // Relations
+  season       Season      @relation("SeasonToProductRecommend", fields: [season_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product      Product     @relation("ProductToProductRecommend", fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_category SubCategory @relation("SubCategoryToProductRecommend", fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("product_recommend")
 }
 
 // ============================================
@@ -707,6 +717,105 @@ model SellthroughBySubcategoryAgg {
 }
 
 // ============================================
+// ORDER CONFIRMATION
+// ============================================
+
+model OrderConfirmation {
+  id                      BigInt    @id @default(autoincrement())
+  ticket_id               BigInt
+  image_url               String?
+  sku                     String    @db.NVarChar(50)
+  name                    String?   @db.NVarChar(300)
+  collection_name         String?   @db.NVarChar(200)
+  color                   String?   @db.NVarChar(100)
+  division                String?   @db.NVarChar(100)
+  product_type            String?   @db.NVarChar(200)
+  department              String?   @db.NVarChar(200)
+  carry_forward           String?   @db.NVarChar(200)
+  composition             String?   @db.NVarChar(500)
+  theme                   String?   @db.NVarChar(200)
+  style_name              String?   @db.NVarChar(300)
+  total_units             Int?      @default(0)
+  size                    String?   @db.NVarChar(20)
+  brand_id                String?   @db.NVarChar(50)
+  color_code              String?   @db.NVarChar(50)
+  fsr                     String?   @db.NVarChar(50)
+  wholesale_sgd           Decimal?  @db.Decimal(18, 2)
+  rrp_sgd                 Decimal?  @db.Decimal(18, 2)
+  regional_rrp            Decimal?  @db.Decimal(18, 2)
+  total_price_sgd         Decimal?  @db.Decimal(18, 2)
+  mod                     String?   @db.NVarChar(50)
+  ves                     String?   @db.NVarChar(50)
+  in_catalogue            String?   @db.NVarChar(50)
+  gruppo                  String?   @db.NVarChar(100)
+  tipology                String?   @db.NVarChar(100)
+  sku_type                String?   @db.NVarChar(100)
+  gca                     String?   @db.NVarChar(50)
+  window                  String?   @db.NVarChar(100)
+  heel                    String?   @db.NVarChar(50)
+  dimension               String?   @db.NVarChar(100)
+  finish                  String?   @db.NVarChar(100)
+  delivery                String?   @db.NVarChar(100)
+  currency                String?   @db.NVarChar(10)
+  price_mod_single        Decimal?  @db.Decimal(18, 2)
+  price_mod_single_retail Decimal?  @db.Decimal(18, 2)
+  amount                  Decimal?  @db.Decimal(18, 2)
+  amount_retail           Decimal?  @db.Decimal(18, 2)
+  product_status          String?   @db.NVarChar(50)
+  size2                   String?   @db.NVarChar(20)
+  status                  String    @default("DRAFT") @db.NVarChar(30)
+  created_by              BigInt?
+  created_at              DateTime  @default(now())
+  updated_at              DateTime  @updatedAt
+  updated_by              BigInt?
+
+  // Relations
+  ticket  Ticket @relation("TicketToOrderConfirmation", fields: [ticket_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  creator User?  @relation("CreatedOrderConfirmations", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  receipt_confirmations ReceiptConfirmation[] @relation("OrderToReceipt")
+
+  @@index([ticket_id])
+  @@index([status])
+  @@index([sku])
+  @@map("order_confirmation")
+}
+
+// ============================================
+// RECEIPT CONFIRMATION
+// ============================================
+
+model ReceiptConfirmation {
+  id                      BigInt    @id @default(autoincrement())
+  order_confirmation_id   BigInt
+  ticket_id               BigInt
+
+  // Receipt verification fields
+  received_units          Int?      @default(0)
+  actual_unit_price       Decimal?  @db.Decimal(18, 2)
+  actual_total_price      Decimal?  @db.Decimal(18, 2)
+  receipt_currency        String?   @db.NVarChar(10)
+  receipt_comment         String?   @db.NVarChar(1000)
+
+  // Status & audit
+  status                  String    @default("DRAFT") @db.NVarChar(30)
+  created_by              BigInt?
+  created_at              DateTime  @default(now())
+  updated_at              DateTime  @updatedAt
+  updated_by              BigInt?
+
+  // Relations
+  order_confirmation OrderConfirmation @relation("OrderToReceipt", fields: [order_confirmation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ticket             Ticket            @relation("TicketToReceipt", fields: [ticket_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  creator            User?             @relation("CreatedReceiptConfirmations", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([order_confirmation_id])
+  @@index([ticket_id])
+  @@index([status])
+  @@map("receipt_confirmation")
+}
+
+// ============================================
 // APPROVAL WORKFLOW & TICKETS
 // ============================================
 
@@ -738,8 +847,10 @@ model Ticket {
   season_group              SeasonGroup         @relation("SeasonGroupToTicket", fields: [season_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   season                    Season              @relation("SeasonToTicket", fields: [season_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   creator                   User                @relation("CreatedTickets", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  ticket_approval_logs      TicketApprovalLog[] @relation("TicketToApprovalLog")
-  snapshot_allocate_headers AllocateHeader[]    @relation("TicketToSnapshotHeaders")
+  ticket_approval_logs      TicketApprovalLog[]  @relation("TicketToApprovalLog")
+  snapshot_allocate_headers AllocateHeader[]     @relation("TicketToSnapshotHeaders")
+  order_confirmations       OrderConfirmation[]  @relation("TicketToOrderConfirmation")
+  receipt_confirmations     ReceiptConfirmation[] @relation("TicketToReceipt")
 
   @@map("ticket")
 }
