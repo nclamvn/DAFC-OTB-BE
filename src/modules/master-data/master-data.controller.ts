@@ -142,6 +142,22 @@ export class MasterDataController {
     return this.masterDataService.getProducts({ brandId, subCategoryId, search, page, pageSize });
   }
 
+  @Get('product-recommends')
+  @ApiOperation({ summary: 'Get recommended SKUs for a season/year (year-1 recommendations)' })
+  @ApiSuccessResponse()
+  @ApiQuery({ name: 'year', required: false, type: Number })
+  @ApiQuery({ name: 'seasonName', required: false })
+  @ApiQuery({ name: 'brandName', required: false })
+  @ApiQuery({ name: 'subCategory', required: false })
+  async getProductRecommends(
+    @Query('year') year?: number,
+    @Query('seasonName') seasonName?: string,
+    @Query('brandName') brandName?: string,
+    @Query('subCategory') subCategory?: string,
+  ) {
+    return this.masterDataService.getProductRecommends({ year, seasonName, brandName, subCategory });
+  }
+
   @Get('products')
   @ApiOperation({ summary: 'Search product catalog with filters and pagination' })
   @ApiGenericPaginatedResponse()

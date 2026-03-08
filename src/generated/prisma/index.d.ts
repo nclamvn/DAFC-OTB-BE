@@ -79,6 +79,11 @@ export type SubcategorySize = $Result.DefaultSelection<Prisma.$SubcategorySizePa
  */
 export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
 /**
+ * Model ProductRecommend
+ * No PK — use raw queries via PrismaService.$queryRaw
+ */
+export type ProductRecommend = $Result.DefaultSelection<Prisma.$ProductRecommendPayload>
+/**
  * Model Budget
  * 
  */
@@ -441,6 +446,16 @@ export class PrismaClient<
     * ```
     */
   get product(): Prisma.ProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.productRecommend`: Exposes CRUD operations for the **ProductRecommend** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductRecommends
+    * const productRecommends = await prisma.productRecommend.findMany()
+    * ```
+    */
+  get productRecommend(): Prisma.ProductRecommendDelegate<ExtArgs>;
 
   /**
    * `prisma.budget`: Exposes CRUD operations for the **Budget** model.
@@ -1115,6 +1130,7 @@ export namespace Prisma {
     SubCategory: 'SubCategory',
     SubcategorySize: 'SubcategorySize',
     Product: 'Product',
+    ProductRecommend: 'ProductRecommend',
     Budget: 'Budget',
     AllocateHeader: 'AllocateHeader',
     BudgetAllocate: 'BudgetAllocate',
@@ -1152,7 +1168,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "role" | "groupBrand" | "brand" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
+      modelProps: "user" | "role" | "groupBrand" | "brand" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "productRecommend" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2011,6 +2027,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ProductCountArgs<ExtArgs>
             result: $Utils.Optional<ProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProductRecommend: {
+        payload: Prisma.$ProductRecommendPayload<ExtArgs>
+        fields: Prisma.ProductRecommendFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProductRecommendFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductRecommendFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductRecommendFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductRecommendFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          findMany: {
+            args: Prisma.ProductRecommendFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>[]
+          }
+          create: {
+            args: Prisma.ProductRecommendCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          createMany: {
+            args: Prisma.ProductRecommendCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProductRecommendDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          update: {
+            args: Prisma.ProductRecommendUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductRecommendDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductRecommendUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProductRecommendUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductRecommendPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductRecommendAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProductRecommend>
+          }
+          groupBy: {
+            args: Prisma.ProductRecommendGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProductRecommendGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductRecommendCountArgs<ExtArgs>
+            result: $Utils.Optional<ProductRecommendCountAggregateOutputType> | number
           }
         }
       }
@@ -18283,6 +18365,908 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProductRecommend
+   */
+
+  export type AggregateProductRecommend = {
+    _count: ProductRecommendCountAggregateOutputType | null
+    _avg: ProductRecommendAvgAggregateOutputType | null
+    _sum: ProductRecommendSumAggregateOutputType | null
+    _min: ProductRecommendMinAggregateOutputType | null
+    _max: ProductRecommendMaxAggregateOutputType | null
+  }
+
+  export type ProductRecommendAvgAggregateOutputType = {
+    year: number | null
+    gender_id: number | null
+  }
+
+  export type ProductRecommendSumAggregateOutputType = {
+    year: number | null
+    gender_id: number | null
+  }
+
+  export type ProductRecommendMinAggregateOutputType = {
+    year: number | null
+    season_name: string | null
+    item_code: string | null
+    sku: string | null
+    brand_name: string | null
+    gender_id: number | null
+    category: string | null
+    sub_category: string | null
+  }
+
+  export type ProductRecommendMaxAggregateOutputType = {
+    year: number | null
+    season_name: string | null
+    item_code: string | null
+    sku: string | null
+    brand_name: string | null
+    gender_id: number | null
+    category: string | null
+    sub_category: string | null
+  }
+
+  export type ProductRecommendCountAggregateOutputType = {
+    year: number
+    season_name: number
+    item_code: number
+    sku: number
+    brand_name: number
+    gender_id: number
+    category: number
+    sub_category: number
+    _all: number
+  }
+
+
+  export type ProductRecommendAvgAggregateInputType = {
+    year?: true
+    gender_id?: true
+  }
+
+  export type ProductRecommendSumAggregateInputType = {
+    year?: true
+    gender_id?: true
+  }
+
+  export type ProductRecommendMinAggregateInputType = {
+    year?: true
+    season_name?: true
+    item_code?: true
+    sku?: true
+    brand_name?: true
+    gender_id?: true
+    category?: true
+    sub_category?: true
+  }
+
+  export type ProductRecommendMaxAggregateInputType = {
+    year?: true
+    season_name?: true
+    item_code?: true
+    sku?: true
+    brand_name?: true
+    gender_id?: true
+    category?: true
+    sub_category?: true
+  }
+
+  export type ProductRecommendCountAggregateInputType = {
+    year?: true
+    season_name?: true
+    item_code?: true
+    sku?: true
+    brand_name?: true
+    gender_id?: true
+    category?: true
+    sub_category?: true
+    _all?: true
+  }
+
+  export type ProductRecommendAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRecommend to aggregate.
+     */
+    where?: ProductRecommendWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRecommends to fetch.
+     */
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductRecommendWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRecommends from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRecommends.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductRecommends
+    **/
+    _count?: true | ProductRecommendCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProductRecommendAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProductRecommendSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductRecommendMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductRecommendMaxAggregateInputType
+  }
+
+  export type GetProductRecommendAggregateType<T extends ProductRecommendAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductRecommend]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductRecommend[P]>
+      : GetScalarType<T[P], AggregateProductRecommend[P]>
+  }
+
+
+
+
+  export type ProductRecommendGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductRecommendWhereInput
+    orderBy?: ProductRecommendOrderByWithAggregationInput | ProductRecommendOrderByWithAggregationInput[]
+    by: ProductRecommendScalarFieldEnum[] | ProductRecommendScalarFieldEnum
+    having?: ProductRecommendScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductRecommendCountAggregateInputType | true
+    _avg?: ProductRecommendAvgAggregateInputType
+    _sum?: ProductRecommendSumAggregateInputType
+    _min?: ProductRecommendMinAggregateInputType
+    _max?: ProductRecommendMaxAggregateInputType
+  }
+
+  export type ProductRecommendGroupByOutputType = {
+    year: number
+    season_name: string
+    item_code: string
+    sku: string
+    brand_name: string | null
+    gender_id: number | null
+    category: string | null
+    sub_category: string | null
+    _count: ProductRecommendCountAggregateOutputType | null
+    _avg: ProductRecommendAvgAggregateOutputType | null
+    _sum: ProductRecommendSumAggregateOutputType | null
+    _min: ProductRecommendMinAggregateOutputType | null
+    _max: ProductRecommendMaxAggregateOutputType | null
+  }
+
+  type GetProductRecommendGroupByPayload<T extends ProductRecommendGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProductRecommendGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductRecommendGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductRecommendGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductRecommendGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductRecommendSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    year?: boolean
+    season_name?: boolean
+    item_code?: boolean
+    sku?: boolean
+    brand_name?: boolean
+    gender_id?: boolean
+    category?: boolean
+    sub_category?: boolean
+  }, ExtArgs["result"]["productRecommend"]>
+
+
+  export type ProductRecommendSelectScalar = {
+    year?: boolean
+    season_name?: boolean
+    item_code?: boolean
+    sku?: boolean
+    brand_name?: boolean
+    gender_id?: boolean
+    category?: boolean
+    sub_category?: boolean
+  }
+
+
+  export type $ProductRecommendPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProductRecommend"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      year: number
+      season_name: string
+      item_code: string
+      sku: string
+      brand_name: string | null
+      gender_id: number | null
+      category: string | null
+      sub_category: string | null
+    }, ExtArgs["result"]["productRecommend"]>
+    composites: {}
+  }
+
+  type ProductRecommendGetPayload<S extends boolean | null | undefined | ProductRecommendDefaultArgs> = $Result.GetResult<Prisma.$ProductRecommendPayload, S>
+
+  type ProductRecommendCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ProductRecommendFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ProductRecommendCountAggregateInputType | true
+    }
+
+  export interface ProductRecommendDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductRecommend'], meta: { name: 'ProductRecommend' } }
+    /**
+     * Find zero or one ProductRecommend that matches the filter.
+     * @param {ProductRecommendFindUniqueArgs} args - Arguments to find a ProductRecommend
+     * @example
+     * // Get one ProductRecommend
+     * const productRecommend = await prisma.productRecommend.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProductRecommendFindUniqueArgs>(args: SelectSubset<T, ProductRecommendFindUniqueArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ProductRecommend that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ProductRecommendFindUniqueOrThrowArgs} args - Arguments to find a ProductRecommend
+     * @example
+     * // Get one ProductRecommend
+     * const productRecommend = await prisma.productRecommend.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProductRecommendFindUniqueOrThrowArgs>(args: SelectSubset<T, ProductRecommendFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ProductRecommend that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendFindFirstArgs} args - Arguments to find a ProductRecommend
+     * @example
+     * // Get one ProductRecommend
+     * const productRecommend = await prisma.productRecommend.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProductRecommendFindFirstArgs>(args?: SelectSubset<T, ProductRecommendFindFirstArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ProductRecommend that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendFindFirstOrThrowArgs} args - Arguments to find a ProductRecommend
+     * @example
+     * // Get one ProductRecommend
+     * const productRecommend = await prisma.productRecommend.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProductRecommendFindFirstOrThrowArgs>(args?: SelectSubset<T, ProductRecommendFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ProductRecommends that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductRecommends
+     * const productRecommends = await prisma.productRecommend.findMany()
+     * 
+     * // Get first 10 ProductRecommends
+     * const productRecommends = await prisma.productRecommend.findMany({ take: 10 })
+     * 
+     * // Only select the `year`
+     * const productRecommendWithYearOnly = await prisma.productRecommend.findMany({ select: { year: true } })
+     * 
+     */
+    findMany<T extends ProductRecommendFindManyArgs>(args?: SelectSubset<T, ProductRecommendFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ProductRecommend.
+     * @param {ProductRecommendCreateArgs} args - Arguments to create a ProductRecommend.
+     * @example
+     * // Create one ProductRecommend
+     * const ProductRecommend = await prisma.productRecommend.create({
+     *   data: {
+     *     // ... data to create a ProductRecommend
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProductRecommendCreateArgs>(args: SelectSubset<T, ProductRecommendCreateArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ProductRecommends.
+     * @param {ProductRecommendCreateManyArgs} args - Arguments to create many ProductRecommends.
+     * @example
+     * // Create many ProductRecommends
+     * const productRecommend = await prisma.productRecommend.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProductRecommendCreateManyArgs>(args?: SelectSubset<T, ProductRecommendCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProductRecommend.
+     * @param {ProductRecommendDeleteArgs} args - Arguments to delete one ProductRecommend.
+     * @example
+     * // Delete one ProductRecommend
+     * const ProductRecommend = await prisma.productRecommend.delete({
+     *   where: {
+     *     // ... filter to delete one ProductRecommend
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProductRecommendDeleteArgs>(args: SelectSubset<T, ProductRecommendDeleteArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ProductRecommend.
+     * @param {ProductRecommendUpdateArgs} args - Arguments to update one ProductRecommend.
+     * @example
+     * // Update one ProductRecommend
+     * const productRecommend = await prisma.productRecommend.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProductRecommendUpdateArgs>(args: SelectSubset<T, ProductRecommendUpdateArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ProductRecommends.
+     * @param {ProductRecommendDeleteManyArgs} args - Arguments to filter ProductRecommends to delete.
+     * @example
+     * // Delete a few ProductRecommends
+     * const { count } = await prisma.productRecommend.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProductRecommendDeleteManyArgs>(args?: SelectSubset<T, ProductRecommendDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductRecommends.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductRecommends
+     * const productRecommend = await prisma.productRecommend.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProductRecommendUpdateManyArgs>(args: SelectSubset<T, ProductRecommendUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProductRecommend.
+     * @param {ProductRecommendUpsertArgs} args - Arguments to update or create a ProductRecommend.
+     * @example
+     * // Update or create a ProductRecommend
+     * const productRecommend = await prisma.productRecommend.upsert({
+     *   create: {
+     *     // ... data to create a ProductRecommend
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductRecommend we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProductRecommendUpsertArgs>(args: SelectSubset<T, ProductRecommendUpsertArgs<ExtArgs>>): Prisma__ProductRecommendClient<$Result.GetResult<Prisma.$ProductRecommendPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ProductRecommends.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendCountArgs} args - Arguments to filter ProductRecommends to count.
+     * @example
+     * // Count the number of ProductRecommends
+     * const count = await prisma.productRecommend.count({
+     *   where: {
+     *     // ... the filter for the ProductRecommends we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductRecommendCountArgs>(
+      args?: Subset<T, ProductRecommendCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductRecommendCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductRecommend.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductRecommendAggregateArgs>(args: Subset<T, ProductRecommendAggregateArgs>): Prisma.PrismaPromise<GetProductRecommendAggregateType<T>>
+
+    /**
+     * Group by ProductRecommend.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRecommendGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductRecommendGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductRecommendGroupByArgs['orderBy'] }
+        : { orderBy?: ProductRecommendGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductRecommendGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductRecommendGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProductRecommend model
+   */
+  readonly fields: ProductRecommendFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductRecommend.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProductRecommendClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProductRecommend model
+   */ 
+  interface ProductRecommendFieldRefs {
+    readonly year: FieldRef<"ProductRecommend", 'Int'>
+    readonly season_name: FieldRef<"ProductRecommend", 'String'>
+    readonly item_code: FieldRef<"ProductRecommend", 'String'>
+    readonly sku: FieldRef<"ProductRecommend", 'String'>
+    readonly brand_name: FieldRef<"ProductRecommend", 'String'>
+    readonly gender_id: FieldRef<"ProductRecommend", 'Int'>
+    readonly category: FieldRef<"ProductRecommend", 'String'>
+    readonly sub_category: FieldRef<"ProductRecommend", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProductRecommend findUnique
+   */
+  export type ProductRecommendFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter, which ProductRecommend to fetch.
+     */
+    where: ProductRecommendWhereUniqueInput
+  }
+
+  /**
+   * ProductRecommend findUniqueOrThrow
+   */
+  export type ProductRecommendFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter, which ProductRecommend to fetch.
+     */
+    where: ProductRecommendWhereUniqueInput
+  }
+
+  /**
+   * ProductRecommend findFirst
+   */
+  export type ProductRecommendFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter, which ProductRecommend to fetch.
+     */
+    where?: ProductRecommendWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRecommends to fetch.
+     */
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRecommends.
+     */
+    cursor?: ProductRecommendWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRecommends from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRecommends.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRecommends.
+     */
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
+  }
+
+  /**
+   * ProductRecommend findFirstOrThrow
+   */
+  export type ProductRecommendFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter, which ProductRecommend to fetch.
+     */
+    where?: ProductRecommendWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRecommends to fetch.
+     */
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRecommends.
+     */
+    cursor?: ProductRecommendWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRecommends from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRecommends.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRecommends.
+     */
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
+  }
+
+  /**
+   * ProductRecommend findMany
+   */
+  export type ProductRecommendFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter, which ProductRecommends to fetch.
+     */
+    where?: ProductRecommendWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRecommends to fetch.
+     */
+    orderBy?: ProductRecommendOrderByWithRelationInput | ProductRecommendOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductRecommends.
+     */
+    cursor?: ProductRecommendWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRecommends from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRecommends.
+     */
+    skip?: number
+    distinct?: ProductRecommendScalarFieldEnum | ProductRecommendScalarFieldEnum[]
+  }
+
+  /**
+   * ProductRecommend create
+   */
+  export type ProductRecommendCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ProductRecommend.
+     */
+    data?: XOR<ProductRecommendCreateInput, ProductRecommendUncheckedCreateInput>
+  }
+
+  /**
+   * ProductRecommend createMany
+   */
+  export type ProductRecommendCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductRecommends.
+     */
+    data: ProductRecommendCreateManyInput | ProductRecommendCreateManyInput[]
+  }
+
+  /**
+   * ProductRecommend update
+   */
+  export type ProductRecommendUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ProductRecommend.
+     */
+    data: XOR<ProductRecommendUpdateInput, ProductRecommendUncheckedUpdateInput>
+    /**
+     * Choose, which ProductRecommend to update.
+     */
+    where: ProductRecommendWhereUniqueInput
+  }
+
+  /**
+   * ProductRecommend updateMany
+   */
+  export type ProductRecommendUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductRecommends.
+     */
+    data: XOR<ProductRecommendUpdateManyMutationInput, ProductRecommendUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductRecommends to update
+     */
+    where?: ProductRecommendWhereInput
+  }
+
+  /**
+   * ProductRecommend upsert
+   */
+  export type ProductRecommendUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ProductRecommend to update in case it exists.
+     */
+    where: ProductRecommendWhereUniqueInput
+    /**
+     * In case the ProductRecommend found by the `where` argument doesn't exist, create a new ProductRecommend with this data.
+     */
+    create: XOR<ProductRecommendCreateInput, ProductRecommendUncheckedCreateInput>
+    /**
+     * In case the ProductRecommend was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductRecommendUpdateInput, ProductRecommendUncheckedUpdateInput>
+  }
+
+  /**
+   * ProductRecommend delete
+   */
+  export type ProductRecommendDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
+    /**
+     * Filter which ProductRecommend to delete.
+     */
+    where: ProductRecommendWhereUniqueInput
+  }
+
+  /**
+   * ProductRecommend deleteMany
+   */
+  export type ProductRecommendDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRecommends to delete
+     */
+    where?: ProductRecommendWhereInput
+  }
+
+  /**
+   * ProductRecommend without action
+   */
+  export type ProductRecommendDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRecommend
+     */
+    select?: ProductRecommendSelect<ExtArgs> | null
   }
 
 
@@ -41027,6 +42011,20 @@ export namespace Prisma {
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
+  export const ProductRecommendScalarFieldEnum: {
+    year: 'year',
+    season_name: 'season_name',
+    item_code: 'item_code',
+    sku: 'sku',
+    brand_name: 'brand_name',
+    gender_id: 'gender_id',
+    category: 'category',
+    sub_category: 'sub_category'
+  };
+
+  export type ProductRecommendScalarFieldEnum = (typeof ProductRecommendScalarFieldEnum)[keyof typeof ProductRecommendScalarFieldEnum]
+
+
   export const BudgetScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -42579,6 +43577,76 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"Product"> | bigint | number | null
+  }
+
+  export type ProductRecommendWhereInput = {
+    AND?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
+    OR?: ProductRecommendWhereInput[]
+    NOT?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
+    year?: IntFilter<"ProductRecommend"> | number
+    season_name?: StringFilter<"ProductRecommend"> | string
+    item_code?: StringFilter<"ProductRecommend"> | string
+    sku?: StringFilter<"ProductRecommend"> | string
+    brand_name?: StringNullableFilter<"ProductRecommend"> | string | null
+    gender_id?: IntNullableFilter<"ProductRecommend"> | number | null
+    category?: StringNullableFilter<"ProductRecommend"> | string | null
+    sub_category?: StringNullableFilter<"ProductRecommend"> | string | null
+  }
+
+  export type ProductRecommendOrderByWithRelationInput = {
+    year?: SortOrder
+    season_name?: SortOrder
+    item_code?: SortOrder
+    sku?: SortOrder
+    brand_name?: SortOrderInput | SortOrder
+    gender_id?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    sub_category?: SortOrderInput | SortOrder
+  }
+
+  export type ProductRecommendWhereUniqueInput = Prisma.AtLeast<{
+    year_season_name_item_code_sku?: ProductRecommendYearSeason_nameItem_codeSkuCompoundUniqueInput
+    AND?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
+    OR?: ProductRecommendWhereInput[]
+    NOT?: ProductRecommendWhereInput | ProductRecommendWhereInput[]
+    year?: IntFilter<"ProductRecommend"> | number
+    season_name?: StringFilter<"ProductRecommend"> | string
+    item_code?: StringFilter<"ProductRecommend"> | string
+    sku?: StringFilter<"ProductRecommend"> | string
+    brand_name?: StringNullableFilter<"ProductRecommend"> | string | null
+    gender_id?: IntNullableFilter<"ProductRecommend"> | number | null
+    category?: StringNullableFilter<"ProductRecommend"> | string | null
+    sub_category?: StringNullableFilter<"ProductRecommend"> | string | null
+  }, "year_season_name_item_code_sku">
+
+  export type ProductRecommendOrderByWithAggregationInput = {
+    year?: SortOrder
+    season_name?: SortOrder
+    item_code?: SortOrder
+    sku?: SortOrder
+    brand_name?: SortOrderInput | SortOrder
+    gender_id?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    sub_category?: SortOrderInput | SortOrder
+    _count?: ProductRecommendCountOrderByAggregateInput
+    _avg?: ProductRecommendAvgOrderByAggregateInput
+    _max?: ProductRecommendMaxOrderByAggregateInput
+    _min?: ProductRecommendMinOrderByAggregateInput
+    _sum?: ProductRecommendSumOrderByAggregateInput
+  }
+
+  export type ProductRecommendScalarWhereWithAggregatesInput = {
+    AND?: ProductRecommendScalarWhereWithAggregatesInput | ProductRecommendScalarWhereWithAggregatesInput[]
+    OR?: ProductRecommendScalarWhereWithAggregatesInput[]
+    NOT?: ProductRecommendScalarWhereWithAggregatesInput | ProductRecommendScalarWhereWithAggregatesInput[]
+    year?: IntWithAggregatesFilter<"ProductRecommend"> | number
+    season_name?: StringWithAggregatesFilter<"ProductRecommend"> | string
+    item_code?: StringWithAggregatesFilter<"ProductRecommend"> | string
+    sku?: StringWithAggregatesFilter<"ProductRecommend"> | string
+    brand_name?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
+    gender_id?: IntNullableWithAggregatesFilter<"ProductRecommend"> | number | null
+    category?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
+    sub_category?: StringNullableWithAggregatesFilter<"ProductRecommend"> | string | null
   }
 
   export type BudgetWhereInput = {
@@ -45868,6 +46936,83 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ProductRecommendCreateInput = {
+    year?: number
+    season_name?: string
+    item_code?: string
+    sku?: string
+    brand_name?: string | null
+    gender_id?: number | null
+    category?: string | null
+    sub_category?: string | null
+  }
+
+  export type ProductRecommendUncheckedCreateInput = {
+    year?: number
+    season_name?: string
+    item_code?: string
+    sku?: string
+    brand_name?: string | null
+    gender_id?: number | null
+    category?: string | null
+    sub_category?: string | null
+  }
+
+  export type ProductRecommendUpdateInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    season_name?: StringFieldUpdateOperationsInput | string
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
+    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProductRecommendUncheckedUpdateInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    season_name?: StringFieldUpdateOperationsInput | string
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
+    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProductRecommendCreateManyInput = {
+    year?: number
+    season_name?: string
+    item_code?: string
+    sku?: string
+    brand_name?: string | null
+    gender_id?: number | null
+    category?: string | null
+    sub_category?: string | null
+  }
+
+  export type ProductRecommendUpdateManyMutationInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    season_name?: StringFieldUpdateOperationsInput | string
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
+    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProductRecommendUncheckedUpdateManyInput = {
+    year?: IntFieldUpdateOperationsInput | number
+    season_name?: StringFieldUpdateOperationsInput | string
+    item_code?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    brand_name?: NullableStringFieldUpdateOperationsInput | string | null
+    gender_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    sub_category?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BudgetCreateInput = {
@@ -49162,6 +50307,72 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type ProductRecommendYearSeason_nameItem_codeSkuCompoundUniqueInput = {
+    year: number
+    season_name: string
+    item_code: string
+    sku: string
+  }
+
+  export type ProductRecommendCountOrderByAggregateInput = {
+    year?: SortOrder
+    season_name?: SortOrder
+    item_code?: SortOrder
+    sku?: SortOrder
+    brand_name?: SortOrder
+    gender_id?: SortOrder
+    category?: SortOrder
+    sub_category?: SortOrder
+  }
+
+  export type ProductRecommendAvgOrderByAggregateInput = {
+    year?: SortOrder
+    gender_id?: SortOrder
+  }
+
+  export type ProductRecommendMaxOrderByAggregateInput = {
+    year?: SortOrder
+    season_name?: SortOrder
+    item_code?: SortOrder
+    sku?: SortOrder
+    brand_name?: SortOrder
+    gender_id?: SortOrder
+    category?: SortOrder
+    sub_category?: SortOrder
+  }
+
+  export type ProductRecommendMinOrderByAggregateInput = {
+    year?: SortOrder
+    season_name?: SortOrder
+    item_code?: SortOrder
+    sku?: SortOrder
+    brand_name?: SortOrder
+    gender_id?: SortOrder
+    category?: SortOrder
+    sub_category?: SortOrder
+  }
+
+  export type ProductRecommendSumOrderByAggregateInput = {
+    year?: SortOrder
+    gender_id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -49220,22 +50431,6 @@ export namespace Prisma {
     fiscal_year?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type BudgetRelationFilter = {
@@ -52742,6 +53937,14 @@ export namespace Prisma {
     deleteMany?: SKUProposalScalarWhereInput | SKUProposalScalarWhereInput[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserCreateNestedOneWithoutCreated_budgetsInput = {
     create?: XOR<UserCreateWithoutCreated_budgetsInput, UserUncheckedCreateWithoutCreated_budgetsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCreated_budgetsInput
@@ -52774,14 +53977,6 @@ export namespace Prisma {
     connectOrCreate?: TicketCreateOrConnectWithoutBudgetInput | TicketCreateOrConnectWithoutBudgetInput[]
     createMany?: TicketCreateManyBudgetInputEnvelope
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutCreated_budgetsNestedInput = {
@@ -66610,6 +67805,10 @@ export namespace Prisma {
      * @deprecated Use ProductDefaultArgs instead
      */
     export type ProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ProductRecommendDefaultArgs instead
+     */
+    export type ProductRecommendArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductRecommendDefaultArgs<ExtArgs>
     /**
      * @deprecated Use BudgetDefaultArgs instead
      */

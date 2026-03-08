@@ -298,9 +298,24 @@ model Product {
 
   // Relations
   sub_category  SubCategory   @relation("SubCategoryToProduct", fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  sku_proposals SKUProposal[] @relation("ProductToSKUProposal")
+  sku_proposals      SKUProposal[]      @relation("ProductToSKUProposal")
 
   @@map("product")
+}
+
+/// No PK — use raw queries via PrismaService.$queryRaw
+model ProductRecommend {
+  year         Int      @default(0)
+  season_name  String   @default("") @db.NVarChar(30)
+  item_code    String   @default("") @db.NVarChar(20)
+  sku          String   @default("") @db.NVarChar(20)
+  brand_name   String?  @db.NVarChar(30)
+  gender_id    Int?
+  category     String?  @db.NVarChar(250)
+  sub_category String?  @db.NVarChar(250)
+
+  @@id([year, season_name, item_code, sku])
+  @@map("product_recommend_temp")
 }
 
 // ============================================

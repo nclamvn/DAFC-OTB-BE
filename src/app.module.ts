@@ -11,12 +11,14 @@ import { AiModule } from './modules/ai/ai.module';
 import { ApprovalWorkflowModule } from './modules/approval-workflow/approval-workflow.module';
 import { TicketModule } from './modules/ticket/ticket.module';
 import { HealthModule } from './modules/health/health.module';
+import { MailModule } from './modules/mail/mail.module';
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 60 }]),
     PrismaModule,
+    MailModule,
     AuthModule,
     MasterDataModule,
     BudgetModule,

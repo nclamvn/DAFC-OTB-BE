@@ -1,11 +1,33 @@
-import { Controller, Get, Post, Param, Query, Body, UseGuards, Request } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { Controller, Get, Post, Param, Query, Body, UseGuards, Request, Res, Header } from '@nestjs/common';
+import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery, ApiExcludeEndpoint } from '@nestjs/swagger';
+import { Response } from 'express';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PermissionsGuard, RequirePermissions } from '../../common/guards/permissions.guard';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto, ValidateTicketDto } from './dto/ticket.dto';
 import { PERMISSIONS } from '../../common/constants/permissions';
 import { ApiErrorResponses, ApiGenericPaginatedResponse, ApiSuccessResponse } from '../../common/decorators/api-response.decorator';
+
+// ─── Public controller (no auth) for email action links ──────────────────────
+
+@ApiTags('tickets')
+@Controller('tickets')
+export class TicketPublicController {
+  constructor(private ticketService: TicketService) {}
+
+  @Get('email-action')
+  @ApiExcludeEndpoint()
+  @Header('Content-Type', 'text/html')
+  async emailAction(
+    @Query('token') token: string,
+    @Res() res: Response,
+  ) {
+    const html = await this.ticketService.processEmailAction(token);
+    return res.send(html);
+  }
+}
+
+// ─── Authenticated controller ────────────────────────────────────────────────
 
 @ApiTags('tickets')
 @ApiBearerAuth()
@@ -93,5 +115,13 @@ export class TicketController {
   @ApiSuccessResponse()
   async getApprovalHistory(@Param('id') id: string) {
     return this.ticketService.getApprovalHistory(id);
+  }
+
+  @Get(':id/compare')
+  @RequirePermissions(PERMISSIONS.TICKET.READ)
+  @ApiOperation({ summary: 'Compare ticket with previous rejected version' })
+  @ApiSuccessResponse()
+  async compareWithPrevious(@Param('id') id: string) {
+    return this.ticketService.compareWithPrevious(id);
   }
 }

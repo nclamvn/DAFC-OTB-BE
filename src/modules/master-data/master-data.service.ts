@@ -270,4 +270,49 @@ export class MasterDataService {
       },
     };
   }
+
+  // ─── PRODUCT RECOMMEND (SKU recommendations per season/year) ───────────
+  // Table has no PK and nullable columns — use Prisma findMany with filters
+  async getProductRecommends(filters?: {
+    year?: number;
+    seasonName?: string;
+    brandName?: string;
+    subCategory?: string;
+  }) {
+    const where: any = {};
+    if (filters?.year) where.year = Number(filters.year);
+    if (filters?.seasonName) where.season_name = filters.seasonName;
+    if (filters?.brandName) where.brand_name = filters.brandName;
+    if (filters?.subCategory) where.sub_category = filters.subCategory;
+
+    const data = await this.prisma.productRecommend.findMany({
+      where,
+      orderBy: { sku: 'asc' },
+    });
+
+    // Enrich with product data from product table (join by sku)
+    if (data.length === 0) return [];
+
+    const skuCodes = [...new Set(data.map(d => d.sku).filter(Boolean))];
+    const products = skuCodes.length > 0
+      ? await this.prisma.product.findMany({
+          where: { sku_code: { in: skuCodes } },
+          include: {
+            sub_category: {
+              include: {
+                category: {
+                  include: { gender: true },
+                },
+              },
+            },
+          },
+        })
+      : [];
+    const productMap = new Map(products.map(p => [p.sku_code, p]));
+
+    return data.map(rec => ({
+      ...rec,
+      product: productMap.get(rec.sku) || null,
+    }));
+  }
 }

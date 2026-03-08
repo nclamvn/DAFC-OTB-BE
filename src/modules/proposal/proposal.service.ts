@@ -526,12 +526,17 @@ export class ProposalService {
 
   async updateHeader(id: string, dto: UpdateProposalHeaderDto, userId: string) {
     const header = await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header') as any;
-    if (header.created_by !== BigInt(userId)) {
-      throw new ForbiddenException('You do not have permission to modify this proposal');
-    }
-    if (header.status !== 'DRAFT') throw new ForbiddenException('Only draft proposals can be edited');
     const updateData: Record<string, any> = { updated_by: toBigInt(userId) };
-    if (dto.isFinalVersion !== undefined) updateData.is_final_version = dto.isFinalVersion;
+    if (dto.isFinalVersion !== undefined) {
+      updateData.is_final_version = dto.isFinalVersion;
+      // Unset final on sibling headers within the same allocate header
+      if (dto.isFinalVersion) {
+        await this.prisma.sKUProposalHeader.updateMany({
+          where: { allocate_header_id: header.allocate_header_id, id: { not: toBigInt(id) } },
+          data: { is_final_version: false },
+        });
+      }
+    }
     return this.prisma.sKUProposalHeader.update({ where: { id: toBigInt(id) }, data: updateData });
   }
 

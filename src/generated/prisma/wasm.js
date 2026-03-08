@@ -277,6 +277,17 @@ exports.Prisma.ProductScalarFieldEnum = {
   updated_by: 'updated_by'
 };
 
+exports.Prisma.ProductRecommendScalarFieldEnum = {
+  year: 'year',
+  season_name: 'season_name',
+  item_code: 'item_code',
+  sku: 'sku',
+  brand_name: 'brand_name',
+  gender_id: 'gender_id',
+  category: 'category',
+  sub_category: 'sub_category'
+};
+
 exports.Prisma.BudgetScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -609,6 +620,7 @@ exports.Prisma.ModelName = {
   SubCategory: 'SubCategory',
   SubcategorySize: 'SubcategorySize',
   Product: 'Product',
+  ProductRecommend: 'ProductRecommend',
   Budget: 'Budget',
   AllocateHeader: 'AllocateHeader',
   BudgetAllocate: 'BudgetAllocate',

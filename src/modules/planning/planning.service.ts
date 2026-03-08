@@ -27,11 +27,10 @@ export class PlanningService {
     if (filters.status) where.status = filters.status;
     if (filters.allocateHeaderId) where.allocate_header_id = BigInt(filters.allocateHeaderId);
     // Always exclude snapshot records from normal queries
-    where.allocate_header = {
-      ...(typeof where.allocate_header === 'object' ? where.allocate_header : {}),
-      is_snapshot: false,
-      ...(filters.brandId ? { brand_id: BigInt(filters.brandId) } : {}),
-    };
+    const allocateHeaderFilter: Record<string, unknown> = { is_snapshot: false };
+    if (filters.brandId) allocateHeaderFilter.brand_id = BigInt(filters.brandId);
+    if (filters.budgetId) allocateHeaderFilter.budget_id = BigInt(filters.budgetId);
+    where.allocate_header = allocateHeaderFilter;
 
     const [data, total] = await Promise.all([
       this.prisma.planningHeader.findMany({
@@ -182,16 +181,15 @@ export class PlanningService {
       'genders:', dto.genders?.length || 0,
       'categories:', dto.categories?.length || 0);
 
-    // Version = max version for this brand's allocate_header + 1
+    // Version = max version for this specific allocate_header + 1
     const allocateHeaderIdBig = BigInt(dto.allocateHeaderId);
-    // Find brand_id from allocate_header, then scope version to same brand
     const ah = await this.prisma.allocateHeader.findUnique({ where: { id: allocateHeaderIdBig }, select: { brand_id: true } });
     if (!ah) throw new NotFoundException('AllocateHeader not found');
 
     const header = await this.prisma.$transaction(async (tx) => {
-      const versionWhere: any = { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } };
+      // Scope version to this specific allocate_header_id (not brand-wide)
       const lastHeader = await tx.planningHeader.findFirst({
-        where: versionWhere,
+        where: { allocate_header_id: allocateHeaderIdBig },
         orderBy: { version: 'desc' },
       });
       const version = (lastHeader?.version || 0) + 1;
@@ -352,11 +350,9 @@ export class PlanningService {
 
     if (!source) throw new NotFoundException('Source planning header not found');
 
-    // Version = max version for this brand's allocate_header + 1
-    const ah = await this.prisma.allocateHeader.findUnique({ where: { id: source.allocate_header_id }, select: { brand_id: true } });
-    const versionWhere: any = ah ? { allocate_header: { brand_id: ah.brand_id, is_snapshot: false } } : {};
+    // Version = max version for this specific allocate_header + 1
     const lastHeader = await this.prisma.planningHeader.findFirst({
-      where: versionWhere,
+      where: { allocate_header_id: source.allocate_header_id },
       orderBy: { version: 'desc' },
     });
     const version = (lastHeader?.version || 0) + 1;
