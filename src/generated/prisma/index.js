@@ -694,7 +694,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\ManhLe\\Downloads\\OTBnonAI-main\\backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\PhuocVan\\OneDrive - TC Data\\7_OTB\\DAFC-OTB-BE-NEW\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -708,7 +708,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\ManhLe\\Downloads\\OTBnonAI-main\\backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\PhuocVan\\OneDrive - TC Data\\7_OTB\\DAFC-OTB-BE-NEW\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
