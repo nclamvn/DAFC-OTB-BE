@@ -8,11 +8,13 @@ export class SKUProposalItemDto {
   @ApiProperty({ description: 'Product ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   productId: string;
 
   @ApiProperty({ example: 'VIP', description: 'Customer target (VIP, Regular, Outlet)' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(50)
   customerTarget: string;
 
   @ApiProperty({ example: 500000, description: 'Unit cost' })
@@ -34,11 +36,13 @@ export class SKUAllocateDto {
   @ApiProperty({ description: 'SKU Proposal ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   skuProposalId: string;
 
   @ApiProperty({ description: 'Store ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   storeId: string;
 
   @ApiProperty({ example: 10, description: 'Quantity to allocate' })
@@ -119,6 +123,7 @@ export class CreateSKUProposalHeaderDto {
   @ApiProperty({ description: 'Allocate Header ID (links proposal to a brand allocation)' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   allocateHeaderId: string;
 
   @ApiProperty({ type: [SKUProposalItemDto], description: 'SKU proposal items' })
@@ -134,11 +139,13 @@ export class AddProductDto {
   @ApiProperty({ description: 'Product ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   productId: string;
 
   @ApiProperty({ example: 'VIP' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(50)
   customerTarget: string;
 
   @ApiProperty({ example: 500000 })
@@ -170,6 +177,7 @@ export class UpdateSKUProposalDto {
   @ApiPropertyOptional({ example: 'VIP' })
   @IsString()
   @IsOptional()
+  @MaxLength(50)
   customerTarget?: string;
 
   @ApiPropertyOptional({ example: 500000 })

@@ -17,7 +17,8 @@ export class BudgetService {
   // ─── LIST BUDGETS ──────────────────────────────────────────────────────────
 
   async findAll(filters: BudgetFilters) {
-    const { fiscalYear, status, page = 1, pageSize = 20 } = filters;
+    const { fiscalYear, status, page = 1, pageSize: rawPageSize = 20 } = filters;
+    const pageSize = Math.min(Math.max(rawPageSize, 1), 100); // Cap between 1-100
 
     const where: Prisma.BudgetWhereInput = {};
     if (fiscalYear) where.fiscal_year = fiscalYear;
@@ -256,7 +257,7 @@ export class BudgetService {
 
     return this.prisma.budget.update({
       where: { id: BigInt(id) },
-      data: { status: 'APPROVED' },
+      data: { status: 'SUBMITTED' },
     });
   }
 
@@ -265,6 +266,12 @@ export class BudgetService {
   async approveByLevel(id: string, level: string, action: string, comment: string, userId: string) {
     const budget = await this.prisma.budget.findUnique({ where: { id: BigInt(id) } });
     if (!budget) throw new NotFoundException('Budget not found');
+
+    // Validate action parameter
+    const validActions = ['APPROVED', 'REJECTED'];
+    if (!validActions.includes(action)) {
+      throw new BadRequestException(`Invalid action: ${action}. Must be one of: ${validActions.join(', ')}`);
+    }
 
     if (budget.status !== 'SUBMITTED') {
       throw new BadRequestException(`Cannot process budget with status: ${budget.status}. Must be SUBMITTED.`);

@@ -125,14 +125,15 @@ export class AuthService {
     try {
       const decoded = this.jwtService.verify(refreshToken);
       const user = await this.prisma.user.findUnique({
-        where: { id: decoded.sub },
+        where: { id: BigInt(decoded.sub) },
         include: { role: true },
       });
 
       if (!user || !user.is_active) {
-        throw new UnauthorizedException('User not found');
+        throw new UnauthorizedException('User account is deactivated or does not exist');
       }
 
+      // Use fresh role/permissions from DB (not stale JWT claims)
       const payload = {
         sub: Number(user.id),
         email: user.email,
@@ -142,8 +143,10 @@ export class AuthService {
 
       return {
         accessToken: this.jwtService.sign(payload),
+        refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
       };
-    } catch {
+    } catch (error) {
+      if (error instanceof UnauthorizedException) throw error;
       throw new UnauthorizedException('Invalid refresh token');
     }
   }

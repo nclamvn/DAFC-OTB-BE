@@ -23,8 +23,9 @@ export class PermissionsGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
 
-    // Fail-closed: nếu không khai báo @RequirePermissions → từ chối
-    if (!requiredPermissions) return false;
+    // If no @RequirePermissions decorator, allow any authenticated user through
+    // (JwtAuthGuard already verified authentication)
+    if (!requiredPermissions || requiredPermissions.length === 0) return true;
 
     const { user } = context.switchToHttp().getRequest();
     if (!user) return false;

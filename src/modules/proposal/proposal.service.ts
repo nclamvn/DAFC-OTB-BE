@@ -140,8 +140,8 @@ export class ProposalService {
   // ─── LIST SKU PROPOSAL HEADERS ─────────────────────────────────────────
 
   async findAll(filters: ProposalFilters) {
-    const page = Number(filters.page) || 1;
-    const pageSize = Number(filters.pageSize) || 20;
+    const page = Math.max(Number(filters.page) || 1, 1);
+    const pageSize = Math.min(Math.max(Number(filters.pageSize) || 20, 1), 100);
 
     const where: Record<string, any> = {};
     if (filters.status) where.status = filters.status;
@@ -505,6 +505,13 @@ export class ProposalService {
 
   async approveByLevel(id: string, level: string, action: string, comment: string, userId: string) {
     const header = await this.findOrFail(this.prisma.sKUProposalHeader, id, 'SKU Proposal Header') as any;
+
+    // Validate action parameter
+    const validActions = ['APPROVED', 'REJECTED'];
+    if (!validActions.includes(action)) {
+      throw new BadRequestException(`Invalid action: ${action}. Must be one of: ${validActions.join(', ')}`);
+    }
+
     if (header.status !== 'SUBMITTED') {
       throw new BadRequestException(`Cannot approve/reject with status: ${header.status}. Must be SUBMITTED.`);
     }

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MasterDataModule } from './modules/master-data/master-data.module';
@@ -14,6 +15,9 @@ import { HealthModule } from './modules/health/health.module';
 import { MailModule } from './modules/mail/mail.module';
 import { OrderModule } from './modules/order/order.module';
 import { ReceiptModule } from './modules/receipt/receipt.module';
+import { ImportModule } from './modules/import/import.module';
+import { NotificationModule } from './modules/notification/notification.module';
+import { DataRetentionModule } from './modules/data-retention/data-retention.module';
 
 @Module({
   imports: [
@@ -31,7 +35,13 @@ import { ReceiptModule } from './modules/receipt/receipt.module';
     TicketModule,
     OrderModule,
     ReceiptModule,
+    ImportModule,
+    NotificationModule,
+    DataRetentionModule,
     HealthModule,
+  ],
+  providers: [
+    { provide: APP_GUARD, useClass: ThrottlerGuard },
   ],
 })
 export class AppModule {}

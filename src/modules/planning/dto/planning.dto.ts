@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsNumber, IsArray, IsOptional, ValidateNested, IsNotEmpty, Min, Max, IsInt } from 'class-validator';
+import { IsString, IsNumber, IsArray, IsOptional, ValidateNested, IsNotEmpty, Min, Max, IsInt, MaxLength } from 'class-validator';
 import { Type } from 'class-transformer';
 
 // ─── Planning Season Type Detail ─────────────────────────────────────────────
@@ -8,11 +8,13 @@ export class PlanningSeasonTypeDto {
   @ApiProperty({ description: 'Season Type ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   seasonTypeId: string;
 
   @ApiProperty({ description: 'Store ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   storeId: string;
 
   @ApiPropertyOptional({ example: 0 })
@@ -59,11 +61,13 @@ export class PlanningGenderDto {
   @ApiProperty({ description: 'Gender ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   genderId: string;
 
   @ApiProperty({ description: 'Store ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   storeId: string;
 
   @ApiPropertyOptional({ example: 0 })
@@ -105,6 +109,7 @@ export class PlanningCategoryDto {
   @ApiProperty({ description: 'SubCategory ID' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   subcategoryId: string;
 
   @ApiPropertyOptional({ example: 0 })
@@ -157,6 +162,7 @@ export class CreatePlanningDto {
   @ApiProperty({ description: 'AllocateHeader ID this planning version is based on' })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255)
   allocateHeaderId: string;
 
   @ApiPropertyOptional({ type: [PlanningSeasonTypeDto] })

@@ -935,3 +935,49 @@ model TicketApprovalLog {
 
   @@map("approval_request_log")
 }
+
+// ── Import Data Management ────────────────────────────────────────
+
+model ImportSession {
+  id          BigInt   @id @default(autoincrement())
+  target      String   @db.VarChar(50)
+  file_name   String   @db.NVarChar(255)
+  status      String   @default("PENDING") @db.VarChar(20)
+  total_rows  Int      @default(0)
+  success_rows Int     @default(0)
+  error_rows  Int      @default(0)
+  error_log   String?  @db.NVarChar(MAX)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  records ImportedRecord[]
+
+  @@map("import_sessions")
+}
+
+model ImportedRecord {
+  id         BigInt   @id @default(autoincrement())
+  session_id BigInt
+  row_number Int      @default(0)
+  data       String   @db.NVarChar(MAX)
+  status     String   @default("SUCCESS") @db.VarChar(20)
+  created_at DateTime @default(now())
+
+  session ImportSession @relation(fields: [session_id], references: [id], onDelete: Cascade)
+
+  @@map("imported_records")
+}
+
+// ── Audit Log ─────────────────────────────────────────────────────
+
+model AuditLog {
+  id          BigInt   @id @default(autoincrement())
+  user_id     BigInt?
+  entity_type String   @db.VarChar(50)
+  entity_id   String   @db.VarChar(50)
+  action      String   @db.VarChar(50)
+  changes     String?  @db.NVarChar(MAX)
+  created_at  DateTime @default(now())
+
+  @@map("audit_logs")
+}
