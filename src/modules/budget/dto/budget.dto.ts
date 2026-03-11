@@ -59,6 +59,11 @@ export class CreateBudgetDto {
   @IsOptional()
   brandId?: string;
 
+  @ApiPropertyOptional({ example: 'currency_id', description: 'Currency ID' })
+  @IsString()
+  @IsOptional()
+  currencyId?: string;
+
   @ApiPropertyOptional({ type: [BudgetAllocateDto], description: 'Store/season allocations (requires brandId)' })
   @IsArray()
   @ValidateNested({ each: true })
@@ -88,6 +93,16 @@ export class UpdateBudgetDto {
   @IsOptional()
   @MaxLength(2000)
   description?: string;
+
+  @ApiPropertyOptional({ example: 'brand_id', description: 'Brand ID' })
+  @IsString()
+  @IsOptional()
+  brandId?: string;
+
+  @ApiPropertyOptional({ example: 'currency_id', description: 'Currency ID' })
+  @IsString()
+  @IsOptional()
+  currencyId?: string;
 }
 
 // ─── Allocate Header + Details DTO ───────────────────────────────────────────

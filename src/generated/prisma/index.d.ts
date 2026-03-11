@@ -34,6 +34,11 @@ export type GroupBrand = $Result.DefaultSelection<Prisma.$GroupBrandPayload>
  */
 export type Brand = $Result.DefaultSelection<Prisma.$BrandPayload>
 /**
+ * Model Currency
+ * 
+ */
+export type Currency = $Result.DefaultSelection<Prisma.$CurrencyPayload>
+/**
  * Model Store
  * 
  */
@@ -366,6 +371,16 @@ export class PrismaClient<
     * ```
     */
   get brand(): Prisma.BrandDelegate<ExtArgs>;
+
+  /**
+   * `prisma.currency`: Exposes CRUD operations for the **Currency** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Currencies
+    * const currencies = await prisma.currency.findMany()
+    * ```
+    */
+  get currency(): Prisma.CurrencyDelegate<ExtArgs>;
 
   /**
    * `prisma.store`: Exposes CRUD operations for the **Store** model.
@@ -1151,6 +1166,7 @@ export namespace Prisma {
     Role: 'Role',
     GroupBrand: 'GroupBrand',
     Brand: 'Brand',
+    Currency: 'Currency',
     Store: 'Store',
     SeasonType: 'SeasonType',
     SeasonGroup: 'SeasonGroup',
@@ -1200,7 +1216,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "role" | "groupBrand" | "brand" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "productRecommend" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "orderConfirmation" | "receiptConfirmation" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
+      modelProps: "user" | "role" | "groupBrand" | "brand" | "currency" | "store" | "seasonType" | "seasonGroup" | "season" | "gender" | "category" | "subCategory" | "subcategorySize" | "product" | "productRecommend" | "budget" | "allocateHeader" | "budgetAllocate" | "planningHeader" | "planningCollection" | "planningGender" | "planningCategory" | "sKUProposalHeader" | "sKUProposal" | "sKUAllocate" | "proposalSizingHeader" | "proposalSizing" | "subCategorySizeHistoryAgg" | "salesHistoryAgg" | "sellthroughByGenderAgg" | "sellthroughBySeasonTypeAgg" | "sellthroughBySubcategoryAgg" | "orderConfirmation" | "receiptConfirmation" | "approvalStatus" | "ticket" | "approvalWorkflow" | "approvalWorkflowLevel" | "ticketApprovalLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1465,6 +1481,72 @@ export namespace Prisma {
           count: {
             args: Prisma.BrandCountArgs<ExtArgs>
             result: $Utils.Optional<BrandCountAggregateOutputType> | number
+          }
+        }
+      }
+      Currency: {
+        payload: Prisma.$CurrencyPayload<ExtArgs>
+        fields: Prisma.CurrencyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CurrencyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CurrencyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          findFirst: {
+            args: Prisma.CurrencyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CurrencyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          findMany: {
+            args: Prisma.CurrencyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>[]
+          }
+          create: {
+            args: Prisma.CurrencyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          createMany: {
+            args: Prisma.CurrencyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CurrencyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          update: {
+            args: Prisma.CurrencyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          deleteMany: {
+            args: Prisma.CurrencyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CurrencyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CurrencyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CurrencyPayload>
+          }
+          aggregate: {
+            args: Prisma.CurrencyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCurrency>
+          }
+          groupBy: {
+            args: Prisma.CurrencyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CurrencyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CurrencyCountArgs<ExtArgs>
+            result: $Utils.Optional<CurrencyCountAggregateOutputType> | number
           }
         }
       }
@@ -4060,6 +4142,7 @@ export namespace Prisma {
     allocate_headers: number
     history_agg: number
     sales_history_agg: number
+    budgets: number
   }
 
   export type BrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4067,6 +4150,7 @@ export namespace Prisma {
     allocate_headers?: boolean | BrandCountOutputTypeCountAllocate_headersArgs
     history_agg?: boolean | BrandCountOutputTypeCountHistory_aggArgs
     sales_history_agg?: boolean | BrandCountOutputTypeCountSales_history_aggArgs
+    budgets?: boolean | BrandCountOutputTypeCountBudgetsArgs
   }
 
   // Custom InputTypes
@@ -4106,6 +4190,44 @@ export namespace Prisma {
    */
   export type BrandCountOutputTypeCountSales_history_aggArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SalesHistoryAggWhereInput
+  }
+
+  /**
+   * BrandCountOutputType without action
+   */
+  export type BrandCountOutputTypeCountBudgetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetWhereInput
+  }
+
+
+  /**
+   * Count Type CurrencyCountOutputType
+   */
+
+  export type CurrencyCountOutputType = {
+    budgets: number
+  }
+
+  export type CurrencyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    budgets?: boolean | CurrencyCountOutputTypeCountBudgetsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CurrencyCountOutputType
+     */
+    select?: CurrencyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeCountBudgetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BudgetWhereInput
   }
 
 
@@ -8433,6 +8555,7 @@ export namespace Prisma {
     allocate_headers?: boolean | Brand$allocate_headersArgs<ExtArgs>
     history_agg?: boolean | Brand$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | Brand$sales_history_aggArgs<ExtArgs>
+    budgets?: boolean | Brand$budgetsArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brand"]>
 
@@ -8455,6 +8578,7 @@ export namespace Prisma {
     allocate_headers?: boolean | Brand$allocate_headersArgs<ExtArgs>
     history_agg?: boolean | Brand$history_aggArgs<ExtArgs>
     sales_history_agg?: boolean | Brand$sales_history_aggArgs<ExtArgs>
+    budgets?: boolean | Brand$budgetsArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8466,6 +8590,7 @@ export namespace Prisma {
       allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
       history_agg: Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>[]
       sales_history_agg: Prisma.$SalesHistoryAggPayload<ExtArgs>[]
+      budgets: Prisma.$BudgetPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -8822,6 +8947,7 @@ export namespace Prisma {
     allocate_headers<T extends Brand$allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Brand$allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     history_agg<T extends Brand$history_aggArgs<ExtArgs> = {}>(args?: Subset<T, Brand$history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubCategorySizeHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
     sales_history_agg<T extends Brand$sales_history_aggArgs<ExtArgs> = {}>(args?: Subset<T, Brand$sales_history_aggArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalesHistoryAggPayload<ExtArgs>, T, "findMany"> | Null>
+    budgets<T extends Brand$budgetsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$budgetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9238,6 +9364,26 @@ export namespace Prisma {
   }
 
   /**
+   * Brand.budgets
+   */
+  export type Brand$budgetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Budget
+     */
+    select?: BudgetSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetInclude<ExtArgs> | null
+    where?: BudgetWhereInput
+    orderBy?: BudgetOrderByWithRelationInput | BudgetOrderByWithRelationInput[]
+    cursor?: BudgetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BudgetScalarFieldEnum | BudgetScalarFieldEnum[]
+  }
+
+  /**
    * Brand without action
    */
   export type BrandDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9249,6 +9395,977 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BrandInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Currency
+   */
+
+  export type AggregateCurrency = {
+    _count: CurrencyCountAggregateOutputType | null
+    _avg: CurrencyAvgAggregateOutputType | null
+    _sum: CurrencySumAggregateOutputType | null
+    _min: CurrencyMinAggregateOutputType | null
+    _max: CurrencyMaxAggregateOutputType | null
+  }
+
+  export type CurrencyAvgAggregateOutputType = {
+    id: number | null
+    exchange_rate_to_vnd: Decimal | null
+  }
+
+  export type CurrencySumAggregateOutputType = {
+    id: bigint | null
+    exchange_rate_to_vnd: Decimal | null
+  }
+
+  export type CurrencyMinAggregateOutputType = {
+    id: bigint | null
+    currency_code: string | null
+    currency_name: string | null
+    symbol: string | null
+    exchange_rate_to_vnd: Decimal | null
+    is_active: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type CurrencyMaxAggregateOutputType = {
+    id: bigint | null
+    currency_code: string | null
+    currency_name: string | null
+    symbol: string | null
+    exchange_rate_to_vnd: Decimal | null
+    is_active: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type CurrencyCountAggregateOutputType = {
+    id: number
+    currency_code: number
+    currency_name: number
+    symbol: number
+    exchange_rate_to_vnd: number
+    is_active: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type CurrencyAvgAggregateInputType = {
+    id?: true
+    exchange_rate_to_vnd?: true
+  }
+
+  export type CurrencySumAggregateInputType = {
+    id?: true
+    exchange_rate_to_vnd?: true
+  }
+
+  export type CurrencyMinAggregateInputType = {
+    id?: true
+    currency_code?: true
+    currency_name?: true
+    symbol?: true
+    exchange_rate_to_vnd?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type CurrencyMaxAggregateInputType = {
+    id?: true
+    currency_code?: true
+    currency_name?: true
+    symbol?: true
+    exchange_rate_to_vnd?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type CurrencyCountAggregateInputType = {
+    id?: true
+    currency_code?: true
+    currency_name?: true
+    symbol?: true
+    exchange_rate_to_vnd?: true
+    is_active?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type CurrencyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Currency to aggregate.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Currencies
+    **/
+    _count?: true | CurrencyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CurrencyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CurrencySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CurrencyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CurrencyMaxAggregateInputType
+  }
+
+  export type GetCurrencyAggregateType<T extends CurrencyAggregateArgs> = {
+        [P in keyof T & keyof AggregateCurrency]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCurrency[P]>
+      : GetScalarType<T[P], AggregateCurrency[P]>
+  }
+
+
+
+
+  export type CurrencyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CurrencyWhereInput
+    orderBy?: CurrencyOrderByWithAggregationInput | CurrencyOrderByWithAggregationInput[]
+    by: CurrencyScalarFieldEnum[] | CurrencyScalarFieldEnum
+    having?: CurrencyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CurrencyCountAggregateInputType | true
+    _avg?: CurrencyAvgAggregateInputType
+    _sum?: CurrencySumAggregateInputType
+    _min?: CurrencyMinAggregateInputType
+    _max?: CurrencyMaxAggregateInputType
+  }
+
+  export type CurrencyGroupByOutputType = {
+    id: bigint
+    currency_code: string
+    currency_name: string
+    symbol: string | null
+    exchange_rate_to_vnd: Decimal
+    is_active: boolean
+    created_at: Date
+    updated_at: Date | null
+    _count: CurrencyCountAggregateOutputType | null
+    _avg: CurrencyAvgAggregateOutputType | null
+    _sum: CurrencySumAggregateOutputType | null
+    _min: CurrencyMinAggregateOutputType | null
+    _max: CurrencyMaxAggregateOutputType | null
+  }
+
+  type GetCurrencyGroupByPayload<T extends CurrencyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CurrencyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CurrencyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
+            : GetScalarType<T[P], CurrencyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CurrencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    currency_code?: boolean
+    currency_name?: boolean
+    symbol?: boolean
+    exchange_rate_to_vnd?: boolean
+    is_active?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    budgets?: boolean | Currency$budgetsArgs<ExtArgs>
+    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["currency"]>
+
+
+  export type CurrencySelectScalar = {
+    id?: boolean
+    currency_code?: boolean
+    currency_name?: boolean
+    symbol?: boolean
+    exchange_rate_to_vnd?: boolean
+    is_active?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type CurrencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    budgets?: boolean | Currency$budgetsArgs<ExtArgs>
+    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CurrencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Currency"
+    objects: {
+      budgets: Prisma.$BudgetPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      currency_code: string
+      currency_name: string
+      symbol: string | null
+      exchange_rate_to_vnd: Prisma.Decimal
+      is_active: boolean
+      created_at: Date
+      updated_at: Date | null
+    }, ExtArgs["result"]["currency"]>
+    composites: {}
+  }
+
+  type CurrencyGetPayload<S extends boolean | null | undefined | CurrencyDefaultArgs> = $Result.GetResult<Prisma.$CurrencyPayload, S>
+
+  type CurrencyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CurrencyFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CurrencyCountAggregateInputType | true
+    }
+
+  export interface CurrencyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Currency'], meta: { name: 'Currency' } }
+    /**
+     * Find zero or one Currency that matches the filter.
+     * @param {CurrencyFindUniqueArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CurrencyFindUniqueArgs>(args: SelectSubset<T, CurrencyFindUniqueArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Currency that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CurrencyFindUniqueOrThrowArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CurrencyFindUniqueOrThrowArgs>(args: SelectSubset<T, CurrencyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Currency that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindFirstArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CurrencyFindFirstArgs>(args?: SelectSubset<T, CurrencyFindFirstArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Currency that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindFirstOrThrowArgs} args - Arguments to find a Currency
+     * @example
+     * // Get one Currency
+     * const currency = await prisma.currency.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CurrencyFindFirstOrThrowArgs>(args?: SelectSubset<T, CurrencyFindFirstOrThrowArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Currencies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Currencies
+     * const currencies = await prisma.currency.findMany()
+     * 
+     * // Get first 10 Currencies
+     * const currencies = await prisma.currency.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const currencyWithIdOnly = await prisma.currency.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CurrencyFindManyArgs>(args?: SelectSubset<T, CurrencyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Currency.
+     * @param {CurrencyCreateArgs} args - Arguments to create a Currency.
+     * @example
+     * // Create one Currency
+     * const Currency = await prisma.currency.create({
+     *   data: {
+     *     // ... data to create a Currency
+     *   }
+     * })
+     * 
+     */
+    create<T extends CurrencyCreateArgs>(args: SelectSubset<T, CurrencyCreateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Currencies.
+     * @param {CurrencyCreateManyArgs} args - Arguments to create many Currencies.
+     * @example
+     * // Create many Currencies
+     * const currency = await prisma.currency.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CurrencyCreateManyArgs>(args?: SelectSubset<T, CurrencyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Currency.
+     * @param {CurrencyDeleteArgs} args - Arguments to delete one Currency.
+     * @example
+     * // Delete one Currency
+     * const Currency = await prisma.currency.delete({
+     *   where: {
+     *     // ... filter to delete one Currency
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CurrencyDeleteArgs>(args: SelectSubset<T, CurrencyDeleteArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Currency.
+     * @param {CurrencyUpdateArgs} args - Arguments to update one Currency.
+     * @example
+     * // Update one Currency
+     * const currency = await prisma.currency.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CurrencyUpdateArgs>(args: SelectSubset<T, CurrencyUpdateArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Currencies.
+     * @param {CurrencyDeleteManyArgs} args - Arguments to filter Currencies to delete.
+     * @example
+     * // Delete a few Currencies
+     * const { count } = await prisma.currency.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CurrencyDeleteManyArgs>(args?: SelectSubset<T, CurrencyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Currencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Currencies
+     * const currency = await prisma.currency.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CurrencyUpdateManyArgs>(args: SelectSubset<T, CurrencyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Currency.
+     * @param {CurrencyUpsertArgs} args - Arguments to update or create a Currency.
+     * @example
+     * // Update or create a Currency
+     * const currency = await prisma.currency.upsert({
+     *   create: {
+     *     // ... data to create a Currency
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Currency we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CurrencyUpsertArgs>(args: SelectSubset<T, CurrencyUpsertArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Currencies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyCountArgs} args - Arguments to filter Currencies to count.
+     * @example
+     * // Count the number of Currencies
+     * const count = await prisma.currency.count({
+     *   where: {
+     *     // ... the filter for the Currencies we want to count
+     *   }
+     * })
+    **/
+    count<T extends CurrencyCountArgs>(
+      args?: Subset<T, CurrencyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CurrencyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Currency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CurrencyAggregateArgs>(args: Subset<T, CurrencyAggregateArgs>): Prisma.PrismaPromise<GetCurrencyAggregateType<T>>
+
+    /**
+     * Group by Currency.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CurrencyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CurrencyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CurrencyGroupByArgs['orderBy'] }
+        : { orderBy?: CurrencyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CurrencyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCurrencyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Currency model
+   */
+  readonly fields: CurrencyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Currency.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    budgets<T extends Currency$budgetsArgs<ExtArgs> = {}>(args?: Subset<T, Currency$budgetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Currency model
+   */ 
+  interface CurrencyFieldRefs {
+    readonly id: FieldRef<"Currency", 'BigInt'>
+    readonly currency_code: FieldRef<"Currency", 'String'>
+    readonly currency_name: FieldRef<"Currency", 'String'>
+    readonly symbol: FieldRef<"Currency", 'String'>
+    readonly exchange_rate_to_vnd: FieldRef<"Currency", 'Decimal'>
+    readonly is_active: FieldRef<"Currency", 'Boolean'>
+    readonly created_at: FieldRef<"Currency", 'DateTime'>
+    readonly updated_at: FieldRef<"Currency", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Currency findUnique
+   */
+  export type CurrencyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency findUniqueOrThrow
+   */
+  export type CurrencyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency findFirst
+   */
+  export type CurrencyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Currencies.
+     */
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency findFirstOrThrow
+   */
+  export type CurrencyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter, which Currency to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Currencies.
+     */
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency findMany
+   */
+  export type CurrencyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter, which Currencies to fetch.
+     */
+    where?: CurrencyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Currencies to fetch.
+     */
+    orderBy?: CurrencyOrderByWithRelationInput | CurrencyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Currencies.
+     */
+    cursor?: CurrencyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Currencies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Currencies.
+     */
+    skip?: number
+    distinct?: CurrencyScalarFieldEnum | CurrencyScalarFieldEnum[]
+  }
+
+  /**
+   * Currency create
+   */
+  export type CurrencyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Currency.
+     */
+    data: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
+  }
+
+  /**
+   * Currency createMany
+   */
+  export type CurrencyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Currencies.
+     */
+    data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
+  }
+
+  /**
+   * Currency update
+   */
+  export type CurrencyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Currency.
+     */
+    data: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
+    /**
+     * Choose, which Currency to update.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency updateMany
+   */
+  export type CurrencyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Currencies.
+     */
+    data: XOR<CurrencyUpdateManyMutationInput, CurrencyUncheckedUpdateManyInput>
+    /**
+     * Filter which Currencies to update
+     */
+    where?: CurrencyWhereInput
+  }
+
+  /**
+   * Currency upsert
+   */
+  export type CurrencyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Currency to update in case it exists.
+     */
+    where: CurrencyWhereUniqueInput
+    /**
+     * In case the Currency found by the `where` argument doesn't exist, create a new Currency with this data.
+     */
+    create: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
+    /**
+     * In case the Currency was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CurrencyUpdateInput, CurrencyUncheckedUpdateInput>
+  }
+
+  /**
+   * Currency delete
+   */
+  export type CurrencyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
+     * Filter which Currency to delete.
+     */
+    where: CurrencyWhereUniqueInput
+  }
+
+  /**
+   * Currency deleteMany
+   */
+  export type CurrencyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Currencies to delete
+     */
+    where?: CurrencyWhereInput
+  }
+
+  /**
+   * Currency.budgets
+   */
+  export type Currency$budgetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Budget
+     */
+    select?: BudgetSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BudgetInclude<ExtArgs> | null
+    where?: BudgetWhereInput
+    orderBy?: BudgetOrderByWithRelationInput | BudgetOrderByWithRelationInput[]
+    cursor?: BudgetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BudgetScalarFieldEnum | BudgetScalarFieldEnum[]
+  }
+
+  /**
+   * Currency without action
+   */
+  export type CurrencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
   }
 
 
@@ -19755,6 +20872,8 @@ export namespace Prisma {
     fiscal_year: number | null
     created_by: number | null
     updated_by: number | null
+    brand_id: number | null
+    currency_id: number | null
   }
 
   export type BudgetSumAggregateOutputType = {
@@ -19763,6 +20882,8 @@ export namespace Prisma {
     fiscal_year: number | null
     created_by: bigint | null
     updated_by: bigint | null
+    brand_id: bigint | null
+    currency_id: bigint | null
   }
 
   export type BudgetMinAggregateOutputType = {
@@ -19776,6 +20897,8 @@ export namespace Prisma {
     created_at: Date | null
     updated_at: Date | null
     updated_by: bigint | null
+    brand_id: bigint | null
+    currency_id: bigint | null
   }
 
   export type BudgetMaxAggregateOutputType = {
@@ -19789,6 +20912,8 @@ export namespace Prisma {
     created_at: Date | null
     updated_at: Date | null
     updated_by: bigint | null
+    brand_id: bigint | null
+    currency_id: bigint | null
   }
 
   export type BudgetCountAggregateOutputType = {
@@ -19802,6 +20927,8 @@ export namespace Prisma {
     created_at: number
     updated_at: number
     updated_by: number
+    brand_id: number
+    currency_id: number
     _all: number
   }
 
@@ -19812,6 +20939,8 @@ export namespace Prisma {
     fiscal_year?: true
     created_by?: true
     updated_by?: true
+    brand_id?: true
+    currency_id?: true
   }
 
   export type BudgetSumAggregateInputType = {
@@ -19820,6 +20949,8 @@ export namespace Prisma {
     fiscal_year?: true
     created_by?: true
     updated_by?: true
+    brand_id?: true
+    currency_id?: true
   }
 
   export type BudgetMinAggregateInputType = {
@@ -19833,6 +20964,8 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     updated_by?: true
+    brand_id?: true
+    currency_id?: true
   }
 
   export type BudgetMaxAggregateInputType = {
@@ -19846,6 +20979,8 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     updated_by?: true
+    brand_id?: true
+    currency_id?: true
   }
 
   export type BudgetCountAggregateInputType = {
@@ -19859,6 +20994,8 @@ export namespace Prisma {
     created_at?: true
     updated_at?: true
     updated_by?: true
+    brand_id?: true
+    currency_id?: true
     _all?: true
   }
 
@@ -19959,6 +21096,8 @@ export namespace Prisma {
     created_at: Date
     updated_at: Date
     updated_by: bigint | null
+    brand_id: bigint | null
+    currency_id: bigint | null
     _count: BudgetCountAggregateOutputType | null
     _avg: BudgetAvgAggregateOutputType | null
     _sum: BudgetSumAggregateOutputType | null
@@ -19991,9 +21130,13 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
+    brand_id?: boolean
+    currency_id?: boolean
     creator?: boolean | UserDefaultArgs<ExtArgs>
     allocate_headers?: boolean | Budget$allocate_headersArgs<ExtArgs>
     tickets?: boolean | Budget$ticketsArgs<ExtArgs>
+    brand?: boolean | Budget$brandArgs<ExtArgs>
+    currency?: boolean | Budget$currencyArgs<ExtArgs>
     _count?: boolean | BudgetCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["budget"]>
 
@@ -20009,12 +21152,16 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
+    brand_id?: boolean
+    currency_id?: boolean
   }
 
   export type BudgetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creator?: boolean | UserDefaultArgs<ExtArgs>
     allocate_headers?: boolean | Budget$allocate_headersArgs<ExtArgs>
     tickets?: boolean | Budget$ticketsArgs<ExtArgs>
+    brand?: boolean | Budget$brandArgs<ExtArgs>
+    currency?: boolean | Budget$currencyArgs<ExtArgs>
     _count?: boolean | BudgetCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -20024,6 +21171,8 @@ export namespace Prisma {
       creator: Prisma.$UserPayload<ExtArgs>
       allocate_headers: Prisma.$AllocateHeaderPayload<ExtArgs>[]
       tickets: Prisma.$TicketPayload<ExtArgs>[]
+      brand: Prisma.$BrandPayload<ExtArgs> | null
+      currency: Prisma.$CurrencyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -20036,6 +21185,8 @@ export namespace Prisma {
       created_at: Date
       updated_at: Date
       updated_by: bigint | null
+      brand_id: bigint | null
+      currency_id: bigint | null
     }, ExtArgs["result"]["budget"]>
     composites: {}
   }
@@ -20379,6 +21530,8 @@ export namespace Prisma {
     creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     allocate_headers<T extends Budget$allocate_headersArgs<ExtArgs> = {}>(args?: Subset<T, Budget$allocate_headersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllocateHeaderPayload<ExtArgs>, T, "findMany"> | Null>
     tickets<T extends Budget$ticketsArgs<ExtArgs> = {}>(args?: Subset<T, Budget$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany"> | Null>
+    brand<T extends Budget$brandArgs<ExtArgs> = {}>(args?: Subset<T, Budget$brandArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    currency<T extends Budget$currencyArgs<ExtArgs> = {}>(args?: Subset<T, Budget$currencyArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20418,6 +21571,8 @@ export namespace Prisma {
     readonly created_at: FieldRef<"Budget", 'DateTime'>
     readonly updated_at: FieldRef<"Budget", 'DateTime'>
     readonly updated_by: FieldRef<"Budget", 'BigInt'>
+    readonly brand_id: FieldRef<"Budget", 'BigInt'>
+    readonly currency_id: FieldRef<"Budget", 'BigInt'>
   }
     
 
@@ -20753,6 +21908,36 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TicketScalarFieldEnum | TicketScalarFieldEnum[]
+  }
+
+  /**
+   * Budget.brand
+   */
+  export type Budget$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Brand
+     */
+    select?: BrandSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandInclude<ExtArgs> | null
+    where?: BrandWhereInput
+  }
+
+  /**
+   * Budget.currency
+   */
+  export type Budget$currencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Currency
+     */
+    select?: CurrencySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    where?: CurrencyWhereInput
   }
 
   /**
@@ -44910,6 +46095,20 @@ export namespace Prisma {
   export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
 
 
+  export const CurrencyScalarFieldEnum: {
+    id: 'id',
+    currency_code: 'currency_code',
+    currency_name: 'currency_name',
+    symbol: 'symbol',
+    exchange_rate_to_vnd: 'exchange_rate_to_vnd',
+    is_active: 'is_active',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
+
+
   export const StoreScalarFieldEnum: {
     id: 'id',
     code: 'code',
@@ -45070,7 +46269,9 @@ export namespace Prisma {
     created_by: 'created_by',
     created_at: 'created_at',
     updated_at: 'updated_at',
-    updated_by: 'updated_by'
+    updated_by: 'updated_by',
+    brand_id: 'brand_id',
+    currency_id: 'currency_id'
   };
 
   export type BudgetScalarFieldEnum = (typeof BudgetScalarFieldEnum)[keyof typeof BudgetScalarFieldEnum]
@@ -45555,16 +46756,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Decimal'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
   /**
-   * Reference to a field of type 'Decimal'
+   * Reference to a field of type 'Int'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
@@ -45855,6 +47056,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
+    budgets?: BudgetListRelationFilter
   }
 
   export type BrandOrderByWithRelationInput = {
@@ -45872,6 +47074,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
     history_agg?: SubCategorySizeHistoryAggOrderByRelationAggregateInput
     sales_history_agg?: SalesHistoryAggOrderByRelationAggregateInput
+    budgets?: BudgetOrderByRelationAggregateInput
   }
 
   export type BrandWhereUniqueInput = Prisma.AtLeast<{
@@ -45892,6 +47095,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderListRelationFilter
     history_agg?: SubCategorySizeHistoryAggListRelationFilter
     sales_history_agg?: SalesHistoryAggListRelationFilter
+    budgets?: BudgetListRelationFilter
   }, "id">
 
   export type BrandOrderByWithAggregationInput = {
@@ -45924,6 +47128,78 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"Brand"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Brand"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"Brand"> | bigint | number | null
+  }
+
+  export type CurrencyWhereInput = {
+    AND?: CurrencyWhereInput | CurrencyWhereInput[]
+    OR?: CurrencyWhereInput[]
+    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
+    id?: BigIntFilter<"Currency"> | bigint | number
+    currency_code?: StringFilter<"Currency"> | string
+    currency_name?: StringFilter<"Currency"> | string
+    symbol?: StringNullableFilter<"Currency"> | string | null
+    exchange_rate_to_vnd?: DecimalFilter<"Currency"> | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFilter<"Currency"> | boolean
+    created_at?: DateTimeFilter<"Currency"> | Date | string
+    updated_at?: DateTimeNullableFilter<"Currency"> | Date | string | null
+    budgets?: BudgetListRelationFilter
+  }
+
+  export type CurrencyOrderByWithRelationInput = {
+    id?: SortOrder
+    currency_code?: SortOrder
+    currency_name?: SortOrder
+    symbol?: SortOrderInput | SortOrder
+    exchange_rate_to_vnd?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    budgets?: BudgetOrderByRelationAggregateInput
+  }
+
+  export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    currency_code?: string
+    AND?: CurrencyWhereInput | CurrencyWhereInput[]
+    OR?: CurrencyWhereInput[]
+    NOT?: CurrencyWhereInput | CurrencyWhereInput[]
+    currency_name?: StringFilter<"Currency"> | string
+    symbol?: StringNullableFilter<"Currency"> | string | null
+    exchange_rate_to_vnd?: DecimalFilter<"Currency"> | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFilter<"Currency"> | boolean
+    created_at?: DateTimeFilter<"Currency"> | Date | string
+    updated_at?: DateTimeNullableFilter<"Currency"> | Date | string | null
+    budgets?: BudgetListRelationFilter
+  }, "id" | "currency_code">
+
+  export type CurrencyOrderByWithAggregationInput = {
+    id?: SortOrder
+    currency_code?: SortOrder
+    currency_name?: SortOrder
+    symbol?: SortOrderInput | SortOrder
+    exchange_rate_to_vnd?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: CurrencyCountOrderByAggregateInput
+    _avg?: CurrencyAvgOrderByAggregateInput
+    _max?: CurrencyMaxOrderByAggregateInput
+    _min?: CurrencyMinOrderByAggregateInput
+    _sum?: CurrencySumOrderByAggregateInput
+  }
+
+  export type CurrencyScalarWhereWithAggregatesInput = {
+    AND?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
+    OR?: CurrencyScalarWhereWithAggregatesInput[]
+    NOT?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"Currency"> | bigint | number
+    currency_code?: StringWithAggregatesFilter<"Currency"> | string
+    currency_name?: StringWithAggregatesFilter<"Currency"> | string
+    symbol?: StringNullableWithAggregatesFilter<"Currency"> | string | null
+    exchange_rate_to_vnd?: DecimalWithAggregatesFilter<"Currency"> | Decimal | DecimalJsLike | number | string
+    is_active?: BoolWithAggregatesFilter<"Currency"> | boolean
+    created_at?: DateTimeWithAggregatesFilter<"Currency"> | Date | string
+    updated_at?: DateTimeNullableWithAggregatesFilter<"Currency"> | Date | string | null
   }
 
   export type StoreWhereInput = {
@@ -46803,9 +48079,13 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"Budget"> | Date | string
     updated_at?: DateTimeFilter<"Budget"> | Date | string
     updated_by?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    brand_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    currency_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
     allocate_headers?: AllocateHeaderListRelationFilter
     tickets?: TicketListRelationFilter
+    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
+    currency?: XOR<CurrencyNullableRelationFilter, CurrencyWhereInput> | null
   }
 
   export type BudgetOrderByWithRelationInput = {
@@ -46819,9 +48099,13 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
+    brand_id?: SortOrderInput | SortOrder
+    currency_id?: SortOrderInput | SortOrder
     creator?: UserOrderByWithRelationInput
     allocate_headers?: AllocateHeaderOrderByRelationAggregateInput
     tickets?: TicketOrderByRelationAggregateInput
+    brand?: BrandOrderByWithRelationInput
+    currency?: CurrencyOrderByWithRelationInput
   }
 
   export type BudgetWhereUniqueInput = Prisma.AtLeast<{
@@ -46838,9 +48122,13 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"Budget"> | Date | string
     updated_at?: DateTimeFilter<"Budget"> | Date | string
     updated_by?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    brand_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    currency_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
     creator?: XOR<UserRelationFilter, UserWhereInput>
     allocate_headers?: AllocateHeaderListRelationFilter
     tickets?: TicketListRelationFilter
+    brand?: XOR<BrandNullableRelationFilter, BrandWhereInput> | null
+    currency?: XOR<CurrencyNullableRelationFilter, CurrencyWhereInput> | null
   }, "id">
 
   export type BudgetOrderByWithAggregationInput = {
@@ -46854,6 +48142,8 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
+    brand_id?: SortOrderInput | SortOrder
+    currency_id?: SortOrderInput | SortOrder
     _count?: BudgetCountOrderByAggregateInput
     _avg?: BudgetAvgOrderByAggregateInput
     _max?: BudgetMaxOrderByAggregateInput
@@ -46875,6 +48165,8 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"Budget"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Budget"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"Budget"> | bigint | number | null
+    brand_id?: BigIntNullableWithAggregatesFilter<"Budget"> | bigint | number | null
+    currency_id?: BigIntNullableWithAggregatesFilter<"Budget"> | bigint | number | null
   }
 
   export type AllocateHeaderWhereInput = {
@@ -49534,6 +50826,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateInput = {
@@ -49550,6 +50843,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUpdateInput = {
@@ -49566,6 +50860,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateInput = {
@@ -49582,6 +50877,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandCreateManyInput = {
@@ -49616,6 +50912,86 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type CurrencyCreateInput = {
+    id?: bigint | number
+    currency_code: string
+    currency_name: string
+    symbol?: string | null
+    exchange_rate_to_vnd?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    budgets?: BudgetCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyUncheckedCreateInput = {
+    id?: bigint | number
+    currency_code: string
+    currency_name: string
+    symbol?: string | null
+    exchange_rate_to_vnd?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    budgets?: BudgetUncheckedCreateNestedManyWithoutCurrencyInput
+  }
+
+  export type CurrencyUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budgets?: BudgetUpdateManyWithoutCurrencyNestedInput
+  }
+
+  export type CurrencyUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    budgets?: BudgetUncheckedUpdateManyWithoutCurrencyNestedInput
+  }
+
+  export type CurrencyCreateManyInput = {
+    currency_code: string
+    currency_name: string
+    symbol?: string | null
+    exchange_rate_to_vnd?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+  }
+
+  export type CurrencyUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CurrencyUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StoreCreateInput = {
@@ -50580,6 +51956,8 @@ export namespace Prisma {
     creator: UserCreateNestedOneWithoutCreated_budgetsInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
     tickets?: TicketCreateNestedManyWithoutBudgetInput
+    brand?: BrandCreateNestedOneWithoutBudgetsInput
+    currency?: CurrencyCreateNestedOneWithoutBudgetsInput
   }
 
   export type BudgetUncheckedCreateInput = {
@@ -50593,6 +51971,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
     tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
@@ -50610,6 +51990,8 @@ export namespace Prisma {
     creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
     tickets?: TicketUpdateManyWithoutBudgetNestedInput
+    brand?: BrandUpdateOneWithoutBudgetsNestedInput
+    currency?: CurrencyUpdateOneWithoutBudgetsNestedInput
   }
 
   export type BudgetUncheckedUpdateInput = {
@@ -50623,6 +52005,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
@@ -50637,6 +52021,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
   }
 
   export type BudgetUpdateManyMutationInput = {
@@ -50662,6 +52048,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type AllocateHeaderCreateInput = {
@@ -53697,6 +55085,101 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type CurrencyCountOrderByAggregateInput = {
+    id?: SortOrder
+    currency_code?: SortOrder
+    currency_name?: SortOrder
+    symbol?: SortOrder
+    exchange_rate_to_vnd?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type CurrencyAvgOrderByAggregateInput = {
+    id?: SortOrder
+    exchange_rate_to_vnd?: SortOrder
+  }
+
+  export type CurrencyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    currency_code?: SortOrder
+    currency_name?: SortOrder
+    symbol?: SortOrder
+    exchange_rate_to_vnd?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type CurrencyMinOrderByAggregateInput = {
+    id?: SortOrder
+    currency_code?: SortOrder
+    currency_name?: SortOrder
+    symbol?: SortOrder
+    exchange_rate_to_vnd?: SortOrder
+    is_active?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type CurrencySumOrderByAggregateInput = {
+    id?: SortOrder
+    exchange_rate_to_vnd?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type BudgetAllocateListRelationFilter = {
     every?: BudgetAllocateWhereInput
     some?: BudgetAllocateWhereInput
@@ -54230,17 +55713,6 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
-  export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
   export type SKUProposalListRelationFilter = {
     every?: SKUProposalWhereInput
     some?: SKUProposalWhereInput
@@ -54327,22 +55799,6 @@ export namespace Prisma {
     unit_cost?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
-  }
-
-  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -54442,6 +55898,11 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type CurrencyNullableRelationFilter = {
+    is?: CurrencyWhereInput | null
+    isNot?: CurrencyWhereInput | null
+  }
+
   export type BudgetCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -54453,6 +55914,8 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrder
+    brand_id?: SortOrder
+    currency_id?: SortOrder
   }
 
   export type BudgetAvgOrderByAggregateInput = {
@@ -54461,6 +55924,8 @@ export namespace Prisma {
     fiscal_year?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+    brand_id?: SortOrder
+    currency_id?: SortOrder
   }
 
   export type BudgetMaxOrderByAggregateInput = {
@@ -54474,6 +55939,8 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrder
+    brand_id?: SortOrder
+    currency_id?: SortOrder
   }
 
   export type BudgetMinOrderByAggregateInput = {
@@ -54487,6 +55954,8 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     updated_by?: SortOrder
+    brand_id?: SortOrder
+    currency_id?: SortOrder
   }
 
   export type BudgetSumOrderByAggregateInput = {
@@ -54495,6 +55964,8 @@ export namespace Prisma {
     fiscal_year?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+    brand_id?: SortOrder
+    currency_id?: SortOrder
   }
 
   export type BudgetRelationFilter = {
@@ -56153,17 +57624,6 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type ApprovalWorkflowLevelRelationFilter = {
     is?: ApprovalWorkflowLevelWhereInput
     isNot?: ApprovalWorkflowLevelWhereInput
@@ -56227,20 +57687,6 @@ export namespace Prisma {
     approver_user_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type RoleCreateNestedOneWithoutUsersInput = {
@@ -56869,6 +58315,13 @@ export namespace Prisma {
     connect?: SalesHistoryAggWhereUniqueInput | SalesHistoryAggWhereUniqueInput[]
   }
 
+  export type BudgetCreateNestedManyWithoutBrandInput = {
+    create?: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput> | BudgetCreateWithoutBrandInput[] | BudgetUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutBrandInput | BudgetCreateOrConnectWithoutBrandInput[]
+    createMany?: BudgetCreateManyBrandInputEnvelope
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+  }
+
   export type CategoryUncheckedCreateNestedManyWithoutBrandInput = {
     create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
@@ -56895,6 +58348,13 @@ export namespace Prisma {
     connectOrCreate?: SalesHistoryAggCreateOrConnectWithoutBrand_refInput | SalesHistoryAggCreateOrConnectWithoutBrand_refInput[]
     createMany?: SalesHistoryAggCreateManyBrand_refInputEnvelope
     connect?: SalesHistoryAggWhereUniqueInput | SalesHistoryAggWhereUniqueInput[]
+  }
+
+  export type BudgetUncheckedCreateNestedManyWithoutBrandInput = {
+    create?: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput> | BudgetCreateWithoutBrandInput[] | BudgetUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutBrandInput | BudgetCreateOrConnectWithoutBrandInput[]
+    createMany?: BudgetCreateManyBrandInputEnvelope
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
   }
 
   export type GroupBrandUpdateOneRequiredWithoutBrandsNestedInput = {
@@ -56961,6 +58421,20 @@ export namespace Prisma {
     deleteMany?: SalesHistoryAggScalarWhereInput | SalesHistoryAggScalarWhereInput[]
   }
 
+  export type BudgetUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput> | BudgetCreateWithoutBrandInput[] | BudgetUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutBrandInput | BudgetCreateOrConnectWithoutBrandInput[]
+    upsert?: BudgetUpsertWithWhereUniqueWithoutBrandInput | BudgetUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: BudgetCreateManyBrandInputEnvelope
+    set?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    disconnect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    delete?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    update?: BudgetUpdateWithWhereUniqueWithoutBrandInput | BudgetUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: BudgetUpdateManyWithWhereWithoutBrandInput | BudgetUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: BudgetScalarWhereInput | BudgetScalarWhereInput[]
+  }
+
   export type CategoryUncheckedUpdateManyWithoutBrandNestedInput = {
     create?: XOR<CategoryCreateWithoutBrandInput, CategoryUncheckedCreateWithoutBrandInput> | CategoryCreateWithoutBrandInput[] | CategoryUncheckedCreateWithoutBrandInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutBrandInput | CategoryCreateOrConnectWithoutBrandInput[]
@@ -57015,6 +58489,74 @@ export namespace Prisma {
     update?: SalesHistoryAggUpdateWithWhereUniqueWithoutBrand_refInput | SalesHistoryAggUpdateWithWhereUniqueWithoutBrand_refInput[]
     updateMany?: SalesHistoryAggUpdateManyWithWhereWithoutBrand_refInput | SalesHistoryAggUpdateManyWithWhereWithoutBrand_refInput[]
     deleteMany?: SalesHistoryAggScalarWhereInput | SalesHistoryAggScalarWhereInput[]
+  }
+
+  export type BudgetUncheckedUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput> | BudgetCreateWithoutBrandInput[] | BudgetUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutBrandInput | BudgetCreateOrConnectWithoutBrandInput[]
+    upsert?: BudgetUpsertWithWhereUniqueWithoutBrandInput | BudgetUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: BudgetCreateManyBrandInputEnvelope
+    set?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    disconnect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    delete?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    update?: BudgetUpdateWithWhereUniqueWithoutBrandInput | BudgetUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: BudgetUpdateManyWithWhereWithoutBrandInput | BudgetUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: BudgetScalarWhereInput | BudgetScalarWhereInput[]
+  }
+
+  export type BudgetCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput> | BudgetCreateWithoutCurrencyInput[] | BudgetUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutCurrencyInput | BudgetCreateOrConnectWithoutCurrencyInput[]
+    createMany?: BudgetCreateManyCurrencyInputEnvelope
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+  }
+
+  export type BudgetUncheckedCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput> | BudgetCreateWithoutCurrencyInput[] | BudgetUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutCurrencyInput | BudgetCreateOrConnectWithoutCurrencyInput[]
+    createMany?: BudgetCreateManyCurrencyInputEnvelope
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type BudgetUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput> | BudgetCreateWithoutCurrencyInput[] | BudgetUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutCurrencyInput | BudgetCreateOrConnectWithoutCurrencyInput[]
+    upsert?: BudgetUpsertWithWhereUniqueWithoutCurrencyInput | BudgetUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: BudgetCreateManyCurrencyInputEnvelope
+    set?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    disconnect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    delete?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    update?: BudgetUpdateWithWhereUniqueWithoutCurrencyInput | BudgetUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: BudgetUpdateManyWithWhereWithoutCurrencyInput | BudgetUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: BudgetScalarWhereInput | BudgetScalarWhereInput[]
+  }
+
+  export type BudgetUncheckedUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput> | BudgetCreateWithoutCurrencyInput[] | BudgetUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: BudgetCreateOrConnectWithoutCurrencyInput | BudgetCreateOrConnectWithoutCurrencyInput[]
+    upsert?: BudgetUpsertWithWhereUniqueWithoutCurrencyInput | BudgetUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: BudgetCreateManyCurrencyInputEnvelope
+    set?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    disconnect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    delete?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    connect?: BudgetWhereUniqueInput | BudgetWhereUniqueInput[]
+    update?: BudgetUpdateWithWhereUniqueWithoutCurrencyInput | BudgetUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: BudgetUpdateManyWithWhereWithoutCurrencyInput | BudgetUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: BudgetScalarWhereInput | BudgetScalarWhereInput[]
   }
 
   export type BudgetAllocateCreateNestedManyWithoutStoreInput = {
@@ -58391,14 +59933,6 @@ export namespace Prisma {
     connect?: ProductRecommendWhereUniqueInput | ProductRecommendWhereUniqueInput[]
   }
 
-  export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
-  }
-
   export type SubCategoryUpdateOneRequiredWithoutProductsNestedInput = {
     create?: XOR<SubCategoryCreateWithoutProductsInput, SubCategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SubCategoryCreateOrConnectWithoutProductsInput
@@ -58533,6 +60067,18 @@ export namespace Prisma {
     connect?: TicketWhereUniqueInput | TicketWhereUniqueInput[]
   }
 
+  export type BrandCreateNestedOneWithoutBudgetsInput = {
+    create?: XOR<BrandCreateWithoutBudgetsInput, BrandUncheckedCreateWithoutBudgetsInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutBudgetsInput
+    connect?: BrandWhereUniqueInput
+  }
+
+  export type CurrencyCreateNestedOneWithoutBudgetsInput = {
+    create?: XOR<CurrencyCreateWithoutBudgetsInput, CurrencyUncheckedCreateWithoutBudgetsInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutBudgetsInput
+    connect?: CurrencyWhereUniqueInput
+  }
+
   export type AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput = {
     create?: XOR<AllocateHeaderCreateWithoutBudgetInput, AllocateHeaderUncheckedCreateWithoutBudgetInput> | AllocateHeaderCreateWithoutBudgetInput[] | AllocateHeaderUncheckedCreateWithoutBudgetInput[]
     connectOrCreate?: AllocateHeaderCreateOrConnectWithoutBudgetInput | AllocateHeaderCreateOrConnectWithoutBudgetInput[]
@@ -58581,6 +60127,26 @@ export namespace Prisma {
     update?: TicketUpdateWithWhereUniqueWithoutBudgetInput | TicketUpdateWithWhereUniqueWithoutBudgetInput[]
     updateMany?: TicketUpdateManyWithWhereWithoutBudgetInput | TicketUpdateManyWithWhereWithoutBudgetInput[]
     deleteMany?: TicketScalarWhereInput | TicketScalarWhereInput[]
+  }
+
+  export type BrandUpdateOneWithoutBudgetsNestedInput = {
+    create?: XOR<BrandCreateWithoutBudgetsInput, BrandUncheckedCreateWithoutBudgetsInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutBudgetsInput
+    upsert?: BrandUpsertWithoutBudgetsInput
+    disconnect?: BrandWhereInput | boolean
+    delete?: BrandWhereInput | boolean
+    connect?: BrandWhereUniqueInput
+    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutBudgetsInput, BrandUpdateWithoutBudgetsInput>, BrandUncheckedUpdateWithoutBudgetsInput>
+  }
+
+  export type CurrencyUpdateOneWithoutBudgetsNestedInput = {
+    create?: XOR<CurrencyCreateWithoutBudgetsInput, CurrencyUncheckedCreateWithoutBudgetsInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutBudgetsInput
+    upsert?: CurrencyUpsertWithoutBudgetsInput
+    disconnect?: CurrencyWhereInput | boolean
+    delete?: CurrencyWhereInput | boolean
+    connect?: CurrencyWhereUniqueInput
+    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutBudgetsInput, CurrencyUpdateWithoutBudgetsInput>, CurrencyUncheckedUpdateWithoutBudgetsInput>
   }
 
   export type AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput = {
@@ -60165,10 +61731,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type TicketUpdateOneRequiredWithoutTicket_approval_logsNestedInput = {
     create?: XOR<TicketCreateWithoutTicket_approval_logsInput, TicketUncheckedCreateWithoutTicket_approval_logsInput>
     connectOrCreate?: TicketCreateOrConnectWithoutTicket_approval_logsInput
@@ -60391,22 +61953,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[]
@@ -60416,6 +61962,17 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -60432,6 +61989,36 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -60477,31 +62064,6 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type RoleCreateWithoutUsersInput = {
     id?: bigint | number
     name: string
@@ -60541,6 +62103,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
     tickets?: TicketCreateNestedManyWithoutBudgetInput
+    brand?: BrandCreateNestedOneWithoutBudgetsInput
+    currency?: CurrencyCreateNestedOneWithoutBudgetsInput
   }
 
   export type BudgetUncheckedCreateWithoutCreatorInput = {
@@ -60553,6 +62117,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
     tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
@@ -61030,6 +62596,8 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"Budget"> | Date | string
     updated_at?: DateTimeFilter<"Budget"> | Date | string
     updated_by?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    brand_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
+    currency_id?: BigIntNullableFilter<"Budget"> | bigint | number | null
   }
 
   export type AllocateHeaderUpsertWithWhereUniqueWithoutCreatorInput = {
@@ -61455,6 +63023,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutGroup_brandInput = {
@@ -61470,6 +63039,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutGroup_brandInput = {
@@ -61775,6 +63345,47 @@ export namespace Prisma {
     data: SalesHistoryAggCreateManyBrand_refInput | SalesHistoryAggCreateManyBrand_refInput[]
   }
 
+  export type BudgetCreateWithoutBrandInput = {
+    id?: bigint | number
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    creator: UserCreateNestedOneWithoutCreated_budgetsInput
+    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+    tickets?: TicketCreateNestedManyWithoutBudgetInput
+    currency?: CurrencyCreateNestedOneWithoutBudgetsInput
+  }
+
+  export type BudgetUncheckedCreateWithoutBrandInput = {
+    id?: bigint | number
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    currency_id?: bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
+  }
+
+  export type BudgetCreateOrConnectWithoutBrandInput = {
+    where: BudgetWhereUniqueInput
+    create: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput>
+  }
+
+  export type BudgetCreateManyBrandInputEnvelope = {
+    data: BudgetCreateManyBrandInput | BudgetCreateManyBrandInput[]
+  }
+
   export type GroupBrandUpsertWithoutBrandsInput = {
     update: XOR<GroupBrandUpdateWithoutBrandsInput, GroupBrandUncheckedUpdateWithoutBrandsInput>
     create: XOR<GroupBrandCreateWithoutBrandsInput, GroupBrandUncheckedCreateWithoutBrandsInput>
@@ -61935,6 +63546,79 @@ export namespace Prisma {
     buy?: DecimalFilter<"SalesHistoryAgg"> | Decimal | DecimalJsLike | number | string
     sales_amt?: DecimalFilter<"SalesHistoryAgg"> | Decimal | DecimalJsLike | number | string
     st?: DecimalNullableFilter<"SalesHistoryAgg"> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type BudgetUpsertWithWhereUniqueWithoutBrandInput = {
+    where: BudgetWhereUniqueInput
+    update: XOR<BudgetUpdateWithoutBrandInput, BudgetUncheckedUpdateWithoutBrandInput>
+    create: XOR<BudgetCreateWithoutBrandInput, BudgetUncheckedCreateWithoutBrandInput>
+  }
+
+  export type BudgetUpdateWithWhereUniqueWithoutBrandInput = {
+    where: BudgetWhereUniqueInput
+    data: XOR<BudgetUpdateWithoutBrandInput, BudgetUncheckedUpdateWithoutBrandInput>
+  }
+
+  export type BudgetUpdateManyWithWhereWithoutBrandInput = {
+    where: BudgetScalarWhereInput
+    data: XOR<BudgetUpdateManyMutationInput, BudgetUncheckedUpdateManyWithoutBrandInput>
+  }
+
+  export type BudgetCreateWithoutCurrencyInput = {
+    id?: bigint | number
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    creator: UserCreateNestedOneWithoutCreated_budgetsInput
+    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+    tickets?: TicketCreateNestedManyWithoutBudgetInput
+    brand?: BrandCreateNestedOneWithoutBudgetsInput
+  }
+
+  export type BudgetUncheckedCreateWithoutCurrencyInput = {
+    id?: bigint | number
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
+    tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
+  }
+
+  export type BudgetCreateOrConnectWithoutCurrencyInput = {
+    where: BudgetWhereUniqueInput
+    create: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type BudgetCreateManyCurrencyInputEnvelope = {
+    data: BudgetCreateManyCurrencyInput | BudgetCreateManyCurrencyInput[]
+  }
+
+  export type BudgetUpsertWithWhereUniqueWithoutCurrencyInput = {
+    where: BudgetWhereUniqueInput
+    update: XOR<BudgetUpdateWithoutCurrencyInput, BudgetUncheckedUpdateWithoutCurrencyInput>
+    create: XOR<BudgetCreateWithoutCurrencyInput, BudgetUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type BudgetUpdateWithWhereUniqueWithoutCurrencyInput = {
+    where: BudgetWhereUniqueInput
+    data: XOR<BudgetUpdateWithoutCurrencyInput, BudgetUncheckedUpdateWithoutCurrencyInput>
+  }
+
+  export type BudgetUpdateManyWithWhereWithoutCurrencyInput = {
+    where: BudgetScalarWhereInput
+    data: XOR<BudgetUpdateManyMutationInput, BudgetUncheckedUpdateManyWithoutCurrencyInput>
   }
 
   export type BudgetAllocateCreateWithoutStoreInput = {
@@ -63340,6 +65024,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutCategoriesInput = {
@@ -63355,6 +65040,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutCategoriesInput = {
@@ -63551,6 +65237,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutCategoriesInput = {
@@ -63566,6 +65253,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type SubCategorySizeHistoryAggUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -64814,6 +66502,70 @@ export namespace Prisma {
     data: TicketCreateManyBudgetInput | TicketCreateManyBudgetInput[]
   }
 
+  export type BrandCreateWithoutBudgetsInput = {
+    id?: bigint | number
+    code: string
+    name: string
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    group_brand: GroupBrandCreateNestedOneWithoutBrandsInput
+    categories?: CategoryCreateNestedManyWithoutBrandInput
+    allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
+    history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
+    sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+  }
+
+  export type BrandUncheckedCreateWithoutBudgetsInput = {
+    id?: bigint | number
+    code: string
+    name: string
+    group_brand_id: bigint | number
+    is_active?: boolean
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
+    allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+  }
+
+  export type BrandCreateOrConnectWithoutBudgetsInput = {
+    where: BrandWhereUniqueInput
+    create: XOR<BrandCreateWithoutBudgetsInput, BrandUncheckedCreateWithoutBudgetsInput>
+  }
+
+  export type CurrencyCreateWithoutBudgetsInput = {
+    id?: bigint | number
+    currency_code: string
+    currency_name: string
+    symbol?: string | null
+    exchange_rate_to_vnd?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+  }
+
+  export type CurrencyUncheckedCreateWithoutBudgetsInput = {
+    id?: bigint | number
+    currency_code: string
+    currency_name: string
+    symbol?: string | null
+    exchange_rate_to_vnd?: Decimal | DecimalJsLike | number | string
+    is_active?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string | null
+  }
+
+  export type CurrencyCreateOrConnectWithoutBudgetsInput = {
+    where: CurrencyWhereUniqueInput
+    create: XOR<CurrencyCreateWithoutBudgetsInput, CurrencyUncheckedCreateWithoutBudgetsInput>
+  }
+
   export type UserUpsertWithoutCreated_budgetsInput = {
     update: XOR<UserUpdateWithoutCreated_budgetsInput, UserUncheckedUpdateWithoutCreated_budgetsInput>
     create: XOR<UserCreateWithoutCreated_budgetsInput, UserUncheckedCreateWithoutCreated_budgetsInput>
@@ -64901,6 +66653,82 @@ export namespace Prisma {
     data: XOR<TicketUpdateManyMutationInput, TicketUncheckedUpdateManyWithoutBudgetInput>
   }
 
+  export type BrandUpsertWithoutBudgetsInput = {
+    update: XOR<BrandUpdateWithoutBudgetsInput, BrandUncheckedUpdateWithoutBudgetsInput>
+    create: XOR<BrandCreateWithoutBudgetsInput, BrandUncheckedCreateWithoutBudgetsInput>
+    where?: BrandWhereInput
+  }
+
+  export type BrandUpdateToOneWithWhereWithoutBudgetsInput = {
+    where?: BrandWhereInput
+    data: XOR<BrandUpdateWithoutBudgetsInput, BrandUncheckedUpdateWithoutBudgetsInput>
+  }
+
+  export type BrandUpdateWithoutBudgetsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    group_brand?: GroupBrandUpdateOneRequiredWithoutBrandsNestedInput
+    categories?: CategoryUpdateManyWithoutBrandNestedInput
+    allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
+    history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
+    sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+  }
+
+  export type BrandUncheckedUpdateWithoutBudgetsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    group_brand_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
+    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
+    history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+  }
+
+  export type CurrencyUpsertWithoutBudgetsInput = {
+    update: XOR<CurrencyUpdateWithoutBudgetsInput, CurrencyUncheckedUpdateWithoutBudgetsInput>
+    create: XOR<CurrencyCreateWithoutBudgetsInput, CurrencyUncheckedCreateWithoutBudgetsInput>
+    where?: CurrencyWhereInput
+  }
+
+  export type CurrencyUpdateToOneWithWhereWithoutBudgetsInput = {
+    where?: CurrencyWhereInput
+    data: XOR<CurrencyUpdateWithoutBudgetsInput, CurrencyUncheckedUpdateWithoutBudgetsInput>
+  }
+
+  export type CurrencyUpdateWithoutBudgetsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CurrencyUncheckedUpdateWithoutBudgetsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    currency_code?: StringFieldUpdateOperationsInput | string
+    currency_name?: StringFieldUpdateOperationsInput | string
+    symbol?: NullableStringFieldUpdateOperationsInput | string | null
+    exchange_rate_to_vnd?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type BudgetCreateWithoutAllocate_headersInput = {
     id?: bigint | number
     name: string
@@ -64913,6 +66741,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_budgetsInput
     tickets?: TicketCreateNestedManyWithoutBudgetInput
+    brand?: BrandCreateNestedOneWithoutBudgetsInput
+    currency?: CurrencyCreateNestedOneWithoutBudgetsInput
   }
 
   export type BudgetUncheckedCreateWithoutAllocate_headersInput = {
@@ -64926,6 +66756,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
     tickets?: TicketUncheckedCreateNestedManyWithoutBudgetInput
   }
 
@@ -64947,6 +66779,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutAllocate_headersInput = {
@@ -64962,6 +66795,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutAllocate_headersInput = {
@@ -65181,6 +67015,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
     tickets?: TicketUpdateManyWithoutBudgetNestedInput
+    brand?: BrandUpdateOneWithoutBudgetsNestedInput
+    currency?: CurrencyUpdateOneWithoutBudgetsNestedInput
   }
 
   export type BudgetUncheckedUpdateWithoutAllocate_headersInput = {
@@ -65194,6 +67030,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
 
@@ -65221,6 +67059,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutAllocate_headersInput = {
@@ -65236,6 +67075,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type UserUpsertWithoutCreated_allocate_headersInput = {
@@ -67794,6 +69634,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
     sales_history_agg?: SalesHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutHistory_aggInput = {
@@ -67809,6 +69650,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
     sales_history_agg?: SalesHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutHistory_aggInput = {
@@ -68021,6 +69863,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutHistory_aggInput = {
@@ -68036,6 +69879,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type GenderUpsertWithoutHistory_aggInput = {
@@ -68250,6 +70094,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateWithoutSales_history_aggInput = {
@@ -68265,6 +70110,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutBrandInput
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBrandInput
     history_agg?: SubCategorySizeHistoryAggUncheckedCreateNestedManyWithoutBrand_refInput
+    budgets?: BudgetUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandCreateOrConnectWithoutSales_history_aggInput = {
@@ -68504,6 +70350,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutSales_history_aggInput = {
@@ -68519,6 +70366,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutBrandNestedInput
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type GenderUpsertWithoutSales_history_aggInput = {
@@ -69359,6 +71207,8 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     creator: UserCreateNestedOneWithoutCreated_budgetsInput
     allocate_headers?: AllocateHeaderCreateNestedManyWithoutBudgetInput
+    brand?: BrandCreateNestedOneWithoutBudgetsInput
+    currency?: CurrencyCreateNestedOneWithoutBudgetsInput
   }
 
   export type BudgetUncheckedCreateWithoutTicketsInput = {
@@ -69372,6 +71222,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedCreateNestedManyWithoutBudgetInput
   }
 
@@ -69744,6 +71596,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
     allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+    brand?: BrandUpdateOneWithoutBudgetsNestedInput
+    currency?: CurrencyUpdateOneWithoutBudgetsNestedInput
   }
 
   export type BudgetUncheckedUpdateWithoutTicketsInput = {
@@ -69757,6 +71611,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
   }
 
@@ -70542,6 +72398,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+    currency_id?: bigint | number | null
   }
 
   export type AllocateHeaderCreateManyCreatorInput = {
@@ -70692,6 +72550,8 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
     tickets?: TicketUpdateManyWithoutBudgetNestedInput
+    brand?: BrandUpdateOneWithoutBudgetsNestedInput
+    currency?: CurrencyUpdateOneWithoutBudgetsNestedInput
   }
 
   export type BudgetUncheckedUpdateWithoutCreatorInput = {
@@ -70704,6 +72564,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
     tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
   }
@@ -70718,6 +72580,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type AllocateHeaderUpdateWithoutCreatorInput = {
@@ -71283,6 +73147,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateWithoutGroup_brandInput = {
@@ -71298,6 +73163,7 @@ export namespace Prisma {
     allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBrandNestedInput
     history_agg?: SubCategorySizeHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
     sales_history_agg?: SalesHistoryAggUncheckedUpdateManyWithoutBrand_refNestedInput
+    budgets?: BudgetUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateManyWithoutGroup_brandInput = {
@@ -71398,6 +73264,19 @@ export namespace Prisma {
     buy?: Decimal | DecimalJsLike | number | string
     sales_amt?: Decimal | DecimalJsLike | number | string
     st?: Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type BudgetCreateManyBrandInput = {
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    currency_id?: bigint | number | null
   }
 
   export type CategoryUpdateWithoutBrandInput = {
@@ -71602,6 +73481,111 @@ export namespace Prisma {
     buy?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     sales_amt?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     st?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type BudgetUpdateWithoutBrandInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
+    allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUpdateManyWithoutBudgetNestedInput
+    currency?: CurrencyUpdateOneWithoutBudgetsNestedInput
+  }
+
+  export type BudgetUncheckedUpdateWithoutBrandInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
+  }
+
+  export type BudgetUncheckedUpdateManyWithoutBrandInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    currency_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type BudgetCreateManyCurrencyInput = {
+    name: string
+    amount: Decimal | DecimalJsLike | number | string
+    description?: string | null
+    status?: string
+    fiscal_year: number
+    created_by: bigint | number
+    created_at?: Date | string
+    updated_at?: Date | string
+    updated_by?: bigint | number | null
+    brand_id?: bigint | number | null
+  }
+
+  export type BudgetUpdateWithoutCurrencyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    creator?: UserUpdateOneRequiredWithoutCreated_budgetsNestedInput
+    allocate_headers?: AllocateHeaderUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUpdateManyWithoutBudgetNestedInput
+    brand?: BrandUpdateOneWithoutBudgetsNestedInput
+  }
+
+  export type BudgetUncheckedUpdateWithoutCurrencyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    allocate_headers?: AllocateHeaderUncheckedUpdateManyWithoutBudgetNestedInput
+    tickets?: TicketUncheckedUpdateManyWithoutBudgetNestedInput
+  }
+
+  export type BudgetUncheckedUpdateManyWithoutCurrencyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    fiscal_year?: IntFieldUpdateOperationsInput | number
+    created_by?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    brand_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type BudgetAllocateCreateManyStoreInput = {
@@ -74820,6 +76804,10 @@ export namespace Prisma {
      */
     export type BrandCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BrandCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use CurrencyCountOutputTypeDefaultArgs instead
+     */
+    export type CurrencyCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CurrencyCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use StoreCountOutputTypeDefaultArgs instead
      */
     export type StoreCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = StoreCountOutputTypeDefaultArgs<ExtArgs>
@@ -74911,6 +76899,10 @@ export namespace Prisma {
      * @deprecated Use BrandDefaultArgs instead
      */
     export type BrandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BrandDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CurrencyDefaultArgs instead
+     */
+    export type CurrencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CurrencyDefaultArgs<ExtArgs>
     /**
      * @deprecated Use StoreDefaultArgs instead
      */

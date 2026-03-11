@@ -313,4 +313,49 @@ export class MasterDataService {
 
     return data;
   }
+
+  // ─── CURRENCIES ──────────────────────────────────────────────────────────
+  async getCurrencies() {
+    return this.prisma.currency.findMany({
+      where: { is_active: true },
+      orderBy: { currency_code: 'asc' },
+    });
+  }
+
+  async getCurrencyById(id: string) {
+    return this.prisma.currency.findUnique({ where: { id: BigInt(id) } });
+  }
+
+  async createCurrency(data: {
+    currencyCode: string;
+    currencyName: string;
+    symbol?: string;
+    exchangeRateToVnd?: number;
+  }) {
+    return this.prisma.currency.create({
+      data: {
+        currency_code: data.currencyCode,
+        currency_name: data.currencyName,
+        symbol: data.symbol,
+        exchange_rate_to_vnd: data.exchangeRateToVnd ?? 1,
+      },
+    });
+  }
+
+  async updateCurrency(id: string, data: {
+    currencyName?: string;
+    symbol?: string;
+    exchangeRateToVnd?: number;
+    isActive?: boolean;
+  }) {
+    return this.prisma.currency.update({
+      where: { id: BigInt(id) },
+      data: {
+        ...(data.currencyName !== undefined && { currency_name: data.currencyName }),
+        ...(data.symbol !== undefined && { symbol: data.symbol }),
+        ...(data.exchangeRateToVnd !== undefined && { exchange_rate_to_vnd: data.exchangeRateToVnd }),
+        ...(data.isActive !== undefined && { is_active: data.isActive }),
+      },
+    });
+  }
 }

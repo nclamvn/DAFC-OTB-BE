@@ -28,6 +28,8 @@ export class BudgetService {
         where,
         include: {
           creator: { select: { id: true, name: true, email: true } },
+          brand: true,
+          currency: true,
           allocate_headers: {
             where: { is_snapshot: false },
             include: {
@@ -59,6 +61,8 @@ export class BudgetService {
       where: { id: BigInt(id) },
       include: {
         creator: { select: { id: true, name: true, email: true } },
+        brand: true,
+        currency: true,
         allocate_headers: {
           where: { is_snapshot: false },
           include: {
@@ -87,6 +91,8 @@ export class BudgetService {
         description: dto.description,
         fiscal_year: dto.fiscalYear,
         created_by: BigInt(userId),
+        ...(dto.brandId && { brand_id: BigInt(dto.brandId) }),
+        ...(dto.currencyId && { currency_id: BigInt(dto.currencyId) }),
       },
     });
 
@@ -136,6 +142,8 @@ export class BudgetService {
     if (dto.name !== undefined) updateData.name = dto.name;
     if (dto.amount !== undefined) updateData.amount = dto.amount;
     if (dto.description !== undefined) updateData.description = dto.description;
+    if (dto.brandId !== undefined) updateData.brand = dto.brandId ? { connect: { id: BigInt(dto.brandId) } } : { disconnect: true };
+    if (dto.currencyId !== undefined) updateData.currency = dto.currencyId ? { connect: { id: BigInt(dto.currencyId) } } : { disconnect: true };
 
     return this.prisma.budget.update({
       where: { id: BigInt(id) },

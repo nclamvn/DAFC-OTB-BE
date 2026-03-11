@@ -110,8 +110,29 @@ model Brand {
   allocate_headers  AllocateHeader[]            @relation("BrandToAllocateHeader")
   history_agg       SubCategorySizeHistoryAgg[] @relation("BrandToHistoryAgg")
   sales_history_agg SalesHistoryAgg[]           @relation("BrandToSalesHistoryAgg")
+  budgets           Budget[]                    @relation("BrandToBudget")
 
   @@map("brand")
+}
+
+// ============================================
+// CURRENCY
+// ============================================
+
+model Currency {
+  id                   BigInt    @id @default(autoincrement())
+  currency_code        String    @unique @db.VarChar(10)
+  currency_name        String    @db.NVarChar(100)
+  symbol               String?   @db.NVarChar(10)
+  exchange_rate_to_vnd Decimal   @default(1) @db.Decimal(18, 6)
+  is_active            Boolean   @default(true)
+  created_at           DateTime  @default(now())
+  updated_at           DateTime? @updatedAt
+
+  // Relations
+  budgets Budget[] @relation("CurrencyToBudget")
+
+  @@map("currency")
 }
 
 // ============================================
@@ -342,11 +363,15 @@ model Budget {
   created_at  DateTime @default(now(), map: "budgets_created_at_df")
   updated_at  DateTime @updatedAt
   updated_by  BigInt?
+  brand_id    BigInt?
+  currency_id BigInt?
 
   // Relations
   creator          User             @relation("CreatedBudgets", fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
   allocate_headers AllocateHeader[] @relation("BudgetToAllocateHeader")
   tickets          Ticket[]         @relation("BudgetToTicket")
+  brand            Brand?           @relation("BrandToBudget", fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  currency         Currency?        @relation("CurrencyToBudget", fields: [currency_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("budget")
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Query, Param, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { MasterDataService } from './master-data.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -176,5 +176,48 @@ export class MasterDataController {
     return this.masterDataService.getProducts({
       brandId, subCategoryId, search, page, pageSize,
     });
+  }
+
+  // ─── CURRENCIES ──────────────────────────────────────────────────────────
+
+  @Get('currencies')
+  @ApiOperation({ summary: 'Get all active currencies' })
+  @ApiSuccessResponse()
+  async getCurrencies() {
+    return this.masterDataService.getCurrencies();
+  }
+
+  @Get('currencies/:id')
+  @ApiOperation({ summary: 'Get currency by ID' })
+  @ApiSuccessResponse()
+  async getCurrencyById(@Param('id') id: string) {
+    return this.masterDataService.getCurrencyById(id);
+  }
+
+  @Post('currencies')
+  @ApiOperation({ summary: 'Create a new currency' })
+  @ApiSuccessResponse()
+  async createCurrency(@Body() body: {
+    currencyCode: string;
+    currencyName: string;
+    symbol?: string;
+    exchangeRateToVnd?: number;
+  }) {
+    return this.masterDataService.createCurrency(body);
+  }
+
+  @Put('currencies/:id')
+  @ApiOperation({ summary: 'Update currency' })
+  @ApiSuccessResponse()
+  async updateCurrency(
+    @Param('id') id: string,
+    @Body() body: {
+      currencyName?: string;
+      symbol?: string;
+      exchangeRateToVnd?: number;
+      isActive?: boolean;
+    },
+  ) {
+    return this.masterDataService.updateCurrency(id, body);
   }
 }

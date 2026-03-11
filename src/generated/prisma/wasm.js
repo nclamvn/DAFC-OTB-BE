@@ -170,6 +170,17 @@ exports.Prisma.BrandScalarFieldEnum = {
   updated_by: 'updated_by'
 };
 
+exports.Prisma.CurrencyScalarFieldEnum = {
+  id: 'id',
+  currency_code: 'currency_code',
+  currency_name: 'currency_name',
+  symbol: 'symbol',
+  exchange_rate_to_vnd: 'exchange_rate_to_vnd',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.StoreScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -300,7 +311,9 @@ exports.Prisma.BudgetScalarFieldEnum = {
   created_by: 'created_by',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  updated_by: 'updated_by'
+  updated_by: 'updated_by',
+  brand_id: 'brand_id',
+  currency_id: 'currency_id'
 };
 
 exports.Prisma.AllocateHeaderScalarFieldEnum = {
@@ -679,6 +692,7 @@ exports.Prisma.ModelName = {
   Role: 'Role',
   GroupBrand: 'GroupBrand',
   Brand: 'Brand',
+  Currency: 'Currency',
   Store: 'Store',
   SeasonType: 'SeasonType',
   SeasonGroup: 'SeasonGroup',
